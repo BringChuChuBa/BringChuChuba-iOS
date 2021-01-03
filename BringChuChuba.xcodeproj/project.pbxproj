@@ -9,12 +9,10 @@
 /* Begin PBXBuildFile section */
 		40A9BAA025A1AC5600EC2988 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9BA9F25A1AC5600EC2988 /* AppDelegate.swift */; };
 		40A9BAA225A1AC5600EC2988 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9BAA125A1AC5600EC2988 /* SceneDelegate.swift */; };
-		40A9BAA425A1AC5600EC2988 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9BAA325A1AC5600EC2988 /* ViewController.swift */; };
-		40A9BAA725A1AC5600EC2988 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40A9BAA525A1AC5600EC2988 /* Main.storyboard */; };
 		40A9BAA925A1AC5700EC2988 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40A9BAA825A1AC5700EC2988 /* Assets.xcassets */; };
-		40A9BAAC25A1AC5700EC2988 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40A9BAAA25A1AC5700EC2988 /* LaunchScreen.storyboard */; };
 		40A9BAB725A1AC5700EC2988 /* BringChuChubaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9BAB625A1AC5700EC2988 /* BringChuChubaTests.swift */; };
 		40A9BAC225A1AC5700EC2988 /* BringChuChubaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9BAC125A1AC5700EC2988 /* BringChuChubaUITests.swift */; };
+		40A9BADC25A1AEB000EC2988 /* TestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9BADB25A1AEB000EC2988 /* TestVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,10 +36,7 @@
 		40A9BA9C25A1AC5600EC2988 /* BringChuChuba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BringChuChuba.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40A9BA9F25A1AC5600EC2988 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40A9BAA125A1AC5600EC2988 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		40A9BAA325A1AC5600EC2988 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		40A9BAA625A1AC5600EC2988 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		40A9BAA825A1AC5700EC2988 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		40A9BAAB25A1AC5700EC2988 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		40A9BAAD25A1AC5700EC2988 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40A9BAB225A1AC5700EC2988 /* BringChuChubaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BringChuChubaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		40A9BAB625A1AC5700EC2988 /* BringChuChubaTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BringChuChubaTests.swift; sourceTree = "<group>"; };
@@ -49,6 +44,7 @@
 		40A9BABD25A1AC5700EC2988 /* BringChuChubaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BringChuChubaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		40A9BAC125A1AC5700EC2988 /* BringChuChubaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BringChuChubaUITests.swift; sourceTree = "<group>"; };
 		40A9BAC325A1AC5700EC2988 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		40A9BADB25A1AEB000EC2988 /* TestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,11 +97,9 @@
 			children = (
 				40A9BA9F25A1AC5600EC2988 /* AppDelegate.swift */,
 				40A9BAA125A1AC5600EC2988 /* SceneDelegate.swift */,
-				40A9BAA325A1AC5600EC2988 /* ViewController.swift */,
-				40A9BAA525A1AC5600EC2988 /* Main.storyboard */,
 				40A9BAA825A1AC5700EC2988 /* Assets.xcassets */,
-				40A9BAAA25A1AC5700EC2988 /* LaunchScreen.storyboard */,
 				40A9BAAD25A1AC5700EC2988 /* Info.plist */,
+				40A9BADB25A1AEB000EC2988 /* TestVC.swift */,
 			);
 			path = BringChuChuba;
 			sourceTree = "<group>";
@@ -231,9 +225,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40A9BAAC25A1AC5700EC2988 /* LaunchScreen.storyboard in Resources */,
 				40A9BAA925A1AC5700EC2988 /* Assets.xcassets in Resources */,
-				40A9BAA725A1AC5600EC2988 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -258,7 +250,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40A9BAA425A1AC5600EC2988 /* ViewController.swift in Sources */,
+				40A9BADC25A1AEB000EC2988 /* TestVC.swift in Sources */,
 				40A9BAA025A1AC5600EC2988 /* AppDelegate.swift in Sources */,
 				40A9BAA225A1AC5600EC2988 /* SceneDelegate.swift in Sources */,
 			);
@@ -294,25 +286,6 @@
 			targetProxy = 40A9BABE25A1AC5700EC2988 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		40A9BAA525A1AC5600EC2988 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				40A9BAA625A1AC5600EC2988 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		40A9BAAA25A1AC5700EC2988 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				40A9BAAB25A1AC5700EC2988 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		40A9BAC425A1AC5700EC2988 /* Debug */ = {
@@ -366,7 +339,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -421,7 +394,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -436,14 +409,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = BringChuChuba/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Bring.ChuChuba.BringChuChuba;
+				PRODUCT_BUNDLE_IDENTIFIER = com.BringChuChuba;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -454,14 +430,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = BringChuChuba/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.Bring.ChuChuba.BringChuChuba;
+				PRODUCT_BUNDLE_IDENTIFIER = com.BringChuChuba;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
