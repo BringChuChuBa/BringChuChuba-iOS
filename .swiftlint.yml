@@ -1,0 +1,11 @@
+disabled_rules:
+- file_length
+- identifier_name
+
+included:
+
+excluded:
+- Pods
+
+line_length: 200
+function_body_length: 100
