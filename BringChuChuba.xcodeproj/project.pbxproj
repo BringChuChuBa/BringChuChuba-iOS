@@ -14,8 +14,6 @@
 		40A9BAB725A1AC5700EC2988 /* BringChuChubaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9BAB625A1AC5700EC2988 /* BringChuChubaTests.swift */; };
 		40A9BAC225A1AC5700EC2988 /* BringChuChubaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9BAC125A1AC5700EC2988 /* BringChuChubaUITests.swift */; };
 		40A9BADC25A1AEB000EC2988 /* TestVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9BADB25A1AEB000EC2988 /* TestVC.swift */; };
-<<<<<<< HEAD
-<<<<<<< HEAD
 		5D88CC7225A2F9DF008B9D61 /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC7125A2F9DF008B9D61 /* SceneCoordinator.swift */; };
 		5D88CC7A25A2FA0B008B9D61 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC7925A2FA0B008B9D61 /* Scene.swift */; };
 		5D88CC7F25A2FA1B008B9D61 /* SceneCoordinatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC7E25A2FA1B008B9D61 /* SceneCoordinatorType.swift */; };
@@ -26,10 +24,6 @@
 		5D88CCA125A2FC8B008B9D61 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CCA025A2FC8B008B9D61 /* MainTabBarController.swift */; };
 		5D88CCAB25A30002008B9D61 /* Family.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CCAA25A30002008B9D61 /* Family.swift */; };
 		5D88CCB325A3013C008B9D61 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CCB225A3013B008B9D61 /* Member.swift */; };
-=======
->>>>>>> dcede5ee2a92b0f76122e117b20a285d9adf59a9
-=======
->>>>>>> dcede5ee2a92b0f76122e117b20a285d9adf59a9
 		7A2F8CB031A1FB9C2029562E /* Pods_BringChuChuba.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 083FA52E64731EAA74948B74 /* Pods_BringChuChuba.framework */; };
 		CD3D5BD9BDA577318F18A8CF /* Pods_BringChuChubaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 238CA85D5DE23E4371091D01 /* Pods_BringChuChubaTests.framework */; };
 /* End PBXBuildFile section */
@@ -69,8 +63,6 @@
 		40A9BAC325A1AC5700EC2988 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40A9BADB25A1AEB000EC2988 /* TestVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestVC.swift; sourceTree = "<group>"; };
 		4F142C957784D4B6B1CDA296 /* Pods-BringChuChuba.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BringChuChuba.release.xcconfig"; path = "Target Support Files/Pods-BringChuChuba/Pods-BringChuChuba.release.xcconfig"; sourceTree = "<group>"; };
-<<<<<<< HEAD
-<<<<<<< HEAD
 		5D88CC7125A2F9DF008B9D61 /* SceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
 		5D88CC7925A2FA0B008B9D61 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		5D88CC7E25A2FA1B008B9D61 /* SceneCoordinatorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinatorType.swift; sourceTree = "<group>"; };
@@ -81,10 +73,6 @@
 		5D88CCA025A2FC8B008B9D61 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		5D88CCAA25A30002008B9D61 /* Family.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Family.swift; sourceTree = "<group>"; };
 		5D88CCB225A3013B008B9D61 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
-=======
->>>>>>> dcede5ee2a92b0f76122e117b20a285d9adf59a9
-=======
->>>>>>> dcede5ee2a92b0f76122e117b20a285d9adf59a9
 		9B0B46A669A2D8C361718525 /* Pods-BringChuChuba-BringChuChubaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BringChuChuba-BringChuChubaUITests.debug.xcconfig"; path = "Target Support Files/Pods-BringChuChuba-BringChuChubaUITests/Pods-BringChuChuba-BringChuChubaUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		CE7094DF20FD08DE6E7BBED5 /* Pods-BringChuChuba.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BringChuChuba.debug.xcconfig"; path = "Target Support Files/Pods-BringChuChuba/Pods-BringChuChuba.debug.xcconfig"; sourceTree = "<group>"; };
 		E22662DF9DE67F70EB282E1C /* Pods_BringChuChuba_BringChuChubaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BringChuChuba_BringChuChubaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,8 +173,6 @@
 				FCCA156D0CBC3FF6E689EFDF /* Pods-BringChuChubaTests.debug.xcconfig */,
 				2D07B4071E4B1A46B9817C9E /* Pods-BringChuChubaTests.release.xcconfig */,
 			);
-<<<<<<< HEAD
-<<<<<<< HEAD
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -308,17 +294,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-=======
-=======
->>>>>>> dcede5ee2a92b0f76122e117b20a285d9adf59a9
-			name = Pods;
-			path = Pods;
-			sourceTree = "<group>";
-		};
-<<<<<<< HEAD
->>>>>>> dcede5ee2a92b0f76122e117b20a285d9adf59a9
-=======
->>>>>>> dcede5ee2a92b0f76122e117b20a285d9adf59a9
 		5FD48F1E05E627880F5974AA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -341,13 +316,7 @@
 				40A9BA9925A1AC5600EC2988 /* Frameworks */,
 				40A9BA9A25A1AC5600EC2988 /* Resources */,
 				2F1996BC49B02F0A31273533 /* [CP] Embed Pods Frameworks */,
-<<<<<<< HEAD
-<<<<<<< HEAD
 				5D88CC5B25A2F638008B9D61 /* Run Script */,
-=======
->>>>>>> dcede5ee2a92b0f76122e117b20a285d9adf59a9
-=======
->>>>>>> dcede5ee2a92b0f76122e117b20a285d9adf59a9
 			);
 			buildRules = (
 			);
@@ -521,8 +490,6 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-BringChuChuba-BringChuChubaUITests/Pods-BringChuChuba-BringChuChubaUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-<<<<<<< HEAD
-<<<<<<< HEAD
 		5D88CC5B25A2F638008B9D61 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -541,10 +508,6 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n${PODS_ROOT}/SwiftLint/swiftlint\n";
 		};
-=======
->>>>>>> dcede5ee2a92b0f76122e117b20a285d9adf59a9
-=======
->>>>>>> dcede5ee2a92b0f76122e117b20a285d9adf59a9
 		6EDEED91BC11310DCB82863D /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
