@@ -13,9 +13,15 @@
 		40A9BAA925A1AC5700EC2988 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40A9BAA825A1AC5700EC2988 /* Assets.xcassets */; };
 		40A9BAB725A1AC5700EC2988 /* BringChuChubaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9BAB625A1AC5700EC2988 /* BringChuChubaTests.swift */; };
 		40A9BAC225A1AC5700EC2988 /* BringChuChubaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9BAC125A1AC5700EC2988 /* BringChuChubaUITests.swift */; };
+		40E5132225A330D40032F712 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5132125A330D40032F712 /* HomeCoordinator.swift */; };
+		40E5132725A330E10032F712 /* CalenderCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5132625A330E10032F712 /* CalenderCoordinator.swift */; };
+		40E5132C25A330E80032F712 /* RankingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5132B25A330E80032F712 /* RankingCoordinator.swift */; };
+		40E5133125A330F30032F712 /* UsersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5133025A330F30032F712 /* UsersCoordinator.swift */; };
+		40E5136C25A3FF150032F712 /* LaunchInstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5136B25A3FF150032F712 /* LaunchInstructor.swift */; };
+		40E5138F25A409460032F712 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5138E25A409460032F712 /* MainCoordinator.swift */; };
 		5D88CC7225A2F9DF008B9D61 /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC7125A2F9DF008B9D61 /* SceneCoordinator.swift */; };
 		5D88CC7A25A2FA0B008B9D61 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC7925A2FA0B008B9D61 /* Scene.swift */; };
-		5D88CC7F25A2FA1B008B9D61 /* SceneCoordinatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC7E25A2FA1B008B9D61 /* SceneCoordinatorType.swift */; };
+		5D88CC7F25A2FA1B008B9D61 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC7E25A2FA1B008B9D61 /* Coordinator.swift */; };
 		5D88CC8425A2FA26008B9D61 /* TransitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC8325A2FA26008B9D61 /* TransitionModel.swift */; };
 		5D88CC8925A2FB29008B9D61 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC8825A2FB29008B9D61 /* HomeViewController.swift */; };
 		5D88CC9625A2FB85008B9D61 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC9525A2FB85008B9D61 /* CalendarViewController.swift */; };
@@ -60,10 +66,16 @@
 		40A9BABD25A1AC5700EC2988 /* BringChuChubaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BringChuChubaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		40A9BAC125A1AC5700EC2988 /* BringChuChubaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BringChuChubaUITests.swift; sourceTree = "<group>"; };
 		40A9BAC325A1AC5700EC2988 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		40E5132125A330D40032F712 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
+		40E5132625A330E10032F712 /* CalenderCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderCoordinator.swift; sourceTree = "<group>"; };
+		40E5132B25A330E80032F712 /* RankingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingCoordinator.swift; sourceTree = "<group>"; };
+		40E5133025A330F30032F712 /* UsersCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersCoordinator.swift; sourceTree = "<group>"; };
+		40E5136B25A3FF150032F712 /* LaunchInstructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchInstructor.swift; sourceTree = "<group>"; };
+		40E5138E25A409460032F712 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		4F142C957784D4B6B1CDA296 /* Pods-BringChuChuba.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BringChuChuba.release.xcconfig"; path = "Target Support Files/Pods-BringChuChuba/Pods-BringChuChuba.release.xcconfig"; sourceTree = "<group>"; };
 		5D88CC7125A2F9DF008B9D61 /* SceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
 		5D88CC7925A2FA0B008B9D61 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
-		5D88CC7E25A2FA1B008B9D61 /* SceneCoordinatorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinatorType.swift; sourceTree = "<group>"; };
+		5D88CC7E25A2FA1B008B9D61 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		5D88CC8325A2FA26008B9D61 /* TransitionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionModel.swift; sourceTree = "<group>"; };
 		5D88CC8825A2FB29008B9D61 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5D88CC9525A2FB85008B9D61 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
@@ -160,6 +172,150 @@
 			path = BringChuChubaUITests;
 			sourceTree = "<group>";
 		};
+		40E5137625A405230032F712 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		40E5137725A4053D0032F712 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5D88CCA025A2FC8B008B9D61 /* MainTabBarController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		40E5137925A405480032F712 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		40E5137A25A4055E0032F712 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		40E5137B25A4056A0032F712 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		40E5137C25A4056B0032F712 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		40E5137D25A4056B0032F712 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5D88CC8825A2FB29008B9D61 /* HomeViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		40E5137E25A4056B0032F712 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		40E5137F25A405730032F712 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		40E5138025A405730032F712 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		40E5138125A405730032F712 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		40E5138225A405730032F712 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5D88CC9525A2FB85008B9D61 /* CalendarViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		40E5138325A405770032F712 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		40E5138425A405770032F712 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
+		40E5138525A405770032F712 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5D88CC9A25A2FB8E008B9D61 /* RankingViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		40E5138625A405770032F712 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		40E5138725A4057B0032F712 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		40E5138825A4057B0032F712 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		40E5138925A4057B0032F712 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		40E5138A25A4057B0032F712 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Coordinators;
+			sourceTree = "<group>";
+		};
 		5844068726E2EE3273A010C3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,9 +367,9 @@
 				5D88CC6A25A2F8D1008B9D61 /* Home */,
 				5D88CC6B25A2F8DE008B9D61 /* Calendar */,
 				5D88CC6C25A2F8E8008B9D61 /* Ranking */,
-				5D88CC6F25A2F927008B9D61 /* Notifications */,
-				5D88CC6E25A2F91B008B9D61 /* Login */,
 				5D88CC6D25A2F907008B9D61 /* Users */,
+				5D88CC6E25A2F91B008B9D61 /* Login */,
+				5D88CC6F25A2F927008B9D61 /* Notifications */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -221,7 +377,10 @@
 		5D88CC6A25A2F8D1008B9D61 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				5D88CC8825A2FB29008B9D61 /* HomeViewController.swift */,
+				40E5137B25A4056A0032F712 /* Coordinators */,
+				40E5137C25A4056B0032F712 /* Models */,
+				40E5137D25A4056B0032F712 /* Views */,
+				40E5137E25A4056B0032F712 /* ViewModels */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -229,7 +388,10 @@
 		5D88CC6B25A2F8DE008B9D61 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
-				5D88CC9525A2FB85008B9D61 /* CalendarViewController.swift */,
+				40E5138125A405730032F712 /* Coordinators */,
+				40E5138025A405730032F712 /* Models */,
+				40E5138225A405730032F712 /* Views */,
+				40E5137F25A405730032F712 /* ViewModels */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -237,7 +399,10 @@
 		5D88CC6C25A2F8E8008B9D61 /* Ranking */ = {
 			isa = PBXGroup;
 			children = (
-				5D88CC9A25A2FB8E008B9D61 /* RankingViewController.swift */,
+				40E5138425A405770032F712 /* Coordinators */,
+				40E5138625A405770032F712 /* Models */,
+				40E5138525A405770032F712 /* Views */,
+				40E5138325A405770032F712 /* ViewModels */,
 			);
 			path = Ranking;
 			sourceTree = "<group>";
@@ -245,6 +410,10 @@
 		5D88CC6D25A2F907008B9D61 /* Users */ = {
 			isa = PBXGroup;
 			children = (
+				40E5138A25A4057B0032F712 /* Coordinators */,
+				40E5138925A4057B0032F712 /* Models */,
+				40E5138725A4057B0032F712 /* Views */,
+				40E5138825A4057B0032F712 /* ViewModels */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -266,10 +435,16 @@
 		5D88CC7025A2F9A5008B9D61 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				5D88CC7125A2F9DF008B9D61 /* SceneCoordinator.swift */,
 				5D88CC7925A2FA0B008B9D61 /* Scene.swift */,
-				5D88CC7E25A2FA1B008B9D61 /* SceneCoordinatorType.swift */,
 				5D88CC8325A2FA26008B9D61 /* TransitionModel.swift */,
+				5D88CC7125A2F9DF008B9D61 /* SceneCoordinator.swift */,
+				5D88CC7E25A2FA1B008B9D61 /* Coordinator.swift */,
+				40E5138E25A409460032F712 /* MainCoordinator.swift */,
+				40E5132125A330D40032F712 /* HomeCoordinator.swift */,
+				40E5132625A330E10032F712 /* CalenderCoordinator.swift */,
+				40E5132B25A330E80032F712 /* RankingCoordinator.swift */,
+				40E5133025A330F30032F712 /* UsersCoordinator.swift */,
+				40E5136B25A3FF150032F712 /* LaunchInstructor.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -277,7 +452,10 @@
 		5D88CC9F25A2FC40008B9D61 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				5D88CCA025A2FC8B008B9D61 /* MainTabBarController.swift */,
+				40E5137A25A4055E0032F712 /* Coordinators */,
+				40E5137925A405480032F712 /* Models */,
+				40E5137725A4053D0032F712 /* Views */,
+				40E5137625A405230032F712 /* ViewModels */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -560,14 +738,20 @@
 				5D88CCA125A2FC8B008B9D61 /* MainTabBarController.swift in Sources */,
 				5D88CC7A25A2FA0B008B9D61 /* Scene.swift in Sources */,
 				5D88CC8925A2FB29008B9D61 /* HomeViewController.swift in Sources */,
+				40E5132725A330E10032F712 /* CalenderCoordinator.swift in Sources */,
 				5D88CCAB25A30002008B9D61 /* Family.swift in Sources */,
 				5D88CC8425A2FA26008B9D61 /* TransitionModel.swift in Sources */,
+				40E5138F25A409460032F712 /* MainCoordinator.swift in Sources */,
+				40E5136C25A3FF150032F712 /* LaunchInstructor.swift in Sources */,
+				40E5133125A330F30032F712 /* UsersCoordinator.swift in Sources */,
 				5D88CC9B25A2FB8E008B9D61 /* RankingViewController.swift in Sources */,
 				40A9BAA225A1AC5600EC2988 /* SceneDelegate.swift in Sources */,
+				40E5132C25A330E80032F712 /* RankingCoordinator.swift in Sources */,
+				40E5132225A330D40032F712 /* HomeCoordinator.swift in Sources */,
 				5D88CCB325A3013C008B9D61 /* Member.swift in Sources */,
 				5D88CC9625A2FB85008B9D61 /* CalendarViewController.swift in Sources */,
 				5D88CC7225A2F9DF008B9D61 /* SceneCoordinator.swift in Sources */,
-				5D88CC7F25A2FA1B008B9D61 /* SceneCoordinatorType.swift in Sources */,
+				5D88CC7F25A2FA1B008B9D61 /* Coordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
