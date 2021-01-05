@@ -1,5 +1,5 @@
 //
-//  RankingCoordinator.swift
+//  CalendarCoordinator.swift
 //  BringChuChuba
 //
 //  Created by 한상진 on 2021/01/04.
@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-class RankingCoordinator: Coordinator {
+class CalendarCoordinator: Coordinator {
     unowned private let navigationController: UINavigationController
 
     init(navigationController: UINavigationController) {
@@ -16,8 +16,8 @@ class RankingCoordinator: Coordinator {
     }
 
     func start() {
-        let rankingViewController = RankingViewController(viewModel: .init(coordinator: self))
+        let calendarViewController = CalendarViewController(viewModel: .init(coordinator: self))
 
-        navigationController.pushViewController(rankingViewController, animated: true)
+        navigationController.pushViewController(calendarViewController, animated: true)
     }
 }

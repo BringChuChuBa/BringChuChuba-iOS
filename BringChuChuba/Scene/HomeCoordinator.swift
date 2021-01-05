@@ -6,12 +6,18 @@
 //
 
 import UIKit
+import RxSwift
 
-struct HomeCoordinator: Coordinator {
-    var childCoordinators: [Coordinator]
-    var navigationController: UINavigationController?
+final class HomeCoordinator: Coordinator {
+    unowned private let navigationController: UINavigationController
+
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
+    }
 
     func start() {
+        let homeViewController = HomeViewController(viewModel: .init(coordinator: self))
 
+        navigationController.pushViewController(homeViewController, animated: true)
     }
 }

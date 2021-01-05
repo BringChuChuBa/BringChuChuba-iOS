@@ -6,23 +6,62 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
 class MainCoordinator: Coordinator {
-    /**
-     ViewController, ViewModel, Reactor .. 등의 화면단위에 사용하는 클래스의 인스턴스화합니다.
-     ViewController 및 ViewModel, Reactor .. 등에 종속성을 주입해야될 인스턴스에 삽입합니다.
-     ViewController를 화면에 표시하거나 Push합니다.
-     */
 
-    var childCoordinators = [Coordinator]()
-    var navigationController: UINavigationController?
+    // TODO: Singleton 객체로 선언하는게 맞는가?
 
-    init(navigationController: UINavigationController?) {
-        self.navigationController = navigationController
+    private let window: UIWindow
+
+    init(window: UIWindow) {
+        self.window = window
     }
 
     func start() {
-//        let vc = ViewController.instantiate()
-//        navigationController.pushViewController(vc, animated: false)
+        let homeNavigationController = getNavigationController(from: .home)
+        let calendarNavigationController = getNavigationController(from: .calendar)
+        let rankingNavigationController = getNavigationController(from: .ranking)
+        let usersNavigationController = getNavigationController(from: .users)
+
+        coordinatorInit(from: .home, with: homeNavigationController)
+        coordinatorInit(from: .calendar, with: calendarNavigationController)
+        coordinatorInit(from: .ranking, with: rankingNavigationController)
+        coordinatorInit(from: .users, with: usersNavigationController)
+
+        let tabBarController = UITabBarController()
+        tabBarController.viewControllers = [homeNavigationController,
+                                            calendarNavigationController,
+                                            rankingNavigationController,
+                                            usersNavigationController]
+
+        window.rootViewController = tabBarController
+        window.makeKeyAndVisible()
+    }
+
+    // MARK: - Private methods
+
+    private func getNavigationController(from type: SceneType) -> UINavigationController {
+        let navigationController = UINavigationController()
+        navigationController.tabBarItem = type.tabBarItem
+        return navigationController
+    }
+
+    private func coordinatorInit(from type: SceneType, with navigationController: UINavigationController) {
+        let coordinator: Coordinator
+
+        switch type {
+        case .home:
+            coordinator = HomeCoordinator(navigationController: navigationController)
+        case .calendar:
+            coordinator = CalendarCoordinator(navigationController: navigationController)
+        case .ranking:
+            coordinator = RankingCoordinator(navigationController: navigationController)
+        case .users:
+            coordinator = UsersCoordinator(navigationController: navigationController)
+        }
+
+        coordinator.start()
     }
 }

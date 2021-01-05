@@ -8,23 +8,25 @@
 
 /* Begin PBXBuildFile section */
 		0481EAF10D0F0D97DDEBDBB5 /* Pods_BringChuChuba_BringChuChubaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E22662DF9DE67F70EB282E1C /* Pods_BringChuChuba_BringChuChubaUITests.framework */; };
+		4015763A25A4737500AB4296 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015763925A4737500AB4296 /* CalendarViewModel.swift */; };
+		4015764225A47A9D00AB4296 /* RankingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015764125A47A9D00AB4296 /* RankingViewModel.swift */; };
+		4015764A25A47AAE00AB4296 /* UsersVeiwModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015764925A47AAE00AB4296 /* UsersVeiwModel.swift */; };
 		406FFDEA25A43EA4005C5566 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406FFDE925A43EA4005C5566 /* HomeViewModel.swift */; };
 		406FFE0A25A4488E005C5566 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 406FFE0925A4488E005C5566 /* Launch Screen.storyboard */; };
+		406FFE1725A44EB2005C5566 /* UIViewController+top.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406FFE1625A44EB2005C5566 /* UIViewController+top.swift */; };
+		408FF29925A471000032C5D1 /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408FF29825A471000032C5D1 /* UsersViewController.swift */; };
 		40A9BAA025A1AC5600EC2988 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9BA9F25A1AC5600EC2988 /* AppDelegate.swift */; };
 		40A9BAA225A1AC5600EC2988 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9BAA125A1AC5600EC2988 /* SceneDelegate.swift */; };
 		40A9BAA925A1AC5700EC2988 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40A9BAA825A1AC5700EC2988 /* Assets.xcassets */; };
 		40A9BAB725A1AC5700EC2988 /* BringChuChubaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9BAB625A1AC5700EC2988 /* BringChuChubaTests.swift */; };
 		40A9BAC225A1AC5700EC2988 /* BringChuChubaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9BAC125A1AC5700EC2988 /* BringChuChubaUITests.swift */; };
 		40E5132225A330D40032F712 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5132125A330D40032F712 /* HomeCoordinator.swift */; };
-		40E5132725A330E10032F712 /* CalenderCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5132625A330E10032F712 /* CalenderCoordinator.swift */; };
+		40E5132725A330E10032F712 /* CalendarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5132625A330E10032F712 /* CalendarCoordinator.swift */; };
 		40E5132C25A330E80032F712 /* RankingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5132B25A330E80032F712 /* RankingCoordinator.swift */; };
 		40E5133125A330F30032F712 /* UsersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5133025A330F30032F712 /* UsersCoordinator.swift */; };
-		40E5136C25A3FF150032F712 /* LaunchInstructor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5136B25A3FF150032F712 /* LaunchInstructor.swift */; };
+		40E5136C25A3FF150032F712 /* SceneType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5136B25A3FF150032F712 /* SceneType.swift */; };
 		40E5138F25A409460032F712 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5138E25A409460032F712 /* MainCoordinator.swift */; };
-		5D88CC7225A2F9DF008B9D61 /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC7125A2F9DF008B9D61 /* SceneCoordinator.swift */; };
-		5D88CC7A25A2FA0B008B9D61 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC7925A2FA0B008B9D61 /* Scene.swift */; };
 		5D88CC7F25A2FA1B008B9D61 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC7E25A2FA1B008B9D61 /* Coordinator.swift */; };
-		5D88CC8425A2FA26008B9D61 /* TransitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC8325A2FA26008B9D61 /* TransitionModel.swift */; };
 		5D88CC8925A2FB29008B9D61 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC8825A2FB29008B9D61 /* HomeViewController.swift */; };
 		5D88CC9625A2FB85008B9D61 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC9525A2FB85008B9D61 /* CalendarViewController.swift */; };
 		5D88CC9B25A2FB8E008B9D61 /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC9A25A2FB8E008B9D61 /* RankingViewController.swift */; };
@@ -57,8 +59,13 @@
 		238CA85D5DE23E4371091D01 /* Pods_BringChuChubaTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BringChuChubaTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D07B4071E4B1A46B9817C9E /* Pods-BringChuChubaTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BringChuChubaTests.release.xcconfig"; path = "Target Support Files/Pods-BringChuChubaTests/Pods-BringChuChubaTests.release.xcconfig"; sourceTree = "<group>"; };
 		38D9F25AE14E2DA4FCA82517 /* Pods-BringChuChuba-BringChuChubaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BringChuChuba-BringChuChubaUITests.release.xcconfig"; path = "Target Support Files/Pods-BringChuChuba-BringChuChubaUITests/Pods-BringChuChuba-BringChuChubaUITests.release.xcconfig"; sourceTree = "<group>"; };
+		4015763925A4737500AB4296 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
+		4015764125A47A9D00AB4296 /* RankingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewModel.swift; sourceTree = "<group>"; };
+		4015764925A47AAE00AB4296 /* UsersVeiwModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersVeiwModel.swift; sourceTree = "<group>"; };
 		406FFDE925A43EA4005C5566 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		406FFE0925A4488E005C5566 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		406FFE1625A44EB2005C5566 /* UIViewController+top.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+top.swift"; path = "BringChuChuba/Scene/UIViewController+top.swift"; sourceTree = SOURCE_ROOT; };
+		408FF29825A471000032C5D1 /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
 		40A9BA9C25A1AC5600EC2988 /* BringChuChuba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BringChuChuba.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40A9BA9F25A1AC5600EC2988 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40A9BAA125A1AC5600EC2988 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -71,16 +78,13 @@
 		40A9BAC125A1AC5700EC2988 /* BringChuChubaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BringChuChubaUITests.swift; sourceTree = "<group>"; };
 		40A9BAC325A1AC5700EC2988 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40E5132125A330D40032F712 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
-		40E5132625A330E10032F712 /* CalenderCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderCoordinator.swift; sourceTree = "<group>"; };
+		40E5132625A330E10032F712 /* CalendarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCoordinator.swift; sourceTree = "<group>"; };
 		40E5132B25A330E80032F712 /* RankingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingCoordinator.swift; sourceTree = "<group>"; };
 		40E5133025A330F30032F712 /* UsersCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersCoordinator.swift; sourceTree = "<group>"; };
-		40E5136B25A3FF150032F712 /* LaunchInstructor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchInstructor.swift; sourceTree = "<group>"; };
+		40E5136B25A3FF150032F712 /* SceneType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneType.swift; sourceTree = "<group>"; };
 		40E5138E25A409460032F712 /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
 		4F142C957784D4B6B1CDA296 /* Pods-BringChuChuba.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BringChuChuba.release.xcconfig"; path = "Target Support Files/Pods-BringChuChuba/Pods-BringChuChuba.release.xcconfig"; sourceTree = "<group>"; };
-		5D88CC7125A2F9DF008B9D61 /* SceneCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneCoordinator.swift; sourceTree = "<group>"; };
-		5D88CC7925A2FA0B008B9D61 /* Scene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scene.swift; sourceTree = "<group>"; };
 		5D88CC7E25A2FA1B008B9D61 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
-		5D88CC8325A2FA26008B9D61 /* TransitionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionModel.swift; sourceTree = "<group>"; };
 		5D88CC8825A2FB29008B9D61 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5D88CC9525A2FB85008B9D61 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
 		5D88CC9A25A2FB8E008B9D61 /* RankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
@@ -176,151 +180,6 @@
 			path = BringChuChubaUITests;
 			sourceTree = "<group>";
 		};
-		40E5137625A405230032F712 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		40E5137725A4053D0032F712 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				5D88CCA025A2FC8B008B9D61 /* MainTabBarController.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		40E5137925A405480032F712 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		40E5137A25A4055E0032F712 /* Coordinators */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Coordinators;
-			sourceTree = "<group>";
-		};
-		40E5137B25A4056A0032F712 /* Coordinators */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Coordinators;
-			sourceTree = "<group>";
-		};
-		40E5137C25A4056B0032F712 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		40E5137D25A4056B0032F712 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				5D88CC8825A2FB29008B9D61 /* HomeViewController.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		40E5137E25A4056B0032F712 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-				406FFDE925A43EA4005C5566 /* HomeViewModel.swift */,
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		40E5137F25A405730032F712 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		40E5138025A405730032F712 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		40E5138125A405730032F712 /* Coordinators */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Coordinators;
-			sourceTree = "<group>";
-		};
-		40E5138225A405730032F712 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				5D88CC9525A2FB85008B9D61 /* CalendarViewController.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		40E5138325A405770032F712 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		40E5138425A405770032F712 /* Coordinators */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Coordinators;
-			sourceTree = "<group>";
-		};
-		40E5138525A405770032F712 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				5D88CC9A25A2FB8E008B9D61 /* RankingViewController.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		40E5138625A405770032F712 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		40E5138725A4057B0032F712 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
-		40E5138825A4057B0032F712 /* ViewModels */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ViewModels;
-			sourceTree = "<group>";
-		};
-		40E5138925A4057B0032F712 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		40E5138A25A4057B0032F712 /* Coordinators */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Coordinators;
-			sourceTree = "<group>";
-		};
 		5844068726E2EE3273A010C3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -362,6 +221,7 @@
 		5D88CC6825A2F836008B9D61 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				406FFE1625A44EB2005C5566 /* UIViewController+top.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -383,10 +243,8 @@
 		5D88CC6A25A2F8D1008B9D61 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				40E5137B25A4056A0032F712 /* Coordinators */,
-				40E5137C25A4056B0032F712 /* Models */,
-				40E5137D25A4056B0032F712 /* Views */,
-				40E5137E25A4056B0032F712 /* ViewModels */,
+				5D88CC8825A2FB29008B9D61 /* HomeViewController.swift */,
+				406FFDE925A43EA4005C5566 /* HomeViewModel.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -394,10 +252,8 @@
 		5D88CC6B25A2F8DE008B9D61 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
-				40E5138125A405730032F712 /* Coordinators */,
-				40E5138025A405730032F712 /* Models */,
-				40E5138225A405730032F712 /* Views */,
-				40E5137F25A405730032F712 /* ViewModels */,
+				5D88CC9525A2FB85008B9D61 /* CalendarViewController.swift */,
+				4015763925A4737500AB4296 /* CalendarViewModel.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -405,10 +261,8 @@
 		5D88CC6C25A2F8E8008B9D61 /* Ranking */ = {
 			isa = PBXGroup;
 			children = (
-				40E5138425A405770032F712 /* Coordinators */,
-				40E5138625A405770032F712 /* Models */,
-				40E5138525A405770032F712 /* Views */,
-				40E5138325A405770032F712 /* ViewModels */,
+				5D88CC9A25A2FB8E008B9D61 /* RankingViewController.swift */,
+				4015764125A47A9D00AB4296 /* RankingViewModel.swift */,
 			);
 			path = Ranking;
 			sourceTree = "<group>";
@@ -416,10 +270,8 @@
 		5D88CC6D25A2F907008B9D61 /* Users */ = {
 			isa = PBXGroup;
 			children = (
-				40E5138A25A4057B0032F712 /* Coordinators */,
-				40E5138925A4057B0032F712 /* Models */,
-				40E5138725A4057B0032F712 /* Views */,
-				40E5138825A4057B0032F712 /* ViewModels */,
+				408FF29825A471000032C5D1 /* UsersViewController.swift */,
+				4015764925A47AAE00AB4296 /* UsersVeiwModel.swift */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -441,16 +293,13 @@
 		5D88CC7025A2F9A5008B9D61 /* Scene */ = {
 			isa = PBXGroup;
 			children = (
-				5D88CC7925A2FA0B008B9D61 /* Scene.swift */,
-				5D88CC8325A2FA26008B9D61 /* TransitionModel.swift */,
-				5D88CC7125A2F9DF008B9D61 /* SceneCoordinator.swift */,
 				5D88CC7E25A2FA1B008B9D61 /* Coordinator.swift */,
+				40E5136B25A3FF150032F712 /* SceneType.swift */,
 				40E5138E25A409460032F712 /* MainCoordinator.swift */,
 				40E5132125A330D40032F712 /* HomeCoordinator.swift */,
-				40E5132625A330E10032F712 /* CalenderCoordinator.swift */,
+				40E5132625A330E10032F712 /* CalendarCoordinator.swift */,
 				40E5132B25A330E80032F712 /* RankingCoordinator.swift */,
 				40E5133025A330F30032F712 /* UsersCoordinator.swift */,
-				40E5136B25A3FF150032F712 /* LaunchInstructor.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -458,10 +307,7 @@
 		5D88CC9F25A2FC40008B9D61 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				40E5137A25A4055E0032F712 /* Coordinators */,
-				40E5137925A405480032F712 /* Models */,
-				40E5137725A4053D0032F712 /* Views */,
-				40E5137625A405230032F712 /* ViewModels */,
+				5D88CCA025A2FC8B008B9D61 /* MainTabBarController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -744,21 +590,23 @@
 				406FFDEA25A43EA4005C5566 /* HomeViewModel.swift in Sources */,
 				40A9BAA025A1AC5600EC2988 /* AppDelegate.swift in Sources */,
 				5D88CCA125A2FC8B008B9D61 /* MainTabBarController.swift in Sources */,
-				5D88CC7A25A2FA0B008B9D61 /* Scene.swift in Sources */,
+				408FF29925A471000032C5D1 /* UsersViewController.swift in Sources */,
 				5D88CC8925A2FB29008B9D61 /* HomeViewController.swift in Sources */,
-				40E5132725A330E10032F712 /* CalenderCoordinator.swift in Sources */,
+				40E5132725A330E10032F712 /* CalendarCoordinator.swift in Sources */,
 				5D88CCAB25A30002008B9D61 /* Family.swift in Sources */,
-				5D88CC8425A2FA26008B9D61 /* TransitionModel.swift in Sources */,
+				406FFE1725A44EB2005C5566 /* UIViewController+top.swift in Sources */,
 				40E5138F25A409460032F712 /* MainCoordinator.swift in Sources */,
-				40E5136C25A3FF150032F712 /* LaunchInstructor.swift in Sources */,
+				40E5136C25A3FF150032F712 /* SceneType.swift in Sources */,
 				40E5133125A330F30032F712 /* UsersCoordinator.swift in Sources */,
 				5D88CC9B25A2FB8E008B9D61 /* RankingViewController.swift in Sources */,
 				40A9BAA225A1AC5600EC2988 /* SceneDelegate.swift in Sources */,
+				4015764A25A47AAE00AB4296 /* UsersVeiwModel.swift in Sources */,
 				40E5132C25A330E80032F712 /* RankingCoordinator.swift in Sources */,
 				40E5132225A330D40032F712 /* HomeCoordinator.swift in Sources */,
+				4015764225A47A9D00AB4296 /* RankingViewModel.swift in Sources */,
 				5D88CCB325A3013C008B9D61 /* Member.swift in Sources */,
 				5D88CC9625A2FB85008B9D61 /* CalendarViewController.swift in Sources */,
-				5D88CC7225A2F9DF008B9D61 /* SceneCoordinator.swift in Sources */,
+				4015763A25A4737500AB4296 /* CalendarViewModel.swift in Sources */,
 				5D88CC7F25A2FA1B008B9D61 /* Coordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

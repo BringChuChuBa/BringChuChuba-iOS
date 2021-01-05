@@ -6,12 +6,18 @@
 //
 
 import UIKit
+import RxSwift
 
-struct UsersCoordinator: Coordinator {
-    var childCoordinators: [Coordinator]
-    var navigationController: UINavigationController?
+class UsersCoordinator: Coordinator {
+    unowned private let navigationController: UINavigationController
+
+    init(navigationController: UINavigationController) {
+        self.navigationController = navigationController
+    }
 
     func start() {
+        let usersViewController = UsersViewController(viewModel: .init(coordinator: self))
 
+        navigationController.pushViewController(usersViewController, animated: true)
     }
 }
