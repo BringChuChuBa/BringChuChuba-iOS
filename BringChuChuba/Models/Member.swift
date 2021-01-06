@@ -7,3 +7,7 @@
 
 import Foundation
 
+struct Member: Codable {
+    let id: Int
+    let familyId: Int?
+}
