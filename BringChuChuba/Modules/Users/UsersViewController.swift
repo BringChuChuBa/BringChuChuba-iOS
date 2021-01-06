@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import SnapKit
+import Then
 
 class UsersViewController: UIViewController {
-    var viewModel: UsersViewModel!
+    var viewModel: UsersViewModel
 
     init(viewModel: UsersViewModel) {
         self.viewModel = viewModel
