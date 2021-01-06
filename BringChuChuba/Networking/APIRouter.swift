@@ -11,20 +11,18 @@ import Firebase
 protocol APICofiguration: URLRequestConvertible {
     var method: HTTPMethod { get }
     var path: String { get }
-    var parameter: RequestParams? { get }
+    var parameter: ParameterType? { get }
 }
 
 enum APIRouter: APICofiguration {
     case getMember
-    case createFamily(name: String)
+    case getFamily(familyId: Int)
 
     // MARK: - HTTPMethod
     var method: HTTPMethod {
         switch self {
-        case .getMember:
+        case .getMember, .getFamily:
             return .get
-        case .createFamily:
-            return .post
         }
     }
 
@@ -33,14 +31,16 @@ enum APIRouter: APICofiguration {
         switch self {
         case .getMember:
             return "member"
-        case .createFamily:
+        case .getFamily:
             return "family"
         }
     }
 
     // MARK: - Parameters
-    var parameter: RequestParams? {
+    var parameter: ParameterType? {
         switch self {
+        case .getFamily(let familyId):
+            return .query(["family_uid": String(familyId)])
         default:
             return nil
         }
@@ -62,6 +62,23 @@ enum APIRouter: APICofiguration {
 
         // Custom Headers
         urlRequest.setValue(GlobalData.sharedInstance().userToken, forHTTPHeaderField: "Authorization")
+
+        // Parameters
+        switch parameter {
+        case .body(let parameter):
+            let bodyData = try? JSONSerialization.data(withJSONObject: parameter, options: [])
+            if let data = bodyData {
+                urlRequest.httpBody = data
+            }
+        case .query(let parameter):
+            let queryParams = parameter.map { URLQueryItem(name: $0.key, value: $0.value) }
+            var components = URLComponents(string: url.appendingPathComponent(path).absoluteString)
+            components?.queryItems = queryParams
+            urlRequest.url = components?.url
+
+        default:
+            break
+        }
 
         return urlRequest
     }

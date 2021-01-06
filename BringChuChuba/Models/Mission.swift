@@ -10,9 +10,12 @@ import Foundation
 struct Mission: Codable {
     let client: [Member]
     var contractor: [Member]
+    let createdAt: String
     var description: String
+    let expireAt: String
     let familyId: Int
     let id: Int
+    var modifiedAt: String
     var reward: String
     var status: String
     var title: String

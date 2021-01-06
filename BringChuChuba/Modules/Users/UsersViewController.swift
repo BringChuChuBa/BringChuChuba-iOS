@@ -22,14 +22,5 @@ class UsersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
-
-        APIClient.getMember(completion: { result in
-            switch result {
-            case .success(let member):
-                print(member)
-            case .failure(let error):
-                print(error)
-            }
-        })
     }
 }

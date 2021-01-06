@@ -38,6 +38,7 @@
 		5D88CD4D25A42CDB008B9D61 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CD4C25A42CDB008B9D61 /* APIRouter.swift */; };
 		5D88CD5225A42F0B008B9D61 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CD5125A42F0B008B9D61 /* Constants.swift */; };
 		5D88CD9825A55D37008B9D61 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CD9725A55D37008B9D61 /* APIClient.swift */; };
+		5D88CDA225A5D5B6008B9D61 /* Family.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CCAA25A30002008B9D61 /* Family.swift */; };
 		7A2F8CB031A1FB9C2029562E /* Pods_BringChuChuba.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 083FA52E64731EAA74948B74 /* Pods_BringChuChuba.framework */; };
 		CD3D5BD9BDA577318F18A8CF /* Pods_BringChuChubaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 238CA85D5DE23E4371091D01 /* Pods_BringChuChubaTests.framework */; };
 /* End PBXBuildFile section */
@@ -622,6 +623,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5D88CDA225A5D5B6008B9D61 /* Family.swift in Sources */,
 				406FFDEA25A43EA4005C5566 /* HomeViewModel.swift in Sources */,
 				40A9BAA025A1AC5600EC2988 /* AppDelegate.swift in Sources */,
 				4015765A25A4803600AB4296 /* Log.swift in Sources */,

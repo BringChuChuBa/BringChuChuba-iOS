@@ -27,8 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     fatalError()
                 }
                 GlobalData.sharedInstance().userToken = idToken
+                print("\(idToken)")
 
-                // APIClient reqeust
+                // getMyInfo
                 APIClient.getMember(completion: { result in
                     switch result {
                     case .success(let member):
@@ -37,6 +38,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         print(error)
                     }
                 })
+
+                // getFamily
+                let familyId = 1
+                APIClient.getFamily(familyId: familyId, completion: { result in
+                    switch result {
+                    case .success(let family):
+                        print(family)
+                    case .failure(let error):
+                        print(error)
+                    }
+                })
+
+                // TODO: createFamily
+                // TODO: joinFamily
             }
         }
         return true

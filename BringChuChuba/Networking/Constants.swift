@@ -26,7 +26,7 @@ enum ContentType: String {
     case json = "application/json"
 }
 
-enum RequestParams {
-    case body(_:Parameters)
-    case url(_:Parameters)
+enum ParameterType {
+    case query([String:String])
+    case body([String:String])
 }
