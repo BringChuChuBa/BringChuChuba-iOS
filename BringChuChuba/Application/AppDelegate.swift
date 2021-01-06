@@ -13,27 +13,30 @@ import SwiftyJSON
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    var token: String?
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         FirebaseApp.configure()
         Auth.auth().signInAnonymously { (authResult, error) in
-            guard let user = authResult?.user else { return }
-            user.getIDToken { (idToken, error) in
-                if let error = error {
-                    print(error)
+            guard let user = authResult?.user else {
+                print("\(#file) Firebase SignIn Fail")
+                fatalError()
+            }
+            user.getIDTokenForcingRefresh(true) { (idToken, error) in
+                if error != nil {
+                    print("\(#file) Firebase getIDToken Fail")
                     fatalError()
                 }
-                self.token = idToken
-//                APIClient.member(token: idToken!, completion: { result in
-//                    switch result {
-//                    case .success(let member):
-//                        print(member)
-//                    case .failure(let error):
-//                        print(error)
-//                    }
-//                })
+                GlobalData.sharedInstance().userToken = idToken
+
+                // APIClient reqeust
+                APIClient.getMember(completion: { result in
+                    switch result {
+                    case .success(let member):
+                        print(member)
+                    case .failure(let error):
+                        print(error)
+                    }
+                })
             }
         }
         return true

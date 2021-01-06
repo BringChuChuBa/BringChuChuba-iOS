@@ -7,6 +7,16 @@
 
 import Foundation
 
-struct GlobalData {
-    static var userToken: String?
+class GlobalData {
+    public var userToken: String?
+
+    struct StaticInstance {
+        static var instance: GlobalData?
+    }
+    class func sharedInstance() -> GlobalData {
+        if (StaticInstance.instance == nil) {
+            StaticInstance.instance = GlobalData()
+        }
+        return StaticInstance.instance!
+    }
 }
