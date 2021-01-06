@@ -28,10 +28,7 @@
 		40E5136C25A3FF150032F712 /* SceneType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5136B25A3FF150032F712 /* SceneType.swift */; };
 		40E5138F25A409460032F712 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5138E25A409460032F712 /* MainCoordinator.swift */; };
 		5D88CC7F25A2FA1B008B9D61 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC7E25A2FA1B008B9D61 /* Coordinator.swift */; };
-		5D88CC7225A2F9DF008B9D61 /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC7125A2F9DF008B9D61 /* SceneCoordinator.swift */; };
-		5D88CC7A25A2FA0B008B9D61 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC7925A2FA0B008B9D61 /* Scene.swift */; };
-		5D88CC7F25A2FA1B008B9D61 /* SceneCoordinatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC7E25A2FA1B008B9D61 /* SceneCoordinatorType.swift */; };
-		5D88CC8425A2FA26008B9D61 /* TransitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC8325A2FA26008B9D61 /* TransitionModel.swift */; };
+		5D88CC8425A2FA26008B9D61 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		5D88CC8925A2FB29008B9D61 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC8825A2FB29008B9D61 /* HomeViewController.swift */; };
 		5D88CC9625A2FB85008B9D61 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC9525A2FB85008B9D61 /* CalendarViewController.swift */; };
 		5D88CC9B25A2FB8E008B9D61 /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC9A25A2FB8E008B9D61 /* RankingViewController.swift */; };
@@ -139,6 +136,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		40235D6A25A551ED004D7ABE /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5D88CC6025A2F795008B9D61 /* Resources */,
+				5D88CC6825A2F836008B9D61 /* Extensions */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		40235D6B25A5529A004D7ABE /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				5D88CC7E25A2FA1B008B9D61 /* Coordinator.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		40235D6C25A552D3004D7ABE /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				40E5136B25A3FF150032F712 /* SceneType.swift */,
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
 		40A9BA9325A1AC5600EC2988 = {
 			isa = PBXGroup;
 			children = (
@@ -165,14 +187,14 @@
 			isa = PBXGroup;
 			children = (
 				5D88CC5F25A2F788008B9D61 /* Application */,
-				5D88CC7025A2F9A5008B9D61 /* Scene */,
 				5D88CC6925A2F8C1008B9D61 /* Modules */,
 				5D88CCA825A2FCFE008B9D61 /* Models */,
 				5D88CC6425A2F7AB008B9D61 /* Networking */,
-				5D88CC6025A2F795008B9D61 /* Resources */,
-				5D88CC6825A2F836008B9D61 /* Extensions */,
-				40A9BAAD25A1AC5700EC2988 /* Info.plist */,
+				40235D6B25A5529A004D7ABE /* Protocols */,
+				40235D6C25A552D3004D7ABE /* Enums */,
+				40235D6A25A551ED004D7ABE /* Supporting Files */,
 				5D88CCF125A32F3D008B9D61 /* GoogleService-Info.plist */,
+				40A9BAAD25A1AC5700EC2988 /* Info.plist */,
 			);
 			path = BringChuChuba;
 			sourceTree = "<group>";
@@ -213,6 +235,7 @@
 			children = (
 				40A9BA9F25A1AC5600EC2988 /* AppDelegate.swift */,
 				40A9BAA125A1AC5600EC2988 /* SceneDelegate.swift */,
+				40E5138E25A409460032F712 /* MainCoordinator.swift */,
 				406FFE0925A4488E005C5566 /* Launch Screen.storyboard */,
 			);
 			path = Application;
@@ -242,7 +265,8 @@
 				4015765425A4800000AB4296 /* Optional+Extension.swift */,
 				4015765925A4803600AB4296 /* Log.swift */,
 			);
-			path = Extensions;
+			name = Extensions;
+			path = ../Extensions;
 			sourceTree = "<group>";
 		};
 		5D88CC6925A2F8C1008B9D61 /* Modules */ = {
@@ -263,6 +287,7 @@
 			children = (
 				5D88CC8825A2FB29008B9D61 /* HomeViewController.swift */,
 				406FFDE925A43EA4005C5566 /* HomeViewModel.swift */,
+				40E5132125A330D40032F712 /* HomeCoordinator.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -272,6 +297,7 @@
 			children = (
 				5D88CC9525A2FB85008B9D61 /* CalendarViewController.swift */,
 				4015763925A4737500AB4296 /* CalendarViewModel.swift */,
+				40E5132625A330E10032F712 /* CalendarCoordinator.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -281,6 +307,7 @@
 			children = (
 				5D88CC9A25A2FB8E008B9D61 /* RankingViewController.swift */,
 				4015764125A47A9D00AB4296 /* RankingViewModel.swift */,
+				40E5132B25A330E80032F712 /* RankingCoordinator.swift */,
 			);
 			path = Ranking;
 			sourceTree = "<group>";
@@ -290,6 +317,7 @@
 			children = (
 				408FF29825A471000032C5D1 /* UsersViewController.swift */,
 				4015764925A47AAE00AB4296 /* UsersVeiwModel.swift */,
+				40E5133025A330F30032F712 /* UsersCoordinator.swift */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -306,24 +334,6 @@
 			children = (
 			);
 			path = Notifications;
-			sourceTree = "<group>";
-		};
-		5D88CC7025A2F9A5008B9D61 /* Scene */ = {
-			isa = PBXGroup;
-			children = (
-				5D88CC7E25A2FA1B008B9D61 /* Coordinator.swift */,
-				40E5136B25A3FF150032F712 /* SceneType.swift */,
-				40E5138E25A409460032F712 /* MainCoordinator.swift */,
-				40E5132125A330D40032F712 /* HomeCoordinator.swift */,
-				40E5132625A330E10032F712 /* CalendarCoordinator.swift */,
-				40E5132B25A330E80032F712 /* RankingCoordinator.swift */,
-				40E5133025A330F30032F712 /* UsersCoordinator.swift */,
-				5D88CC7125A2F9DF008B9D61 /* SceneCoordinator.swift */,
-				5D88CC7E25A2FA1B008B9D61 /* SceneCoordinatorType.swift */,
-				5D88CC7925A2FA0B008B9D61 /* Scene.swift */,
-				5D88CC8325A2FA26008B9D61 /* TransitionModel.swift */,
-			);
-			path = Scene;
 			sourceTree = "<group>";
 		};
 		5D88CCA825A2FCFE008B9D61 /* Models */ = {
@@ -617,7 +627,7 @@
 				5D88CD5725A437A2008B9D61 /* APICofiguration.swift in Sources */,
 				5D88CCAB25A30002008B9D61 /* Family.swift in Sources */,
 				5D88CD5225A42F0B008B9D61 /* Constants.swift in Sources */,
-				5D88CC8425A2FA26008B9D61 /* TransitionModel.swift in Sources */,
+				5D88CC8425A2FA26008B9D61 /* (null) in Sources */,
 				5D88CC9B25A2FB8E008B9D61 /* RankingViewController.swift in Sources */,
 				5D88CD4D25A42CDB008B9D61 /* APIRouter.swift in Sources */,
 				40A9BAA225A1AC5600EC2988 /* SceneDelegate.swift in Sources */,
