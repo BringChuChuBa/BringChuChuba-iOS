@@ -26,6 +26,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     fatalError()
                 }
                 self.token = idToken
+//                APIClient.member(token: idToken!, completion: { result in
+//                    switch result {
+//                    case .success(let member):
+//                        print(member)
+//                    case .failure(let error):
+//                        print(error)
+//                    }
+//                })
             }
         }
         return true
