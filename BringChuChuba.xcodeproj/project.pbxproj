@@ -11,9 +11,10 @@
 		4015763A25A4737500AB4296 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015763925A4737500AB4296 /* CalendarViewModel.swift */; };
 		4015764225A47A9D00AB4296 /* RankingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015764125A47A9D00AB4296 /* RankingViewModel.swift */; };
 		4015764A25A47AAE00AB4296 /* UsersVeiwModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015764925A47AAE00AB4296 /* UsersVeiwModel.swift */; };
+		4015765525A4800000AB4296 /* Optional+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015765425A4800000AB4296 /* Optional+Extension.swift */; };
+		4015765A25A4803600AB4296 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015765925A4803600AB4296 /* Log.swift */; };
 		406FFDEA25A43EA4005C5566 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406FFDE925A43EA4005C5566 /* HomeViewModel.swift */; };
 		406FFE0A25A4488E005C5566 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 406FFE0925A4488E005C5566 /* Launch Screen.storyboard */; };
-		406FFE1725A44EB2005C5566 /* UIViewController+top.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406FFE1625A44EB2005C5566 /* UIViewController+top.swift */; };
 		408FF29925A471000032C5D1 /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408FF29825A471000032C5D1 /* UsersViewController.swift */; };
 		40A9BAA025A1AC5600EC2988 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9BA9F25A1AC5600EC2988 /* AppDelegate.swift */; };
 		40A9BAA225A1AC5600EC2988 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9BAA125A1AC5600EC2988 /* SceneDelegate.swift */; };
@@ -62,9 +63,10 @@
 		4015763925A4737500AB4296 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		4015764125A47A9D00AB4296 /* RankingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewModel.swift; sourceTree = "<group>"; };
 		4015764925A47AAE00AB4296 /* UsersVeiwModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersVeiwModel.swift; sourceTree = "<group>"; };
+		4015765425A4800000AB4296 /* Optional+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Optional+Extension.swift"; path = "BringChuChuba/Modules/Users/Optional+Extension.swift"; sourceTree = SOURCE_ROOT; };
+		4015765925A4803600AB4296 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Log.swift; path = BringChuChuba/Modules/Users/Log.swift; sourceTree = SOURCE_ROOT; };
 		406FFDE925A43EA4005C5566 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		406FFE0925A4488E005C5566 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		406FFE1625A44EB2005C5566 /* UIViewController+top.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "UIViewController+top.swift"; path = "BringChuChuba/Scene/UIViewController+top.swift"; sourceTree = SOURCE_ROOT; };
 		408FF29825A471000032C5D1 /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
 		40A9BA9C25A1AC5600EC2988 /* BringChuChuba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BringChuChuba.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40A9BA9F25A1AC5600EC2988 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -221,7 +223,8 @@
 		5D88CC6825A2F836008B9D61 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				406FFE1625A44EB2005C5566 /* UIViewController+top.swift */,
+				4015765425A4800000AB4296 /* Optional+Extension.swift */,
+				4015765925A4803600AB4296 /* Log.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -589,12 +592,13 @@
 			files = (
 				406FFDEA25A43EA4005C5566 /* HomeViewModel.swift in Sources */,
 				40A9BAA025A1AC5600EC2988 /* AppDelegate.swift in Sources */,
+				4015765A25A4803600AB4296 /* Log.swift in Sources */,
 				5D88CCA125A2FC8B008B9D61 /* MainTabBarController.swift in Sources */,
 				408FF29925A471000032C5D1 /* UsersViewController.swift in Sources */,
+				4015765525A4800000AB4296 /* Optional+Extension.swift in Sources */,
 				5D88CC8925A2FB29008B9D61 /* HomeViewController.swift in Sources */,
 				40E5132725A330E10032F712 /* CalendarCoordinator.swift in Sources */,
 				5D88CCAB25A30002008B9D61 /* Family.swift in Sources */,
-				406FFE1725A44EB2005C5566 /* UIViewController+top.swift in Sources */,
 				40E5138F25A409460032F712 /* MainCoordinator.swift in Sources */,
 				40E5136C25A3FF150032F712 /* SceneType.swift in Sources */,
 				40E5133125A330F30032F712 /* UsersCoordinator.swift in Sources */,

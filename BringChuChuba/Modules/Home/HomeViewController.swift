@@ -8,7 +8,7 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-    var viewModel: HomeViewModel!
+    let viewModel: HomeViewModel!
 
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
