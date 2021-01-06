@@ -9,8 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class MainCoordinator: Coordinator {
-
+final class MainCoordinator: Coordinator {
     // TODO: Singleton 객체로 선언하는게 맞는가?
 
     private let window: UIWindow

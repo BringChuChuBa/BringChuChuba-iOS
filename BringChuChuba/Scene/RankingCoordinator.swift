@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-class RankingCoordinator: Coordinator {
+final class RankingCoordinator: Coordinator {
     unowned private let navigationController: UINavigationController
 
     init(navigationController: UINavigationController) {

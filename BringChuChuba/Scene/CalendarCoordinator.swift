@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-class CalendarCoordinator: Coordinator {
+final class CalendarCoordinator: Coordinator {
     unowned private let navigationController: UINavigationController
 
     init(navigationController: UINavigationController) {
