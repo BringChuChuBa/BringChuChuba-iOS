@@ -7,11 +7,27 @@
 
 import UIKit
 import Firebase
+import Alamofire
+import SwiftyJSON
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
+    var token: String?
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+
+        FirebaseApp.configure()
+        Auth.auth().signInAnonymously { (authResult, error) in
+            guard let user = authResult?.user else { return }
+            user.getIDToken { (idToken, error) in
+                if let error = error {
+                    print(error)
+                    fatalError()
+                }
+                self.token = idToken
+            }
+        }
         return true
     }
 

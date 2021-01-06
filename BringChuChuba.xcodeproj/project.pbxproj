@@ -28,11 +28,20 @@
 		40E5136C25A3FF150032F712 /* SceneType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5136B25A3FF150032F712 /* SceneType.swift */; };
 		40E5138F25A409460032F712 /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5138E25A409460032F712 /* MainCoordinator.swift */; };
 		5D88CC7F25A2FA1B008B9D61 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC7E25A2FA1B008B9D61 /* Coordinator.swift */; };
+		5D88CC7225A2F9DF008B9D61 /* SceneCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC7125A2F9DF008B9D61 /* SceneCoordinator.swift */; };
+		5D88CC7A25A2FA0B008B9D61 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC7925A2FA0B008B9D61 /* Scene.swift */; };
+		5D88CC7F25A2FA1B008B9D61 /* SceneCoordinatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC7E25A2FA1B008B9D61 /* SceneCoordinatorType.swift */; };
+		5D88CC8425A2FA26008B9D61 /* TransitionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC8325A2FA26008B9D61 /* TransitionModel.swift */; };
 		5D88CC8925A2FB29008B9D61 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC8825A2FB29008B9D61 /* HomeViewController.swift */; };
 		5D88CC9625A2FB85008B9D61 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC9525A2FB85008B9D61 /* CalendarViewController.swift */; };
 		5D88CC9B25A2FB8E008B9D61 /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC9A25A2FB8E008B9D61 /* RankingViewController.swift */; };
 		5D88CCAB25A30002008B9D61 /* Family.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CCAA25A30002008B9D61 /* Family.swift */; };
 		5D88CCB325A3013C008B9D61 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CCB225A3013B008B9D61 /* Member.swift */; };
+		5D88CCF225A32F3D008B9D61 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5D88CCF125A32F3D008B9D61 /* GoogleService-Info.plist */; };
+		5D88CCF725A33407008B9D61 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CCF625A33407008B9D61 /* Mission.swift */; };
+		5D88CD4D25A42CDB008B9D61 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CD4C25A42CDB008B9D61 /* APIRouter.swift */; };
+		5D88CD5225A42F0B008B9D61 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CD5125A42F0B008B9D61 /* Constants.swift */; };
+		5D88CD5725A437A2008B9D61 /* APICofiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CD5625A437A2008B9D61 /* APICofiguration.swift */; };
 		7A2F8CB031A1FB9C2029562E /* Pods_BringChuChuba.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 083FA52E64731EAA74948B74 /* Pods_BringChuChuba.framework */; };
 		CD3D5BD9BDA577318F18A8CF /* Pods_BringChuChubaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 238CA85D5DE23E4371091D01 /* Pods_BringChuChubaTests.framework */; };
 /* End PBXBuildFile section */
@@ -91,6 +100,11 @@
 		5D88CC9A25A2FB8E008B9D61 /* RankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
 		5D88CCAA25A30002008B9D61 /* Family.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Family.swift; sourceTree = "<group>"; };
 		5D88CCB225A3013B008B9D61 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
+		5D88CCF125A32F3D008B9D61 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5D88CCF625A33407008B9D61 /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
+		5D88CD4C25A42CDB008B9D61 /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
+		5D88CD5125A42F0B008B9D61 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		5D88CD5625A437A2008B9D61 /* APICofiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICofiguration.swift; sourceTree = "<group>"; };
 		9B0B46A669A2D8C361718525 /* Pods-BringChuChuba-BringChuChubaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BringChuChuba-BringChuChubaUITests.debug.xcconfig"; path = "Target Support Files/Pods-BringChuChuba-BringChuChubaUITests/Pods-BringChuChuba-BringChuChubaUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		CE7094DF20FD08DE6E7BBED5 /* Pods-BringChuChuba.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BringChuChuba.debug.xcconfig"; path = "Target Support Files/Pods-BringChuChuba/Pods-BringChuChuba.debug.xcconfig"; sourceTree = "<group>"; };
 		E22662DF9DE67F70EB282E1C /* Pods_BringChuChuba_BringChuChubaUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_BringChuChuba_BringChuChubaUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,6 +172,7 @@
 				5D88CC6025A2F795008B9D61 /* Resources */,
 				5D88CC6825A2F836008B9D61 /* Extensions */,
 				40A9BAAD25A1AC5700EC2988 /* Info.plist */,
+				5D88CCF125A32F3D008B9D61 /* GoogleService-Info.plist */,
 			);
 			path = BringChuChuba;
 			sourceTree = "<group>";
@@ -214,6 +229,9 @@
 		5D88CC6425A2F7AB008B9D61 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
+				5D88CD5625A437A2008B9D61 /* APICofiguration.swift */,
+				5D88CD4C25A42CDB008B9D61 /* APIRouter.swift */,
+				5D88CD5125A42F0B008B9D61 /* Constants.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -300,6 +318,10 @@
 				40E5132625A330E10032F712 /* CalendarCoordinator.swift */,
 				40E5132B25A330E80032F712 /* RankingCoordinator.swift */,
 				40E5133025A330F30032F712 /* UsersCoordinator.swift */,
+				5D88CC7125A2F9DF008B9D61 /* SceneCoordinator.swift */,
+				5D88CC7E25A2FA1B008B9D61 /* SceneCoordinatorType.swift */,
+				5D88CC7925A2FA0B008B9D61 /* Scene.swift */,
+				5D88CC8325A2FA26008B9D61 /* TransitionModel.swift */,
 			);
 			path = Scene;
 			sourceTree = "<group>";
@@ -309,6 +331,7 @@
 			children = (
 				5D88CCAA25A30002008B9D61 /* Family.swift */,
 				5D88CCB225A3013B008B9D61 /* Member.swift */,
+				5D88CCF625A33407008B9D61 /* Mission.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -434,6 +457,7 @@
 			files = (
 				406FFE0A25A4488E005C5566 /* Launch Screen.storyboard in Resources */,
 				40A9BAA925A1AC5700EC2988 /* Assets.xcassets in Resources */,
+				5D88CCF225A32F3D008B9D61 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -590,12 +614,18 @@
 				40E5138F25A409460032F712 /* MainCoordinator.swift in Sources */,
 				40E5136C25A3FF150032F712 /* SceneType.swift in Sources */,
 				40E5133125A330F30032F712 /* UsersCoordinator.swift in Sources */,
+				5D88CD5725A437A2008B9D61 /* APICofiguration.swift in Sources */,
+				5D88CCAB25A30002008B9D61 /* Family.swift in Sources */,
+				5D88CD5225A42F0B008B9D61 /* Constants.swift in Sources */,
+				5D88CC8425A2FA26008B9D61 /* TransitionModel.swift in Sources */,
 				5D88CC9B25A2FB8E008B9D61 /* RankingViewController.swift in Sources */,
+				5D88CD4D25A42CDB008B9D61 /* APIRouter.swift in Sources */,
 				40A9BAA225A1AC5600EC2988 /* SceneDelegate.swift in Sources */,
 				4015764A25A47AAE00AB4296 /* UsersVeiwModel.swift in Sources */,
 				40E5132C25A330E80032F712 /* RankingCoordinator.swift in Sources */,
 				40E5132225A330D40032F712 /* HomeCoordinator.swift in Sources */,
 				4015764225A47A9D00AB4296 /* RankingViewModel.swift in Sources */,
+				5D88CCF725A33407008B9D61 /* Mission.swift in Sources */,
 				5D88CCB325A3013C008B9D61 /* Member.swift in Sources */,
 				5D88CC9625A2FB85008B9D61 /* CalendarViewController.swift in Sources */,
 				4015763A25A4737500AB4296 /* CalendarViewModel.swift in Sources */,
