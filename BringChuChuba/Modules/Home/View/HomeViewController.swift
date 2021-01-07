@@ -6,28 +6,25 @@
 //
 
 import UIKit
+import Then
+import SnapKit
 import RxSwift
 import RxCocoa
-import SnapKit
-import Then
+import RxDataSources
 
-class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController {
     // MARK: - Properties
     let viewModel: HomeViewModel
-
-    lazy var missionCollectionView: UICollectionView = UICollectionView(
-        frame: .zero,
-        collectionViewLayout: collectionViewLayout())
-        .then { collection in
-            collection.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
-            collection.register(HomeCollectionViewCell.self, forCellWithReuseIdentifier: HomeCollectionViewCell.reuseIdentifier())
-            collection.dataSource = self
-        }
-
-    private let cellWidthHeightConstant: CGFloat = 100
     private let disposeBag: DisposeBag = DisposeBag()
+    private var activityIndicator: UIActivityIndicatorView!
 
-    // MARK: - Initialization
+    var homeTableView: UITableView = UITableView().then { table in
+        // TODO: 50 Constant로 빼기
+        table.rowHeight = 50
+        table.tableFooterView = UIView()
+    }
+
+    // MARK: - Initializers
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -43,6 +40,9 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        activityIndicator = UIActivityIndicatorView()
+        setup(activityIndicator: activityIndicator)
+
         bindView()
         bindViewModel()
     }
@@ -52,6 +52,32 @@ class HomeViewController: UIViewController {
 
         setConstraints()
         // set title
+    }
+
+    // MARK: - Methods
+    // coordinator 이동
+//    private func goToProfileScreen(for post: Post) {
+//        let profileVC = storyboard?.instantiateViewController(withIdentifier: "ProfileViewController") as! ProfileViewController
+//        profileVC.post = post
+//        present(profileVC, animated: true, completion: nil)
+//    }
+
+    private func updateUI(isLoading: Bool) {
+        DispatchQueue.main.async {
+            if isLoading {
+                self.activityIndicator.startAnimating()
+                self.homeTableView.isHidden = true
+            } else {
+                self.activityIndicator.stopAnimating()
+                self.homeTableView.isHidden = false
+            }
+        }
+    }
+
+    private func setup(activityIndicator: UIActivityIndicatorView) {
+        activityIndicator.color = UIColor(red: 0.25, green: 0.72, blue: 0.85, alpha: 1.0)
+        activityIndicator.center = self.view.center
+        self.view.addSubview(activityIndicator)
     }
 }
 
@@ -63,7 +89,29 @@ extension HomeViewController {
     }
 
     private func bindViewModel() {
+        // 맞는지 모름
+        viewModel.items
+            .bind(to: homeTableView.rx.items(dataSource: viewModel.dataSource))
+            .disposed(by: disposeBag)
 
+//        viewModel
+//            .missions
+//            .observe(on: MainScheduler.instance)
+//            .bind(to: homeTableView.rx.items(cellIdentifier: HomeContentCell.reuseIdentifier(), cellType: HomeContentCell.self)
+//            .disposed(by: disposeBag)
+
+        homeTableView.rx.itemSelected
+            .subscribe(onNext: { [unowned self] indexPath in
+                self.homeTableView.deselectRow(at: indexPath, animated: true)
+            })
+            .disposed(by: disposeBag)
+
+        homeTableView.rx.modelSelected(Mission.self)
+            .subscribe(onNext: { _ in // [unowned self] mission in
+                // coordinator가 modal로 push
+//                self.goToMissionDetail(for: mission)
+            })
+            .disposed(by: disposeBag)
     }
 }
 
@@ -71,53 +119,17 @@ extension HomeViewController {
 extension HomeViewController {
     private func setupUI() {
         // add subviews
-        view.addSubview(missionCollectionView)
+        view.addSubview(homeTableView)
     }
 
     private func setConstraints() {
-        missionCollectionView.snp.makeConstraints { make in
-            make.top.bottom.leading.trailing.equalToSuperview()
+        homeTableView.snp.makeConstraints { make in
+            make.top
+                .bottom
+                .leading
+                .trailing
+                .equalToSuperview()
         }
-    }
-
-    // TODO: Diffable DataSource로 변경
-    private func collectionViewLayout() -> UICollectionViewLayout {
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-
-        let numberOfCells = floor(view.frame.size.width / cellWidthHeightConstant)
-        let edgeInsets = (view.frame.size.width - (numberOfCells * cellWidthHeightConstant)) / (numberOfCells + 1)
-
-        print(edgeInsets)
-
-        layout.itemSize = CGSize(
-            width: cellWidthHeightConstant,
-            height: cellWidthHeightConstant)
-        layout.minimumLineSpacing = 20
-        layout.sectionInset = UIEdgeInsets(
-            top: 0,
-            left: edgeInsets,
-            bottom: 0,
-            right: edgeInsets)
-
-        return layout
-    }
-}
-
-// TODO: RxDataSource로 변경
-extension HomeViewController: UICollectionViewDataSource {
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cellId = HomeCollectionViewCell.reuseIdentifier()
-
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as? HomeCollectionViewCell else {
-            return UICollectionViewCell()
-        }
-
-        return cell
     }
 }
 
@@ -143,4 +155,4 @@ extension HomeViewController: UICollectionViewDataSource {
  }
 
  #endif
- */
+*/
