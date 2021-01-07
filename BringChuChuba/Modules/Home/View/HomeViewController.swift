@@ -105,12 +105,14 @@ extension HomeViewController {
 
         homeTableView.rx.itemSelected
             .subscribe(onNext: { [unowned self] indexPath in
+                Log.debug("itemSelected \(indexPath)")
                 self.homeTableView.deselectRow(at: indexPath, animated: true)
             })
             .disposed(by: disposeBag)
 
         homeTableView.rx.modelSelected(Mission.self)
             .subscribe(onNext: { _ in // [unowned self] mission in
+                Log.debug("modelSelected ")
                 // coordinator가 modal로 push
 //                self.goToMissionDetail(for: mission)
             })
