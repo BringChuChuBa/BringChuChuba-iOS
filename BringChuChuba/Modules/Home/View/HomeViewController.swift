@@ -45,6 +45,9 @@ final class HomeViewController: UIViewController {
 
         bindView()
         bindViewModel()
+
+        // 여기에 추가하는게 맞는지 고민
+        homeTableView.delegate = self
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -130,6 +133,42 @@ extension HomeViewController {
                 .trailing
                 .equalToSuperview()
         }
+    }
+}
+
+extension HomeViewController: UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 42)
+        let headerView = UIView(frame: frame)
+        headerView.backgroundColor = #colorLiteral(red: 0.9764705896, green: 0.850980401, blue: 0.5490196347, alpha: 1)
+
+        let button: UIButton = UIButton(type: .system)
+
+        switch section {
+        case 0:
+            button.setTitle("create", for: .normal)
+            button.setTitleColor(.systemBlue, for: .normal)
+            headerView.addSubview(button)
+
+            button.snp.makeConstraints { make in
+                make.bottom
+                    .top
+                    .leading
+                    .trailing
+                    .equalToSuperview()
+            }
+            return headerView
+        case 1:
+            button.setTitle("list", for: .normal)
+            return headerView
+        default:
+            return nil
+        }
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 40
     }
 }
 
