@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 
 final class HomeCoordinator: Coordinator {
-    unowned private let navigationController: UINavigationController
+    private let navigationController: UINavigationController
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -19,5 +19,18 @@ final class HomeCoordinator: Coordinator {
         let homeViewController = HomeViewController(viewModel: .init(coordinator: self))
 
         navigationController.pushViewController(homeViewController, animated: true)
+    }
+
+    func toCreateMission() {
+        // VC Create
+        // VM init
+        // nav.present(VC)
+    }
+
+    func toDetailMission(_ mission: Mission) {
+        // new Coordinator ??
+        // VC Create
+        // VM init
+        // nav.push(VC)
     }
 }

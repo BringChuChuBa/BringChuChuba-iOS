@@ -11,8 +11,8 @@ target 'BringChuChuba' do
   pod 'Then'
   pod 'Alamofire'
   pod 'SwiftyJSON'
-  pod 'RxSwift'
-  pod 'RxCocoa'
+  pod 'RxSwift', '5.1.1'
+  pod 'RxCocoa', '5.1.1'
   pod 'Firebase/Auth'
   pod 'RxDataSources'
   

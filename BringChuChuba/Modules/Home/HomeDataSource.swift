@@ -7,33 +7,24 @@
 
 import RxDataSources
 
-struct HomeTableViewItem {
-    let title: String
-    // UIImage 2개
-    // point
-
-    init(title: String) {
-        self.title = title
-    }
-}
-
 struct HomeTableViewSection {
-    let items: [HomeTableViewItem]
-    let header: String
-    let button: UIButton
-
-    init(items: [HomeTableViewItem], header: String, button: UIButton) {
-        self.items = items
-        self.header = header
-        self.button = button
-    }
+    var items: [Mission]
+    var header: String
+//    var button: UIButton
+//
+//    init(items: [Mission], header: String, button: UIButton) {
+//        self.items = items
+//        self.header = header
+//        self.button = button
+//    }
 }
 
 extension HomeTableViewSection: SectionModelType {
-    typealias Item = HomeTableViewItem
+    typealias Item = Mission
 
-    init(original: Self, items: [Self.Item]) {
+    init(original: HomeTableViewSection, items: [Item]) {
         self = original
+        self.items = items
     }
 
 //    var identity: String { return header }
@@ -44,8 +35,8 @@ struct HomeDataSource {
 
     static func dataSource() -> DataSource<HomeTableViewSection> {
         return .init(configureCell: { _, _, _, item -> UITableViewCell in // dataSource, tableView, indexPath
-            let cell = HomeContentCell()
-            cell.viewModel = HomeItemViewModel(itemModel: item)
+            let cell = HomeTableViewCell()
+//            cell.viewModel = HomeItemViewModel(with: item)
             return cell
         }, titleForHeaderInSection: { dataSource, index in
             return dataSource.sectionModels[index].header
