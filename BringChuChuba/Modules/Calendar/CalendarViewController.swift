@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import SnapKit
+import Then
 
 class CalendarViewController: UIViewController {
-    var viewModel: CalendarViewModel!
+    var viewModel: CalendarViewModel
 
     init(viewModel: CalendarViewModel) {
         self.viewModel = viewModel
