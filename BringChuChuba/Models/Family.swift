@@ -8,8 +8,8 @@
 import Foundation
 
 struct Family: Codable {
-    let id: Int
+    let id: Int // String
     var members: [Member]
     var missions: [Mission]
-    var name: String
+    var name: String // String
 }

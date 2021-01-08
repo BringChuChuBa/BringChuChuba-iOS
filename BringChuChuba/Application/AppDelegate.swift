@@ -24,10 +24,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             user.getIDTokenForcingRefresh(true) { (idToken, error) in
                 if error != nil {
                     print("\(#file) Firebase getIDToken Fail")
+                    // TODO: 타임아웃, 네트워크 연결 요청 처리
                     fatalError()
                 }
+
                 GlobalData.sharedInstance().userToken = idToken
-                print("\(idToken)")
 
                 // getMyInfo
                 APIClient.getMember(completion: { result in
@@ -35,12 +36,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     case .success(let member):
                         print(member)
                     case .failure(let error):
-                        print(error)
+                        print("\(#line) \(error)")
                     }
                 })
 
                 // getFamily
-                let familyId = 1
+                let familyId = 10
                 APIClient.getFamily(familyId: familyId, completion: { result in
                     switch result {
                     case .success(let family):
@@ -49,9 +50,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         print(error)
                     }
                 })
-
-                // TODO: createFamily
-                // TODO: joinFamily
+//
+//                // createFamily
+//                let familyName = "test fam"
+//                APIClient.createFamily(familyName: familyName, completion: { result in
+//                    switch result {
+//                    case .success(let family):
+//                        print(family)
+//                    case .failure(let error):
+//                        print(error)
+//                    }
+//                })
+//                // joinFamily
+//                APIClient.joinFamily(familyId: familyId, completion: { result in
+//                    switch result {
+//                    case .success(let family):
+//                        print(family)
+//                    case .failure(let error):
+//                        print(error)
+//                    }
+//                })
+//                // createMission
+//                APIClient.createMission(description: "test desc", expireAt: "2021-01-07 22:22", familyId: 10, reward: "good", title: "wow", completion: { result in
+//                    switch result {
+//                    case .success(let missions):
+//                        print(missions)
+//                    case .failure(let error):
+//                        print(error)
+//                    }
+//                })
+                // getMissions
+                APIClient.getMissions(familyId: familyId, completion: { result in
+                    switch result {
+                    case .success(let missions):
+                        print(missions)
+                    case .failure(let error):
+                        print(error)
+                    }
+                })
             }
         }
         return true

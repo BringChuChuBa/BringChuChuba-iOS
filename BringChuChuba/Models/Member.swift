@@ -8,7 +8,7 @@
 import Foundation
 
 struct Member: Codable {
-    let id: Int
-    let familyId: Int?
-    let point: String?
+    let id: Int // String
+    let familyId: Int // String
+    var point: String?
 }

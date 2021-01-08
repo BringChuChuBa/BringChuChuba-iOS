@@ -17,12 +17,20 @@ protocol APICofiguration: URLRequestConvertible {
 enum APIRouter: APICofiguration {
     case getMember
     case getFamily(familyId: Int)
+    case createFamily(familyName: String)
+    case joinFamily(familyId: Int)
+    case getMissions(familyId: Int)
+    case createMission(description: String, expireAt: String, familyId: Int, reward: String, title: String)
 
     // MARK: - HTTPMethod
     var method: HTTPMethod {
         switch self {
-        case .getMember, .getFamily:
+        case .getMember, .getFamily, .getMissions:
             return .get
+        case .createFamily, .createMission:
+            return .post
+        case .joinFamily:
+            return .put
         }
     }
 
@@ -31,8 +39,10 @@ enum APIRouter: APICofiguration {
         switch self {
         case .getMember:
             return "member"
-        case .getFamily:
+        case .getFamily, .createFamily, .joinFamily:
             return "family"
+        case .getMissions, .createMission:
+            return "mission"
         }
     }
 
@@ -41,6 +51,14 @@ enum APIRouter: APICofiguration {
         switch self {
         case .getFamily(let familyId):
             return .query(["family_uid": String(familyId)])
+        case .createFamily(let familyName):
+            return .body(["name": familyName])
+        case .joinFamily(let familyId):
+            return .body(["familyId": String(familyId)])
+        case .getMissions(let familyId):
+            return .query(["familyId": String(familyId)])
+        case .createMission(let description, let expireAt, let familyId, let reward, let title):
+            return .body(["description": description, "expireAt": expireAt, "familyId": String(familyId), "reward": reward, "title": title])
         default:
             return nil
         }
@@ -48,7 +66,7 @@ enum APIRouter: APICofiguration {
 
     // MARK: - URLRequestConvertible
     func asURLRequest() throws -> URLRequest {
-        let url = try Constatns.ProductionServer.baseURL.asURL()
+        let url = try NetworkConstatns.ProductionServer.baseURL.asURL()
 
         // Path
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))
@@ -66,20 +84,12 @@ enum APIRouter: APICofiguration {
         // Parameters
         switch parameter {
         case .body(let parameter):
-            let bodyData = try? JSONSerialization.data(withJSONObject: parameter, options: [])
-            if let data = bodyData {
-                urlRequest.httpBody = data
-            }
+            urlRequest = try JSONParameterEncoder().encode(parameter, into: urlRequest)
         case .query(let parameter):
-            let queryParams = parameter.map { URLQueryItem(name: $0.key, value: $0.value) }
-            var components = URLComponents(string: url.appendingPathComponent(path).absoluteString)
-            components?.queryItems = queryParams
-            urlRequest.url = components?.url
-
+            urlRequest = try URLEncodedFormParameterEncoder().encode(parameter, into: urlRequest)
         default:
             break
         }
-
-        return urlRequest
+            return urlRequest
+        }
     }
-}

@@ -36,7 +36,7 @@
 		5D88CCF225A32F3D008B9D61 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5D88CCF125A32F3D008B9D61 /* GoogleService-Info.plist */; };
 		5D88CCF725A33407008B9D61 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CCF625A33407008B9D61 /* Mission.swift */; };
 		5D88CD4D25A42CDB008B9D61 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CD4C25A42CDB008B9D61 /* APIRouter.swift */; };
-		5D88CD5225A42F0B008B9D61 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CD5125A42F0B008B9D61 /* Constants.swift */; };
+		5D88CD5225A42F0B008B9D61 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CD5125A42F0B008B9D61 /* NetworkConstants.swift */; };
 		5D88CD9825A55D37008B9D61 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CD9725A55D37008B9D61 /* APIClient.swift */; };
 		5D88CDA225A5D5B6008B9D61 /* Family.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CCAA25A30002008B9D61 /* Family.swift */; };
 		7A2F8CB031A1FB9C2029562E /* Pods_BringChuChuba.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 083FA52E64731EAA74948B74 /* Pods_BringChuChuba.framework */; };
@@ -101,7 +101,7 @@
 		5D88CCF125A32F3D008B9D61 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5D88CCF625A33407008B9D61 /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
 		5D88CD4C25A42CDB008B9D61 /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
-		5D88CD5125A42F0B008B9D61 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		5D88CD5125A42F0B008B9D61 /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
 		5D88CD9725A55D37008B9D61 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		9B0B46A669A2D8C361718525 /* Pods-BringChuChuba-BringChuChubaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BringChuChuba-BringChuChubaUITests.debug.xcconfig"; path = "Target Support Files/Pods-BringChuChuba-BringChuChubaUITests/Pods-BringChuChuba-BringChuChubaUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		CE7094DF20FD08DE6E7BBED5 /* Pods-BringChuChuba.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BringChuChuba.debug.xcconfig"; path = "Target Support Files/Pods-BringChuChuba/Pods-BringChuChuba.debug.xcconfig"; sourceTree = "<group>"; };
@@ -262,7 +262,7 @@
 		5D88CC6425A2F7AB008B9D61 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				5D88CD5125A42F0B008B9D61 /* Constants.swift */,
+				5D88CD5125A42F0B008B9D61 /* NetworkConstants.swift */,
 				5D88CD4C25A42CDB008B9D61 /* APIRouter.swift */,
 				5D88CD9725A55D37008B9D61 /* APIClient.swift */,
 			);
@@ -635,7 +635,7 @@
 				40E5136C25A3FF150032F712 /* SceneType.swift in Sources */,
 				5D88CD9825A55D37008B9D61 /* APIClient.swift in Sources */,
 				40E5133125A330F30032F712 /* UsersCoordinator.swift in Sources */,
-				5D88CD5225A42F0B008B9D61 /* Constants.swift in Sources */,
+				5D88CD5225A42F0B008B9D61 /* NetworkConstants.swift in Sources */,
 				5D88CC9B25A2FB8E008B9D61 /* RankingViewController.swift in Sources */,
 				5D88CD4D25A42CDB008B9D61 /* APIRouter.swift in Sources */,
 				40A9BAA225A1AC5600EC2988 /* SceneDelegate.swift in Sources */,

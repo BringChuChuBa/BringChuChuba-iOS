@@ -8,7 +8,7 @@
 import Foundation
 import Alamofire
 
-struct Constatns {
+struct NetworkConstatns {
     struct ProductionServer {
         static let baseURL = "http://ec2-13-209-157-42.ap-northeast-2.compute.amazonaws.com:8080"
     }
@@ -27,6 +27,6 @@ enum ContentType: String {
 }
 
 enum ParameterType {
-    case query([String:String])
-    case body([String:String])
+    case query([String: String])
+    case body([String: String])
 }
