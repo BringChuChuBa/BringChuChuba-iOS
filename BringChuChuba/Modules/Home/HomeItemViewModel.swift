@@ -17,6 +17,6 @@ final class HomeItemViewModel {
     init (with mission: Mission) {
         self.mission = mission
         self.title = mission.title.uppercased()
-        self.subtitle = mission.description
+        self.subtitle = mission.description ?? "미션 설명"
     }
 }
