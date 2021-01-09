@@ -16,40 +16,46 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         FirebaseApp.configure()
+
         Auth.auth().signInAnonymously { (authResult, error) in
             guard let user = authResult?.user else {
+                // 여기도 재시도 해보고 에러 처리
                 print("\(#file) Firebase SignIn Fail")
                 fatalError()
             }
-            user.getIDTokenForcingRefresh(true) { (idToken, error) in
-                if error != nil {
+
+            user.getIDTokenForcingRefresh(false) { (idToken, error) in
+                if let error = error {
                     print("\(#file) Firebase getIDToken Fail")
-                    // TODO: 타임아웃, 네트워크 연결 요청 처리
-                    fatalError()
-                }
+                    // 타임아웃, 네트워크 연결 요청 처리
+                    return;
+                  }
 
                 GlobalData.sharedInstance().userToken = idToken
+                Log.debug(idToken!)
 
                 // getMyInfo
-                APIClient.getMember(completion: { result in
+                APIClient.getMember { result in
                     switch result {
                     case .success(let member):
+                        print("Success")
                         print(member)
                     case .failure(let error):
+                        print("error")
                         print("\(#line) \(error)")
                     }
-                })
+                }
 
                 // getFamily
-                let familyId = 10
-                APIClient.getFamily(familyId: familyId, completion: { result in
-                    switch result {
-                    case .success(let family):
-                        print(family)
-                    case .failure(let error):
-                        print(error)
-                    }
-                })
+//                let familyId = 10
+//                APIClient.getFamily(familyId: familyId, completion: { result in
+//                    switch result {
+//                    case .success(let family):
+//                        print(family)
+//                    case .failure(let error):
+//                        print(error)
+//                    }
+//                })
 //
 //                // createFamily
 //                let familyName = "test fam"
@@ -80,14 +86,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //                    }
 //                })
                 // getMissions
-                APIClient.getMissions(familyId: familyId, completion: { result in
-                    switch result {
-                    case .success(let missions):
-                        print(missions)
-                    case .failure(let error):
-                        print(error)
-                    }
-                })
+//                APIClient.getMissions(familyId: familyId, completion: { result in
+//                    switch result {
+//                    case .success(let missions):
+//                        print(missions)
+//                    case .failure(let error):
+//                        print(error)
+//                    }
+//                })
             }
         }
         return true

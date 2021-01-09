@@ -9,12 +9,15 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class APIClient {
-    // TODO: Generic 적용
+final class APIClient {
+    typealias CompletionHandler<T: Codable> = (Result<T, Error>) -> Void
+
     static func getMember(
-        completion: @escaping (Result<Member, Error>) -> Void) {
+        completion: @escaping CompletionHandler<Member>) {
+//        completion: @escaping ((Result<Member, Error>) -> Void)) {
+
         AF.request(APIRouter.getMember)
-            .validate()
+//            .validate()
             .responseDecodable(of: Member.self) { (response) in
                 switch response.result {
                 case .success(let member):
@@ -27,7 +30,8 @@ class APIClient {
 
     static func getFamily(
         familyId: Int,
-        completion: @escaping (Result<Family, Error>) -> Void) {
+        completion: @escaping CompletionHandler<Family>) {
+
         AF.request(APIRouter.getFamily(familyId: familyId))
             .validate()
             .responseDecodable(of: Family.self) { (response) in
@@ -42,7 +46,8 @@ class APIClient {
 
     static func createFamily(
         familyName: String,
-        completion: @escaping (Result<Family, Error>) -> Void) {
+        completion: @escaping CompletionHandler<Family>) {
+
         AF.request(APIRouter.createFamily(familyName: familyName))
             .validate()
             .responseDecodable(of: Family.self) { (response) in
@@ -57,7 +62,8 @@ class APIClient {
 
     static func joinFamily(
         familyId: Int,
-        completion: @escaping (Result<Family, Error>) -> Void) {
+        completion: @escaping CompletionHandler<Family>) {
+
         AF.request(APIRouter.joinFamily(familyId: familyId))
             .validate()
             .responseDecodable(of: Family.self) { (response) in
@@ -72,7 +78,8 @@ class APIClient {
 
     static func getMissions(
         familyId: Int,
-        completion: @escaping (Result<[Mission], Error>) -> Void) {
+        completion: @escaping CompletionHandler<[Mission]>) {
+
         AF.request(APIRouter.getMissions(familyId: familyId))
             .validate()
             .responseDecodable(of: [Mission].self) { (response) in
@@ -84,14 +91,12 @@ class APIClient {
                 }
             }
     }
-    // TODO: paramter type 별도로 만들어서 넘주는게 나은가?
+
     static func createMission(
-        description: String,expireAt: String,
-        familyId: Int,
-        reward: String,
-        title: String,
-        completion: @escaping (Result<Mission, Error>) -> Void) {
-        AF.request(APIRouter.createMission(description: description, expireAt: expireAt, familyId: familyId, reward: reward, title: title))
+        missionDetails: NetworkConstatns.MissionDetails,
+        completion: @escaping CompletionHandler<Mission>) {
+
+        AF.request(APIRouter.createMission(missionDetails: missionDetails))
             .validate()
             .responseDecodable(of: Mission.self) { (response) in
                 switch response.result {

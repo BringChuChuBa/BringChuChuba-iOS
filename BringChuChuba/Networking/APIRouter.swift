@@ -20,7 +20,7 @@ enum APIRouter: APICofiguration {
     case createFamily(familyName: String)
     case joinFamily(familyId: Int)
     case getMissions(familyId: Int)
-    case createMission(description: String, expireAt: String, familyId: Int, reward: String, title: String)
+    case createMission(missionDetails: NetworkConstatns.MissionDetails)
 
     // MARK: - HTTPMethod
     var method: HTTPMethod {
@@ -57,8 +57,12 @@ enum APIRouter: APICofiguration {
             return .body(["familyId": String(familyId)])
         case .getMissions(let familyId):
             return .query(["familyId": String(familyId)])
-        case .createMission(let description, let expireAt, let familyId, let reward, let title):
-            return .body(["description": description, "expireAt": expireAt, "familyId": String(familyId), "reward": reward, "title": title])
+        case .createMission(let missionDetails):
+            return .body(["description": missionDetails.description,
+                          "expireAt": missionDetails.expireAt,
+                          "familyId": String(missionDetails.familyId),
+                          "reward": missionDetails.reward,
+                          "title": missionDetails.title])
         default:
             return nil
         }
@@ -90,6 +94,6 @@ enum APIRouter: APICofiguration {
         default:
             break
         }
-            return urlRequest
-        }
+        return urlRequest
     }
+}

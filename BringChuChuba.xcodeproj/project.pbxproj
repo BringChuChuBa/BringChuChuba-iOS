@@ -20,6 +20,7 @@
 		40235D6F25A553AE004D7ABE /* GlobalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40235D6E25A553AE004D7ABE /* GlobalData.swift */; };
 		402A132325A56E2E00B8F65D /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402A132225A56E2E00B8F65D /* HomeTableViewCell.swift */; };
 		402A132825A577BB00B8F65D /* Cell+ReuseIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402A132725A577BB00B8F65D /* Cell+ReuseIdentifiable.swift */; };
+		403BF61325A803BA00712B62 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CD5125A42F0B008B9D61 /* NetworkConstants.swift */; };
 		406FFDEA25A43EA4005C5566 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406FFDE925A43EA4005C5566 /* HomeViewModel.swift */; };
 		406FFE0A25A4488E005C5566 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 406FFE0925A4488E005C5566 /* Launch Screen.storyboard */; };
 		408FF29925A471000032C5D1 /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408FF29825A471000032C5D1 /* UsersViewController.swift */; };
@@ -44,7 +45,6 @@
 		5D88CCF225A32F3D008B9D61 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5D88CCF125A32F3D008B9D61 /* GoogleService-Info.plist */; };
 		5D88CCF725A33407008B9D61 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CCF625A33407008B9D61 /* Mission.swift */; };
 		5D88CD4D25A42CDB008B9D61 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CD4C25A42CDB008B9D61 /* APIRouter.swift */; };
-		5D88CD5225A42F0B008B9D61 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CD5125A42F0B008B9D61 /* NetworkConstants.swift */; };
 		5D88CD9825A55D37008B9D61 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CD9725A55D37008B9D61 /* APIClient.swift */; };
 		5D88CDA225A5D5B6008B9D61 /* Family.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CCAA25A30002008B9D61 /* Family.swift */; };
 		7A2F8CB031A1FB9C2029562E /* Pods_BringChuChuba.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 083FA52E64731EAA74948B74 /* Pods_BringChuChuba.framework */; };
@@ -663,6 +663,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				403BF61325A803BA00712B62 /* NetworkConstants.swift in Sources */,
 				5D88CDA225A5D5B6008B9D61 /* Family.swift in Sources */,
 				406FFDEA25A43EA4005C5566 /* HomeViewModel.swift in Sources */,
 				40A9BAA025A1AC5600EC2988 /* AppDelegate.swift in Sources */,
@@ -678,10 +679,7 @@
 				40E5136C25A3FF150032F712 /* SceneType.swift in Sources */,
 				5D88CD9825A55D37008B9D61 /* APIClient.swift in Sources */,
 				40E5133125A330F30032F712 /* UsersCoordinator.swift in Sources */,
-				5D88CD5225A42F0B008B9D61 /* NetworkConstants.swift in Sources */,
-				5D88CD5725A437A2008B9D61 /* APICofiguration.swift in Sources */,
 				401D6C7825A6B7CB00113273 /* Observable+Extension.swift in Sources */,
-				5D88CD5225A42F0B008B9D61 /* Constants.swift in Sources */,
 				5D88CC9B25A2FB8E008B9D61 /* RankingViewController.swift in Sources */,
 				5D88CD4D25A42CDB008B9D61 /* APIRouter.swift in Sources */,
 				40A9BAA225A1AC5600EC2988 /* SceneDelegate.swift in Sources */,

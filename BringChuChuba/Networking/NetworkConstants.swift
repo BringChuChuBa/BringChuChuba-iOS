@@ -12,6 +12,14 @@ struct NetworkConstatns {
     struct ProductionServer {
         static let baseURL = "http://ec2-13-209-157-42.ap-northeast-2.compute.amazonaws.com:8080"
     }
+
+    struct MissionDetails {
+        let description: String
+        let expireAt: String
+        let familyId: Int
+        let reward: String
+        let title: String
+    }
 }
 
 enum HTTPHeaderField: String {

@@ -94,6 +94,11 @@ extension HomeViewController {
 //            .drive(tableView.rx.items(dataSource: viewModel.dataSource))
 //            .disposed(by: disposeBag)
 
+//        let data = viewModel.dataSource
+//        output.missions
+//            .drive(tableView.rx.items(dataSource: data))
+//            .disposed(by: disposeBag)
+
         output.missions
             .drive(tableView.rx.items(cellIdentifier: HomeTableViewCell.reuseIdentifier(),
                                       cellType: HomeTableViewCell.self)) { _, viewModel, cell in
