@@ -58,11 +58,13 @@ enum APIRouter: APICofiguration {
         case .getMissions(let familyId):
             return .query(["familyId": String(familyId)])
         case .createMission(let missionDetails):
-            return .body(["description": missionDetails.description,
-                          "expireAt": missionDetails.expireAt,
-                          "familyId": String(missionDetails.familyId),
-                          "reward": missionDetails.reward,
-                          "title": missionDetails.title])
+            return .body(
+                ["description": missionDetails.description,
+                 "expireAt": missionDetails.expireAt,
+                 "familyId": String(missionDetails.familyId),
+                 "reward": missionDetails.reward,
+                 "title": missionDetails.title]
+            )
         default:
             return nil
         }

@@ -14,7 +14,6 @@ import SwiftyJSON
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
         FirebaseApp.configure()
 
         Auth.auth().signInAnonymously { (authResult, error) in
@@ -27,9 +26,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             user.getIDTokenForcingRefresh(false) { (idToken, error) in
                 if let error = error {
                     print("\(#file) Firebase getIDToken Fail")
+                    print("error: \(error.localizedDescription)")
                     // 타임아웃, 네트워크 연결 요청 처리
-                    return;
-                  }
+                }
 
                 GlobalData.sharedInstance().userToken = idToken
                 Log.debug(idToken!)
