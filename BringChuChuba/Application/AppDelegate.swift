@@ -21,6 +21,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 print("\(#file) Firebase SignIn Fail")
                 fatalError()
             }
+
             user.getIDTokenForcingRefresh(true) { (idToken, error) in
                 if error != nil {
                     print("\(#file) Firebase getIDToken Fail")
@@ -28,8 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     fatalError()
                 }
 
-                GlobalData.sharedInstance().userToken = idToken
-
+                GlobalData.shared.userToken = idToken
                 // getMyInfo
                 APIClient.getMember(completion: { result in
                     switch result {

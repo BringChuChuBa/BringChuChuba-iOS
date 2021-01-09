@@ -79,7 +79,7 @@ enum APIRouter: APICofiguration {
         urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
 
         // Custom Headers
-        urlRequest.setValue(GlobalData.sharedInstance().userToken, forHTTPHeaderField: "Authorization")
+        urlRequest.setValue(GlobalData.shared.userToken, forHTTPHeaderField: "Authorization")
 
         // Parameters
         switch parameter {

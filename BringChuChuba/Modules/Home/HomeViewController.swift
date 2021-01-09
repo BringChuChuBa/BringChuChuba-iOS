@@ -180,11 +180,10 @@ extension HomeViewController {
 // }
 
 // MARK: - Previews
-/*
+
  #if canImport(SwiftUI) && DEBUG
-
  import SwiftUI
-
+ @available(iOS 13.0, *)
  struct HomeVCRepresentable: UIViewControllerRepresentable {
  func makeUIViewController(context: Context) -> HomeViewController {
  HomeViewController(viewModel: HomeViewModel(coordinator: HomeCoordinator(navigationController: UINavigationController())))
@@ -194,11 +193,10 @@ extension HomeViewController {
  }
  }
 
+ @available(iOS 13.0, *)
  struct HomeVCPreview: PreviewProvider {
  static var previews: some View {
  HomeVCRepresentable()
  }
  }
-
  #endif
- */
