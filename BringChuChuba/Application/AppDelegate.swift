@@ -30,8 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     // 타임아웃, 네트워크 연결 요청 처리
                 }
 
-                GlobalData.sharedInstance().userToken = idToken
-
+                GlobalData.shared.userToken = idToken
                 // getMyInfo
                 APIClient.shared.getMember { result, error  in
                     guard error.isNone else {
