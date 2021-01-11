@@ -71,35 +71,35 @@ final class HomeViewModel: ViewModelType {
     // 이름 바꿔야 함
     func posts() -> Observable<[Mission]> {
         return Observable.just([
-            Mission(client: Member(id: 1, familyId: 10, point: nil),
-                    contractor: Member(id: 3, familyId: 10, point: nil),
+            Mission(client: Member(id: "1", familyId: "10", point: nil),
+                    contractor: Member(id: "3", familyId: "10", point: nil),
                     createdAt: "",
                     description: "",
                     expireAt: "",
-                    familyId: 0,
-                    id: 0,
+                    familyId: "0",
+                    id: "0",
                     modifiedAt: "",
                     reward: "",
                     status: "",
                     title: "1"),
-            Mission(client: Member(id: 1, familyId: 10, point: nil),
-                    contractor: Member(id: 3, familyId: 10, point: nil),
+            Mission(client: Member(id: "1", familyId: "10", point: nil),
+                    contractor: Member(id: "3", familyId: "10", point: nil),
                     createdAt: "",
                     description: "",
                     expireAt: "",
-                    familyId: 0,
-                    id: 0,
+                    familyId: "0",
+                    id: "0",
                     modifiedAt: "",
                     reward: "",
                     status: "",
                     title: "2"),
-            Mission(client: Member(id: 1, familyId: 10, point: nil),
-                    contractor: Member(id: 3, familyId: 10, point: nil),
+            Mission(client: Member(id: "1", familyId: "10", point: nil),
+                    contractor: Member(id: "3", familyId: "10", point: nil),
                     createdAt: "",
                     description: "",
                     expireAt: "",
-                    familyId: 0,
-                    id: 0,
+                    familyId: "0",
+                    id: "0",
                     modifiedAt: "",
                     reward: "",
                     status: "",
@@ -120,7 +120,6 @@ final class HomeViewModel: ViewModelType {
     //        return Observable.never()
     //    }
 }
-
 
 // final class PostsUseCase<Cache>: Domain.PostsUseCase where Cache: AbstractCache, Cache.T == Post {
 //     private let network: PostsNetwork

@@ -10,99 +10,109 @@ import Alamofire
 import SwiftyJSON
 
 final class APIClient {
-    typealias CompletionHandler<T: Codable> = (Result<T, Error>) -> Void
+    static let shared = APIClient()
+    private init() {}
 
-    static func getMember(
+    typealias CompletionHandler<T: Codable> = (T?, Error?) -> Void
+
+    func getMember(
         completion: @escaping CompletionHandler<Member>
     ) {
         AF.request(APIRouter.getMember)
-//            .validate()
-            .responseDecodable(of: Member.self) { (response) in
+            .validate()
+            .validate(contentType: [ContentType.json.rawValue])
+            .responseDecodable(of: Member.self) { response in
                 switch response.result {
                 case .success(let member):
-                    completion(.success(member))
+                    completion(member, nil)
                 case .failure(let error):
-                    completion(.failure(error))
+                    // 에러코드에 대한 특별한 처리가 필요하면 failure 블록 안에서 처리
+                    completion(nil, error)
                 }
             }
     }
 
-    static func getFamily(
-        familyId: Int,
+    func getFamily(
+        familyId: String,
         completion: @escaping CompletionHandler<Family>
     ) {
         AF.request(APIRouter.getFamily(familyId: familyId))
             .validate()
+            .validate(contentType: [ContentType.json.rawValue])
             .responseDecodable(of: Family.self) { (response) in
                 switch response.result {
                 case .success(let family):
-                    completion(.success(family))
+                    completion(family, nil)
                 case .failure(let error):
-                    completion(.failure(error))
+                    completion(nil, error)
                 }
             }
     }
 
-    static func createFamily(
+    func createFamily(
         familyName: String,
         completion: @escaping CompletionHandler<Family>
     ) {
         AF.request(APIRouter.createFamily(familyName: familyName))
             .validate()
+            .validate(contentType: [ContentType.json.rawValue])
             .responseDecodable(of: Family.self) { (response) in
                 switch response.result {
                 case .success(let family):
-                    completion(.success(family))
+                    completion(family, nil)
                 case .failure(let error):
-                    completion(.failure(error))
+                    completion(nil, error)
                 }
             }
     }
 
-    static func joinFamily(
-        familyId: Int,
+    func joinFamily(
+        familyId: String,
         completion: @escaping CompletionHandler<Family>
     ) {
         AF.request(APIRouter.joinFamily(familyId: familyId))
             .validate()
+            .validate(contentType: [ContentType.json.rawValue])
             .responseDecodable(of: Family.self) { (response) in
                 switch response.result {
                 case .success(let family):
-                    completion(.success(family))
+                    completion(family, nil)
                 case .failure(let error):
-                    completion(.failure(error))
+                    completion(nil, error)
                 }
             }
     }
 
-    static func getMissions(
-        familyId: Int,
+    func getMissions(
+        familyId: String,
         completion: @escaping CompletionHandler<[Mission]>
     ) {
         AF.request(APIRouter.getMissions(familyId: familyId))
             .validate()
+            .validate(contentType: [ContentType.json.rawValue])
             .responseDecodable(of: [Mission].self) { (response) in
                 switch response.result {
                 case .success(let missions):
-                    completion(.success(missions))
+                    completion(missions, nil)
                 case .failure(let error):
-                    completion(.failure(error))
+                    completion(nil, error)
                 }
             }
     }
 
-    static func createMission(
-        missionDetails: NetworkConstatns.MissionDetails,
+    func createMission(
+        missionDetails: NetworkConstants.MissionDetails,
         completion: @escaping CompletionHandler<Mission>
     ) {
         AF.request(APIRouter.createMission(missionDetails: missionDetails))
             .validate()
+            .validate(contentType: [ContentType.json.rawValue])
             .responseDecodable(of: Mission.self) { (response) in
                 switch response.result {
-                case .success(let mission):
-                    completion(.success(mission))
+                case .success(let missionDetails):
+                    completion(missionDetails, nil)
                 case .failure(let error):
-                    completion(.failure(error))
+                    completion(nil, error)
                 }
             }
     }

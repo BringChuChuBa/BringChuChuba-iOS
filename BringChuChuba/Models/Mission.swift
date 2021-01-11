@@ -13,8 +13,8 @@ struct Mission: Codable {
     let createdAt: String
     var description: String?
     var expireAt: String
-    let familyId: Int // String
-    let id: Int // String
+    let familyId: String?
+    let id: String?
     var modifiedAt: String
     var reward: String?
     var status: String

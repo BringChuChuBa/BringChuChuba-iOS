@@ -16,11 +16,11 @@ protocol APICofiguration: URLRequestConvertible {
 
 enum APIRouter: APICofiguration {
     case getMember
-    case getFamily(familyId: Int)
+    case getFamily(familyId: String)
     case createFamily(familyName: String)
-    case joinFamily(familyId: Int)
-    case getMissions(familyId: Int)
-    case createMission(missionDetails: NetworkConstatns.MissionDetails)
+    case joinFamily(familyId: String)
+    case getMissions(familyId: String)
+    case createMission(missionDetails: NetworkConstants.MissionDetails)
 
     // MARK: - HTTPMethod
     var method: HTTPMethod {
@@ -50,18 +50,18 @@ enum APIRouter: APICofiguration {
     var parameter: ParameterType? {
         switch self {
         case .getFamily(let familyId):
-            return .query(["family_uid": String(familyId)])
+            return .query(["family_uid": familyId])
         case .createFamily(let familyName):
             return .body(["name": familyName])
         case .joinFamily(let familyId):
-            return .body(["familyId": String(familyId)])
+            return .body(["familyId": familyId])
         case .getMissions(let familyId):
-            return .query(["familyId": String(familyId)])
+            return .query(["familyId": familyId])
         case .createMission(let missionDetails):
             return .body(
                 ["description": missionDetails.description,
                  "expireAt": missionDetails.expireAt,
-                 "familyId": String(missionDetails.familyId),
+                 "familyId": missionDetails.familyId,
                  "reward": missionDetails.reward,
                  "title": missionDetails.title]
             )
@@ -72,7 +72,7 @@ enum APIRouter: APICofiguration {
 
     // MARK: - URLRequestConvertible
     func asURLRequest() throws -> URLRequest {
-        let url = try NetworkConstatns.ProductionServer.baseURL.asURL()
+        let url = try NetworkConstants.ProductionServer.baseURL.asURL()
 
         // Path
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))
