@@ -14,80 +14,121 @@ import SwiftyJSON
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-
         FirebaseApp.configure()
-        Auth.auth().signInAnonymously { (authResult, error) in
+
+        Auth.auth().signInAnonymously { authResult, error in
             guard let user = authResult?.user else {
+                // 여기도 재시도 해보고 에러 처리
                 print("\(#file) Firebase SignIn Fail")
                 fatalError()
             }
 
-            user.getIDTokenForcingRefresh(true) { (idToken, error) in
-                if error != nil {
+            user.getIDTokenForcingRefresh(false) { idToken, error in
+                if let error = error {
                     print("\(#file) Firebase getIDToken Fail")
-                    // TODO: 타임아웃, 네트워크 연결 요청 처리
-                    fatalError()
+                    print("error: \(error.localizedDescription)")
+                    // 타임아웃, 네트워크 연결 요청 처리
                 }
 
                 GlobalData.shared.userToken = idToken
                 // getMyInfo
-                APIClient.getMember(completion: { result in
-                    switch result {
-                    case .success(let member):
-                        print(member)
-                    case .failure(let error):
-                        print("\(#line) \(error)")
+                APIClient.shared.getMember { result, error  in
+                    guard error.isNone else {
+                        print(error!.localizedDescription)
+                        return
                     }
-                })
+
+                    guard let member = result else {
+                        print("Member is nil")
+                        return
+                    }
+
+                    print(member)
+                }
+
+                let familyId = "14"
 
                 // getFamily
-                let familyId = 10
-                APIClient.getFamily(familyId: familyId, completion: { result in
-                    switch result {
-                    case .success(let family):
-                        print(family)
-                    case .failure(let error):
-                        print(error)
+                // familyID가 없을 경우 ( 100 ) : Response status code was unacceptable: 500.
+                // familyID가 nil 경우 ( "" ) : Response status code was unacceptable: 400.
+
+                APIClient.shared.getFamily(familyId: familyId, completion: { result, error in
+                    guard error.isNone else {
+                        print(error!.localizedDescription)
+                        return
                     }
+
+                    guard let family = result else {
+                        print("is nil")
+                        return
+                    }
+
+                    print(family)
                 })
+
+                // createFamily
+                // 있는데 만들려고 하면? Response status code was unacceptable: 400.
+//                let familyName = "sangjin family"
+//                APIClient.shared.createFamily(familyName: familyName, completion: { result, error in
+//                    guard error.isNone else {
+//                        print(error!.localizedDescription)
+//                        return
+//                    }
 //
-//                // createFamily
-//                let familyName = "test fam"
-//                APIClient.createFamily(familyName: familyName, completion: { result in
-//                    switch result {
-//                    case .success(let family):
-//                        print(family)
-//                    case .failure(let error):
-//                        print(error)
+//                    guard let family = result else {
+//                        print("is nil")
+//                        return
 //                    }
+//
+//                    print(family)
 //                })
+
 //                // joinFamily
-//                APIClient.joinFamily(familyId: familyId, completion: { result in
-//                    switch result {
-//                    case .success(let family):
-//                        print(family)
-//                    case .failure(let error):
-//                        print(error)
+//                // 다른 가족에 이미 가입되어 있는데 가입하려 하면? Response status code was unacceptable: 400.
+//                // 추후에 가족 두개에 가입하는 것도 가능하게 해야하 할 듯????
+//                APIClient.shared.joinFamily(familyId: familyId, completion: { result, error in
+//                    guard error.isNone else {
+//                        print(error!.localizedDescription)
+//                        return
 //                    }
+//
+//                    guard let family = result else {
+//                        print("is nil")
+//                        return
+//                    }
+//
+//                    print(family)
 //                })
+
 //                // createMission
-//                APIClient.createMission(description: "test desc", expireAt: "2021-01-07 22:22", familyId: 10, reward: "good", title: "wow", completion: { result in
-//                    switch result {
-//                    case .success(let missions):
-//                        print(missions)
-//                    case .failure(let error):
-//                        print(error)
+//                APIClient.createMission(
+//                    missionDetails: NetworkConstants.MissionDetails(
+//                        description: "sangjin test",
+//                        expireAt: "2021-01-11 22:22",
+//                        familyId: familyId,
+//                        reward: "money",
+//                        title: "Test"
+//                    ),
+//                    completion: { result, _ in
+//
+//                    guard let mission = result else {
+//                        print("fail")
+//                        return
 //                    }
+//
+//                    print(mission)
 //                })
-                // getMissions
-                APIClient.getMissions(familyId: familyId, completion: { result in
-                    switch result {
-                    case .success(let missions):
-                        print(missions)
-                    case .failure(let error):
-                        print(error)
-                    }
-                })
+
+//                // getMissions
+//                APIClient.shared.getMissions(familyId: familyId, completion: { result, _ in
+//                    guard let mission = result else {
+//                        print("fail")
+//                        return
+//                    }
+//
+//                    print(type(of: mission))
+//                    print(mission.first!.createdAt)
+//                })
             }
         }
         return true

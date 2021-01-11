@@ -9,96 +9,110 @@ import Foundation
 import Alamofire
 import SwiftyJSON
 
-class APIClient {
-    // TODO: Generic 적용
-    static func getMember(
-        completion: @escaping (Result<Member, Error>) -> Void) {
+final class APIClient {
+    static let shared = APIClient()
+    private init() {}
+
+    typealias CompletionHandler<T: Codable> = (T?, Error?) -> Void
+
+    func getMember(
+        completion: @escaping CompletionHandler<Member>
+    ) {
         AF.request(APIRouter.getMember)
             .validate()
-            .responseDecodable(of: Member.self) { (response) in
+            .validate(contentType: [ContentType.json.rawValue])
+            .responseDecodable(of: Member.self) { response in
                 switch response.result {
                 case .success(let member):
-                    completion(.success(member))
+                    completion(member, nil)
                 case .failure(let error):
-                    completion(.failure(error))
+                    // 에러코드에 대한 특별한 처리가 필요하면 failure 블록 안에서 처리
+                    completion(nil, error)
                 }
             }
     }
 
-    static func getFamily(
-        familyId: Int,
-        completion: @escaping (Result<Family, Error>) -> Void) {
+    func getFamily(
+        familyId: String,
+        completion: @escaping CompletionHandler<Family>
+    ) {
         AF.request(APIRouter.getFamily(familyId: familyId))
             .validate()
+            .validate(contentType: [ContentType.json.rawValue])
             .responseDecodable(of: Family.self) { (response) in
                 switch response.result {
                 case .success(let family):
-                    completion(.success(family))
+                    completion(family, nil)
                 case .failure(let error):
-                    completion(.failure(error))
+                    completion(nil, error)
                 }
             }
     }
 
-    static func createFamily(
+    func createFamily(
         familyName: String,
-        completion: @escaping (Result<Family, Error>) -> Void) {
+        completion: @escaping CompletionHandler<Family>
+    ) {
         AF.request(APIRouter.createFamily(familyName: familyName))
             .validate()
+            .validate(contentType: [ContentType.json.rawValue])
             .responseDecodable(of: Family.self) { (response) in
                 switch response.result {
                 case .success(let family):
-                    completion(.success(family))
+                    completion(family, nil)
                 case .failure(let error):
-                    completion(.failure(error))
+                    completion(nil, error)
                 }
             }
     }
 
-    static func joinFamily(
-        familyId: Int,
-        completion: @escaping (Result<Family, Error>) -> Void) {
+    func joinFamily(
+        familyId: String,
+        completion: @escaping CompletionHandler<Family>
+    ) {
         AF.request(APIRouter.joinFamily(familyId: familyId))
             .validate()
+            .validate(contentType: [ContentType.json.rawValue])
             .responseDecodable(of: Family.self) { (response) in
                 switch response.result {
                 case .success(let family):
-                    completion(.success(family))
+                    completion(family, nil)
                 case .failure(let error):
-                    completion(.failure(error))
+                    completion(nil, error)
                 }
             }
     }
 
-    static func getMissions(
-        familyId: Int,
-        completion: @escaping (Result<[Mission], Error>) -> Void) {
+    func getMissions(
+        familyId: String,
+        completion: @escaping CompletionHandler<[Mission]>
+    ) {
         AF.request(APIRouter.getMissions(familyId: familyId))
             .validate()
+            .validate(contentType: [ContentType.json.rawValue])
             .responseDecodable(of: [Mission].self) { (response) in
                 switch response.result {
                 case .success(let missions):
-                    completion(.success(missions))
+                    completion(missions, nil)
                 case .failure(let error):
-                    completion(.failure(error))
+                    completion(nil, error)
                 }
             }
     }
-    // TODO: paramter type 별도로 만들어서 넘주는게 나은가?
-    static func createMission(
-        description: String,expireAt: String,
-        familyId: Int,
-        reward: String,
-        title: String,
-        completion: @escaping (Result<Mission, Error>) -> Void) {
-        AF.request(APIRouter.createMission(description: description, expireAt: expireAt, familyId: familyId, reward: reward, title: title))
+
+    func createMission(
+        missionDetails: NetworkConstants.MissionDetails,
+        completion: @escaping CompletionHandler<Mission>
+    ) {
+        AF.request(APIRouter.createMission(missionDetails: missionDetails))
             .validate()
+            .validate(contentType: [ContentType.json.rawValue])
             .responseDecodable(of: Mission.self) { (response) in
                 switch response.result {
-                case .success(let mission):
-                    completion(.success(mission))
+                case .success(let missionDetails):
+                    completion(missionDetails, nil)
                 case .failure(let error):
-                    completion(.failure(error))
+                    completion(nil, error)
                 }
             }
     }
