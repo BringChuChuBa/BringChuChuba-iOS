@@ -15,6 +15,7 @@ target 'BringChuChuba' do
   pod 'RxCocoa', '5.1.1'
   pod 'Firebase/Auth'
   pod 'RxDataSources'
+  pod 'DatePickerDialog'
   
   target 'BringChuChubaTests' do
     inherit! :search_paths

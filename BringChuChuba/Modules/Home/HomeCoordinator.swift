@@ -10,6 +10,7 @@ import RxSwift
 
 final class HomeCoordinator: Coordinator {
     private let navigationController: UINavigationController
+    private var createViewModel: CreateMissionViewModel?
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
@@ -22,9 +23,12 @@ final class HomeCoordinator: Coordinator {
     }
 
     func toCreateMission() {
-        // VC Create
-        // VM init
-        // nav.present(VC)
+        let viewModel = CreateMissionViewModel(coordinator: self)
+        let createMissionVc: CreateMissionViewController = CreateMissionViewController(viewModel: viewModel)
+
+        createViewModel = viewModel
+
+        navigationController.pushViewController(createMissionVc, animated: true)
     }
 
     func toDetailMission(_ mission: Mission) {
@@ -32,5 +36,15 @@ final class HomeCoordinator: Coordinator {
         // VC Create
         // VM init
         // nav.push(VC)
+    }
+
+    func toReward() {
+        guard let viewModel = createViewModel else {
+            return
+        }
+
+        let rewardVC: RewardViewController = RewardViewController(viewModel: viewModel)
+
+        navigationController.present(rewardVC, animated: true, completion: nil)
     }
 }
