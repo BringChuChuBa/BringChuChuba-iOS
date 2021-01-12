@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (5.4.1)
+  - DatePickerDialog (4.0)
   - Differentiator (4.0.1)
   - Firebase/Auth (7.3.0):
     - Firebase/CoreOnly
@@ -61,6 +62,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire
+  - DatePickerDialog
   - Firebase/Auth
   - RxCocoa (= 5.1.1)
   - RxDataSources
@@ -73,6 +75,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - DatePickerDialog
     - Differentiator
     - Firebase
     - FirebaseAuth
@@ -94,6 +97,7 @@ SPEC REPOS:
 
 SPEC CHECKSUMS:
   Alamofire: 2291f7d21ca607c491dd17642e5d40fdcda0e65c
+  DatePickerDialog: ccff2f91ff7a018057a4d72fa5ad6de49c8cb0cd
   Differentiator: 886080237d9f87f322641dedbc5be257061b0602
   Firebase: 26223c695fe322633274198cb19dca8cb7e54416
   FirebaseAuth: c224a0cf1afa0949bd5c7bfcf154b4f5ce8ddef2
@@ -113,6 +117,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
 
-PODFILE CHECKSUM: 1e360c60c222b925a96452ad58004b66c15c7345
+PODFILE CHECKSUM: 535e5f3fe4ef5a1a4884ddaa62346c29c29d2ea7
 
 COCOAPODS: 1.10.0

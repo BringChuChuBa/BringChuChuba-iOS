@@ -60,7 +60,6 @@ final class HomeViewModel: ViewModelType {
             .do(onNext: coordinator.toCreateMission)
 
         // 목록보기 버튼 추가
-
         return Output(fetching: fetching,
                       missions: missions,
                       createMission: createMission,
