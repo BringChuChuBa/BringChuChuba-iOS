@@ -70,8 +70,20 @@ enum APIRouter: APICofiguration {
         }
     }
 
+    // 리퀘스트 보내기 전에 동기화 토큰 리프레쉬
+
     // MARK: - URLRequestConvertible
     func asURLRequest() throws -> URLRequest {
+        // Refresh token
+        Auth.auth().currentUser?.getIDTokenResult(forcingRefresh: false) { token, error in
+            guard error.isNone else {
+                return
+            }
+
+            print("test: token = \(token!)")
+        }
+
+        // Target URL
         let url = try NetworkConstants.ProductionServer.baseURL.asURL()
 
         // Path
@@ -85,7 +97,7 @@ enum APIRouter: APICofiguration {
         urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
 
         // Custom Headers
-        urlRequest.setValue(GlobalData.sharedInstance().userToken, forHTTPHeaderField: "Authorization")
+        urlRequest.setValue(GlobalData.shared.userToken, forHTTPHeaderField: "Authorization")
 
         // Parameters
         switch parameter {
@@ -97,5 +109,11 @@ enum APIRouter: APICofiguration {
             break
         }
         return urlRequest
+    }
+
+    private func checkToken() {
+        DispatchQueue.main.async {
+
+        }
     }
 }

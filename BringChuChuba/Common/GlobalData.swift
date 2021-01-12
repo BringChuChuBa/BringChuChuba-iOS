@@ -8,16 +8,12 @@
 import Foundation
 
 class GlobalData {
-    var userToken: String?
+    static let shared = GlobalData()
+    private init() {}
 
-    struct StaticInstance {
-        static var instance: GlobalData?
-    }
-
-    class func sharedInstance() -> GlobalData {
-        if StaticInstance.instance == nil {
-            StaticInstance.instance = GlobalData()
-        }
-        return StaticInstance.instance!
-    }
+    var userToken: String = ""
+    var currentMember: Member!
+    var memberId: String = ""
+    var memberFamilyId: String = ""
+    var memberPoint: String = ""
 }

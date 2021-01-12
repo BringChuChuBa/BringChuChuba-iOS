@@ -23,49 +23,71 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 fatalError()
             }
 
-            user.getIDTokenForcingRefresh(false) { idToken, error in
-                if let error = error {
-                    print("\(#file) Firebase getIDToken Fail")
-                    print("error: \(error.localizedDescription)")
-                    // 타임아웃, 네트워크 연결 요청 처리
-                }
-
-                GlobalData.sharedInstance().userToken = idToken
-
-                // getMyInfo
-                APIClient.shared.getMember { result, error  in
-                    guard error.isNone else {
-                        print(error!.localizedDescription)
-                        return
-                    }
-
-                    guard let member = result else {
-                        print("Member is nil")
-                        return
-                    }
-
-                    print(member)
-                }
-
-                let familyId = "14"
-
-                // getFamily
-                // familyID가 없을 경우 ( 100 ) : Response status code was unacceptable: 500.
-                // familyID가 nil 경우 ( "" ) : Response status code was unacceptable: 400.
-
-                APIClient.shared.getFamily(familyId: familyId, completion: { result, error in
-                    guard error.isNone else {
-                        print(error!.localizedDescription)
-                        return
-                    }
-
-                    guard let family = result else {
-                        print("is nil")
-                        return
-                    }
-
-                    print(family)
-                })
+//            user.getIDTokenForcingRefresh(false) { idToken, error in
+//                if let error = error {
+//                    print("\(#file) Firebase getIDToken Fail")
+//                    print("error: \(error.localizedDescription)")
+//                    // 타임아웃, 네트워크 연결 요청 처리
+//                }
+//
+//                guard let token = idToken else {
+//                    print("token nil")
+//                    return
+//                }
+//
+//                GlobalData.shared.userToken = token
+//
+//                // getMyInfo
+//                APIClient.shared.getMember { result, error  in
+//                    guard error.isNone else {
+//                        print(error!.localizedDescription)
+//                        return
+//                    }
+//
+//                    guard let member = result else {
+//                        print("Member is nil")
+//                        return
+//                    }
+//
+//                    guard let id = member.id else {
+//                        print("id nil")
+//                        return
+//                    }
+//
+//                    guard let familyid = member.familyId else {
+//                        print("familyid nil")
+//                        return
+//                    }
+//
+//                    guard let point = member.point else {
+//                        print("point nil")
+//                        return
+//                    }
+//
+//                    GlobalData.shared.memberId = id
+//                    GlobalData.shared.memberFamilyId = familyid
+//                    GlobalData.shared.memberPoint = point
+//                }
+//
+//                let familyId = "14"
+//
+//                // getFamily
+//                // familyID가 없을 경우 ( 100 ) : Response status code was unacceptable: 500.
+//                // familyID가 nil 경우 ( "" ) : Response status code was unacceptable: 400.
+//
+//                APIClient.shared.getFamily(familyId: familyId, completion: { result, error in
+//                    guard error.isNone else {
+//                        print(error!.localizedDescription)
+//                        return
+//                    }
+//
+//                    guard let family = result else {
+//                        print("is nil")
+//                        return
+//                    }
+//
+//                    print(family)
+//                })
 
                 // createFamily
                 // 있는데 만들려고 하면? Response status code was unacceptable: 400.
@@ -131,7 +153,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //                    print(mission.first!.createdAt)
 //                })
             }
-        }
         return true
     }
 

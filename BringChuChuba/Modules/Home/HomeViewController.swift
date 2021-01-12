@@ -39,9 +39,9 @@ final class HomeViewController: UIViewController {
         table.register(HomeTableViewCell.self, forCellReuseIdentifier: HomeTableViewCell.reuseIdentifier())
     }
 
-    private lazy var createMissionButton: UIButton = UIButton(type: .system).then { button in
-        button.setTitle("create", for: .normal)
-        button.setTitleColor(.systemBlue, for: .normal)
+    private lazy var createBarButtonItem: UIBarButtonItem = UIBarButtonItem().then { button in
+        button.title = "create" // 추후 이미지로 교체
+        button.style = .done
     }
 
     private lazy var detailMissionButton: UIButton = UIButton(type: .system).then { button in
@@ -84,7 +84,7 @@ extension HomeViewController {
             .asDriver()
 
         let input = HomeViewModel.Input(trigger: Driver.merge(viewWillAppear, pull),
-                                        createMissionTrigger: createMissionButton.rx.tap.asDriver(),
+                                        createMissionTrigger: createBarButtonItem.rx.tap.asDriver(),
                                         selection: tableView.rx.itemSelected.asDriver())
 
         let output = viewModel.transform(input: input)
@@ -123,6 +123,8 @@ extension HomeViewController {
 // MARK: - Set UIs
 extension HomeViewController {
     private func setupUI() {
+        navigationItem.rightBarButtonItem = createBarButtonItem
+
         // add subviews
         view.addSubview(tableView)
         view.addSubview(activityIndicator)
