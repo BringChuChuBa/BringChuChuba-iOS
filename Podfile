@@ -16,7 +16,7 @@ target 'BringChuChuba' do
 
   # Networking
   pod 'Alamofire'
-  pod 'SwiftyJSON'
+  pod 'Moya/RxSwift'
   pod 'Firebase/Auth'
 
   # Rx

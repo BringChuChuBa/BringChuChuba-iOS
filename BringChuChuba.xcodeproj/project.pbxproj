@@ -32,6 +32,8 @@
 		40A9BAC225A1AC5700EC2988 /* BringChuChubaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9BAC125A1AC5700EC2988 /* BringChuChubaUITests.swift */; };
 		40B0B6A225AC2CE2001E4A99 /* CreateMissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B0B6A125AC2CE2001E4A99 /* CreateMissionViewController.swift */; };
 		40B0B6A725AC2D75001E4A99 /* CreateMissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B0B6A625AC2D75001E4A99 /* CreateMissionViewModel.swift */; };
+		40D646BF25AE8CC30004ECEC /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D646BE25AE8CC30004ECEC /* Network.swift */; };
+		40D6473F25AE976A0004ECEC /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D6473E25AE976A0004ECEC /* Router.swift */; };
 		40E5132225A330D40032F712 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5132125A330D40032F712 /* HomeCoordinator.swift */; };
 		40E5132725A330E10032F712 /* CalendarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5132625A330E10032F712 /* CalendarCoordinator.swift */; };
 		40E5132C25A330E80032F712 /* RankingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5132B25A330E80032F712 /* RankingCoordinator.swift */; };
@@ -104,6 +106,8 @@
 		40A9BAC325A1AC5700EC2988 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40B0B6A125AC2CE2001E4A99 /* CreateMissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateMissionViewController.swift; path = BringChuChuba/Protocols/CreateMissionViewController.swift; sourceTree = SOURCE_ROOT; };
 		40B0B6A625AC2D75001E4A99 /* CreateMissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateMissionViewModel.swift; path = BringChuChuba/Protocols/CreateMissionViewModel.swift; sourceTree = SOURCE_ROOT; };
+		40D646BE25AE8CC30004ECEC /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		40D6473E25AE976A0004ECEC /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		40E5132125A330D40032F712 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		40E5132625A330E10032F712 /* CalendarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCoordinator.swift; sourceTree = "<group>"; };
 		40E5132B25A330E80032F712 /* RankingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingCoordinator.swift; sourceTree = "<group>"; };
@@ -306,6 +310,8 @@
 				5D88CD5125A42F0B008B9D61 /* NetworkConstants.swift */,
 				5D88CD4C25A42CDB008B9D61 /* APIRouter.swift */,
 				5D88CD9725A55D37008B9D61 /* APIClient.swift */,
+				40D646BE25AE8CC30004ECEC /* Network.swift */,
+				40D6473E25AE976A0004ECEC /* Router.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
@@ -669,11 +675,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40D646BF25AE8CC30004ECEC /* Network.swift in Sources */,
 				403BF61325A803BA00712B62 /* NetworkConstants.swift in Sources */,
 				5D88CDA225A5D5B6008B9D61 /* Family.swift in Sources */,
 				406FFDEA25A43EA4005C5566 /* HomeViewModel.swift in Sources */,
 				40A9BAA025A1AC5600EC2988 /* AppDelegate.swift in Sources */,
 				402A132825A577BB00B8F65D /* Cell+ReuseIdentifiable.swift in Sources */,
+				40D6473F25AE976A0004ECEC /* Router.swift in Sources */,
 				401D6C9125A6BA5B00113273 /* ErrorTracker.swift in Sources */,
 				4015765A25A4803600AB4296 /* Log.swift in Sources */,
 				408FF29925A471000032C5D1 /* UsersViewController.swift in Sources */,

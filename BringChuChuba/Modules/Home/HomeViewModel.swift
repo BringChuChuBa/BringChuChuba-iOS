@@ -149,3 +149,18 @@ final class HomeViewModel: ViewModelType {
 //         return network.deletePost(postId: post.uid).map({_ in})
 //     }
 // }
+
+/*
+ func fetchRemotePosts() -> Completable {
+         return .create { observer in
+             Network.shared.getMember()
+                 .subscribe(onSuccess: { member in
+                     // we fetched the posts
+                     observer(.completed)
+                 }, onError: { error in
+                     // there was an error fetching the posts
+                     observer(.error(error))
+                 })
+         }
+     }
+ */

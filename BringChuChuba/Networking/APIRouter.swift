@@ -20,7 +20,7 @@ enum APIRouter: APICofiguration {
     case createFamily(familyName: String)
     case joinFamily(familyId: String)
     case getMissions(familyId: String)
-    case createMission(missionDetails: NetworkConstants.MissionDetails)
+    case createMission(missionDetails: MissionDetails)
 
     // MARK: - HTTPMethod
     var method: HTTPMethod {
@@ -84,7 +84,7 @@ enum APIRouter: APICofiguration {
         }
 
         // Target URL
-        let url = try NetworkConstants.ProductionServer.baseURL.asURL()
+        let url = try Server.baseURL.asURL()
 
         // Path
         var urlRequest = URLRequest(url: url.appendingPathComponent(path))
@@ -97,7 +97,7 @@ enum APIRouter: APICofiguration {
         urlRequest.setValue(ContentType.json.rawValue, forHTTPHeaderField: HTTPHeaderField.contentType.rawValue)
 
         // Custom Headers
-        urlRequest.setValue(GlobalData.shared.userToken, forHTTPHeaderField: "Authorization")
+        urlRequest.setValue(GlobalData.shared.userToken, forHTTPHeaderField: HTTPHeaderField.authorization.rawValue)
 
         // Parameters
         switch parameter {
