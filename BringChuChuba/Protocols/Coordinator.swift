@@ -8,8 +8,8 @@
 import UIKit
 
 protocol Coordinator {
+    //    navigationController 의 접근 지정자 고민
 //    var childCoordinators: [Coordinator] { get set }
-    // TODO: navigationController 의 접근 지정자 고민
 //    var navigationController: UINavigationController { get set }
 
     func start()

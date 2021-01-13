@@ -25,9 +25,7 @@ final class HomeViewModel: ViewModelType {
     }
 
     // MARK: - Properties
-    let dataSource = HomeDataSource.dataSource()
     private let coordinator: HomeCoordinator
-    //    private let useCase: PostsUseCase = Mock()
     private let disposeBag: DisposeBag = DisposeBag()
 
     // MARK: - Initializers

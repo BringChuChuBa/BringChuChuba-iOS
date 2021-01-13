@@ -38,11 +38,3 @@ enum ParameterType {
     case query([String: String])
     case body([String: String])
 }
-
-// enum NetworkError: Error {
-//     case Unauthorized // 401
-//     case Forbidden // 403
-//     case NotFound // 404
-//     case Connection // TODO: 인터넷 연결이 안됐을 경우 404가 뜨는지? Reachability Check를 해야할지?
-//     case Unknown
-// }

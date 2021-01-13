@@ -10,7 +10,6 @@ import Then
 import SnapKit
 import RxSwift
 import RxCocoa
-import RxDataSources
 
 final class HomeViewController: UIViewController {
     // MARK: - Properties
