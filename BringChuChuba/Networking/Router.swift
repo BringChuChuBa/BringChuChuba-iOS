@@ -11,11 +11,14 @@ var Provider: MoyaProvider<Router> = MoyaProvider<Router>()
 
 enum Router {
     case getMember
-    case getFamily(familyId: String)
+    case changeNickName(nickname: String)
+    case getFamily(familyUid: Int)
     case createFamily(familyName: String)
     case joinFamily(familyId: String)
     case getMissions(familyId: String)
     case createMission(missionDetails: MissionDetails)
+    case contractMission(missionUid: Int)
+    case completeMission(missionUid: Int)
 }
 
 extension Router: TargetType {
@@ -34,6 +37,12 @@ extension Router: TargetType {
             return "/family"
         case .getMissions, .createMission:
             return "/mission"
+        case .changeNickName:
+            return "/member/nickname"
+        case .contractMission(let missionUid):
+            return "/mission/contractor/\(missionUid)"
+        case .completeMission(let missionUid):
+            return "/mission/client/\(missionUid)"
         }
     }
 
@@ -42,10 +51,12 @@ extension Router: TargetType {
         switch self {
         case .getMember, .getFamily, .getMissions:
             return .get
-        case .createFamily, .createMission:
+        case .createFamily, .createMission, .changeNickName:
             return .post
         case .joinFamily:
             return .put
+        case .contractMission, .completeMission:
+            return .patch
         }
     }
 
@@ -59,13 +70,15 @@ extension Router: TargetType {
     }
 
     // MARK: - Parameters
+    // URLEncoding.queryString : query
+    // JSONEncoding.default : body
     var task: Task {
         switch self {
-        case .getMember:
+        case .getMember, .contractMission, .completeMission:
             return .requestPlain
-        case .getFamily(let familyId):
+        case .getFamily(let familyUid):
             return .requestParameters(
-                parameters: ["family_uid": familyId],
+                parameters: ["family_uid": familyUid],
                 encoding: URLEncoding.queryString
             )
         case .createFamily(let familyName):
@@ -90,6 +103,11 @@ extension Router: TargetType {
                              "familyId": missionDetails.familyId,
                              "reward": missionDetails.reward,
                              "title": missionDetails.title],
+                encoding: JSONEncoding.default
+            )
+        case .changeNickName(let nickname):
+            return .requestParameters(
+                parameters: ["nickname": nickname],
                 encoding: JSONEncoding.default
             )
         }

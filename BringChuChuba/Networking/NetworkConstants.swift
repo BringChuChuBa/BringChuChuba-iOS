@@ -11,7 +11,7 @@ struct Server {
     static let baseURL = "http://ec2-13-209-157-42.ap-northeast-2.compute.amazonaws.com:8080"
 }
 
-struct MissionDetails {
+struct MissionDetails: Codable {
     let description: String
     let expireAt: String
     let familyId: String

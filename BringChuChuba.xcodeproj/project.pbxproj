@@ -310,8 +310,8 @@
 				5D88CD5125A42F0B008B9D61 /* NetworkConstants.swift */,
 				5D88CD4C25A42CDB008B9D61 /* APIRouter.swift */,
 				5D88CD9725A55D37008B9D61 /* APIClient.swift */,
-				40D646BE25AE8CC30004ECEC /* Network.swift */,
 				40D6473E25AE976A0004ECEC /* Router.swift */,
+				40D646BE25AE8CC30004ECEC /* Network.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";

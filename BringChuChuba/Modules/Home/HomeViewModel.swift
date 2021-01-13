@@ -27,6 +27,9 @@ final class HomeViewModel: ViewModelType {
     // MARK: - Properties
     private let coordinator: HomeCoordinator
     private let disposeBag: DisposeBag = DisposeBag()
+    private var memberId: String?
+    private var familyId: String?
+    private var point: String?
 
     // MARK: - Initializers
     init(coordinator: HomeCoordinator) {
@@ -36,6 +39,18 @@ final class HomeViewModel: ViewModelType {
     func transform(input: Input) -> Output {
         let activityIndicator = ActivityIndicator()
         let errorTracker = ErrorTracker()
+
+//        let member = input.trigger.flatMapLatest {
+//            return Network.shared.getMember()
+//                .asDriverOnErrorJustComplete()
+//                .map {
+//
+//                }
+//        }
+
+//        let missions = member.flatMap {
+//            return Network.shared.getMissions(familyId: )
+//        }
 
         let missions = input.trigger.flatMapLatest {
             return self.posts()
@@ -68,8 +83,8 @@ final class HomeViewModel: ViewModelType {
     // 이름 바꿔야 함
     func posts() -> Observable<[Mission]> {
         return Observable.just([
-            Mission(client: Member(id: "1", familyId: "10", point: nil),
-                    contractor: Member(id: "3", familyId: "10", point: nil),
+            Mission(client: Member(id: "1", familyId: "10", nickname: "", point: nil),
+                    contractor: Member(id: "3", familyId: "10", nickname: "", point: nil),
                     createdAt: "",
                     description: "",
                     expireAt: "",
@@ -79,8 +94,8 @@ final class HomeViewModel: ViewModelType {
                     reward: "",
                     status: "",
                     title: "1"),
-            Mission(client: Member(id: "1", familyId: "10", point: nil),
-                    contractor: Member(id: "3", familyId: "10", point: nil),
+            Mission(client: Member(id: "1", familyId: "10", nickname: "", point: nil),
+                    contractor: Member(id: "3", familyId: "10", nickname: "", point: nil),
                     createdAt: "",
                     description: "",
                     expireAt: "",
@@ -90,8 +105,8 @@ final class HomeViewModel: ViewModelType {
                     reward: "",
                     status: "",
                     title: "2"),
-            Mission(client: Member(id: "1", familyId: "10", point: nil),
-                    contractor: Member(id: "3", familyId: "10", point: nil),
+            Mission(client: Member(id: "1", familyId: "10", nickname: "", point: nil),
+                    contractor: Member(id: "3", familyId: "10", nickname: "", point: nil),
                     createdAt: "",
                     description: "",
                     expireAt: "",

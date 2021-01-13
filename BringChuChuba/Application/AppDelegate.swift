@@ -16,9 +16,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+        loginAndCheckToken()
 
-        Auth.auth().signInAnonymously { authResult, _ in
-            guard let user = authResult?.user else {
+        return true
+    }
+
+    private func loginAndCheckToken() {
+        var finished = false
+
+        Auth.auth().signInAnonymously { result, error in
+            guard error.isNone else {
+                return
+            }
+
+            guard let user = result?.user else {
                 // 여기도 재시도 해보고 에러 처리
                 print("\(#file) Firebase SignIn Fail")
                 fatalError()
@@ -35,21 +46,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
                 GlobalData.shared.userToken = authToken
 
-                let single = Network.shared.getMember()
-                let dp = DisposeBag()
-
-                single.subscribe(
-                    onSuccess: { member in
-                        print("sangjin success \(member)")
-                    },
-                    onError: { error in
-                        print("Fuck error \(error)")
-                    }
-                )
-//                .disposed(by: dp)
+                finished = true
             }
         }
-        return true
+
+        while !finished {
+            RunLoop.current.run(
+                mode: RunLoop.Mode(rawValue: "NSDefaultRunLoopMode"),
+                before: NSDate.distantFuture
+            )
+        }
+
+        return
     }
 
     // MARK: UISceneSession Lifecycle
