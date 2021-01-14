@@ -46,6 +46,6 @@ final class HomeCoordinator: Coordinator {
 
         let rewardVC: RewardViewController = RewardViewController(viewModel: viewModel)
 
-        navigationController.present(rewardVC, animated: true, completion: nil)
+        navigationController.pushViewController(rewardVC, animated: true)
     }
 }

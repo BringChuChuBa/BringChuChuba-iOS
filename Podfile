@@ -6,10 +6,10 @@ target 'BringChuChuba' do
   use_frameworks!
 
   # Pods for BringChuChuba
+  
   # UI
   pod 'SnapKit'
   pod 'Then'
-  pod 'DatePickerDialog'
 
   # Lint
   pod 'SwiftLint'

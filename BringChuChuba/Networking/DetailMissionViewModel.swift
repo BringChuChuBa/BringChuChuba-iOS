@@ -22,7 +22,7 @@ final class DetailMissionViewModel: ViewModelType {
 
     // MARK: - Transform Methods
     func transform(input: Input) -> Output {
-        let errorTracker = ErrorTracker()
+//        let errorTracker = ErrorTracker()
 
 //        let activityIndicator = ActivityIndicator()
 //        let emptyCheck = Driver.combineLatest(

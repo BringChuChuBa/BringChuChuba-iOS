@@ -13,8 +13,7 @@ final class CreateMissionViewModel: ViewModelType {
     // MARK: - Properties
     private let coordinator: HomeCoordinator
     private let disposeBag: DisposeBag = DisposeBag()
-
-    private var tempDate: String?
+//    private var check: Bool = false
 
     // MARK: - Initializers
     init(coordinator: HomeCoordinator) {
@@ -32,30 +31,20 @@ final class CreateMissionViewModel: ViewModelType {
             return !$0.isEmpty && !$2
         }
 
-        let toReward = input.reward
-            .do(onNext: coordinator.toReward)
+//        let clicked = input.expireClicked
+//            .flatMap { _ -> Driver<Bool> in
+//                return Driver.
+//            }
 
-        let test = input.expireDate
-            .do(onNext: datePickerTapped)
-
-        guard let date = tempDate else {
-            return Output(
-                point: Driver.just(GlobalData.shared.memberPoint),
-                toReward: toReward,
-                test: test,
-                showPicker: Driver.just("expireDate"),
-                saveEnabled: emptyCheck
-            )
-        }
-
-        let dateStr = Driver.just(date)
+        let datePicker = Driver.merge(
+            input.expireClicked,
+            input.expireResigned
+        )
 
         return Output(
             point: Driver.just(GlobalData.shared.memberPoint),
-            toReward: toReward,
-            test: test,
-            showPicker: dateStr,
             saveEnabled: emptyCheck
+//            datePickerHidden: datePicker
         )
     }
 
@@ -66,39 +55,21 @@ final class CreateMissionViewModel: ViewModelType {
     func rewardTransform() {
 
     }
-
-    private func datePickerTapped() {
-        DatePickerDialog().show(
-            "DatePicker",
-            doneButtonTitle: "Done",
-            cancelButtonTitle: "Cancel",
-            datePickerMode: .dateAndTime
-        ) { [weak self] date in
-            if let dateStr = date {
-                let formatter = DateFormatter()
-                formatter.dateFormat = "yyyy-MM-dd HH:mm"
-
-                self?.tempDate = formatter.string(from: dateStr)
-            }
-        }
-    }
 }
 
 extension CreateMissionViewModel {
     struct Input {
-        let appear: Driver<Void>
         let title: Driver<String>
+        let expireClicked: Driver<Void>
+        let expireResigned: Driver<Void>
+        let expireDate: Driver<String>
         let description: Driver<String>
-        let reward: Driver<Void>
-        let expireDate: Driver<Void>
         let saveTrigger: Driver<Void>
     }
 
     struct Output {
         let point: Driver<String>
-        let toReward: Driver<Void>
-        let test: Driver<Void>
-        let showPicker: Driver<String>
         let saveEnabled: Driver<Bool>
+//        let datePickerHidden: Driver<Bool>
     }
 }

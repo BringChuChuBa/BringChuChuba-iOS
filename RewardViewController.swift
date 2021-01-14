@@ -11,7 +11,7 @@ import SnapKit
 import RxSwift
 import RxCocoa
 
-class RewardViewController: UIViewController {
+final class RewardViewController: UIViewController {
     // MARK: - Properties
     private let viewModel: CreateMissionViewModel!
     private let disposeBag: DisposeBag = DisposeBag()

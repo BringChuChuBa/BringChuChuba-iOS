@@ -59,29 +59,49 @@ final class CreateMissionViewController: UIViewController {
 
     //    날짜 형식
     //    "yyyy-MM-dd HH:mm"
-
-//    private lazy var datePicker: UIDatePicker = UIDatePicker().then { picker in
-//        picker.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-//        picker.datePickerMode = .dateAndTime
-//        picker.locale = .current
-//        if #available(iOS 13.4, *) {
-//            picker.preferredDatePickerStyle = .compact
-//            picker.sizeToFit()
-//        }
-//    }
-
-    private lazy var expireDateView: UIView = UIView().then { view in
-        view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
-        view.layer.cornerRadius = 5
+    private lazy var datePicker: UIDatePicker = UIDatePicker(frame: CGRect(x: 0,
+                                                                           y: 0,
+                                                                           width: view.frame.width,
+                                                                           height: 216)).then { picker in
+        picker.locale = .current
+        picker.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        picker.datePickerMode = .dateAndTime
+        //        picker.translatesAutoresizingMaskIntoConstraints = false
+        if #available(iOS 14.0, *) {
+            picker.preferredDatePickerStyle = .inline // .compact
+            picker.sizeToFit()
+        }
     }
 
-    private lazy var expireDateButton: UIButton = UIButton(type: .system).then { button in
-        button.setTitle("expireDate", for: .normal)
-        button.setTitleColor(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1), for: .normal)
-        button.titleLabel?.font = button.titleLabel?.font.withSize(13)
-        button.contentHorizontalAlignment = .left
+    private lazy var expireDateTextField: UITextField = UITextField().then { field in
+        // custom
+        field.placeholder = "expireDate"
+        field.font = .systemFont(ofSize: 13)
+
+        // default
+        field.keyboardType = .default
+        field.returnKeyType = .done
+        field.autocorrectionType = .no
+        field.borderStyle = .roundedRect
+        field.clearButtonMode = .whileEditing
+        field.contentVerticalAlignment = .center
+        field.keyboardAppearance = .default
+        field.autocapitalizationType = .none
     }
 
+    //    private lazy var expireDateView: UIView = UIView().then { view in
+    //        view.backgroundColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+    //        view.layer.cornerRadius = 5
+    //    }
+    //
+    //    private lazy var expireDateButton: UIButton = UIButton(type: .system).then { button in
+    //        button.setTitle("expireDate", for: .normal)
+    //        button.setTitleColor(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1), for: .normal)
+    //        button.titleLabel?.font = button.titleLabel?.font.withSize(13)
+    //        button.contentHorizontalAlignment = .left
+    //    }
+
+    // textView로 바꿔야하나
     private lazy var descriptionTextField: UITextField = UITextField().then { field in
         // custom
         field.placeholder = "description"
@@ -96,6 +116,21 @@ final class CreateMissionViewController: UIViewController {
         field.contentVerticalAlignment = .center
         field.keyboardAppearance = .default
         field.autocapitalizationType = .none
+    }
+
+    private lazy var stackView: UIStackView = UIStackView().then { stack in
+        stack.axis = .vertical
+        stack.spacing = 20.0
+        stack.alignment = .fill
+        stack.distribution = .fillEqually
+        [titleTextField,
+         rewardView,
+         expireDateTextField,
+         datePicker,
+         descriptionTextField
+        ].forEach {
+            stack.addArrangedSubview($0)
+        }
     }
 
     // MARK: - Initializers
@@ -122,16 +157,12 @@ extension CreateMissionViewController {
     private func bindViewModel() {
         assert(viewModel.isSome)
 
-        let viewWillAppear = rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
-            .mapToVoid()
-            .asDriverOnErrorJustComplete()
-
         let input = CreateMissionViewModel.Input(
-            appear: viewWillAppear,
             title: titleTextField.rx.text.orEmpty.asDriver(),
+            expireClicked: expireDateTextField.rx.controlEvent(.editingDidBegin).asDriver(),
+            expireResigned: expireDateTextField.rx.controlEvent(.editingDidEnd).asDriver(),
+            expireDate: expireDateTextField.rx.text.orEmpty.asDriver(),
             description: descriptionTextField.rx.text.orEmpty.asDriver(),
-            reward: rewardButton.rx.tap.asDriver(),
-            expireDate: expireDateButton.rx.tap.asDriver(), // expireDateTextField.rx.text.orEmpty.asDriver(),
             saveTrigger: saveBarButtonItem.rx.tap.asDriver()
         )
 
@@ -139,18 +170,6 @@ extension CreateMissionViewController {
 
         output.point
             .drive(pointLabel.rx.text)
-            .disposed(by: disposeBag)
-
-        output.toReward
-            .drive()
-            .disposed(by: disposeBag)
-
-        output.test
-            .drive()
-            .disposed(by: disposeBag)
-
-        output.showPicker
-            .drive(expireDateButton.rx.title(for: .normal))
             .disposed(by: disposeBag)
 
         output.saveEnabled
@@ -167,51 +186,66 @@ extension CreateMissionViewController {
         navigationItem.rightBarButtonItem = saveBarButtonItem
 
         // add subviews
-        view.addSubview(pointLabel)
-        view.addSubview(titleTextField)
+        view.addSubview(stackView)
 
-        view.addSubview(rewardView)
-        rewardView.addSubview(rewardButton)
-
-        view.addSubview(expireDateView)
-        expireDateView.addSubview(expireDateButton)
-
-        view.addSubview(descriptionTextField)
-
-        pointLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
-            make.trailing.equalToSuperview().offset(-20)
-        }
-
-        titleTextField.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(70)
+        stackView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(50)
-            make.height.equalTo(50)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(50)
+            make.height.equalTo(300)
         }
 
-        rewardView.snp.makeConstraints { make in
-            make.top.equalTo(titleTextField.snp.bottom).offset(20)
-            make.leading.trailing.height.equalTo(titleTextField)
-        }
+        datePicker.isHidden = true
 
-        rewardButton.snp.makeConstraints { make in
-            make.trailing.top.bottom.equalToSuperview()
-            make.leading.equalToSuperview().offset(5)
-        }
+//        UIView.animate(
+//            withDuration: 2.0,
+//            delay: 0.0,
+//            options: [.curveEaseOut],
+//            animations: {
+//                self.label.isHidden = true
+//                self.label.alpha = 0.0
+//        })
 
-        expireDateView.snp.makeConstraints { make in
-            make.top.equalTo(rewardView.snp.bottom).offset(20)
-            make.leading.trailing.height.equalTo(titleTextField)
-        }
+//        view.addSubview(pointLabel)
+//        view.addSubview(titleTextField)
+//
+//        view.addSubview(rewardView)
+//        rewardView.addSubview(rewardButton)
+//
+//        view.addSubview(expireDateTextField)
+//        view.addSubview(descriptionTextField)
+//
+//        pointLabel.snp.makeConstraints { make in
+//            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
+//            make.trailing.equalToSuperview().offset(-20)
+//        }
+//
+//        titleTextField.snp.makeConstraints { make in
+//            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(70)
+//            make.leading.trailing.equalToSuperview().inset(50)
+//            make.height.equalTo(50)
+//        }
+//
+//        rewardView.snp.makeConstraints { make in
+//            make.top.equalTo(titleTextField.snp.bottom).offset(20)
+//            make.leading.trailing.height.equalTo(titleTextField)
+//        }
+//
+//        rewardButton.snp.makeConstraints { make in
+//            make.trailing.top.bottom.equalToSuperview()
+//            make.leading.equalToSuperview().offset(5)
+//        }
+//
+//        expireDateTextField.snp.makeConstraints { make in
+//            make.top.equalTo(rewardView.snp.bottom).offset(20)
+//            make.leading.trailing.height.equalTo(titleTextField)
+//        }
+//
+//        descriptionTextField.snp.makeConstraints { make in
+//            make.top.equalTo(expireDateTextField.snp.bottom).offset(20)
+//            make.leading.trailing.height.equalTo(titleTextField)
+//        }
 
-        expireDateButton.snp.makeConstraints { make in
-            make.trailing.top.bottom.equalToSuperview()
-            make.leading.equalToSuperview().offset(5)
-        }
-
-        descriptionTextField.snp.makeConstraints { make in
-            make.top.equalTo(expireDateView.snp.bottom).offset(20)
-            make.leading.trailing.height.equalTo(titleTextField)
-        }
+//        expireDateTextField.setDatePicker(target: nil, selector: nil)
+//                createDatePicker()
     }
 }
