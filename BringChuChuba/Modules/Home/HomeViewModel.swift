@@ -27,9 +27,6 @@ final class HomeViewModel: ViewModelType {
     // MARK: - Properties
     private let coordinator: HomeCoordinator
     private let disposeBag: DisposeBag = DisposeBag()
-    private var memberId: String?
-    private var familyId: String?
-    private var point: String?
 
     // MARK: - Initializers
     init(coordinator: HomeCoordinator) {
@@ -40,25 +37,26 @@ final class HomeViewModel: ViewModelType {
         let activityIndicator = ActivityIndicator()
         let errorTracker = ErrorTracker()
 
-//        let member = input.trigger.flatMapLatest {
-//            return Network.shared.getMember()
-//                .asDriverOnErrorJustComplete()
-//                .map {
-//
-//                }
-//        }
+        let memberDriver = input.trigger
+            .flatMapLatest { _ -> Driver<Member> in
+                return Network.shared.getMember()
+                    .trackActivity(activityIndicator)
+                    .trackError(errorTracker)
+                    .asDriverOnErrorJustComplete()
+            }
 
-//        let missions = member.flatMap {
-//            return Network.shared.getMissions(familyId: )
-//        }
+        let missions = memberDriver
+            .flatMap { member -> Driver<[HomeItemViewModel]> in
+                guard let familyId = member.familyId else { return Driver.empty() }
 
-        let missions = input.trigger.flatMapLatest {
-            return self.posts()
-                .trackActivity(activityIndicator)
-                .trackError(errorTracker)
-                .asDriverOnErrorJustComplete()
-                .map { $0.map { HomeItemViewModel(with: $0) } }
-        }
+                return Network.shared.getMissions(familyId: familyId)
+                    .asDriverOnErrorJustComplete()
+                    .map { missions in
+                        missions.map { mission in
+                            HomeItemViewModel(with: mission)
+                        }
+                    }
+            }
 
         let fetching = activityIndicator.asDriver()
         let errors = errorTracker.asDriver()
@@ -78,45 +76,6 @@ final class HomeViewModel: ViewModelType {
                       createMission: createMission,
                       selectedMission: selectedMission,
                       error: errors)
-    }
-
-    // 이름 바꿔야 함
-    func posts() -> Observable<[Mission]> {
-        return Observable.just([
-            Mission(client: Member(id: "1", familyId: "10", nickname: "", point: nil),
-                    contractor: Member(id: "3", familyId: "10", nickname: "", point: nil),
-                    createdAt: "",
-                    description: "",
-                    expireAt: "",
-                    familyId: "0",
-                    id: "0",
-                    modifiedAt: "",
-                    reward: "",
-                    status: "",
-                    title: "1"),
-            Mission(client: Member(id: "1", familyId: "10", nickname: "", point: nil),
-                    contractor: Member(id: "3", familyId: "10", nickname: "", point: nil),
-                    createdAt: "",
-                    description: "",
-                    expireAt: "",
-                    familyId: "0",
-                    id: "0",
-                    modifiedAt: "",
-                    reward: "",
-                    status: "",
-                    title: "2"),
-            Mission(client: Member(id: "1", familyId: "10", nickname: "", point: nil),
-                    contractor: Member(id: "3", familyId: "10", nickname: "", point: nil),
-                    createdAt: "",
-                    description: "",
-                    expireAt: "",
-                    familyId: "0",
-                    id: "0",
-                    modifiedAt: "",
-                    reward: "",
-                    status: "",
-                    title: "3")
-        ])
     }
 
     //    func save(post: Mission) -> Observable<Void> {

@@ -21,6 +21,8 @@
 		40235D6F25A553AE004D7ABE /* GlobalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40235D6E25A553AE004D7ABE /* GlobalData.swift */; };
 		402A132325A56E2E00B8F65D /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402A132225A56E2E00B8F65D /* HomeTableViewCell.swift */; };
 		402A132825A577BB00B8F65D /* Cell+ReuseIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402A132725A577BB00B8F65D /* Cell+ReuseIdentifiable.swift */; };
+		4039B4A225AFD1E4000945D0 /* DetailMissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4039B4A125AFD1E4000945D0 /* DetailMissionViewModel.swift */; };
+		4039B4A725AFD1F3000945D0 /* DetailMissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4039B4A625AFD1F3000945D0 /* DetailMissionViewController.swift */; };
 		403BF61325A803BA00712B62 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CD5125A42F0B008B9D61 /* NetworkConstants.swift */; };
 		406FFDEA25A43EA4005C5566 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406FFDE925A43EA4005C5566 /* HomeViewModel.swift */; };
 		406FFE0A25A4488E005C5566 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 406FFE0925A4488E005C5566 /* Launch Screen.storyboard */; };
@@ -90,6 +92,8 @@
 		40235D6E25A553AE004D7ABE /* GlobalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalData.swift; sourceTree = "<group>"; };
 		402A132225A56E2E00B8F65D /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		402A132725A577BB00B8F65D /* Cell+ReuseIdentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Cell+ReuseIdentifiable.swift"; path = "BringChuChuba/Modules/Home/Cell+ReuseIdentifiable.swift"; sourceTree = SOURCE_ROOT; };
+		4039B4A125AFD1E4000945D0 /* DetailMissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailMissionViewModel.swift; path = BringChuChuba/Networking/DetailMissionViewModel.swift; sourceTree = SOURCE_ROOT; };
+		4039B4A625AFD1F3000945D0 /* DetailMissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailMissionViewController.swift; path = BringChuChuba/Networking/DetailMissionViewController.swift; sourceTree = SOURCE_ROOT; };
 		406FFDE925A43EA4005C5566 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		406FFE0925A4488E005C5566 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		408FF29825A471000032C5D1 /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
@@ -211,6 +215,8 @@
 		408D09D525A6B41F0030495B /* DetailMission */ = {
 			isa = PBXGroup;
 			children = (
+				4039B4A625AFD1F3000945D0 /* DetailMissionViewController.swift */,
+				4039B4A125AFD1E4000945D0 /* DetailMissionViewModel.swift */,
 			);
 			path = DetailMission;
 			sourceTree = "<group>";
@@ -343,13 +349,13 @@
 		5D88CC6A25A2F8D1008B9D61 /* Home */ = {
 			isa = PBXGroup;
 			children = (
-				408D09D525A6B41F0030495B /* DetailMission */,
-				408D09D425A6B4160030495B /* CreateMission */,
 				40E5132125A330D40032F712 /* HomeCoordinator.swift */,
 				5D88CC8825A2FB29008B9D61 /* HomeViewController.swift */,
 				402A132225A56E2E00B8F65D /* HomeTableViewCell.swift */,
 				406FFDE925A43EA4005C5566 /* HomeViewModel.swift */,
 				40FDE37625A5CB1C00779ECB /* HomeItemViewModel.swift */,
+				408D09D525A6B41F0030495B /* DetailMission */,
+				408D09D425A6B4160030495B /* CreateMission */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -683,9 +689,11 @@
 				402A132825A577BB00B8F65D /* Cell+ReuseIdentifiable.swift in Sources */,
 				40D6473F25AE976A0004ECEC /* Router.swift in Sources */,
 				401D6C9125A6BA5B00113273 /* ErrorTracker.swift in Sources */,
+				4039B4A725AFD1F3000945D0 /* DetailMissionViewController.swift in Sources */,
 				4015765A25A4803600AB4296 /* Log.swift in Sources */,
 				408FF29925A471000032C5D1 /* UsersViewController.swift in Sources */,
 				4015765525A4800000AB4296 /* Optional+Extension.swift in Sources */,
+				4039B4A225AFD1E4000945D0 /* DetailMissionViewModel.swift in Sources */,
 				40B0B6A725AC2D75001E4A99 /* CreateMissionViewModel.swift in Sources */,
 				402A132325A56E2E00B8F65D /* HomeTableViewCell.swift in Sources */,
 				5D88CC8925A2FB29008B9D61 /* HomeViewController.swift in Sources */,

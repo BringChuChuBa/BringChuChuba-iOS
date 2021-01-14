@@ -32,6 +32,7 @@ final class HomeCoordinator: Coordinator {
     }
 
     func toDetailMission(_ mission: Mission) {
+//        let viewModel =
         // new Coordinator ??
         // VC Create
         // VM init
