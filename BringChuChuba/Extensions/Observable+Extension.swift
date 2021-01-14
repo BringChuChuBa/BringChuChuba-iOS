@@ -42,3 +42,11 @@ extension ObservableType {
         return map { _ in }
     }
 }
+
+extension Single {
+    func asDriverOnErrorJustComplete() -> Driver<Element> {
+        return asDriver { _ in // error in
+            return Driver.empty()
+        }
+    }
+}

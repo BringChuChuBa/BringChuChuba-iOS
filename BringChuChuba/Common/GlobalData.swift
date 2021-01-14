@@ -16,4 +16,5 @@ class GlobalData {
     var memberId: String = ""
     var memberFamilyId: String = ""
     var memberPoint: String = ""
+    var memberNickname: String = ""
 }

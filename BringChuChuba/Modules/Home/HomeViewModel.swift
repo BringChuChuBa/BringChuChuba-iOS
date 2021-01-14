@@ -25,9 +25,7 @@ final class HomeViewModel: ViewModelType {
     }
 
     // MARK: - Properties
-    let dataSource = HomeDataSource.dataSource()
     private let coordinator: HomeCoordinator
-    //    private let useCase: PostsUseCase = Mock()
     private let disposeBag: DisposeBag = DisposeBag()
 
     // MARK: - Initializers
@@ -39,13 +37,29 @@ final class HomeViewModel: ViewModelType {
         let activityIndicator = ActivityIndicator()
         let errorTracker = ErrorTracker()
 
-        let missions = input.trigger.flatMapLatest {
-            return self.posts()
-                .trackActivity(activityIndicator)
-                .trackError(errorTracker)
-                .asDriverOnErrorJustComplete()
-                .map { $0.map { HomeItemViewModel(with: $0) } }
-        }
+        let memberDriver = input.trigger
+            .flatMapLatest { _ -> Driver<Member> in
+                return Network.shared.getMember()
+                    .trackActivity(activityIndicator)
+                    .trackError(errorTracker)
+                    .asDriverOnErrorJustComplete()
+            }
+
+        let missions = memberDriver
+            .flatMap { member -> Driver<[HomeItemViewModel]> in
+                guard let familyId = member.familyId else { return Driver.empty() }
+
+                // 이 부분 고쳐야함
+                if let point = member.point { GlobalData.shared.memberPoint = point }
+
+                return Network.shared.getMissions(familyId: familyId)
+                    .asDriverOnErrorJustComplete()
+                    .map { missions in
+                        missions.map { mission in
+                            HomeItemViewModel(with: mission)
+                        }
+                    }
+            }
 
         let fetching = activityIndicator.asDriver()
         let errors = errorTracker.asDriver()
@@ -65,45 +79,6 @@ final class HomeViewModel: ViewModelType {
                       createMission: createMission,
                       selectedMission: selectedMission,
                       error: errors)
-    }
-
-    // 이름 바꿔야 함
-    func posts() -> Observable<[Mission]> {
-        return Observable.just([
-            Mission(client: Member(id: "1", familyId: "10", point: nil),
-                    contractor: Member(id: "3", familyId: "10", point: nil),
-                    createdAt: "",
-                    description: "",
-                    expireAt: "",
-                    familyId: "0",
-                    id: "0",
-                    modifiedAt: "",
-                    reward: "",
-                    status: "",
-                    title: "1"),
-            Mission(client: Member(id: "1", familyId: "10", point: nil),
-                    contractor: Member(id: "3", familyId: "10", point: nil),
-                    createdAt: "",
-                    description: "",
-                    expireAt: "",
-                    familyId: "0",
-                    id: "0",
-                    modifiedAt: "",
-                    reward: "",
-                    status: "",
-                    title: "2"),
-            Mission(client: Member(id: "1", familyId: "10", point: nil),
-                    contractor: Member(id: "3", familyId: "10", point: nil),
-                    createdAt: "",
-                    description: "",
-                    expireAt: "",
-                    familyId: "0",
-                    id: "0",
-                    modifiedAt: "",
-                    reward: "",
-                    status: "",
-                    title: "3")
-        ])
     }
 
     //    func save(post: Mission) -> Observable<Void> {
@@ -151,3 +126,18 @@ final class HomeViewModel: ViewModelType {
 //         return network.deletePost(postId: post.uid).map({_ in})
 //     }
 // }
+
+/*
+ func fetchRemotePosts() -> Completable {
+         return .create { observer in
+             Network.shared.getMember()
+                 .subscribe(onSuccess: { member in
+                     // we fetched the posts
+                     observer(.completed)
+                 }, onError: { error in
+                     // there was an error fetching the posts
+                     observer(.error(error))
+                 })
+         }
+     }
+ */

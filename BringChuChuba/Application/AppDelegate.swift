@@ -6,23 +6,11 @@
 //
 
 import UIKit
-import Firebase
-import Alamofire
-import SwiftyJSON
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        FirebaseApp.configure()
-
-        Auth.auth().signInAnonymously { authResult, error in
-            guard let _ = authResult?.user else {
-                // 여기도 재시도 해보고 에러 처리
-                print("\(#file) Firebase SignIn Fail")
-                fatalError()
-            }
-        }
         return true
     }
 

@@ -7,7 +7,6 @@
 
 import Foundation
 import Alamofire
-import SwiftyJSON
 
 final class APIClient {
     static let shared = APIClient()
@@ -101,7 +100,7 @@ final class APIClient {
     }
 
     func createMission(
-        missionDetails: NetworkConstants.MissionDetails,
+        missionDetails: MissionDetails,
         completion: @escaping CompletionHandler<Mission>
     ) {
         AF.request(APIRouter.createMission(missionDetails: missionDetails))
