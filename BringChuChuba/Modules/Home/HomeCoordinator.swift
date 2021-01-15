@@ -48,4 +48,8 @@ final class HomeCoordinator: Coordinator {
 
         navigationController.pushViewController(rewardVC, animated: true)
     }
+
+    func popToHome() {
+        navigationController.popViewController(animated: true)
+    }
 }

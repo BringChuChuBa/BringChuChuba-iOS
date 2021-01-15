@@ -53,11 +53,11 @@ final class Network {
             .map([Mission].self)
     }
 
-    func createMission(missionDetails: MissionDetails) -> Single<MissionDetails> {
+    func createMission(missionDetails: MissionDetails) -> Single<Void> {
         return provider.rx.request(.createMission(missionDetails: missionDetails))
             .debug()
             .filterSuccessfulStatusCodes()
-            .map(MissionDetails.self)
+            .map { _ in }
     }
 
     func contractMission(missionUid: Int) -> Single<Mission> {

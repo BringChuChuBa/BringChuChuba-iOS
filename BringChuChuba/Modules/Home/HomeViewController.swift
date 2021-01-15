@@ -29,7 +29,7 @@ final class HomeViewController: UIViewController {
 //        return dataSource
 //    }()
 
-    lazy var tableView: UITableView = UITableView().then { table in
+    private lazy var tableView: UITableView = UITableView().then { table in
         // 50 Constant로 빼기
         table.rowHeight = 50
         table.tableFooterView = UIView()
