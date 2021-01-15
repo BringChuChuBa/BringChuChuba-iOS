@@ -16,7 +16,7 @@ final class HomeItemViewModel {
     // MARK: Initializers
     init (with mission: Mission) {
         self.mission = mission
-        self.title = mission.title.uppercased()
+        self.title = mission.title
         self.subtitle = mission.description ?? "미션 설명"
     }
 }

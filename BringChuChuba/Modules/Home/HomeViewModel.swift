@@ -50,6 +50,7 @@ final class HomeViewModel: ViewModelType {
                 guard let familyId = member.familyId else { return Driver.empty() }
 
                 // 이 부분 고쳐야함
+                if let famId = member.familyId { GlobalData.shared.memberFamilyId = famId}
                 if let point = member.point { GlobalData.shared.memberPoint = point }
 
                 return Network.shared.getMissions(familyId: familyId)
