@@ -12,6 +12,7 @@ enum SceneType: String {
     case calendar
     case ranking
     case users
+    case login
 
     var tabBarItem: UITabBarItem {
         let tabBarItem = UITabBarItem(title: nil, image: UIImage(named: rawValue), selectedImage: nil)

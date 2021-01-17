@@ -166,7 +166,6 @@ extension CreateMissionViewController {
         )
 
         let output = viewModel.transform(input: input)
-
         [output.point
             .drive(pointLabel.rx.text),
          output.selectedDate
