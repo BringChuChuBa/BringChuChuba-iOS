@@ -30,6 +30,10 @@ final class AppCoordinator: Coordinator {
 
     // MARK: - Private methods
     private func isFamilyMember() -> Bool {
+//        Network.shared.getMember()
+//            .map { member in
+//                GlobalData.shared.memberFamilyId = member.familyId ?? ""
+//            }
         return GlobalData.shared.memberFamilyId == "" ? false : true
     }
 

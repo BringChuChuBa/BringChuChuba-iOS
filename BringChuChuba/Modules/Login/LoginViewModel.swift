@@ -31,16 +31,10 @@ final class LoginViewModel: ViewModelType {
     func transform(input: Input) -> Output {
         let errorTracker = ErrorTracker()
 
-        // familyID, memberName not empty <-> join enable : join button enable
         let joinEnabled =  input.familyId
             .map { !$0.isEmpty }
             .asDriver(onErrorJustReturn: false)
 
-        // join button tap <-> join trigger >>> login request 로직
-        // onNext <-> join success : go to Home
-        // onError <-> join failed : textfield reset, alert
-
-        // create button tap <-> create trigger >>> create family request
         let join = input.joinTrigger.withLatestFrom(input.familyId)
             .flatMapLatest { familyId -> Driver<Family> in
                 Network.shared.joinFamily(familyId: familyId)
