@@ -74,18 +74,16 @@ final class CreateMissionViewController: UIViewController {
 //    }
 
     //    날짜 형식 : "yyyy-MM-dd HH:mm"
-    private lazy var datePicker: UIDatePicker = UIDatePicker(frame: CGRect(x: 0,
-                                                                           y: 0,
-                                                                           width: view.frame.width,
-                                                                           height: 216)).then { picker in
+    // frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 216)
+    private lazy var datePicker: UIDatePicker = UIDatePicker().then { picker in
         picker.locale = .current
         picker.backgroundColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         picker.datePickerMode = .dateAndTime
-        //        picker.translatesAutoresizingMaskIntoConstraints = false
-        if #available(iOS 14.0, *) {
-            picker.preferredDatePickerStyle = .inline // .compact
-            picker.sizeToFit()
-        }
+        picker.translatesAutoresizingMaskIntoConstraints = false
+//        if #available(iOS 14.0, *) {
+//            picker.preferredDatePickerStyle = .inline // .compact
+//            picker.sizeToFit()
+//        }
     }
 
     private lazy var expireDateView: UIView = UIView().then { view in
@@ -223,6 +221,10 @@ extension CreateMissionViewController {
             make.height.equalTo(50)
         }
 
+        datePicker.snp.makeConstraints { make in
+            make.height.equalTo(50)
+        }
+
         descriptionTextField.snp.makeConstraints { make in
             make.height.equalTo(50)
         }
@@ -230,59 +232,52 @@ extension CreateMissionViewController {
         stackView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(50)
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
-            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-50)
+//            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom).offset(-50)
         }
 
-//        UIView.animate(
-//            withDuration: 2.0,
-//            delay: 0.0,
-//            options: [.curveEaseOut],
-//            animations: {
-//                self.label.isHidden = true
-//                self.label.alpha = 0.0
-//        })
-
-//
-//        view.addSubview(titleTextField)
-//
-//        view.addSubview(rewardView)
-//        rewardView.addSubview(rewardButton)
-//
-//        view.addSubview(expireDateTextField)
-//        view.addSubview(descriptionTextField)
-//
-//        pointLabel.snp.makeConstraints { make in
-//            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
-//            make.trailing.equalToSuperview().offset(-20)
-//        }
-//
-//        titleTextField.snp.makeConstraints { make in
-//            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(70)
-//            make.leading.trailing.equalToSuperview().inset(50)
+//        stackView.arrangedSubviews[0].snp.makeConstraints { make in
 //            make.height.equalTo(50)
 //        }
 //
-//        rewardView.snp.makeConstraints { make in
-//            make.top.equalTo(titleTextField.snp.bottom).offset(20)
-//            make.leading.trailing.height.equalTo(titleTextField)
+//        stackView.arrangedSubviews[1].snp.makeConstraints { make in
+//            make.height.equalTo(50)
 //        }
 //
-//        rewardButton.snp.makeConstraints { make in
-//            make.trailing.top.bottom.equalToSuperview()
-//            make.leading.equalToSuperview().offset(5)
+//        stackView.arrangedSubviews[2].snp.makeConstraints { make in
+//            make.height.equalTo(50)
 //        }
 //
-//        expireDateTextField.snp.makeConstraints { make in
-//            make.top.equalTo(rewardView.snp.bottom).offset(20)
-//            make.leading.trailing.height.equalTo(titleTextField)
+//        stackView.arrangedSubviews[3].snp.makeConstraints { make in
+//            make.height.equalTo(216)
 //        }
 //
-//        descriptionTextField.snp.makeConstraints { make in
-//            make.top.equalTo(expireDateTextField.snp.bottom).offset(20)
-//            make.leading.trailing.height.equalTo(titleTextField)
+//        stackView.arrangedSubviews[4].snp.makeConstraints { make in
+//            make.height.equalTo(50)
 //        }
-
-//        expireDateTextField.setDatePicker(target: nil, selector: nil)
-//                createDatePicker()
     }
 }
+
+// MARK: - Previews
+
+#if canImport(SwiftUI) && DEBUG
+import SwiftUI
+@available(iOS 13.0, *)
+struct CreateMissionViewControllerRepresentable: UIViewControllerRepresentable {
+    func makeUIViewController(context: Context) -> CreateMissionViewController {
+        return CreateMissionViewController(viewModel: CreateMissionViewModel(coordinator: HomeCoordinator(navigationController: UINavigationController())))
+    }
+
+    func updateUIViewController(_ uiViewController: CreateMissionViewController, context: Context) {
+    }
+}
+
+@available(iOS 13.0, *)
+struct HomeVCPreview: PreviewProvider {
+    static var previews: some View {
+        Group {
+            CreateMissionViewControllerRepresentable()
+            CreateMissionViewControllerRepresentable()
+        }
+    }
+}
+#endif

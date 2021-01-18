@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0481EAF10D0F0D97DDEBDBB5 /* Pods_BringChuChuba_BringChuChubaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E22662DF9DE67F70EB282E1C /* Pods_BringChuChuba_BringChuChubaUITests.framework */; };
-		40020E4425AD395A0088E9BA /* RewardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40020E4325AD395A0088E9BA /* RewardViewController.swift */; };
 		4015763A25A4737500AB4296 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015763925A4737500AB4296 /* CalendarViewModel.swift */; };
 		4015764225A47A9D00AB4296 /* RankingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015764125A47A9D00AB4296 /* RankingViewModel.swift */; };
 		4015764A25A47AAE00AB4296 /* UsersVeiwModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015764925A47AAE00AB4296 /* UsersVeiwModel.swift */; };
@@ -26,6 +25,7 @@
 		403BF61325A803BA00712B62 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CD5125A42F0B008B9D61 /* NetworkConstants.swift */; };
 		406FFDEA25A43EA4005C5566 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406FFDE925A43EA4005C5566 /* HomeViewModel.swift */; };
 		406FFE0A25A4488E005C5566 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 406FFE0925A4488E005C5566 /* Launch Screen.storyboard */; };
+		4076179025B1929F0081F77F /* RewardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40020E4325AD395A0088E9BA /* RewardViewController.swift */; };
 		408FF29925A471000032C5D1 /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408FF29825A471000032C5D1 /* UsersViewController.swift */; };
 		40A9BAA025A1AC5600EC2988 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9BA9F25A1AC5600EC2988 /* AppDelegate.swift */; };
 		40A9BAA225A1AC5600EC2988 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9BAA125A1AC5600EC2988 /* SceneDelegate.swift */; };
@@ -704,6 +704,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4076179025B1929F0081F77F /* RewardViewController.swift in Sources */,
 				40D646BF25AE8CC30004ECEC /* Network.swift in Sources */,
 				403BF61325A803BA00712B62 /* NetworkConstants.swift in Sources */,
 				5D88CDA225A5D5B6008B9D61 /* Family.swift in Sources */,
@@ -724,7 +725,6 @@
 				40E5138F25A409460032F712 /* AppCoordinator.swift in Sources */,
 				40E5136C25A3FF150032F712 /* SceneType.swift in Sources */,
 				5D88CD9825A55D37008B9D61 /* APIClient.swift in Sources */,
-				40020E4425AD395A0088E9BA /* RewardViewController.swift in Sources */,
 				40E5133125A330F30032F712 /* UsersCoordinator.swift in Sources */,
 				401D6C7825A6B7CB00113273 /* Observable+Extension.swift in Sources */,
 				5D88CC9B25A2FB8E008B9D61 /* RankingViewController.swift in Sources */,
