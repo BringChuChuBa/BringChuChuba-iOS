@@ -16,10 +16,10 @@
 		401D6C7825A6B7CB00113273 /* Observable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401D6C7725A6B7CB00113273 /* Observable+Extension.swift */; };
 		401D6C8625A6BA0900113273 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401D6C8525A6BA0900113273 /* ActivityIndicator.swift */; };
 		401D6C9125A6BA5B00113273 /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401D6C9025A6BA5B00113273 /* ErrorTracker.swift */; };
-		401D6CCB25A6D22600113273 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401D6CCA25A6D22600113273 /* ViewModelType.swift */; };
 		40235D6F25A553AE004D7ABE /* GlobalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40235D6E25A553AE004D7ABE /* GlobalData.swift */; };
 		402A132325A56E2E00B8F65D /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402A132225A56E2E00B8F65D /* HomeTableViewCell.swift */; };
 		402A132825A577BB00B8F65D /* Cell+ReuseIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402A132725A577BB00B8F65D /* Cell+ReuseIdentifiable.swift */; };
+		4034DA2725B556420077FBAF /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401D6CCA25A6D22600113273 /* ViewModelType.swift */; };
 		4039B4A225AFD1E4000945D0 /* DetailMissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4039B4A125AFD1E4000945D0 /* DetailMissionViewModel.swift */; };
 		4039B4A725AFD1F3000945D0 /* DetailMissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4039B4A625AFD1F3000945D0 /* DetailMissionViewController.swift */; };
 		403BF61325A803BA00712B62 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CD5125A42F0B008B9D61 /* NetworkConstants.swift */; };
@@ -704,6 +704,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4034DA2725B556420077FBAF /* ViewModelType.swift in Sources */,
 				4076179025B1929F0081F77F /* RewardViewController.swift in Sources */,
 				40D646BF25AE8CC30004ECEC /* Network.swift in Sources */,
 				403BF61325A803BA00712B62 /* NetworkConstants.swift in Sources */,
@@ -743,10 +744,7 @@
 				401D6C8625A6BA0900113273 /* ActivityIndicator.swift in Sources */,
 				40B0B6A225AC2CE2001E4A99 /* CreateMissionViewController.swift in Sources */,
 				5D88CCF725A33407008B9D61 /* Mission.swift in Sources */,
-				401D6CCB25A6D22600113273 /* ViewModelType.swift in Sources */,
 				5D39BFE925AF032B00356E7E /* LoginViewModel.swift in Sources */,
-				401D6CCB25A6D22600113273 /* ViewModelType.swift in Sources */,
-				401D6CCB25A6D22600113273 /* viewModelType.swift in Sources */,
 				5D88CCB325A3013C008B9D61 /* Member.swift in Sources */,
 				5D88CC9625A2FB85008B9D61 /* CalendarViewController.swift in Sources */,
 				4015763A25A4737500AB4296 /* CalendarViewModel.swift in Sources */,
