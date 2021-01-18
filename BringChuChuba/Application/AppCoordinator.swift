@@ -33,7 +33,7 @@ final class AppCoordinator: Coordinator {
 //            .map { member in
 //                GlobalData.shared.memberFamilyId = member.familyId ?? ""
 //            }
-        return GlobalData.shared.memberFamilyId == "" ? false : true
+        return GlobalData.shared.familyId == "" ? false : true
     }
 
     private func showLogin() {

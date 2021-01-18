@@ -72,16 +72,16 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                                    for: Member.self)
             .subscribe { member in
                 if let memberID = member.id {
-                    GlobalData.shared.memberId = memberID
+                    GlobalData.shared.id = memberID
                 }
                 if let familyID = member.familyId {
-                    GlobalData.shared.memberFamilyId = familyID
+                    GlobalData.shared.familyId = familyID
                 }
                 if let point = member.point {
-                    GlobalData.shared.memberPoint = point
+                    GlobalData.shared.point = point
                 }
                 if let nickname = member.nickname {
-                    GlobalData.shared.memberNickname = nickname
+                    GlobalData.shared.nickname = nickname
                 }
 
                 finished = true

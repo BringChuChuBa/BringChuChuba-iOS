@@ -7,14 +7,14 @@
 
 import Foundation
 
-class GlobalData {
+final class GlobalData {
     static let shared = GlobalData()
     private init() {}
 
     var userToken: String = ""
     var currentMember: Member!
-    var memberId: String = ""
-    var memberFamilyId: String = ""
-    var memberPoint: String = ""
-    var memberNickname: String = ""
+    var id: String = ""
+    var familyId: String = ""
+    var point: String = ""
+    var nickname: String = ""
 }

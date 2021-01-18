@@ -48,13 +48,13 @@ final class HomeViewModel: ViewModelType {
 
         let missions = memberDriver
             .flatMap { member -> Driver<[HomeItemViewModel]> in
-                guard let familyId = member.familyId else { return Driver.empty() }
+//                guard let familyId = member.familyId else { return Driver.empty() }
 
                 // 이 부분 고쳐야함
-                if let famId = member.familyId { GlobalData.shared.memberFamilyId = famId}
-                if let point = member.point { GlobalData.shared.memberPoint = point }
+//                if let famId = member.familyId { GlobalData.shared.memberFamilyId = famId}
+//                if let point = member.point { GlobalData.shared.memberPoint = point }
 
-                return Network.shared.requests(with: .getMissions(familyId: familyId),
+                return Network.shared.requests(with: .getMissions(familyId: GlobalData.shared.familyId),
                                                for: Mission.self)
                     .asDriverOnErrorJustComplete()
                     .map { missions in

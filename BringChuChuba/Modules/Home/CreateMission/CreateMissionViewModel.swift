@@ -75,7 +75,7 @@ final class CreateMissionViewModel: ViewModelType {
                 return MissionDetails(
                     description: desc,
                     expireAt: date,
-                    familyId: GlobalData.shared.memberFamilyId,
+                    familyId: GlobalData.shared.familyId,
                     reward: reward,
                     title: title
                 )
@@ -90,7 +90,7 @@ final class CreateMissionViewModel: ViewModelType {
             .do(onNext: coordinator.popToHome)
 
         return Output(
-            point: Driver.just(GlobalData.shared.memberPoint),
+            point: Driver.just(GlobalData.shared.point),
             datePickerHidden: datePicker,
             selectedDate: selectedDate,
             saveEnabled: emptyCheck,
