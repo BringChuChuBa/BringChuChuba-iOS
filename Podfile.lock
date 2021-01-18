@@ -59,7 +59,6 @@ PODS:
   - Then (2.7.0)
 
 DEPENDENCIES:
-  - Alamofire
   - Firebase/Auth
   - Moya/RxSwift
   - RxCocoa (= 5.1.1)
@@ -107,6 +106,6 @@ SPEC CHECKSUMS:
   SwiftLint: 4fa9579c63416865179bc416f0a92d55f009600d
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
 
-PODFILE CHECKSUM: 6abcea40abfded7e328493b1739cda85dcbd4ed0
+PODFILE CHECKSUM: 4cd0504ae6936b16113fdc4c3994aee81fcdfa61
 
 COCOAPODS: 1.10.0

@@ -15,7 +15,6 @@ target 'BringChuChuba' do
   pod 'SwiftLint'
 
   # Networking
-  pod 'Alamofire'
   pod 'Moya/RxSwift'
   pod 'Firebase/Auth'
 

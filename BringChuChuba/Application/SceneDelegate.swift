@@ -7,9 +7,7 @@
 
 import UIKit
 import RxSwift
-
 import Firebase
-import Alamofire
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
