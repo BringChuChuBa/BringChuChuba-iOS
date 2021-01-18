@@ -12,8 +12,8 @@ final class Network {
     static let shared = Network()
     private init() {}
 
-    private let provider = MoyaProvider<Router>(plugins: [NetworkLoggerPlugin()])
-    private let disposeBag = DisposeBag()
+//    private let provider = MoyaProvider<Router>(plugins: [NetworkLoggerPlugin()]) // for logging
+    private let provider = MoyaProvider<Router>()
 
     func getMember() -> Single<Member> {
         return provider.rx.request(.getMember)
