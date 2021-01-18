@@ -13,7 +13,7 @@ import Alamofire
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
-    private var mainCoordinator: MainCoordinator!
+    private var appCoordinator: AppCoordinator!
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         FirebaseApp.configure()
@@ -24,8 +24,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         self.window = UIWindow(windowScene: windowScene)
 
-        mainCoordinator = MainCoordinator(window: self.window!)
-        mainCoordinator.start()
+        appCoordinator = AppCoordinator(window: self.window!)
+        appCoordinator.start()
     }
 
     private func loginAndCheckToken() {

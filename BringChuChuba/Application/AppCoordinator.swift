@@ -9,8 +9,9 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class MainCoordinator: Coordinator {
-    // Singleton 객체로 선언하는게 맞는가?
+
+final class AppCoordinator: Coordinator {
+    // TODO: Singleton 객체로 선언하는게 맞는가?
     private let window: UIWindow
 
     init(window: UIWindow) {
@@ -18,6 +19,30 @@ final class MainCoordinator: Coordinator {
     }
 
     func start() {
+        if isFamilyMember() {
+            window.makeKeyAndVisible()
+            showMainTab()
+        } else {
+            window.makeKeyAndVisible()
+            showLogin()
+        }
+    }
+
+    // MARK: - Private methods
+    private func isFamilyMember() -> Bool {
+        return GlobalData.shared.memberFamilyId == "" ? false : true
+    }
+
+    private func showLogin() {
+        let navigationController = UINavigationController()
+        let coordinator = LoginCoordinator(navigationController: navigationController)
+        coordinator.delegate = self
+        coordinator.start()
+//        coordinatorInit(from: .login, with: navigationController)
+        window.rootViewController = navigationController
+    }
+
+    private func showMainTab() {
         let homeNavigationController = getNavigationController(from: .home)
         let calendarNavigationController = getNavigationController(from: .calendar)
         let rankingNavigationController = getNavigationController(from: .ranking)
@@ -41,7 +66,6 @@ final class MainCoordinator: Coordinator {
         // 없으면 가족 coordinator 이동시켜서 로직처리
 
         window.rootViewController = tabBarController
-        window.makeKeyAndVisible()
     }
 
     // MARK: - Private methods
@@ -63,8 +87,16 @@ final class MainCoordinator: Coordinator {
             coordinator = RankingCoordinator(navigationController: navigationController)
         case .users:
             coordinator = UsersCoordinator(navigationController: navigationController)
+        case .login:
+            coordinator = LoginCoordinator(navigationController: navigationController)
         }
 
         coordinator.start()
+    }
+}
+
+extension AppCoordinator: LoginCoordinatorDelegate {
+    func didLoggedIn(_ coordinator: LoginCoordinator) {
+        showMainTab()
     }
 }
