@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         FirebaseApp.configure()
         loginAndCheckToken()
-        // getMember()
+        getMember()
 
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
@@ -56,6 +56,39 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 finished = true
             }
         }
+
+        while !finished {
+            RunLoop.current.run(
+                mode: RunLoop.Mode(rawValue: "NSDefaultRunLoopMode"),
+                before: NSDate.distantFuture
+            )
+        }
+
+        return
+    }
+
+    private func getMember() {
+        var finished = false
+        
+        _ = Network.shared.getMember()
+            .subscribe { member in
+                if let memberID = member.id {
+                    GlobalData.shared.memberId = memberID
+                }
+                if let familyID = member.familyId {
+                    GlobalData.shared.memberFamilyId = familyID
+                }
+                if let point = member.point {
+                    GlobalData.shared.memberPoint = point
+                }
+                if let nickname = member.nickname {
+                    GlobalData.shared.memberNickname = nickname
+                }
+
+                finished = true
+            } onError: { _ in
+                finished = true
+            }
 
         while !finished {
             RunLoop.current.run(

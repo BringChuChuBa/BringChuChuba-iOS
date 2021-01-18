@@ -39,7 +39,7 @@ final class LoginViewModel: ViewModelType {
                 Network.shared.joinFamily(familyId: familyId)
                     .trackError(errorTracker)
                     .asDriverOnErrorJustComplete()
-            }.do { family in
+            }.do { [unowned self] family in
                 GlobalData.shared.memberFamilyId = family.id ?? ""
                 self.coordinator.toHome()
             }

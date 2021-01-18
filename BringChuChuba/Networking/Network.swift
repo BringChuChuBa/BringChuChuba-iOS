@@ -12,8 +12,11 @@ final class Network {
     static let shared = Network()
     private init() {}
 
-    private let provider = MoyaProvider<Router>(plugins: [NetworkLoggerPlugin()]) // for logging
-//    private let provider = MoyaProvider<Router>()
+//    private let provider = MoyaProvider<Router>(plugins: [NetworkLoggerPlugin()]) // for logging
+    private let provider = MoyaProvider<Router>()
+
+    // 라우터를 인자로 
+    // 제네릭으로 반환
 
     func getMember() -> Single<Member> {
         return provider.rx.request(.getMember)

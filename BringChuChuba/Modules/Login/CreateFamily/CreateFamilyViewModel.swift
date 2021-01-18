@@ -40,7 +40,7 @@ final class CreateFamilyViewModel: ViewModelType {
                 Network.shared.createFamily(familyName: familyName)
                     .trackError(errorTracker)
                     .asDriverOnErrorJustComplete()
-            }.do { family in
+            }.do { [unowned self] family in
                 GlobalData.shared.memberFamilyId = family.id ?? ""
                 self.coordinator.toHome()
             }

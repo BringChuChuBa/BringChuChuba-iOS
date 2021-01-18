@@ -8,13 +8,13 @@
 import Foundation
 import RxSwift
 
-protocol LoginCoordinatorDelegate {
+protocol LoginCoordinatorDelegate: class {
     func didLoggedIn(_ coordinator: LoginCoordinator)
 }
 
 final class LoginCoordinator: Coordinator {
     unowned private let navigationController: UINavigationController
-    var delegate: LoginCoordinatorDelegate?
+    weak var delegate: LoginCoordinatorDelegate?
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
