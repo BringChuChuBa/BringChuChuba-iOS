@@ -70,7 +70,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     private func getMember() {
         var finished = false
 
-        _ = Network.shared.getMember()
+        _ = Network.shared.request(with: .getMember,
+                                   for: Member.self)
             .subscribe { member in
                 if let memberID = member.id {
                     GlobalData.shared.memberId = memberID

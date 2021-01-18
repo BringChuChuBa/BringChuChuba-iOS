@@ -37,7 +37,8 @@ final class CreateFamilyViewModel: ViewModelType {
 
         let create = input.createTrigger.withLatestFrom(input.familyName)
             .flatMapLatest { familyName -> Driver<Family> in
-                Network.shared.createFamily(familyName: familyName)
+                Network.shared.request(with: .createFamily(familyName: familyName),
+                                       for: Family.self)
                     .trackError(errorTracker)
                     .asDriverOnErrorJustComplete()
             }.do { [unowned self] family in

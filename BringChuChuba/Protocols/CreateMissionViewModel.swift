@@ -81,10 +81,13 @@ final class CreateMissionViewModel: ViewModelType {
                 )
             }
             .flatMapLatest { detail in
-                return Network.shared.createMission(missionDetails: detail)
+                return Network.shared.request(with: .createMission(missionDetails: detail),
+                                              for: Mission.self)
                     .trackActivity(activityIndicator)
                     .asDriverOnErrorJustComplete()
-            }.do(onNext: coordinator.popToHome)
+            }
+            .mapToVoid()
+            .do(onNext: coordinator.popToHome)
 
         return Output(
             point: Driver.just(GlobalData.shared.memberPoint),

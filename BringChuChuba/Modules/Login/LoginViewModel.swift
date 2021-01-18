@@ -36,7 +36,8 @@ final class LoginViewModel: ViewModelType {
 
         let join = input.joinTrigger.withLatestFrom(input.familyId)
             .flatMapLatest { familyId -> Driver<Family> in
-                Network.shared.joinFamily(familyId: familyId)
+                Network.shared.request(with: .joinFamily(familyId: familyId),
+                                       for: Family.self)
                     .trackError(errorTracker)
                     .asDriverOnErrorJustComplete()
             }.do { [unowned self] family in

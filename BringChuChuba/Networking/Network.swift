@@ -15,69 +15,89 @@ final class Network {
 //    private let provider = MoyaProvider<Router>(plugins: [NetworkLoggerPlugin()]) // for logging
     private let provider = MoyaProvider<Router>()
 
-    // 라우터를 인자로 
-    // 제네릭으로 반환
-
-    func getMember() -> Single<Member> {
-        return provider.rx.request(.getMember)
+    func request<T>(with httpRequest: Router, for returnType: T.Type) -> Single<T> where T: Decodable {
+        return provider.rx.request(httpRequest)
             .debug()
-            .filterSuccessfulStatusCodes() // validate 200 - 299
-            .map(Member.self) // decode
-            .catchError { error in
-                throw error
+            .filterSuccessfulStatusCodes()
+            .map(T.self)
+            .catchError { err in
+                throw err
             }
     }
 
-    func getFamily(familyUid: Int) -> Single<Family> {
-        return provider.rx.request(.getFamily(familyUid: familyUid))
+    func requests<T>(with httpRequest: Router, for returnType: T.Type) -> Single<[T]> where T: Decodable {
+        return provider.rx.request(httpRequest)
             .debug()
             .filterSuccessfulStatusCodes()
-            .map(Family.self)
+            .map([T].self)
+            .catchError { err in
+                throw err
+            }
     }
 
-    func createFamily(familyName: String) -> Single<Family> {
-        return provider.rx.request(.createFamily(familyName: familyName))
-            .debug()
-            .filterSuccessfulStatusCodes()
-            .map(Family.self)
-    }
+    // MARK: - 혹시 몰라서 남겨놓음
 
-    func joinFamily(familyId: String) -> Single<Family> {
-        return provider.rx.request(.joinFamily(familyId: familyId))
-            .debug()
-            .filterSuccessfulStatusCodes()
-            .map(Family.self)
-    }
-
-    func getMissions(familyId: String) -> Single<[Mission]> {
-        return provider.rx.request(.getMissions(familyId: familyId))
-            .debug()
-            .filterSuccessfulStatusCodes()
-            .map([Mission].self)
-    }
-
-    func createMission(missionDetails: MissionDetails) -> Single<Void> {
-        return provider.rx.request(.createMission(missionDetails: missionDetails))
-            .debug()
-            .filterSuccessfulStatusCodes()
-            .map { _ in }
-    }
-
-    func contractMission(missionUid: Int) -> Single<Mission> {
-        return provider.rx.request(.contractMission(missionUid: missionUid))
-            .debug()
-            .filterSuccessfulStatusCodes()
-            .map(Mission.self)
-    }
-
-    func completeMission(missionUid: Int) -> Single<Mission> {
-        return provider.rx.request(.completeMission(missionUid: missionUid))
-            .debug()
-            .filterSuccessfulStatusCodes()
-            .map(Mission.self)
-    }
+//    func getMember() -> Single<Member> {
+//        return provider.rx.request(.getMember)
+//            .debug()
+//            .filterSuccessfulStatusCodes() // validate 200 - 299
+//            .map(Member.self) // decode
+//            .catchError { error in
+//                throw error
+//            }
+//    }
+//
+//    func getFamily(familyUid: Int) -> Single<Family> {
+//        return provider.rx.request(.getFamily(familyUid: familyUid))
+//            .debug()
+//            .filterSuccessfulStatusCodes()
+//            .map(Family.self)
+//    }
+//
+//    func getMissions(familyId: String) -> Single<[Mission]> {
+//        return provider.rx.request(.getMissions(familyId: familyId))
+//            .debug()
+//            .filterSuccessfulStatusCodes()
+//            .map([Mission].self)
+//    }
+//
+//    func createFamily(familyName: String) -> Single<Family> {
+//        return provider.rx.request(.createFamily(familyName: familyName))
+//            .debug()
+//            .filterSuccessfulStatusCodes()
+//            .map(Family.self)
+//    }
+//
+//    func createMission(missionDetails: MissionDetails) -> Single<Void> {
+//        return provider.rx.request(.createMission(missionDetails: missionDetails))
+//            .debug()
+//            .filterSuccessfulStatusCodes()
+//            .map { _ in }
+//    }
+//
+//    func joinFamily(familyId: String) -> Single<Family> {
+//        return provider.rx.request(.joinFamily(familyId: familyId))
+//            .debug()
+//            .filterSuccessfulStatusCodes()
+//            .map(Family.self)
+//    }
+//
+//    func contractMission(missionUid: Int) -> Single<Mission> {
+//        return provider.rx.request(.contractMission(missionUid: missionUid))
+//            .debug()
+//            .filterSuccessfulStatusCodes()
+//            .map(Mission.self)
+//    }
+//
+//    func completeMission(missionUid: Int) -> Single<Mission> {
+//        return provider.rx.request(.completeMission(missionUid: missionUid))
+//            .debug()
+//            .filterSuccessfulStatusCodes()
+//            .map(Mission.self)
+//    }
 }
 
-private enum Error {
+private enum RequestError {
+    case FamilyExist
     case Unknown
 }

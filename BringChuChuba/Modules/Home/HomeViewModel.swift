@@ -39,7 +39,8 @@ final class HomeViewModel: ViewModelType {
 
         let memberDriver = input.trigger
             .flatMapLatest { _ -> Driver<Member> in
-                return Network.shared.getMember()
+                return Network.shared.request(with: .getMember,
+                                              for: Member.self)
                     .trackActivity(activityIndicator)
                     .trackError(errorTracker)
                     .asDriverOnErrorJustComplete()
@@ -53,7 +54,8 @@ final class HomeViewModel: ViewModelType {
                 if let famId = member.familyId { GlobalData.shared.memberFamilyId = famId}
                 if let point = member.point { GlobalData.shared.memberPoint = point }
 
-                return Network.shared.getMissions(familyId: familyId)
+                return Network.shared.requests(with: .getMissions(familyId: familyId),
+                                               for: Mission.self)
                     .asDriverOnErrorJustComplete()
                     .map { missions in
                         missions.map { mission in
