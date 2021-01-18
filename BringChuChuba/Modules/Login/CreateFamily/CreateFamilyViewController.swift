@@ -13,11 +13,11 @@ import RxCocoa
 
 final class CreateFamilyViewController: UIViewController {
     // MARK: - Properties
-    var viewModel: CreateFamilyViewModel
-    let disposeBag = DisposeBag()
+    private var viewModel: CreateFamilyViewModel
+    private let disposeBag = DisposeBag()
 
     // MARK: - UI Components
-    lazy var familyNameTextField = UITextField().then {
+    private lazy var familyNameTextField = UITextField().then {
         $0.placeholder = "Enter your family name"
         $0.autocapitalizationType = .none
         $0.backgroundColor = .systemGray6
@@ -27,13 +27,13 @@ final class CreateFamilyViewController: UIViewController {
         // 왼쪽 inset padding 추가
     }
 
-    lazy var createFamilyButton = UIButton().then {
+    private lazy var createFamilyButton = UIButton().then {
         $0.setTitle("Create new family", for: .normal)
         $0.backgroundColor = UIColor.systemBlue
         $0.layer.cornerRadius = 5
     }
 
-    lazy var joinFamilyButton = UIButton().then {
+    private lazy var joinFamilyButton = UIButton().then {
         let attributedString = NSAttributedString(
             string: NSLocalizedString("or Find and join a family", comment: ""),
             attributes: [
@@ -45,7 +45,7 @@ final class CreateFamilyViewController: UIViewController {
         $0.layer.cornerRadius = 5
     }
 
-    lazy var stackView = UIStackView().then {
+    private lazy var stackView = UIStackView().then {
         $0.axis = .vertical
         $0.spacing = 10
     }
@@ -99,13 +99,10 @@ final class CreateFamilyViewController: UIViewController {
         let output = viewModel.transform(input: input)
 
         [output.createEnable
-            .debug()
             .drive(createFamilyButton.rx.isEnabled),
          output.create
-            .debug()
             .drive(),
          output.toJoin
-            .debug()
             .drive()
         ].forEach { $0.disposed(by: disposeBag) }
     }

@@ -52,8 +52,6 @@
 		5D88CCB325A3013C008B9D61 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CCB225A3013B008B9D61 /* Member.swift */; };
 		5D88CCF225A32F3D008B9D61 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5D88CCF125A32F3D008B9D61 /* GoogleService-Info.plist */; };
 		5D88CCF725A33407008B9D61 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CCF625A33407008B9D61 /* Mission.swift */; };
-		5D88CD4D25A42CDB008B9D61 /* APIRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CD4C25A42CDB008B9D61 /* APIRouter.swift */; };
-		5D88CD9825A55D37008B9D61 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CD9725A55D37008B9D61 /* APIClient.swift */; };
 		5D88CDA225A5D5B6008B9D61 /* Family.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CCAA25A30002008B9D61 /* Family.swift */; };
 		5D88DDCE25AFE0BE00AB0B3F /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88DDCD25AFE0BE00AB0B3F /* LoginCoordinator.swift */; };
 		5DBBEDDB25B16ABD004ACC3A /* CreateFamilyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBBEDDA25B16ABD004ACC3A /* CreateFamilyViewController.swift */; };
@@ -135,9 +133,7 @@
 		5D88CCB225A3013B008B9D61 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
 		5D88CCF125A32F3D008B9D61 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5D88CCF625A33407008B9D61 /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
-		5D88CD4C25A42CDB008B9D61 /* APIRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIRouter.swift; sourceTree = "<group>"; };
 		5D88CD5125A42F0B008B9D61 /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
-		5D88CD9725A55D37008B9D61 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		5D88DDCD25AFE0BE00AB0B3F /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
 		5DBBEDDA25B16ABD004ACC3A /* CreateFamilyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFamilyViewController.swift; sourceTree = "<group>"; };
 		5DBBEDE225B16B8C004ACC3A /* CreateFamilyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFamilyViewModel.swift; sourceTree = "<group>"; };
@@ -335,8 +331,6 @@
 			isa = PBXGroup;
 			children = (
 				5D88CD5125A42F0B008B9D61 /* NetworkConstants.swift */,
-				5D88CD4C25A42CDB008B9D61 /* APIRouter.swift */,
-				5D88CD9725A55D37008B9D61 /* APIClient.swift */,
 				40D6473E25AE976A0004ECEC /* Router.swift */,
 				40D646BE25AE8CC30004ECEC /* Network.swift */,
 			);
@@ -725,11 +719,9 @@
 				40E5132725A330E10032F712 /* CalendarCoordinator.swift in Sources */,
 				40E5138F25A409460032F712 /* AppCoordinator.swift in Sources */,
 				40E5136C25A3FF150032F712 /* SceneType.swift in Sources */,
-				5D88CD9825A55D37008B9D61 /* APIClient.swift in Sources */,
 				40E5133125A330F30032F712 /* UsersCoordinator.swift in Sources */,
 				401D6C7825A6B7CB00113273 /* Observable+Extension.swift in Sources */,
 				5D88CC9B25A2FB8E008B9D61 /* RankingViewController.swift in Sources */,
-				5D88CD4D25A42CDB008B9D61 /* APIRouter.swift in Sources */,
 				40A9BAA225A1AC5600EC2988 /* SceneDelegate.swift in Sources */,
 				5D88DDCE25AFE0BE00AB0B3F /* LoginCoordinator.swift in Sources */,
 				40235D6F25A553AE004D7ABE /* GlobalData.swift in Sources */,

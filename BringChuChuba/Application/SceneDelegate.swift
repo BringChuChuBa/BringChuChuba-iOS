@@ -69,7 +69,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     private func getMember() {
         var finished = false
-        
+
         _ = Network.shared.getMember()
             .subscribe { member in
                 if let memberID = member.id {

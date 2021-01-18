@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Mission: Codable {
+struct Mission: Decodable {
     let client: Member
     var contractor: Member?
     let createdAt: String
@@ -19,4 +19,12 @@ struct Mission: Codable {
     var reward: String?
     var status: String
     var title: String
+}
+
+struct MissionDetails {
+    let description: String
+    let expireAt: String
+    let familyId: String
+    let reward: String
+    let title: String
 }

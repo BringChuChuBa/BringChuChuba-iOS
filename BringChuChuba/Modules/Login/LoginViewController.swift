@@ -13,11 +13,11 @@ import RxCocoa
 
 class LoginViewController: UIViewController {
     // MARK: - Properties
-    var viewModel: LoginViewModel
-    let disposeBag = DisposeBag()
+    private var viewModel: LoginViewModel
+    private let disposeBag = DisposeBag()
 
     // MARK: - UI Components
-    lazy var familyIdTextField = UITextField().then {
+    private lazy var familyIdTextField = UITextField().then {
         $0.placeholder = "Enter family ID"
         $0.autocapitalizationType = .none
         $0.backgroundColor = .systemGray6
@@ -27,20 +27,20 @@ class LoginViewController: UIViewController {
         // 왼쪽 inset padding 추가
     }
 
-    lazy var memberNameTextField = UITextField().then {
+    private lazy var memberNameTextField = UITextField().then {
         $0.placeholder = "Enter your name"
         $0.autocapitalizationType = .none
         $0.layer.borderWidth = 0.5
         $0.layer.borderColor = UIColor.systemGray.cgColor
     }
 
-    lazy var joinFamilyButton = UIButton().then {
+    private lazy var joinFamilyButton = UIButton().then {
         $0.setTitle("Find and join a family", for: .normal)
         $0.backgroundColor = UIColor.systemBlue
         $0.layer.cornerRadius = 5
     }
 
-    lazy var createFamilyButton = UIButton().then {
+    private lazy var createFamilyButton = UIButton().then {
         let attributedString = NSAttributedString(string: NSLocalizedString("or Create new family", comment: ""),
             attributes: [
             NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0),
@@ -51,7 +51,7 @@ class LoginViewController: UIViewController {
         $0.layer.cornerRadius = 5
     }
 
-    lazy var stackView = UIStackView().then {
+    private lazy var stackView = UIStackView().then {
         $0.axis = .vertical
         $0.spacing = 10
     }

@@ -9,6 +9,24 @@ import RxSwift
 import RxCocoa
 
 final class CreateMissionViewModel: ViewModelType {
+    // MARK: - Structs
+    struct Input {
+        let title: Driver<String>
+        let reward: Driver<String>
+        let expireClicked: Driver<Void>
+        let dateSelected: Driver<Date>
+        let description: Driver<String>
+        let saveTrigger: Driver<Void>
+    }
+
+    struct Output {
+        let point: Driver<String>
+        let datePickerHidden: Driver<Bool>
+        let selectedDate: Driver<String>
+        let saveEnabled: Driver<Bool>
+        let dismiss: Driver<Void>
+    }
+
     // MARK: - Properties
     private let coordinator: HomeCoordinator
     private let disposeBag: DisposeBag = DisposeBag()
@@ -75,24 +93,5 @@ final class CreateMissionViewModel: ViewModelType {
             saveEnabled: emptyCheck,
             dismiss: dismiss
         )
-    }
-}
-
-extension CreateMissionViewModel {
-    struct Input {
-        let title: Driver<String>
-        let reward: Driver<String>
-        let expireClicked: Driver<Void>
-        let dateSelected: Driver<Date>
-        let description: Driver<String>
-        let saveTrigger: Driver<Void>
-    }
-
-    struct Output {
-        let point: Driver<String>
-        let datePickerHidden: Driver<Bool>
-        let selectedDate: Driver<String>
-        let saveEnabled: Driver<Bool>
-        let dismiss: Driver<Void>
     }
 }
