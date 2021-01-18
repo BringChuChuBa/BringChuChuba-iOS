@@ -11,29 +11,29 @@
 		4015763A25A4737500AB4296 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015763925A4737500AB4296 /* CalendarViewModel.swift */; };
 		4015764225A47A9D00AB4296 /* RankingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015764125A47A9D00AB4296 /* RankingViewModel.swift */; };
 		4015764A25A47AAE00AB4296 /* UsersVeiwModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015764925A47AAE00AB4296 /* UsersVeiwModel.swift */; };
-		4015765525A4800000AB4296 /* Optional+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015765425A4800000AB4296 /* Optional+Extension.swift */; };
 		4015765A25A4803600AB4296 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015765925A4803600AB4296 /* Log.swift */; };
-		401D6C7825A6B7CB00113273 /* Observable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401D6C7725A6B7CB00113273 /* Observable+Extension.swift */; };
 		401D6C8625A6BA0900113273 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401D6C8525A6BA0900113273 /* ActivityIndicator.swift */; };
 		401D6C9125A6BA5B00113273 /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401D6C9025A6BA5B00113273 /* ErrorTracker.swift */; };
 		40235D6F25A553AE004D7ABE /* GlobalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40235D6E25A553AE004D7ABE /* GlobalData.swift */; };
 		402A132325A56E2E00B8F65D /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402A132225A56E2E00B8F65D /* HomeTableViewCell.swift */; };
-		402A132825A577BB00B8F65D /* Cell+ReuseIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402A132725A577BB00B8F65D /* Cell+ReuseIdentifiable.swift */; };
 		4034DA2725B556420077FBAF /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401D6CCA25A6D22600113273 /* ViewModelType.swift */; };
-		4039B4A225AFD1E4000945D0 /* DetailMissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4039B4A125AFD1E4000945D0 /* DetailMissionViewModel.swift */; };
-		4039B4A725AFD1F3000945D0 /* DetailMissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4039B4A625AFD1F3000945D0 /* DetailMissionViewController.swift */; };
 		403BF61325A803BA00712B62 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CD5125A42F0B008B9D61 /* NetworkConstants.swift */; };
 		406FFDEA25A43EA4005C5566 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406FFDE925A43EA4005C5566 /* HomeViewModel.swift */; };
 		406FFE0A25A4488E005C5566 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 406FFE0925A4488E005C5566 /* Launch Screen.storyboard */; };
 		4076179025B1929F0081F77F /* RewardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40020E4325AD395A0088E9BA /* RewardViewController.swift */; };
 		408FF29925A471000032C5D1 /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408FF29825A471000032C5D1 /* UsersViewController.swift */; };
+		40A2D4BE25B5B4F10030A85E /* DetailMissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2D4BC25B5B4F10030A85E /* DetailMissionViewController.swift */; };
+		40A2D4BF25B5B4F10030A85E /* DetailMissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2D4BD25B5B4F10030A85E /* DetailMissionViewModel.swift */; };
+		40A2D4C525B5B4FC0030A85E /* CreateMissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2D4C325B5B4FC0030A85E /* CreateMissionViewController.swift */; };
+		40A2D4C625B5B4FC0030A85E /* CreateMissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2D4C425B5B4FC0030A85E /* CreateMissionViewModel.swift */; };
+		40A2D4D325B5B59E0030A85E /* Optional+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2D4D025B5B59E0030A85E /* Optional+Extension.swift */; };
+		40A2D4D425B5B59E0030A85E /* Observable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2D4D125B5B59E0030A85E /* Observable+Extension.swift */; };
+		40A2D4D525B5B59E0030A85E /* Cell+ReuseIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2D4D225B5B59E0030A85E /* Cell+ReuseIdentifiable.swift */; };
 		40A9BAA025A1AC5600EC2988 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9BA9F25A1AC5600EC2988 /* AppDelegate.swift */; };
 		40A9BAA225A1AC5600EC2988 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9BAA125A1AC5600EC2988 /* SceneDelegate.swift */; };
 		40A9BAA925A1AC5700EC2988 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40A9BAA825A1AC5700EC2988 /* Assets.xcassets */; };
 		40A9BAB725A1AC5700EC2988 /* BringChuChubaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9BAB625A1AC5700EC2988 /* BringChuChubaTests.swift */; };
 		40A9BAC225A1AC5700EC2988 /* BringChuChubaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9BAC125A1AC5700EC2988 /* BringChuChubaUITests.swift */; };
-		40B0B6A225AC2CE2001E4A99 /* CreateMissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B0B6A125AC2CE2001E4A99 /* CreateMissionViewController.swift */; };
-		40B0B6A725AC2D75001E4A99 /* CreateMissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40B0B6A625AC2D75001E4A99 /* CreateMissionViewModel.swift */; };
 		40D646BF25AE8CC30004ECEC /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D646BE25AE8CC30004ECEC /* Network.swift */; };
 		40D6473F25AE976A0004ECEC /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D6473E25AE976A0004ECEC /* Router.swift */; };
 		40E5132225A330D40032F712 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5132125A330D40032F712 /* HomeCoordinator.swift */; };
@@ -86,20 +86,22 @@
 		4015763925A4737500AB4296 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		4015764125A47A9D00AB4296 /* RankingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewModel.swift; sourceTree = "<group>"; };
 		4015764925A47AAE00AB4296 /* UsersVeiwModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersVeiwModel.swift; sourceTree = "<group>"; };
-		4015765425A4800000AB4296 /* Optional+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Optional+Extension.swift"; path = "BringChuChuba/Modules/Users/Optional+Extension.swift"; sourceTree = SOURCE_ROOT; };
 		4015765925A4803600AB4296 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Log.swift; path = "BringChuChuba/Supporting Files/Log.swift"; sourceTree = SOURCE_ROOT; };
-		401D6C7725A6B7CB00113273 /* Observable+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Observable+Extension.swift"; sourceTree = "<group>"; };
 		401D6C8525A6BA0900113273 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		401D6C9025A6BA5B00113273 /* ErrorTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTracker.swift; sourceTree = "<group>"; };
 		401D6CCA25A6D22600113273 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		40235D6E25A553AE004D7ABE /* GlobalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalData.swift; sourceTree = "<group>"; };
 		402A132225A56E2E00B8F65D /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
-		402A132725A577BB00B8F65D /* Cell+ReuseIdentifiable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "Cell+ReuseIdentifiable.swift"; path = "BringChuChuba/Modules/Home/Cell+ReuseIdentifiable.swift"; sourceTree = SOURCE_ROOT; };
-		4039B4A125AFD1E4000945D0 /* DetailMissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailMissionViewModel.swift; path = BringChuChuba/Networking/DetailMissionViewModel.swift; sourceTree = SOURCE_ROOT; };
-		4039B4A625AFD1F3000945D0 /* DetailMissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DetailMissionViewController.swift; path = BringChuChuba/Networking/DetailMissionViewController.swift; sourceTree = SOURCE_ROOT; };
 		406FFDE925A43EA4005C5566 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		406FFE0925A4488E005C5566 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		408FF29825A471000032C5D1 /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
+		40A2D4BC25B5B4F10030A85E /* DetailMissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMissionViewController.swift; sourceTree = "<group>"; };
+		40A2D4BD25B5B4F10030A85E /* DetailMissionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMissionViewModel.swift; sourceTree = "<group>"; };
+		40A2D4C325B5B4FC0030A85E /* CreateMissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMissionViewController.swift; sourceTree = "<group>"; };
+		40A2D4C425B5B4FC0030A85E /* CreateMissionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMissionViewModel.swift; sourceTree = "<group>"; };
+		40A2D4D025B5B59E0030A85E /* Optional+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Optional+Extension.swift"; sourceTree = "<group>"; };
+		40A2D4D125B5B59E0030A85E /* Observable+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Observable+Extension.swift"; sourceTree = "<group>"; };
+		40A2D4D225B5B59E0030A85E /* Cell+ReuseIdentifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Cell+ReuseIdentifiable.swift"; sourceTree = "<group>"; };
 		40A9BA9C25A1AC5600EC2988 /* BringChuChuba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BringChuChuba.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40A9BA9F25A1AC5600EC2988 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40A9BAA125A1AC5600EC2988 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,8 +113,6 @@
 		40A9BABD25A1AC5700EC2988 /* BringChuChubaUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BringChuChubaUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		40A9BAC125A1AC5700EC2988 /* BringChuChubaUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BringChuChubaUITests.swift; sourceTree = "<group>"; };
 		40A9BAC325A1AC5700EC2988 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		40B0B6A125AC2CE2001E4A99 /* CreateMissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateMissionViewController.swift; path = BringChuChuba/Protocols/CreateMissionViewController.swift; sourceTree = SOURCE_ROOT; };
-		40B0B6A625AC2D75001E4A99 /* CreateMissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CreateMissionViewModel.swift; path = BringChuChuba/Protocols/CreateMissionViewModel.swift; sourceTree = SOURCE_ROOT; };
 		40D646BE25AE8CC30004ECEC /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		40D6473E25AE976A0004ECEC /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		40E5132125A330D40032F712 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
@@ -177,8 +177,11 @@
 				4015765925A4803600AB4296 /* Log.swift */,
 				401D6C9025A6BA5B00113273 /* ErrorTracker.swift */,
 				401D6C8525A6BA0900113273 /* ActivityIndicator.swift */,
+				40A2D4CF25B5B59E0030A85E /* Extensions */,
+				40235D6D25A55392004D7ABE /* Common */,
+				40235D6C25A552D3004D7ABE /* Enums */,
+				40235D6B25A5529A004D7ABE /* Protocols */,
 				5D88CC6025A2F795008B9D61 /* Resources */,
-				5D88CC6825A2F836008B9D61 /* Extensions */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -211,8 +214,8 @@
 		408D09D425A6B4160030495B /* CreateMission */ = {
 			isa = PBXGroup;
 			children = (
-				40B0B6A125AC2CE2001E4A99 /* CreateMissionViewController.swift */,
-				40B0B6A625AC2D75001E4A99 /* CreateMissionViewModel.swift */,
+				40A2D4C325B5B4FC0030A85E /* CreateMissionViewController.swift */,
+				40A2D4C425B5B4FC0030A85E /* CreateMissionViewModel.swift */,
 				40020E4325AD395A0088E9BA /* RewardViewController.swift */,
 			);
 			path = CreateMission;
@@ -221,10 +224,20 @@
 		408D09D525A6B41F0030495B /* DetailMission */ = {
 			isa = PBXGroup;
 			children = (
-				4039B4A625AFD1F3000945D0 /* DetailMissionViewController.swift */,
-				4039B4A125AFD1E4000945D0 /* DetailMissionViewModel.swift */,
+				40A2D4BC25B5B4F10030A85E /* DetailMissionViewController.swift */,
+				40A2D4BD25B5B4F10030A85E /* DetailMissionViewModel.swift */,
 			);
 			path = DetailMission;
+			sourceTree = "<group>";
+		};
+		40A2D4CF25B5B59E0030A85E /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				40A2D4D025B5B59E0030A85E /* Optional+Extension.swift */,
+				40A2D4D125B5B59E0030A85E /* Observable+Extension.swift */,
+				40A2D4D225B5B59E0030A85E /* Cell+ReuseIdentifiable.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		40A9BA9325A1AC5600EC2988 = {
@@ -256,9 +269,6 @@
 				5D88CC6925A2F8C1008B9D61 /* Modules */,
 				5D88CCA825A2FCFE008B9D61 /* Models */,
 				5D88CC6425A2F7AB008B9D61 /* Networking */,
-				40235D6B25A5529A004D7ABE /* Protocols */,
-				40235D6C25A552D3004D7ABE /* Enums */,
-				40235D6D25A55392004D7ABE /* Common */,
 				40235D6A25A551ED004D7ABE /* Supporting Files */,
 				5D88CCF125A32F3D008B9D61 /* GoogleService-Info.plist */,
 				40A9BAAD25A1AC5700EC2988 /* Info.plist */,
@@ -337,17 +347,6 @@
 			path = Networking;
 			sourceTree = "<group>";
 		};
-		5D88CC6825A2F836008B9D61 /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				4015765425A4800000AB4296 /* Optional+Extension.swift */,
-				402A132725A577BB00B8F65D /* Cell+ReuseIdentifiable.swift */,
-				401D6C7725A6B7CB00113273 /* Observable+Extension.swift */,
-			);
-			name = Extensions;
-			path = ../Extensions;
-			sourceTree = "<group>";
-		};
 		5D88CC6925A2F8C1008B9D61 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,7 +355,6 @@
 				5D88CC6B25A2F8DE008B9D61 /* Calendar */,
 				5D88CC6C25A2F8E8008B9D61 /* Ranking */,
 				5D88CC6D25A2F907008B9D61 /* Users */,
-				5D88CC6F25A2F927008B9D61 /* Notifications */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -403,13 +401,6 @@
 				4015764925A47AAE00AB4296 /* UsersVeiwModel.swift */,
 			);
 			path = Users;
-			sourceTree = "<group>";
-		};
-		5D88CC6F25A2F927008B9D61 /* Notifications */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Notifications;
 			sourceTree = "<group>";
 		};
 		5D88CCA825A2FCFE008B9D61 /* Models */ = {
@@ -701,26 +692,26 @@
 				4034DA2725B556420077FBAF /* ViewModelType.swift in Sources */,
 				4076179025B1929F0081F77F /* RewardViewController.swift in Sources */,
 				40D646BF25AE8CC30004ECEC /* Network.swift in Sources */,
+				40A2D4D525B5B59E0030A85E /* Cell+ReuseIdentifiable.swift in Sources */,
 				403BF61325A803BA00712B62 /* NetworkConstants.swift in Sources */,
 				5D88CDA225A5D5B6008B9D61 /* Family.swift in Sources */,
+				40A2D4BF25B5B4F10030A85E /* DetailMissionViewModel.swift in Sources */,
 				406FFDEA25A43EA4005C5566 /* HomeViewModel.swift in Sources */,
 				40A9BAA025A1AC5600EC2988 /* AppDelegate.swift in Sources */,
-				402A132825A577BB00B8F65D /* Cell+ReuseIdentifiable.swift in Sources */,
+				40A2D4BE25B5B4F10030A85E /* DetailMissionViewController.swift in Sources */,
 				40D6473F25AE976A0004ECEC /* Router.swift in Sources */,
 				401D6C9125A6BA5B00113273 /* ErrorTracker.swift in Sources */,
-				4039B4A725AFD1F3000945D0 /* DetailMissionViewController.swift in Sources */,
 				4015765A25A4803600AB4296 /* Log.swift in Sources */,
+				40A2D4D425B5B59E0030A85E /* Observable+Extension.swift in Sources */,
+				40A2D4C525B5B4FC0030A85E /* CreateMissionViewController.swift in Sources */,
 				408FF29925A471000032C5D1 /* UsersViewController.swift in Sources */,
-				4015765525A4800000AB4296 /* Optional+Extension.swift in Sources */,
-				4039B4A225AFD1E4000945D0 /* DetailMissionViewModel.swift in Sources */,
-				40B0B6A725AC2D75001E4A99 /* CreateMissionViewModel.swift in Sources */,
 				402A132325A56E2E00B8F65D /* HomeTableViewCell.swift in Sources */,
 				5D88CC8925A2FB29008B9D61 /* HomeViewController.swift in Sources */,
 				40E5132725A330E10032F712 /* CalendarCoordinator.swift in Sources */,
 				40E5138F25A409460032F712 /* AppCoordinator.swift in Sources */,
+				40A2D4D325B5B59E0030A85E /* Optional+Extension.swift in Sources */,
 				40E5136C25A3FF150032F712 /* SceneType.swift in Sources */,
 				40E5133125A330F30032F712 /* UsersCoordinator.swift in Sources */,
-				401D6C7825A6B7CB00113273 /* Observable+Extension.swift in Sources */,
 				5D88CC9B25A2FB8E008B9D61 /* RankingViewController.swift in Sources */,
 				40A9BAA225A1AC5600EC2988 /* SceneDelegate.swift in Sources */,
 				5D88DDCE25AFE0BE00AB0B3F /* LoginCoordinator.swift in Sources */,
@@ -734,12 +725,12 @@
 				5DBBEDE325B16B8C004ACC3A /* CreateFamilyViewModel.swift in Sources */,
 				4015764225A47A9D00AB4296 /* RankingViewModel.swift in Sources */,
 				401D6C8625A6BA0900113273 /* ActivityIndicator.swift in Sources */,
-				40B0B6A225AC2CE2001E4A99 /* CreateMissionViewController.swift in Sources */,
 				5D88CCF725A33407008B9D61 /* Mission.swift in Sources */,
 				5D39BFE925AF032B00356E7E /* LoginViewModel.swift in Sources */,
 				5D88CCB325A3013C008B9D61 /* Member.swift in Sources */,
 				5D88CC9625A2FB85008B9D61 /* CalendarViewController.swift in Sources */,
 				4015763A25A4737500AB4296 /* CalendarViewModel.swift in Sources */,
+				40A2D4C625B5B4FC0030A85E /* CreateMissionViewModel.swift in Sources */,
 				5D88CC7F25A2FA1B008B9D61 /* Coordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
