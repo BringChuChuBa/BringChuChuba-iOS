@@ -10,7 +10,6 @@ import RxCocoa
 
 final class LoginViewModel: ViewModelType {
     private let coordinator: LoginCoordinator
-    private var disposeBag = DisposeBag()
 
     init(coordinator: LoginCoordinator) {
         self.coordinator = coordinator

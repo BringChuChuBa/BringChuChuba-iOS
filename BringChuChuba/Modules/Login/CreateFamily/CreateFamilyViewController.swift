@@ -70,19 +70,18 @@ final class CreateFamilyViewController: UIViewController {
 
     // MARK: - Private Method
     private func setupUI() {
-        self.title = "Create new Family"
-        self.navigationItem.hidesBackButton = true
-        self.view.addSubview(stackView)
-        self.stackView.addArrangedSubview(familyNameTextField)
-        self.stackView.addArrangedSubview(createFamilyButton)
-        self.stackView.addArrangedSubview(joinFamilyButton)
+        title = "Create new Family"
+        navigationItem.hidesBackButton = true
+        view.addSubview(stackView)
+        stackView.addArrangedSubview(familyNameTextField)
+        stackView.addArrangedSubview(createFamilyButton)
+        stackView.addArrangedSubview(joinFamilyButton)
 
-        self.view.backgroundColor = .systemBackground
+        view.backgroundColor = .systemBackground
 
         stackView.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(20)
-            make.trailing.equalToSuperview().offset(-20)
-            make.centerY.equalTo(self.view)
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.centerY.equalTo(view)
         }
 
         familyNameTextField.snp.makeConstraints { make in
@@ -99,19 +98,15 @@ final class CreateFamilyViewController: UIViewController {
 
         let output = viewModel.transform(input: input)
 
-        output.createEnable
+        [output.createEnable
             .debug()
-            .drive(createFamilyButton.rx.isEnabled)
-            .disposed(by: disposeBag)
-
-        output.create
+            .drive(createFamilyButton.rx.isEnabled),
+         output.create
             .debug()
-            .drive()
-            .disposed(by: disposeBag)
-
-        output.toJoin
+            .drive(),
+         output.toJoin
             .debug()
             .drive()
-            .disposed(by: disposeBag)
+        ].forEach { $0.disposed(by: disposeBag) }
     }
 }

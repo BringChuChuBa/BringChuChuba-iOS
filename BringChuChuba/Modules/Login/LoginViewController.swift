@@ -76,18 +76,18 @@ class LoginViewController: UIViewController {
 
     // MARK: - Private Method
     private func setupUI() {
-        self.title = "Join Family"
-        self.view.addSubview(stackView)
-        self.stackView.addArrangedSubview(familyIdTextField)
-        self.stackView.addArrangedSubview(joinFamilyButton)
-        self.stackView.addArrangedSubview(createFamilyButton)
+        title = "Join Family"
+        view.addSubview(stackView)
+        stackView.addArrangedSubview(familyIdTextField)
+        stackView.addArrangedSubview(joinFamilyButton)
+        stackView.addArrangedSubview(createFamilyButton)
 
-        self.view.backgroundColor = .systemBackground
+        view.backgroundColor = .systemBackground
 
         stackView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)
-            make.centerY.equalTo(self.view)
+            make.centerY.equalTo(view)
         }
 
         familyIdTextField.snp.makeConstraints { make in
@@ -104,17 +104,13 @@ class LoginViewController: UIViewController {
 
         let output = viewModel.transform(input: input)
 
-        output.joinEnabled
-            .drive(joinFamilyButton.rx.isEnabled)
-            .disposed(by: disposeBag)
-
-        output.join
+        [output.joinEnabled
+            .drive(joinFamilyButton.rx.isEnabled),
+         output.join
+            .drive(),
+         output.toCreate
             .drive()
-            .disposed(by: disposeBag)
-
-        output.toCreate
-            .drive()
-            .disposed(by: disposeBag)
+        ].forEach { $0.disposed(by: disposeBag) }
     }
 }
 

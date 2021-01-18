@@ -11,7 +11,6 @@ import RxCocoa
 
 final class CreateFamilyViewModel: ViewModelType {
     private let coordinator: LoginCoordinator
-    private var disposeBag = DisposeBag()
 
     init(coordinator: LoginCoordinator) {
         self.coordinator = coordinator
