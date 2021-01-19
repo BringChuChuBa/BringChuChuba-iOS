@@ -32,11 +32,9 @@ final class HomeCoordinator: Coordinator {
     }
 
     func toDetailMission(_ mission: Mission) {
-//        let viewModel =
-        // new Coordinator ??
-        // VC Create
-        // VM init
-        // nav.push(VC)
+        let viewModel = DetailMissionViewModel(mission: mission, coordinator: self)
+        let viewController = DetailMissionViewController(viewModel: viewModel)
+        navigationController.pushViewController(viewController, animated: true)
     }
 
     func toReward() {

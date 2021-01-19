@@ -79,11 +79,12 @@ class LoginViewController: UIViewController {
     private func setupUI() {
         title = "Join Family"
         view.addSubview(stackView)
+        view.backgroundColor = .systemBackground
+
         stackView.addArrangedSubview(familyIdTextField)
         stackView.addArrangedSubview(joinFamilyButton)
         stackView.addArrangedSubview(createFamilyButton)
 
-        view.backgroundColor = .systemBackground
 
         stackView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(20)

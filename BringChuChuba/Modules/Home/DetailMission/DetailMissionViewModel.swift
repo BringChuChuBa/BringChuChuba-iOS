@@ -4,7 +4,6 @@
 //
 //  Created by 한상진 on 2021/01/11.
 //
-
 import RxSwift
 import RxCocoa
 
@@ -22,54 +21,30 @@ final class DetailMissionViewModel: ViewModelType {
 
     // MARK: - Transform Methods
     func transform(input: Input) -> Output {
-//        let errorTracker = ErrorTracker()
 
-//        let activityIndicator = ActivityIndicator()
-//        let emptyCheck = Driver.combineLatest(
-//            input.title,
-//            input.expireDate,
-//            activityIndicator) {
-//            return !$0.isEmpty && !$2
-//        }
-//
-//        guard let date = tempDate else {
-//            return Output(
-//                point: Driver.just(GlobalData.shared.memberPoint),
-//                toReward: toReward,
-//                test: test,
-//                showPicker: Driver.just("expireDate"),
-//                saveEnabled: emptyCheck
-//            )
-//        }
-//
-//        let dateStr = Driver.just(date)
-//
-//        return Output(
-//            point: Driver.just(GlobalData.shared.memberPoint),
-//            toReward: toReward,
-//            test: test,
-//            showPicker: dateStr,
-//            saveEnabled: emptyCheck
-//        )
-        return Output()
+        let mission = Driver.just(self.mission)
+            .debug()
+
+        // TODO: mission.expiredDate < currentDate
+        let contractEnable = mission
+            .map { mission -> Bool in
+                return mission.client.id != GlobalData.shared.id &&
+                    mission.status == "todo" &&
+                mission.contractor.isNone ? true : false
+            }
+
+        return Output(mission: mission, contractEnable: contractEnable)
     }
 }
 
 extension DetailMissionViewModel {
     struct Input {
-//        let appear: Driver<Void>
-//        let title: Driver<String>
-//        let description: Driver<String>
-//        let reward: Driver<Void>
-//        let expireDate: Driver<Void>
-//        let saveTrigger: Driver<Void>
+        let contractTrigger: Driver<Void>
     }
 
     struct Output {
-//        let point: Driver<String>
-//        let toReward: Driver<Void>
-//        let test: Driver<Void>
-//        let showPicker: Driver<String>
-//        let saveEnabled: Driver<Bool>
+        let mission: Driver<Mission>
+        let contractEnable: Driver<Bool>
+        // let contract
     }
 }

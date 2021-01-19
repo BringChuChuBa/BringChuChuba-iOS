@@ -14,7 +14,7 @@ struct Mission: Decodable {
     var description: String?
     var expireAt: String
     let familyId: String?
-    let id: String?
+    let id: String
     var modifiedAt: String
     var reward: String?
     var status: String

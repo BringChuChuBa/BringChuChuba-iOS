@@ -16,6 +16,45 @@ final class DetailMissionViewController: UIViewController {
     private let viewModel: DetailMissionViewModel!
     private let disposeBag: DisposeBag = DisposeBag()
 
+    // MARK: - UI Components
+    private lazy var stackView = UIStackView().then {
+        $0.axis = .vertical
+        $0.spacing = 10
+    }
+
+    private lazy var titleLabel = UILabel().then {
+        $0.numberOfLines = 0
+    }
+
+    private lazy var rewardLabel = UILabel().then {
+        $0.numberOfLines = 0
+    }
+
+    private lazy var expiredDateLabel = UILabel().then {
+        $0.numberOfLines = 0
+    }
+
+    private lazy var descriptionLabel = UILabel().then {
+        $0.numberOfLines = 0
+    }
+
+    private lazy var clientLabel = UILabel().then {
+        $0.numberOfLines = 0
+    }
+
+    private lazy var contractorLabel = UILabel().then {
+        $0.numberOfLines = 0
+    }
+
+    private lazy var statusLabel = UILabel().then {
+        $0.numberOfLines = 0
+    }
+
+    private lazy var contractButton = UIButton(type: .system).then {
+        $0.setTitle("제가 할게요!", for: .normal)
+//        $0.backgroundColor = .blue
+    }
+
     // MARK: - Initializers
     init(viewModel: DetailMissionViewModel) {
         self.viewModel = viewModel
@@ -33,53 +72,55 @@ final class DetailMissionViewController: UIViewController {
         setupUI()
         bindViewModel()
     }
-}
 
-// MARK: - Binds
-extension DetailMissionViewController {
+    // MARK: - Set UIs
+    private func setupUI() {
+        view.backgroundColor = .systemBackground
+        view.addSubview(stackView)
+
+        stackView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(10)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
+        }
+
+        [titleLabel,
+        rewardLabel,
+        expiredDateLabel,
+        descriptionLabel,
+        clientLabel,
+        contractorLabel,
+        statusLabel,
+        contractButton].forEach {
+            stackView.addArrangedSubview($0)
+        }
+
+    }
+
+    // MARK: - Binds
     private func bindViewModel() {
         assert(viewModel.isSome)
-//
-//        let viewWillAppear = rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
-//            .mapToVoid()
-//            .asDriverOnErrorJustComplete()
-//
-//        let input = CreateMissionViewModel.Input(
-//            appear: viewWillAppear,
-//            title: titleTextField.rx.text.orEmpty.asDriver(),
-//            description: descriptionTextField.rx.text.orEmpty.asDriver(),
-//            reward: rewardButton.rx.tap.asDriver(),
-//            expireDate: expireDateButton.rx.tap.asDriver(), // expireDateTextField.rx.text.orEmpty.asDriver(),
-//            saveTrigger: saveBarButtonItem.rx.tap.asDriver()
-//        )
-//
-//        let output = viewModel.transform(input: input)
-//
-//        output.point
-//            .drive(pointLabel.rx.text)
-//            .disposed(by: disposeBag)
-//
-//        output.toReward
-//            .drive()
-//            .disposed(by: disposeBag)
-//
-//        output.test
-//            .drive()
-//            .disposed(by: disposeBag)
-//
-//        output.showPicker
-//            .drive(expireDateButton.rx.title(for: .normal))
-//            .disposed(by: disposeBag)
-//
-//        output.saveEnabled
-//            .drive(saveBarButtonItem.rx.isEnabled)
-//            .disposed(by: disposeBag)
-    }
-}
 
-// MARK: - Set UIs
-extension DetailMissionViewController {
-    private func setupUI() {
-        view.backgroundColor = #colorLiteral(red: 0.9568627477, green: 0.6588235497, blue: 0.5450980663, alpha: 1)
+        let input = DetailMissionViewModel.Input(
+            contractTrigger: contractButton.rx.tap.asDriver()
+        )
+        let output = viewModel.transform(input: input)
+
+        [output.mission
+            .drive(onNext: { [weak self] mission in
+                guard let self = self else { return }
+                self.titleLabel.text = mission.title
+                self.rewardLabel.text = mission.reward
+                self.expiredDateLabel.text = mission.expireAt
+                self.descriptionLabel.text = mission.description
+                self.clientLabel.text = mission.client.id // mission.client.nickname
+                self.contractorLabel.text = mission.contractor?.nickname ?? "미션중인 사람 없음"
+                self.statusLabel.text = mission.status
+            }),
+         output.contractEnable
+            .drive(contractButton.rx.isEnabled)
+        ].forEach {
+            $0.disposed(by: disposeBag)
+        }
+
     }
 }
