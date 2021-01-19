@@ -35,13 +35,13 @@ final class AppCoordinator: Coordinator {
         let homeNavigationController = getNavigationController(from: .home)
         let calendarNavigationController = getNavigationController(from: .calendar)
         let rankingNavigationController = getNavigationController(from: .ranking)
-        let usersNavigationController = getNavigationController(from: .users)
+        let usersNavigationController = getNavigationController(from: .setting)
         // 가족 확인 VC
 
         coordinatorInit(from: .home, with: homeNavigationController)
         coordinatorInit(from: .calendar, with: calendarNavigationController)
         coordinatorInit(from: .ranking, with: rankingNavigationController)
-        coordinatorInit(from: .users, with: usersNavigationController)
+        coordinatorInit(from: .setting, with: usersNavigationController)
         // 가족 코디네이터
 
         let tabBarController = UITabBarController()
@@ -74,8 +74,8 @@ final class AppCoordinator: Coordinator {
             coordinator = CalendarCoordinator(navigationController: navigationController)
         case .ranking:
             coordinator = RankingCoordinator(navigationController: navigationController)
-        case .users:
-            coordinator = UsersCoordinator(navigationController: navigationController)
+        case .setting:
+            coordinator = SettingCoordinator(navigationController: navigationController)
         case .login:
             coordinator = LoginCoordinator(navigationController: navigationController)
         }

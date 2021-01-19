@@ -11,7 +11,7 @@ enum SceneType: String {
     case home
     case calendar
     case ranking
-    case users
+    case setting
     case login
 
     var tabBarItem: UITabBarItem {

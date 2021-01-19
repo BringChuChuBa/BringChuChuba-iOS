@@ -16,5 +16,5 @@ final class GlobalData {
     var id: String = ""
     var familyId: String = ""
     var point: String = ""
-    var nickname: String = ""
+    var nickname: String = "Anonymous"
 }

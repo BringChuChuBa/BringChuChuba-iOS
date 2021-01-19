@@ -10,7 +10,7 @@
 		0481EAF10D0F0D97DDEBDBB5 /* Pods_BringChuChuba_BringChuChubaUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E22662DF9DE67F70EB282E1C /* Pods_BringChuChuba_BringChuChubaUITests.framework */; };
 		4015763A25A4737500AB4296 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015763925A4737500AB4296 /* CalendarViewModel.swift */; };
 		4015764225A47A9D00AB4296 /* RankingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015764125A47A9D00AB4296 /* RankingViewModel.swift */; };
-		4015764A25A47AAE00AB4296 /* UsersVeiwModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015764925A47AAE00AB4296 /* UsersVeiwModel.swift */; };
+		4015764A25A47AAE00AB4296 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015764925A47AAE00AB4296 /* SettingViewModel.swift */; };
 		4015765A25A4803600AB4296 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015765925A4803600AB4296 /* Log.swift */; };
 		401D6C8625A6BA0900113273 /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401D6C8525A6BA0900113273 /* ActivityIndicator.swift */; };
 		401D6C9125A6BA5B00113273 /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401D6C9025A6BA5B00113273 /* ErrorTracker.swift */; };
@@ -20,8 +20,12 @@
 		403BF61325A803BA00712B62 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CD5125A42F0B008B9D61 /* NetworkConstants.swift */; };
 		406FFDEA25A43EA4005C5566 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406FFDE925A43EA4005C5566 /* HomeViewModel.swift */; };
 		406FFE0A25A4488E005C5566 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 406FFE0925A4488E005C5566 /* Launch Screen.storyboard */; };
+		407036B525B6BEFC00DE4857 /* MyMissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407036B425B6BEFC00DE4857 /* MyMissionViewController.swift */; };
+		407036BD25B6BF0500DE4857 /* DoingMissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407036BC25B6BF0500DE4857 /* DoingMissionViewController.swift */; };
+		407036C225B6BFA900DE4857 /* DoingMissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407036C125B6BFA900DE4857 /* DoingMissionViewModel.swift */; };
+		407036C725B6BFB800DE4857 /* MyMissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407036C625B6BFB800DE4857 /* MyMissionViewModel.swift */; };
 		4076179025B1929F0081F77F /* RewardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40020E4325AD395A0088E9BA /* RewardViewController.swift */; };
-		408FF29925A471000032C5D1 /* UsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408FF29825A471000032C5D1 /* UsersViewController.swift */; };
+		408FF29925A471000032C5D1 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408FF29825A471000032C5D1 /* SettingViewController.swift */; };
 		40A2D4BE25B5B4F10030A85E /* DetailMissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2D4BC25B5B4F10030A85E /* DetailMissionViewController.swift */; };
 		40A2D4BF25B5B4F10030A85E /* DetailMissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2D4BD25B5B4F10030A85E /* DetailMissionViewModel.swift */; };
 		40A2D4C525B5B4FC0030A85E /* CreateMissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2D4C325B5B4FC0030A85E /* CreateMissionViewController.swift */; };
@@ -39,7 +43,7 @@
 		40E5132225A330D40032F712 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5132125A330D40032F712 /* HomeCoordinator.swift */; };
 		40E5132725A330E10032F712 /* CalendarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5132625A330E10032F712 /* CalendarCoordinator.swift */; };
 		40E5132C25A330E80032F712 /* RankingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5132B25A330E80032F712 /* RankingCoordinator.swift */; };
-		40E5133125A330F30032F712 /* UsersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5133025A330F30032F712 /* UsersCoordinator.swift */; };
+		40E5133125A330F30032F712 /* SettingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5133025A330F30032F712 /* SettingCoordinator.swift */; };
 		40E5136C25A3FF150032F712 /* SceneType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5136B25A3FF150032F712 /* SceneType.swift */; };
 		40E5138F25A409460032F712 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5138E25A409460032F712 /* AppCoordinator.swift */; };
 		40FDE37725A5CB1C00779ECB /* HomeItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FDE37625A5CB1C00779ECB /* HomeItemViewModel.swift */; };
@@ -85,7 +89,7 @@
 		40020E4325AD395A0088E9BA /* RewardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RewardViewController.swift; sourceTree = SOURCE_ROOT; };
 		4015763925A4737500AB4296 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
 		4015764125A47A9D00AB4296 /* RankingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewModel.swift; sourceTree = "<group>"; };
-		4015764925A47AAE00AB4296 /* UsersVeiwModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersVeiwModel.swift; sourceTree = "<group>"; };
+		4015764925A47AAE00AB4296 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
 		4015765925A4803600AB4296 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Log.swift; path = "BringChuChuba/Supporting Files/Log.swift"; sourceTree = SOURCE_ROOT; };
 		401D6C8525A6BA0900113273 /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
 		401D6C9025A6BA5B00113273 /* ErrorTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorTracker.swift; sourceTree = "<group>"; };
@@ -94,7 +98,11 @@
 		402A132225A56E2E00B8F65D /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		406FFDE925A43EA4005C5566 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		406FFE0925A4488E005C5566 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		408FF29825A471000032C5D1 /* UsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
+		407036B425B6BEFC00DE4857 /* MyMissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMissionViewController.swift; sourceTree = "<group>"; };
+		407036BC25B6BF0500DE4857 /* DoingMissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoingMissionViewController.swift; sourceTree = "<group>"; };
+		407036C125B6BFA900DE4857 /* DoingMissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoingMissionViewModel.swift; sourceTree = "<group>"; };
+		407036C625B6BFB800DE4857 /* MyMissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMissionViewModel.swift; sourceTree = "<group>"; };
+		408FF29825A471000032C5D1 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		40A2D4BC25B5B4F10030A85E /* DetailMissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMissionViewController.swift; sourceTree = "<group>"; };
 		40A2D4BD25B5B4F10030A85E /* DetailMissionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMissionViewModel.swift; sourceTree = "<group>"; };
 		40A2D4C325B5B4FC0030A85E /* CreateMissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMissionViewController.swift; sourceTree = "<group>"; };
@@ -118,7 +126,7 @@
 		40E5132125A330D40032F712 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
 		40E5132625A330E10032F712 /* CalendarCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCoordinator.swift; sourceTree = "<group>"; };
 		40E5132B25A330E80032F712 /* RankingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingCoordinator.swift; sourceTree = "<group>"; };
-		40E5133025A330F30032F712 /* UsersCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersCoordinator.swift; sourceTree = "<group>"; };
+		40E5133025A330F30032F712 /* SettingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCoordinator.swift; sourceTree = "<group>"; };
 		40E5136B25A3FF150032F712 /* SceneType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneType.swift; sourceTree = "<group>"; };
 		40E5138E25A409460032F712 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		40FDE37625A5CB1C00779ECB /* HomeItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeItemViewModel.swift; sourceTree = "<group>"; };
@@ -209,6 +217,24 @@
 				40235D6E25A553AE004D7ABE /* GlobalData.swift */,
 			);
 			path = Common;
+			sourceTree = "<group>";
+		};
+		407036B225B6BEDA00DE4857 /* MyMission */ = {
+			isa = PBXGroup;
+			children = (
+				407036B425B6BEFC00DE4857 /* MyMissionViewController.swift */,
+				407036C625B6BFB800DE4857 /* MyMissionViewModel.swift */,
+			);
+			path = MyMission;
+			sourceTree = "<group>";
+		};
+		407036B325B6BEE800DE4857 /* DoingMission */ = {
+			isa = PBXGroup;
+			children = (
+				407036BC25B6BF0500DE4857 /* DoingMissionViewController.swift */,
+				407036C125B6BFA900DE4857 /* DoingMissionViewModel.swift */,
+			);
+			path = DoingMission;
 			sourceTree = "<group>";
 		};
 		408D09D425A6B4160030495B /* CreateMission */ = {
@@ -376,9 +402,9 @@
 		5D88CC6B25A2F8DE008B9D61 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
+				40E5132625A330E10032F712 /* CalendarCoordinator.swift */,
 				5D88CC9525A2FB85008B9D61 /* CalendarViewController.swift */,
 				4015763925A4737500AB4296 /* CalendarViewModel.swift */,
-				40E5132625A330E10032F712 /* CalendarCoordinator.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -386,9 +412,9 @@
 		5D88CC6C25A2F8E8008B9D61 /* Ranking */ = {
 			isa = PBXGroup;
 			children = (
+				40E5132B25A330E80032F712 /* RankingCoordinator.swift */,
 				5D88CC9A25A2FB8E008B9D61 /* RankingViewController.swift */,
 				4015764125A47A9D00AB4296 /* RankingViewModel.swift */,
-				40E5132B25A330E80032F712 /* RankingCoordinator.swift */,
 			);
 			path = Ranking;
 			sourceTree = "<group>";
@@ -396,9 +422,11 @@
 		5D88CC6D25A2F907008B9D61 /* Users */ = {
 			isa = PBXGroup;
 			children = (
-				40E5133025A330F30032F712 /* UsersCoordinator.swift */,
-				408FF29825A471000032C5D1 /* UsersViewController.swift */,
-				4015764925A47AAE00AB4296 /* UsersVeiwModel.swift */,
+				40E5133025A330F30032F712 /* SettingCoordinator.swift */,
+				408FF29825A471000032C5D1 /* SettingViewController.swift */,
+				4015764925A47AAE00AB4296 /* SettingViewModel.swift */,
+				407036B325B6BEE800DE4857 /* DoingMission */,
+				407036B225B6BEDA00DE4857 /* MyMission */,
 			);
 			path = Users;
 			sourceTree = "<group>";
@@ -699,28 +727,31 @@
 				406FFDEA25A43EA4005C5566 /* HomeViewModel.swift in Sources */,
 				40A9BAA025A1AC5600EC2988 /* AppDelegate.swift in Sources */,
 				40A2D4BE25B5B4F10030A85E /* DetailMissionViewController.swift in Sources */,
+				407036C225B6BFA900DE4857 /* DoingMissionViewModel.swift in Sources */,
 				40D6473F25AE976A0004ECEC /* Router.swift in Sources */,
 				401D6C9125A6BA5B00113273 /* ErrorTracker.swift in Sources */,
 				4015765A25A4803600AB4296 /* Log.swift in Sources */,
 				40A2D4D425B5B59E0030A85E /* Observable+Extension.swift in Sources */,
 				40A2D4C525B5B4FC0030A85E /* CreateMissionViewController.swift in Sources */,
-				408FF29925A471000032C5D1 /* UsersViewController.swift in Sources */,
+				408FF29925A471000032C5D1 /* SettingViewController.swift in Sources */,
 				402A132325A56E2E00B8F65D /* HomeTableViewCell.swift in Sources */,
 				5D88CC8925A2FB29008B9D61 /* HomeViewController.swift in Sources */,
+				407036C725B6BFB800DE4857 /* MyMissionViewModel.swift in Sources */,
 				40E5132725A330E10032F712 /* CalendarCoordinator.swift in Sources */,
 				40E5138F25A409460032F712 /* AppCoordinator.swift in Sources */,
 				40A2D4D325B5B59E0030A85E /* Optional+Extension.swift in Sources */,
 				40E5136C25A3FF150032F712 /* SceneType.swift in Sources */,
-				40E5133125A330F30032F712 /* UsersCoordinator.swift in Sources */,
+				40E5133125A330F30032F712 /* SettingCoordinator.swift in Sources */,
 				5D88CC9B25A2FB8E008B9D61 /* RankingViewController.swift in Sources */,
 				40A9BAA225A1AC5600EC2988 /* SceneDelegate.swift in Sources */,
 				5D88DDCE25AFE0BE00AB0B3F /* LoginCoordinator.swift in Sources */,
 				40235D6F25A553AE004D7ABE /* GlobalData.swift in Sources */,
 				5D39BECD25AD999200356E7E /* LoginViewController.swift in Sources */,
-				4015764A25A47AAE00AB4296 /* UsersVeiwModel.swift in Sources */,
+				4015764A25A47AAE00AB4296 /* SettingViewModel.swift in Sources */,
 				5DBBEDDB25B16ABD004ACC3A /* CreateFamilyViewController.swift in Sources */,
 				40E5132C25A330E80032F712 /* RankingCoordinator.swift in Sources */,
 				40FDE37725A5CB1C00779ECB /* HomeItemViewModel.swift in Sources */,
+				407036BD25B6BF0500DE4857 /* DoingMissionViewController.swift in Sources */,
 				40E5132225A330D40032F712 /* HomeCoordinator.swift in Sources */,
 				5DBBEDE325B16B8C004ACC3A /* CreateFamilyViewModel.swift in Sources */,
 				4015764225A47A9D00AB4296 /* RankingViewModel.swift in Sources */,
@@ -728,6 +759,7 @@
 				5D88CCF725A33407008B9D61 /* Mission.swift in Sources */,
 				5D39BFE925AF032B00356E7E /* LoginViewModel.swift in Sources */,
 				5D88CCB325A3013C008B9D61 /* Member.swift in Sources */,
+				407036B525B6BEFC00DE4857 /* MyMissionViewController.swift in Sources */,
 				5D88CC9625A2FB85008B9D61 /* CalendarViewController.swift in Sources */,
 				4015763A25A4737500AB4296 /* CalendarViewModel.swift in Sources */,
 				40A2D4C625B5B4FC0030A85E /* CreateMissionViewModel.swift in Sources */,

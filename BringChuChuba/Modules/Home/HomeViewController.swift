@@ -13,7 +13,7 @@ import RxCocoa
 
 final class HomeViewController: UIViewController {
     // MARK: - Properties
-    let viewModel: HomeViewModel!
+    var viewModel: HomeViewModel!
     private let disposeBag: DisposeBag = DisposeBag()
 
     private lazy var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView().then { indicator in

@@ -2,20 +2,36 @@
 //  CreateMissionViewModel.swift
 //  BringChuChuba
 //
-//  Created by 한상진 on 2021/01/11.
+//  Created by 한상진 on 2021/01/19.
 //
 
 import RxSwift
 import RxCocoa
 
-final class DetailMissionViewModel: ViewModelType {
+final class DoingMissionViewModel: ViewModelType {
+    // MARK: - Structs
+    struct Input {
+//        let appear: Driver<Void>
+//        let title: Driver<String>
+//        let description: Driver<String>
+//        let reward: Driver<Void>
+//        let expireDate: Driver<Void>
+//        let saveTrigger: Driver<Void>
+    }
+
+    struct Output {
+//        let point: Driver<String>
+//        let toReward: Driver<Void>
+//        let test: Driver<Void>
+//        let showPicker: Driver<String>
+//        let saveEnabled: Driver<Bool>
+    }
+
     // MARK: - Properties
-    private let mission: Mission
-    private let coordinator: HomeCoordinator
+    private let coordinator: SettingCoordinator
 
     // MARK: - Initializers
-    init(mission: Mission, coordinator: HomeCoordinator) {
-        self.mission = mission
+    init(coordinator: SettingCoordinator) {
         self.coordinator = coordinator
     }
 
@@ -51,24 +67,5 @@ final class DetailMissionViewModel: ViewModelType {
 //            saveEnabled: emptyCheck
 //        )
         return Output()
-    }
-}
-
-extension DetailMissionViewModel {
-    struct Input {
-//        let appear: Driver<Void>
-//        let title: Driver<String>
-//        let description: Driver<String>
-//        let reward: Driver<Void>
-//        let expireDate: Driver<Void>
-//        let saveTrigger: Driver<Void>
-    }
-
-    struct Output {
-//        let point: Driver<String>
-//        let toReward: Driver<Void>
-//        let test: Driver<Void>
-//        let showPicker: Driver<String>
-//        let saveEnabled: Driver<Bool>
     }
 }

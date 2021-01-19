@@ -11,8 +11,8 @@ import RxCocoa
 import SnapKit
 import Then
 
-class RankingViewController: UIViewController {
-    var viewModel: RankingViewModel
+final class RankingViewController: UIViewController {
+    var viewModel: RankingViewModel!
 
     init(viewModel: RankingViewModel) {
         self.viewModel = viewModel
