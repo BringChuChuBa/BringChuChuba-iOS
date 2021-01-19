@@ -310,10 +310,10 @@
 		5D39BEC825AD997F00356E7E /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				5DBBEDD925B16A9A004ACC3A /* CreateFamily */,
+				5D88DDCD25AFE0BE00AB0B3F /* LoginCoordinator.swift */,
 				5D39BECC25AD999200356E7E /* LoginViewController.swift */,
 				5D39BFE825AF032B00356E7E /* LoginViewModel.swift */,
-				5D88DDCD25AFE0BE00AB0B3F /* LoginCoordinator.swift */,
+				5DBBEDD925B16A9A004ACC3A /* CreateFamily */,
 			);
 			path = Login;
 			sourceTree = "<group>";

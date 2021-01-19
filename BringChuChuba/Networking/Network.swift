@@ -13,6 +13,7 @@ final class Network {
     private enum RequestError: Error {
         case FamilyExist
         case Unknown
+        case with(message: String)
     }
 
     // MARK: - Initializers
@@ -26,9 +27,10 @@ final class Network {
     // MARK: - API Calls
     func request<T>(with httpRequest: Router, for returnType: T.Type) -> Single<T> where T: Decodable {
         return provider.rx.request(httpRequest)
+            .retry(2) // err 발생 시 최대 2번 retry
             .debug()
-            .filterSuccessfulStatusCodes()
-            .map(T.self)
+            .filterSuccessfulStatusCodes() // validate 200 ~ 299
+            .map(T.self) // decode
             .catchError { err in
                 throw err
             }
@@ -36,6 +38,7 @@ final class Network {
 
     func requests<T>(with httpRequest: Router, for returnType: T.Type) -> Single<[T]> where T: Decodable {
         return provider.rx.request(httpRequest)
+            .retry(2)
             .debug()
             .filterSuccessfulStatusCodes()
             .map([T].self)

@@ -33,29 +33,17 @@ final class HomeViewModel: ViewModelType {
         self.coordinator = coordinator
     }
 
+    // MARK: - Methods
     func transform(input: Input) -> Output {
         let activityIndicator = ActivityIndicator()
         let errorTracker = ErrorTracker()
 
-        let memberDriver = input.trigger
-            .flatMapLatest { _ -> Driver<Member> in
-                return Network.shared.request(with: .getMember,
-                                              for: Member.self)
-                    .trackActivity(activityIndicator)
-                    .trackError(errorTracker)
-                    .asDriverOnErrorJustComplete()
-            }
-
-        let missions = memberDriver
-            .flatMap { member -> Driver<[HomeItemViewModel]> in
-//                guard let familyId = member.familyId else { return Driver.empty() }
-
-                // 이 부분 고쳐야함
-//                if let famId = member.familyId { GlobalData.shared.memberFamilyId = famId}
-//                if let point = member.point { GlobalData.shared.memberPoint = point }
-
+        let missions = input.trigger
+            .flatMapLatest { _ -> Driver<[HomeItemViewModel]> in
                 return Network.shared.requests(with: .getMissions(familyId: GlobalData.shared.familyId),
                                                for: Mission.self)
+                    .trackActivity(activityIndicator)
+                    .trackError(errorTracker)
                     .asDriverOnErrorJustComplete()
                     .map { missions in
                         missions.map { mission in
@@ -76,71 +64,10 @@ final class HomeViewModel: ViewModelType {
         let createMission = input.createMissionTrigger
             .do(onNext: coordinator.toCreateMission)
 
-        // 목록보기 버튼 추가
         return Output(fetching: fetching,
                       missions: missions,
                       createMission: createMission,
                       selectedMission: selectedMission,
                       error: errors)
     }
-
-    //    func save(post: Mission) -> Observable<Void> {
-    //        return Observable.never()
-    //    }
-    //
-    //    func delete(post: Mission) -> Observable<Void> {
-    //        return Observable.never()
-    //    }
-    //
-    //    static func getMissions() -> Observable<Mission> {
-    //        // request(APIRouter.getPosts)
-    //        return Observable.never()
-    //    }
 }
-
-// final class PostsUseCase<Cache>: Domain.PostsUseCase where Cache: AbstractCache, Cache.T == Post {
-//     private let network: PostsNetwork
-//     private let cache: Cache
-//
-//     init(network: PostsNetwork, cache: Cache) {
-//         self.network = network
-//         self.cache = cache
-//     }
-//
-//     func posts() -> Observable<[Post]> {
-//         let fetchPosts = cache.fetchObjects().asObservable()
-//         let stored = network.fetchPosts()
-//             .flatMap {
-//                 return self.cache.save(objects: $0)
-//                     .asObservable()
-//                     .map(to: [Post].self)
-//                     .concat(Observable.just($0))
-//             }
-//
-//         return fetchPosts.concat(stored)
-//     }
-//
-//     func save(post: Post) -> Observable<Void> {
-//         return network.createPost(post: post)
-//             .map { _ in }
-//     }
-//
-//     func delete(post: Post) -> Observable<Void> {
-//         return network.deletePost(postId: post.uid).map({_ in})
-//     }
-// }
-
-/*
- func fetchRemotePosts() -> Completable {
-         return .create { observer in
-             Network.shared.getMember()
-                 .subscribe(onSuccess: { member in
-                     // we fetched the posts
-                     observer(.completed)
-                 }, onError: { error in
-                     // there was an error fetching the posts
-                     observer(.error(error))
-                 })
-         }
-     }
- */

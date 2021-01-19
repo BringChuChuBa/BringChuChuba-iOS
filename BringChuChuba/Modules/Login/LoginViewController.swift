@@ -70,8 +70,9 @@ class LoginViewController: UIViewController {
     // MARK: - Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupUI()
+
         bind()
+        setupUI()
     }
 
     // MARK: - Private Method

@@ -18,22 +18,8 @@ final class AppCoordinator: Coordinator {
     }
 
     func start() {
-        if isFamilyMember() {
-            window.makeKeyAndVisible()
-            showMainTab()
-        } else {
-            window.makeKeyAndVisible()
-            showLogin()
-        }
-    }
-
-    // MARK: - Private methods
-    private func isFamilyMember() -> Bool {
-//        Network.shared.getMember()
-//            .map { member in
-//                GlobalData.shared.memberFamilyId = member.familyId ?? ""
-//            }
-        return GlobalData.shared.familyId == "" ? false : true
+        window.makeKeyAndVisible()
+        GlobalData.shared.familyId == "" ? showLogin() : showMainTab()
     }
 
     private func showLogin() {
