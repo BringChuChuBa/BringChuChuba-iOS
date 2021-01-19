@@ -25,6 +25,7 @@ final class LoginViewModel: ViewModelType {
         let joinEnabled: Driver<Bool>
         let join: Driver<Family>
         let toCreate: Driver<Void>
+        let error: Driver<Error>
     }
 
     func transform(input: Input) -> Output {
@@ -50,6 +51,7 @@ final class LoginViewModel: ViewModelType {
 
         return Output(joinEnabled: joinEnabled,
                       join: join,
-                      toCreate: toCreate)
+                      toCreate: toCreate,
+                      error: errorTracker.asDriver())
     }
 }

@@ -26,6 +26,7 @@ final class CreateFamilyViewModel: ViewModelType {
         let createEnable: Driver<Bool>
         let create: Driver<Family>
         let toJoin: Driver<Void>
+        let error: Driver<Error>
     }
 
     func transform(input: Input) -> Output {
@@ -51,6 +52,7 @@ final class CreateFamilyViewModel: ViewModelType {
 
         return Output(createEnable: createEnable,
                       create: create,
-                      toJoin: toJoin)
+                      toJoin: toJoin,
+                      error: errorTracker.asDriver())
     }
 }

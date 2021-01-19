@@ -105,13 +105,32 @@ class LoginViewController: UIViewController {
 
         let output = viewModel.transform(input: input)
 
+//        viewModel.error.asDriver().drive(onNext: { [weak self] (error) in
+//            self?.showAlert(title: R.string.localizable.commonError.key.localized(), message: error.localizedDescription)
+//        }).disposed(by: rx.disposeBag)
+
         [output.joinEnabled
             .drive(joinFamilyButton.rx.isEnabled),
          output.join
             .drive(),
          output.toCreate
-            .drive()
+            .drive(),
+         output.error
+            .drive(errorBinding)
         ].forEach { $0.disposed(by: disposeBag) }
+    }
+
+    var errorBinding: Binder<Error> {
+        return Binder(self, binding: { (vc, _) in
+            let alert = UIAlertController(title: "Login Error",
+                                          message: "Something went wrong",
+                                          preferredStyle: .alert)
+            let action = UIAlertAction(title: "Dismiss",
+                                       style: .cancel,
+                                       handler: nil)
+            alert.addAction(action)
+            vc.present(alert, animated: true, completion: nil)
+        })
     }
 }
 
