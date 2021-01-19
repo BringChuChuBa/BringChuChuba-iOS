@@ -11,20 +11,11 @@ import RxCocoa
 final class MyMissionViewModel: ViewModelType {
     // MARK: - Structs
     struct Input {
-//        let appear: Driver<Void>
-//        let title: Driver<String>
-//        let description: Driver<String>
-//        let reward: Driver<Void>
-//        let expireDate: Driver<Void>
-//        let saveTrigger: Driver<Void>
+        let appear: Driver<Void>
     }
 
     struct Output {
-//        let point: Driver<String>
-//        let toReward: Driver<Void>
-//        let test: Driver<Void>
-//        let showPicker: Driver<String>
-//        let saveEnabled: Driver<Bool>
+        let missions: Driver<[MyMissionItemViewModel]>
     }
 
     // MARK: - Properties
@@ -37,35 +28,25 @@ final class MyMissionViewModel: ViewModelType {
 
     // MARK: - Transform Methods
     func transform(input: Input) -> Output {
-//        let errorTracker = ErrorTracker()
+        let errorTracker = ErrorTracker()
 
-//        let activityIndicator = ActivityIndicator()
-//        let emptyCheck = Driver.combineLatest(
-//            input.title,
-//            input.expireDate,
-//            activityIndicator) {
-//            return !$0.isEmpty && !$2
-//        }
-//
-//        guard let date = tempDate else {
-//            return Output(
-//                point: Driver.just(GlobalData.shared.memberPoint),
-//                toReward: toReward,
-//                test: test,
-//                showPicker: Driver.just("expireDate"),
-//                saveEnabled: emptyCheck
-//            )
-//        }
-//
-//        let dateStr = Driver.just(date)
-//
-//        return Output(
-//            point: Driver.just(GlobalData.shared.memberPoint),
-//            toReward: toReward,
-//            test: test,
-//            showPicker: dateStr,
-//            saveEnabled: emptyCheck
-//        )
-        return Output()
+        let missions = input.appear
+            .flatMapLatest { _ -> Driver<[MyMissionItemViewModel]> in
+                return Network.shared.requests(with: .getMissions(familyId: GlobalData.shared.familyId),
+                                               for: Mission.self)
+                    .trackError(errorTracker)
+                    .asDriverOnErrorJustComplete()
+                    .map { missions in
+                        missions.filter { mission -> Bool in
+                            guard let missionId = mission.client.id else { return false }
+
+                            return missionId == GlobalData.shared.id
+                        }
+                        .map { mission in
+                            MyMissionItemViewModel(with: mission)
+                        }
+                    }
+            }
+        return Output(missions: missions)
     }
 }

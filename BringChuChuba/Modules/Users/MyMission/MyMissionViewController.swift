@@ -11,10 +11,18 @@ import RxCocoa
 import SnapKit
 import Then
 
-class MyMissionViewController: UIViewController {
+final class MyMissionViewController: UIViewController {
     // MARK: - Properties
     var viewModel: MyMissionViewModel!
     private let disposeBag = DisposeBag()
+
+    private lazy var tableView: UITableView = UITableView().then { table in
+        // 50 Constant로 빼기
+        table.rowHeight = 100
+        table.refreshControl = UIRefreshControl()
+        table.register(MyMissionTableViewCell.self,
+                       forCellReuseIdentifier: MyMissionTableViewCell.reuseIdentifier())
+    }
 
     // MARK: - Initializers
     init(viewModel: MyMissionViewModel) {
@@ -26,9 +34,51 @@ class MyMissionViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = #colorLiteral(red: 0.05882352963, green: 0.180392161, blue: 0.2470588237, alpha: 1)
+        bindViewModel()
+        setupUI()
+        view.backgroundColor = #colorLiteral(red: 0.1294117719, green: 0.2156862766, blue: 0.06666667014, alpha: 1)
+    }
+}
+
+// MARK: - Binds
+extension MyMissionViewController {
+    func bindViewModel() {
+        assert(viewModel.isSome)
+
+        let viewWillAppear = rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
+            .mapToVoid()
+            .asDriverOnErrorJustComplete()
+
+        let input = MyMissionViewModel.Input(appear: viewWillAppear)
+
+        let output = viewModel.transform(input: input)
+
+        [output.missions
+             .drive(tableView.rx.items(
+                     cellIdentifier: MyMissionTableViewCell.reuseIdentifier(),
+                     cellType: MyMissionTableViewCell.self)
+             ) { _, viewModel, cell in
+                 cell.bind(viewModel)
+             }
+        ].forEach { $0.disposed(by: disposeBag) }
+    }
+}
+
+// MARK: - Set UIs
+extension MyMissionViewController {
+    func setupUI() {
+        view.addSubview(tableView)
+
+        tableView.snp.makeConstraints { make in
+            make.top
+                .bottom
+                .leading
+                .trailing
+                .equalToSuperview()
+        }
     }
 }

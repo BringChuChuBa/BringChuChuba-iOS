@@ -11,10 +11,18 @@ import RxCocoa
 import SnapKit
 import Then
 
-class DoingMissionViewController: UIViewController {
+final class DoingMissionViewController: UIViewController {
     // MARK: - Properties
     var viewModel: DoingMissionViewModel!
     private let disposeBag = DisposeBag()
+
+    private lazy var tableView: UITableView = UITableView().then { table in
+        // 50 Constant로 빼기
+        table.rowHeight = 100
+        table.refreshControl = UIRefreshControl()
+        table.register(DoingMissionTableViewCell.self,
+                       forCellReuseIdentifier: DoingMissionTableViewCell.reuseIdentifier())
+    }
 
     // MARK: - Initializers
     init(viewModel: DoingMissionViewModel) {
@@ -26,9 +34,36 @@ class DoingMissionViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        bindViewModel()
+        setupUI()
         view.backgroundColor = #colorLiteral(red: 0.1294117719, green: 0.2156862766, blue: 0.06666667014, alpha: 1)
+    }
+}
+
+// MARK: - Binds
+extension DoingMissionViewController {
+    func bindViewModel() {
+        assert(viewModel.isSome)
+
+//        let input = SettingViewModel.Input(myMissionTrigger: myMissionButton.rx.tap.asDriver(),
+//                                           doingMissionTrigger: doingMissionButton.rx.tap.asDriver())
+//
+//        let output = viewModel.transform(input: input)
+//
+//        [output.myMission
+//            .drive(),
+//         output.doingMission
+//            .drive()
+//        ].forEach { $0.disposed(by: disposeBag) }
+    }
+}
+
+// MARK: - Set UIs
+extension DoingMissionViewController {
+    func setupUI() {
     }
 }
