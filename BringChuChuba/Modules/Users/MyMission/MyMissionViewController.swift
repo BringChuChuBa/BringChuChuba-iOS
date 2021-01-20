@@ -16,6 +16,18 @@ final class MyMissionViewController: UIViewController {
     var viewModel: MyMissionViewModel!
     private let disposeBag = DisposeBag()
 
+    //    private lazy var pageVC: UIPageViewController = UIPageViewController(
+    //        transitionStyle: .scroll,
+    //        navigationOrientation: .horizontal,
+    //        options: nil).then { page in
+    //            let pageControl = UIPageControl.appearance()
+    //            pageControl.pageIndicatorTintColor = UIColor.lightGray
+    //            pageControl.currentPageIndicatorTintColor = UIColor.black
+    //            pageControl.backgroundColor = UIColor.white
+    //
+    //            page.dataSource = self
+    //    }
+
     private lazy var tableView: UITableView = UITableView().then { table in
         // 50 Constant로 빼기
         table.rowHeight = 100
@@ -61,7 +73,7 @@ extension MyMissionViewController {
                      cellIdentifier: MyMissionTableViewCell.reuseIdentifier(),
                      cellType: MyMissionTableViewCell.self)
              ) { _, viewModel, cell in
-                 cell.bind(viewModel)
+                cell.bind(with: viewModel)
              }
         ].forEach { $0.disposed(by: disposeBag) }
     }

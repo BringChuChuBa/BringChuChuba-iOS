@@ -46,6 +46,10 @@ final class MyMissionViewModel: ViewModelType {
                         }
                     }
             }
+
         return Output(missions: missions)
+    }
+
+    func cellTransform(input: MyMissionItemViewModel.Input) {
     }
 }

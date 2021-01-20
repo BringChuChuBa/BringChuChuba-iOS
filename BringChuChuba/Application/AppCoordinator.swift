@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-final class AppCoordinator: Coordinator {
+final class AppCoordinator: CoordinatorType {
     // Singleton 객체로 선언하는게 맞는가?
     private let window: UIWindow
 
@@ -65,7 +65,7 @@ final class AppCoordinator: Coordinator {
     }
 
     private func coordinatorInit(from type: SceneType, with navigationController: UINavigationController) {
-        let coordinator: Coordinator
+        let coordinator: CoordinatorType
 
         switch type {
         case .home:

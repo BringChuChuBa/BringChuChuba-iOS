@@ -12,7 +12,7 @@ protocol LoginCoordinatorDelegate: class {
     func didLoggedIn(_ coordinator: LoginCoordinator)
 }
 
-final class LoginCoordinator: Coordinator {
+final class LoginCoordinator: CoordinatorType {
     unowned private let navigationController: UINavigationController
     weak var delegate: LoginCoordinatorDelegate?
 

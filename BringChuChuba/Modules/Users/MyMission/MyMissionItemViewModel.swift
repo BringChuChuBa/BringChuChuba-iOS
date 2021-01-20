@@ -36,6 +36,10 @@ final class MyMissionItemViewModel: ViewModelType {
         self.viewModel = parent
     }
 
+    func transfer(input: Input) {
+        viewModel.cellTransform(input: input)
+    }
+
     func transform(input: Input) -> Output {
         let errorTracker = ErrorTracker()
 

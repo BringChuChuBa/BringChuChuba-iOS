@@ -31,7 +31,7 @@ final class HomeTableViewCell: UITableViewCell {
 
 // MARK: - Binding
 extension HomeTableViewCell {
-    func bind(_ viewModel: HomeItemViewModel) {
+    func bind(with viewModel: HomeItemViewModel) {
         self.titleLabel.text = viewModel.title
     }
 }

@@ -40,7 +40,7 @@ final class DoingMissionTableViewCell: UITableViewCell {
 
 // MARK: - Binding
 extension DoingMissionTableViewCell {
-    func bind(_ viewModel: DoingMissionItemViewModel) {
+    func bind(with viewModel: DoingMissionItemViewModel) {
         self.titleLabel.text = viewModel.title
     }
 }

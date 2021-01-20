@@ -54,7 +54,7 @@ final class MyMissionTableViewCell: UITableViewCell {
 
 // MARK: - Binding
 extension MyMissionTableViewCell {
-    func bind(_ viewModel: MyMissionItemViewModel) {
+    func bind(with viewModel: MyMissionItemViewModel) {
         self.titleLabel.text = "title = " + viewModel.title
         self.descriptionLabel.text = "description = " + viewModel.description
         self.rewardLabel.text = "reward = " + viewModel.reward

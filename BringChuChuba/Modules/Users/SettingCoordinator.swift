@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-final class SettingCoordinator: Coordinator {
+final class SettingCoordinator: CoordinatorType {
     private let navigationController: UINavigationController
 
     init(navigationController: UINavigationController) {

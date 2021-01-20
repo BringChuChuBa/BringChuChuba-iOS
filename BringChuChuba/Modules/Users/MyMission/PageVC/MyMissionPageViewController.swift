@@ -1,8 +1,8 @@
 //
-//  DoingMissionViewController.swift
+//  MyMissionPageViewController.swift
 //  BringChuChuba
 //
-//  Created by 한상진 on 2021/01/19.
+//  Created by 한상진 on 2021/01/20.
 //
 
 import UIKit
@@ -11,14 +11,13 @@ import RxCocoa
 import SnapKit
 import Then
 
-// 내가 진행중인 미션
-final class DoingMissionViewController: UIViewController {
+final class MyMissionPageViewController: UIViewController {
     // MARK: - Properties
-    var viewModel: DoingMissionViewModel!
+    var viewModel: MyMissionViewModel!
     private let disposeBag = DisposeBag()
 
     // MARK: - Initializers
-    init(viewModel: DoingMissionViewModel) {
+    init(viewModel: MyMissionViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
     }
@@ -33,19 +32,18 @@ final class DoingMissionViewController: UIViewController {
 
         bindViewModel()
         setupUI()
-        view.backgroundColor = #colorLiteral(red: 0.1294117719, green: 0.2156862766, blue: 0.06666667014, alpha: 1)
     }
 }
 
 // MARK: - Binds
-extension DoingMissionViewController {
+extension MyMissionPageViewController {
     func bindViewModel() {
         assert(viewModel.isSome)
     }
 }
 
 // MARK: - Set UIs
-extension DoingMissionViewController {
+extension MyMissionPageViewController {
     func setupUI() {
     }
 }
