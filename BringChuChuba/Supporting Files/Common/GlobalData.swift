@@ -6,13 +6,13 @@
 //
 
 import Foundation
+import Then
 
-final class GlobalData {
+final class GlobalData: Then {
     static let shared = GlobalData()
     private init() {}
 
     var userToken: String = ""
-    var currentMember: Member!
     var id: String = ""
     var familyId: String = ""
     var point: String = ""

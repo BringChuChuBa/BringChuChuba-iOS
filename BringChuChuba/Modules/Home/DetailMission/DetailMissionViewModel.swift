@@ -8,36 +8,18 @@ import RxSwift
 import RxCocoa
 
 final class DetailMissionViewModel: ViewModelType {
-    // MARK: - Properties
+
+    // MARK: Properties
     private let mission: Mission
     private let coordinator: HomeCoordinator
     private let disposeBag: DisposeBag = DisposeBag()
 
-    // MARK: - Initializers
+    // MARK: Initializers
     init(mission: Mission, coordinator: HomeCoordinator) {
         self.mission = mission
         self.coordinator = coordinator
     }
 
-    // MARK: - Transform Methods
-    func transform(input: Input) -> Output {
-
-        let mission = Driver.just(self.mission)
-            .debug()
-
-        // TODO: mission.expiredDate < currentDate
-        let contractEnable = mission
-            .map { mission -> Bool in
-                return mission.client.id != GlobalData.shared.id &&
-                    mission.status == "todo" &&
-                mission.contractor.isNone ? true : false
-            }
-
-        return Output(mission: mission, contractEnable: contractEnable)
-    }
-}
-
-extension DetailMissionViewModel {
     struct Input {
         let contractTrigger: Driver<Void>
     }
@@ -45,6 +27,33 @@ extension DetailMissionViewModel {
     struct Output {
         let mission: Driver<Mission>
         let contractEnable: Driver<Bool>
-        // let contract
+        let error: Driver<Error>
+    }
+
+    // MARK: Transform Methods
+    func transform(input: Input) -> Output {
+        let errorTracker = ErrorTracker()
+
+        let mission = input.contractTrigger.flatMapLatest {
+            return Network.shared.request(with: .contractMission(missionUid: Int(self.mission.id)!), for: Mission.self)
+                .asDriverOnErrorJustComplete()
+        }.startWith(self.mission)
+
+        // TODO: String <-> Date 변환 extension으로 뺄지말지?
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        dateFormatter.locale = Locale.current
+        dateFormatter.timeZone = TimeZone.autoupdatingCurrent
+
+        let contractEnable = mission
+            .filter { $0.client.id != GlobalData.shared.id }
+            .filter { $0.status == "todo" } // .todo
+            .filter { dateFormatter.date(from: $0.expireAt)! > Date() }
+            .map { $0.contractor.isNone }
+            .startWith(false)
+
+        return Output(mission: mission,
+                      contractEnable: contractEnable,
+                      error: errorTracker.asDriver())
     }
 }
