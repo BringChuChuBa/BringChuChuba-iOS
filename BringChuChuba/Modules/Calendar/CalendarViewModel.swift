@@ -8,11 +8,24 @@
 import RxCocoa
 import RxSwift
 
-final class CalendarViewModel {
-    private let coordinator: CalendarCoordinator
-    private var disposeBag = DisposeBag()
+final class CalendarViewModel: ViewModelType {
+    // MARK: - Structs
+    struct Input {
+    }
 
+    struct Output {
+    }
+
+    // MARK: - Properties
+    private let coordinator: CalendarCoordinator
+
+    // MARK: - Initializers
     init(coordinator: CalendarCoordinator) {
         self.coordinator = coordinator
+    }
+
+    // MARK: - Methods
+    func transform(input: Input) -> Output {
+        return Output()
     }
 }

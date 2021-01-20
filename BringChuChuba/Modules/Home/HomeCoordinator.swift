@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-final class HomeCoordinator: Coordinator {
+final class HomeCoordinator: CoordinatorType {
     private let navigationController: UINavigationController
     private var createViewModel: CreateMissionViewModel?
 

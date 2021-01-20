@@ -12,7 +12,6 @@ final class DetailMissionViewModel: ViewModelType {
     // MARK: Properties
     private let mission: Mission
     private let coordinator: HomeCoordinator
-    private let disposeBag: DisposeBag = DisposeBag()
 
     // MARK: Initializers
     init(mission: Mission, coordinator: HomeCoordinator) {

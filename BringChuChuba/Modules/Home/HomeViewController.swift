@@ -13,7 +13,7 @@ import RxCocoa
 
 final class HomeViewController: UIViewController {
     // MARK: - Properties
-    let viewModel: HomeViewModel!
+    var viewModel: HomeViewModel!
     private let disposeBag: DisposeBag = DisposeBag()
 
     private lazy var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView().then { indicator in
@@ -88,7 +88,7 @@ extension HomeViewController {
                     cellIdentifier: HomeTableViewCell.reuseIdentifier(),
                     cellType: HomeTableViewCell.self)
             ) { _, viewModel, cell in
-                cell.bind(viewModel)
+                cell.bind(with: viewModel)
             },
          output.fetching
             .drive(tableView.refreshControl!.rx.isRefreshing),

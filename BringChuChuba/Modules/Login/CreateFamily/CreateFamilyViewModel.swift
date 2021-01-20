@@ -43,7 +43,7 @@ final class CreateFamilyViewModel: ViewModelType {
                     .trackError(errorTracker)
                     .asDriverOnErrorJustComplete()
             }.do { [unowned self] family in
-                GlobalData.shared.familyId = family.id ?? ""
+                GlobalData.shared.familyId = family.id
                 self.coordinator.toHome()
             }
 

@@ -19,6 +19,8 @@ enum Router {
     case createMission(missionDetails: MissionDetails)
     case contractMission(missionUid: Int)
     case completeMission(missionUid: Int)
+    case deleteMission(missionUid: Int)
+    case changeDeviceToken(deviceToken: String)
 }
 
 extension Router: TargetType {
@@ -39,10 +41,15 @@ extension Router: TargetType {
             return "/mission"
         case .changeNickName:
             return "/member/nickname"
+        case .changeDeviceToken:
+            return "/member/device"
         case .contractMission(let missionUid):
             return "/mission/contractor/\(missionUid)"
         case .completeMission(let missionUid):
             return "/mission/client/\(missionUid)"
+        case .deleteMission(let missionUid):
+            return "/mission/\(missionUid)"
+
         }
     }
 
@@ -55,8 +62,10 @@ extension Router: TargetType {
             return .post
         case .joinFamily:
             return .put
-        case .contractMission, .completeMission:
+        case .contractMission, .completeMission, .changeDeviceToken:
             return .patch
+        case .deleteMission:
+            return .delete
         }
     }
 
@@ -74,28 +83,20 @@ extension Router: TargetType {
     // JSONEncoding.default : body
     var task: Task {
         switch self {
-        case .getMember, .contractMission, .completeMission:
+        case .getMember, .contractMission, .completeMission, .deleteMission:
             return .requestPlain
         case .getFamily(let familyUid):
-            return .requestParameters(
-                parameters: ["family_uid": familyUid],
-                encoding: URLEncoding.queryString
-            )
+            return .requestParameters(parameters: ["family_uid": familyUid],
+                                      encoding: URLEncoding.queryString)
         case .createFamily(let familyName):
-            return .requestParameters(
-                parameters: ["name": familyName],
-                encoding: JSONEncoding.default
-            )
+            return .requestParameters(parameters: ["name": familyName],
+                                      encoding: JSONEncoding.default)
         case .joinFamily(let familyId):
-            return .requestParameters(
-                parameters: ["familyId": familyId],
-                encoding: JSONEncoding.default
-            )
+            return .requestParameters(parameters: ["familyId": familyId],
+                                      encoding: JSONEncoding.default)
         case .getMissions(let familyId):
-            return .requestParameters(
-                parameters: ["familyId": familyId],
-                encoding: URLEncoding.queryString
-            )
+            return .requestParameters(parameters: ["familyId": familyId],
+                                      encoding: URLEncoding.queryString)
         case .createMission(let missionDetails):
             return .requestParameters(
                 parameters: ["description": missionDetails.description,
@@ -103,13 +104,13 @@ extension Router: TargetType {
                              "familyId": missionDetails.familyId,
                              "reward": missionDetails.reward,
                              "title": missionDetails.title],
-                encoding: JSONEncoding.default
-            )
+                encoding: JSONEncoding.default)
         case .changeNickName(let nickname):
-            return .requestParameters(
-                parameters: ["nickname": nickname],
-                encoding: JSONEncoding.default
-            )
+            return .requestParameters(parameters: ["nickname": nickname],
+                                      encoding: JSONEncoding.default)
+        case .changeDeviceToken(let deviceToken):
+            return .requestParameters(parameters: ["deviceToken": deviceToken],
+                                      encoding: JSONEncoding.default)
         }
     }
 
