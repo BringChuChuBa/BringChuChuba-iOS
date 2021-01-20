@@ -71,9 +71,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         _ = Network.shared.request(with: .getMember,
                                    for: Member.self)
             .subscribe { member in
-                if let memberID = member.id {
-                    GlobalData.shared.id = memberID
-                }
+                GlobalData.shared.id = member.id
+
                 if let familyID = member.familyId {
                     GlobalData.shared.familyId = familyID
                 }

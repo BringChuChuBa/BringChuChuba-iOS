@@ -231,8 +231,8 @@
 			isa = PBXGroup;
 			children = (
 				407036B425B6BEFC00DE4857 /* MyMissionViewController.swift */,
-				4089AF1425B6CA2700DA51D7 /* MyMissionTableViewCell.swift */,
 				407036C625B6BFB800DE4857 /* MyMissionViewModel.swift */,
+				4089AF1425B6CA2700DA51D7 /* MyMissionTableViewCell.swift */,
 				4089AF2325B6CCB800DA51D7 /* MyMissionItemViewModel.swift */,
 			);
 			path = MyMission;
@@ -242,8 +242,8 @@
 			isa = PBXGroup;
 			children = (
 				407036BC25B6BF0500DE4857 /* DoingMissionViewController.swift */,
-				4089AF1925B6CA3B00DA51D7 /* DoingMissionTableViewCell.swift */,
 				407036C125B6BFA900DE4857 /* DoingMissionViewModel.swift */,
+				4089AF1925B6CA3B00DA51D7 /* DoingMissionTableViewCell.swift */,
 				4089AF1E25B6CCA900DA51D7 /* DoingMissionItemViewModel.swift */,
 			);
 			path = DoingMission;

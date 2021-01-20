@@ -19,7 +19,6 @@ final class MyMissionViewController: UIViewController {
     private lazy var tableView: UITableView = UITableView().then { table in
         // 50 Constant로 빼기
         table.rowHeight = 100
-        table.refreshControl = UIRefreshControl()
         table.register(MyMissionTableViewCell.self,
                        forCellReuseIdentifier: MyMissionTableViewCell.reuseIdentifier())
     }

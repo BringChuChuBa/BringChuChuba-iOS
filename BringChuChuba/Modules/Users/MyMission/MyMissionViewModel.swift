@@ -38,12 +38,11 @@ final class MyMissionViewModel: ViewModelType {
                     .asDriverOnErrorJustComplete()
                     .map { missions in
                         missions.filter { mission -> Bool in
-                            guard let missionId = mission.client.id else { return false }
-
-                            return missionId == GlobalData.shared.id
+                            return mission.client.id == GlobalData.shared.id
                         }
                         .map { mission in
-                            MyMissionItemViewModel(with: mission)
+                            MyMissionItemViewModel(with: mission,
+                                                   parent: self)
                         }
                     }
             }

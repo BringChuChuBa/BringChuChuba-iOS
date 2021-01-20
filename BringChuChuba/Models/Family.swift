@@ -8,7 +8,7 @@
 import Foundation
 
 struct Family: Decodable {
-    let id: String?
+    let id: String
     var members: [Member]
     var missions: [Mission]
     var name: String

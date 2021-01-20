@@ -6,24 +6,38 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 import SnapKit
 import Then
 
 final class MyMissionTableViewCell: UITableViewCell {
     // MARK: - Properties
+    private let disposeBag = DisposeBag()
+
     private lazy var titleLabel: UILabel = UILabel().then { label in
         // 속성 변경
-        label.textAlignment = .center
+        label.textAlignment = .left
     }
 
     private lazy var descriptionLabel: UILabel = UILabel().then { label in
         // 속성 변경
-        label.textAlignment = .center
+        label.textAlignment = .left
     }
 
     private lazy var rewardLabel: UILabel = UILabel().then { label in
         // 속성 변경
-        label.textAlignment = .center
+        label.textAlignment = .left
+    }
+
+    private lazy var deleteButton: UIButton = UIButton(type: .system).then { button in
+        button.setTitle("delete", for: .normal)
+        button.setTitleColor(.systemBlue, for: .normal)
+    }
+
+    private lazy var completeButton: UIButton = UIButton(type: .system).then { button in
+        button.setTitle("complete", for: .normal)
+        button.setTitleColor(.systemBlue, for: .normal)
     }
 
     // MARK: - Initializers
@@ -41,10 +55,20 @@ final class MyMissionTableViewCell: UITableViewCell {
 // MARK: - Binding
 extension MyMissionTableViewCell {
     func bind(_ viewModel: MyMissionItemViewModel) {
-        // title은 나중에 UI로 빼자
         self.titleLabel.text = "title = " + viewModel.title
         self.descriptionLabel.text = "description = " + viewModel.description
         self.rewardLabel.text = "reward = " + viewModel.reward
+
+        let input = MyMissionItemViewModel.Input(deleteTrigger: self.deleteButton.rx.tap.asDriver(),
+                                                 completeTrigger: self.completeButton.rx.tap.asDriver())
+
+        let output = viewModel.transform(input: input)
+
+        [output.deleted
+            .drive(),
+         output.completed
+            .drive()
+        ].forEach { $0.disposed(by: disposeBag) }
     }
 }
 
@@ -54,11 +78,12 @@ extension MyMissionTableViewCell {
         contentView.addSubview(titleLabel)
         contentView.addSubview(descriptionLabel)
         contentView.addSubview(rewardLabel)
+        contentView.addSubview(deleteButton)
+        contentView.addSubview(completeButton)
 
         titleLabel.snp.makeConstraints { make in
-            make.top
-                .leading
-                .trailing.equalToSuperview()
+            make.top.equalToSuperview().offset(10)
+            make.leading.equalToSuperview().offset(10)
             make.height.equalTo(20)
         }
 
@@ -70,6 +95,16 @@ extension MyMissionTableViewCell {
         rewardLabel.snp.makeConstraints { make in
             make.top.equalTo(descriptionLabel.snp.bottom).offset(10)
             make.height.leading.trailing.equalTo(titleLabel)
+        }
+
+        deleteButton.snp.makeConstraints { make in
+            make.top.height.equalTo(titleLabel)
+            make.trailing.equalToSuperview().offset(-10)
+        }
+
+        completeButton.snp.makeConstraints { make in
+            make.top.equalTo(rewardLabel)
+            make.height.trailing.equalTo(deleteButton)
         }
     }
 }
