@@ -11,17 +11,22 @@ import RxCocoa
 import SnapKit
 import Then
 
-class MyMissionTodoViewController: UIViewController {
+class MyMissionViewController: UIViewController {
     // MARK: Properties
     var viewModel: MyMissionViewModel!
     private let status: String
     private let disposeBag = DisposeBag()
+
+    private lazy var footerView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 50)).then { footer in
+        footer.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+    }
 
     private lazy var tableView: UITableView = UITableView().then { table in
         // 50 Constant로 빼기
         table.rowHeight = 100
         table.register(MyMissionTableViewCell.self,
                        forCellReuseIdentifier: MyMissionTableViewCell.reuseIdentifier())
+        table.allowsSelection = false
     }
 
     // MARK: Initializers
@@ -45,7 +50,7 @@ class MyMissionTodoViewController: UIViewController {
 }
 
 // MARK: Binds
-extension MyMissionTodoViewController {
+extension MyMissionViewController {
     func bindViewModel() {
         assert(viewModel.isSome)
 
@@ -70,7 +75,7 @@ extension MyMissionTodoViewController {
 }
 
 // MARK: Set UIs
-extension MyMissionTodoViewController {
+extension MyMissionViewController {
     func setupUI() {
         view.addSubview(tableView)
 

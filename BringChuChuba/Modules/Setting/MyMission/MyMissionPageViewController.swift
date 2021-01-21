@@ -26,11 +26,11 @@ final class MyMissionPageViewController: UIPageViewController {
                                            MissionStatus.inProgress.rawValue,
                                            MissionStatus.complete.rawValue]
 
-    private lazy var pages: [UIViewController] = [MyMissionTodoViewController(viewModel: viewModel,
+    private lazy var pages: [UIViewController] = [MyMissionViewController(viewModel: viewModel,
                                                                               status: missionStatus[0]),
-                                                  MyMissionTodoViewController(viewModel: viewModel,
+                                                  MyMissionViewController(viewModel: viewModel,
                                                                               status: missionStatus[1]),
-                                                  MyMissionTodoViewController(viewModel: viewModel,
+                                                  MyMissionViewController(viewModel: viewModel,
                                                                               status: missionStatus[2])]
 
     private lazy var segmentedControl: UISegmentedControl = UISegmentedControl(items: missionStatus).then { seg in

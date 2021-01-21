@@ -12,7 +12,7 @@ import SnapKit
 import Then
 
 final class MyMissionTableViewCell: UITableViewCell {
-    // MARK: - Properties
+    // MARK: Properties
     private let disposeBag = DisposeBag()
 
     private lazy var titleLabel: UILabel = UILabel().then { label in
@@ -25,7 +25,7 @@ final class MyMissionTableViewCell: UITableViewCell {
         label.textAlignment = .left
     }
 
-    private lazy var rewardLabel: UILabel = UILabel().then { label in
+    private lazy var statusLabel: UILabel = UILabel().then { label in
         // 속성 변경
         label.textAlignment = .left
     }
@@ -40,7 +40,7 @@ final class MyMissionTableViewCell: UITableViewCell {
         button.setTitleColor(.systemBlue, for: .normal)
     }
 
-    // MARK: - Initializers
+    // MARK: Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
 
@@ -52,15 +52,15 @@ final class MyMissionTableViewCell: UITableViewCell {
     }
 }
 
-// MARK: - Binding
+// MARK: Binding
 extension MyMissionTableViewCell {
-    func bind(with viewModel: MyMissionItemViewModel) {
-        self.titleLabel.text = "title = " + viewModel.title
-        self.descriptionLabel.text = "description = " + viewModel.description
-        self.rewardLabel.text = "reward = " + viewModel.reward
+    func bind(with viewModel: MyMissionCellViewModel) {
+        self.titleLabel.text = viewModel.title
+        self.descriptionLabel.text = viewModel.description
+        self.statusLabel.text = viewModel.status
 
-        let input = MyMissionItemViewModel.Input(deleteTrigger: self.deleteButton.rx.tap.asDriver(),
-                                                 completeTrigger: self.completeButton.rx.tap.asDriver())
+        let input = MyMissionCellViewModel.Input(deleteTrigger: deleteButton.rx.tap.asDriver(),
+                                                 completeTrigger: completeButton.rx.tap.asDriver())
 
         let output = viewModel.transform(input: input)
 
@@ -72,12 +72,12 @@ extension MyMissionTableViewCell {
     }
 }
 
-// MARK: - Setup UI
+// MARK: Setup UI
 extension MyMissionTableViewCell {
     private func setupUI() {
         contentView.addSubview(titleLabel)
         contentView.addSubview(descriptionLabel)
-        contentView.addSubview(rewardLabel)
+        contentView.addSubview(statusLabel)
         contentView.addSubview(deleteButton)
         contentView.addSubview(completeButton)
 
@@ -92,7 +92,7 @@ extension MyMissionTableViewCell {
             make.height.leading.trailing.equalTo(titleLabel)
         }
 
-        rewardLabel.snp.makeConstraints { make in
+        statusLabel.snp.makeConstraints { make in
             make.top.equalTo(descriptionLabel.snp.bottom).offset(10)
             make.height.leading.trailing.equalTo(titleLabel)
         }
@@ -103,7 +103,7 @@ extension MyMissionTableViewCell {
         }
 
         completeButton.snp.makeConstraints { make in
-            make.top.equalTo(rewardLabel)
+            make.top.equalTo(statusLabel)
             make.height.trailing.equalTo(deleteButton)
         }
     }

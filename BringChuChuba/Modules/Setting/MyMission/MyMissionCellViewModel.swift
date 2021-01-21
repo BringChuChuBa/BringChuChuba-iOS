@@ -8,7 +8,7 @@
 import RxSwift
 import RxCocoa
 
-final class MyMissionItemViewModel: ViewModelType {
+final class MyMissionCellViewModel: ViewModelType {
     // MARK: - Structs
     struct Input {
         let deleteTrigger: Driver<Void>
@@ -23,31 +23,39 @@ final class MyMissionItemViewModel: ViewModelType {
     // MARK: Properties
     let title: String
     let description: String
-    let reward: String
+    let status: String
     let mission: Mission
-    private let viewModel: MyMissionViewModel
 
     // MARK: Initializers
-    init (with mission: Mission, parent: MyMissionViewModel) {
+    init (with mission: Mission) {
         self.mission = mission
         self.title = mission.title
-        self.description = mission.description ?? "미션 설명"
-        self.reward = mission.status
-        self.viewModel = parent
+        self.description = mission.description ?? "No description"
+        self.status = mission.status
     }
 
     func transform(input: Input) -> Output {
         let errorTracker = ErrorTracker()
 
         let deleted = input.deleteTrigger
-            .mapToVoid()
+            .flatMapLatest { [weak self] _ -> Driver<Void> in
+                guard let self = self else { return Driver.empty() }
+                guard let missionUid = Int(self.mission.id) else { return Driver.empty() }
+
+                return Network.shared.request(with: .deleteMission(missionUid: missionUid),
+                                              for: Result.self)
+                    .trackError(errorTracker)
+                    .map { _ in }
+                    .asDriverOnErrorJustComplete()
+            }
 
         let completed = input.completeTrigger
             .flatMapLatest { [weak self] _ -> Driver<Void> in
                 guard let self = self else { return Driver.empty() }
                 guard let missionUid = Int(self.mission.id) else { return Driver.empty() }
 
-                return Network.shared.request(with: .completeMission(missionUid: missionUid), for: Mission.self)
+                return Network.shared.request(with: .completeMission(missionUid: missionUid),
+                                              for: Mission.self)
                     .trackError(errorTracker)
                     .map { _ in }
                     .asDriverOnErrorJustComplete()

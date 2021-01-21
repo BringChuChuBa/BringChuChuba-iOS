@@ -20,7 +20,7 @@
 		403BF61325A803BA00712B62 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CD5125A42F0B008B9D61 /* NetworkConstants.swift */; };
 		406FFDEA25A43EA4005C5566 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406FFDE925A43EA4005C5566 /* HomeViewModel.swift */; };
 		406FFE0A25A4488E005C5566 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 406FFE0925A4488E005C5566 /* Launch Screen.storyboard */; };
-		407036B525B6BEFC00DE4857 /* MyMissionTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407036B425B6BEFC00DE4857 /* MyMissionTodoViewController.swift */; };
+		407036B525B6BEFC00DE4857 /* MyMissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407036B425B6BEFC00DE4857 /* MyMissionViewController.swift */; };
 		407036BD25B6BF0500DE4857 /* DoingMissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407036BC25B6BF0500DE4857 /* DoingMissionViewController.swift */; };
 		407036C225B6BFA900DE4857 /* DoingMissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407036C125B6BFA900DE4857 /* DoingMissionViewModel.swift */; };
 		407036C725B6BFB800DE4857 /* MyMissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407036C625B6BFB800DE4857 /* MyMissionViewModel.swift */; };
@@ -28,7 +28,7 @@
 		4089AF1525B6CA2700DA51D7 /* MyMissionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4089AF1425B6CA2700DA51D7 /* MyMissionTableViewCell.swift */; };
 		4089AF1A25B6CA3B00DA51D7 /* DoingMissionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4089AF1925B6CA3B00DA51D7 /* DoingMissionTableViewCell.swift */; };
 		4089AF1F25B6CCA900DA51D7 /* DoingMissionItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4089AF1E25B6CCA900DA51D7 /* DoingMissionItemViewModel.swift */; };
-		4089AF2425B6CCB800DA51D7 /* MyMissionItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4089AF2325B6CCB800DA51D7 /* MyMissionItemViewModel.swift */; };
+		4089AF2425B6CCB800DA51D7 /* MyMissionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4089AF2325B6CCB800DA51D7 /* MyMissionCellViewModel.swift */; };
 		408FF29925A471000032C5D1 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408FF29825A471000032C5D1 /* SettingViewController.swift */; };
 		40A2D4BE25B5B4F10030A85E /* DetailMissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2D4BC25B5B4F10030A85E /* DetailMissionViewController.swift */; };
 		40A2D4BF25B5B4F10030A85E /* DetailMissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2D4BD25B5B4F10030A85E /* DetailMissionViewModel.swift */; };
@@ -105,14 +105,14 @@
 		402A132225A56E2E00B8F65D /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		406FFDE925A43EA4005C5566 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		406FFE0925A4488E005C5566 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		407036B425B6BEFC00DE4857 /* MyMissionTodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMissionTodoViewController.swift; sourceTree = "<group>"; };
+		407036B425B6BEFC00DE4857 /* MyMissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMissionViewController.swift; sourceTree = "<group>"; };
 		407036BC25B6BF0500DE4857 /* DoingMissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoingMissionViewController.swift; sourceTree = "<group>"; };
 		407036C125B6BFA900DE4857 /* DoingMissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoingMissionViewModel.swift; sourceTree = "<group>"; };
 		407036C625B6BFB800DE4857 /* MyMissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMissionViewModel.swift; sourceTree = "<group>"; };
 		4089AF1425B6CA2700DA51D7 /* MyMissionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMissionTableViewCell.swift; sourceTree = "<group>"; };
 		4089AF1925B6CA3B00DA51D7 /* DoingMissionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoingMissionTableViewCell.swift; sourceTree = "<group>"; };
 		4089AF1E25B6CCA900DA51D7 /* DoingMissionItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoingMissionItemViewModel.swift; sourceTree = "<group>"; };
-		4089AF2325B6CCB800DA51D7 /* MyMissionItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMissionItemViewModel.swift; sourceTree = "<group>"; };
+		4089AF2325B6CCB800DA51D7 /* MyMissionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMissionCellViewModel.swift; sourceTree = "<group>"; };
 		408FF29825A471000032C5D1 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		40A2D4BC25B5B4F10030A85E /* DetailMissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMissionViewController.swift; sourceTree = "<group>"; };
 		40A2D4BD25B5B4F10030A85E /* DetailMissionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailMissionViewModel.swift; sourceTree = "<group>"; };
@@ -230,10 +230,10 @@
 			isa = PBXGroup;
 			children = (
 				40BD9C4225B80AFC0072148E /* MyMissionPageViewController.swift */,
-				407036B425B6BEFC00DE4857 /* MyMissionTodoViewController.swift */,
+				407036B425B6BEFC00DE4857 /* MyMissionViewController.swift */,
 				407036C625B6BFB800DE4857 /* MyMissionViewModel.swift */,
 				4089AF1425B6CA2700DA51D7 /* MyMissionTableViewCell.swift */,
-				4089AF2325B6CCB800DA51D7 /* MyMissionItemViewModel.swift */,
+				4089AF2325B6CCB800DA51D7 /* MyMissionCellViewModel.swift */,
 			);
 			path = MyMission;
 			sourceTree = "<group>";
@@ -753,7 +753,7 @@
 				4089AF1525B6CA2700DA51D7 /* MyMissionTableViewCell.swift in Sources */,
 				5D88CC8925A2FB29008B9D61 /* HomeViewController.swift in Sources */,
 				40BD9C7425B814100072148E /* BaseViewController.swift in Sources */,
-				4089AF2425B6CCB800DA51D7 /* MyMissionItemViewModel.swift in Sources */,
+				4089AF2425B6CCB800DA51D7 /* MyMissionCellViewModel.swift in Sources */,
 				40BD9C4325B80AFC0072148E /* MyMissionPageViewController.swift in Sources */,
 				407036C725B6BFB800DE4857 /* MyMissionViewModel.swift in Sources */,
 				40E5132725A330E10032F712 /* CalendarCoordinator.swift in Sources */,
@@ -779,7 +779,7 @@
 				5D88CCF725A33407008B9D61 /* Mission.swift in Sources */,
 				5D39BFE925AF032B00356E7E /* LoginViewModel.swift in Sources */,
 				5D88CCB325A3013C008B9D61 /* Member.swift in Sources */,
-				407036B525B6BEFC00DE4857 /* MyMissionTodoViewController.swift in Sources */,
+				407036B525B6BEFC00DE4857 /* MyMissionViewController.swift in Sources */,
 				5D88CC9625A2FB85008B9D61 /* CalendarViewController.swift in Sources */,
 				4015763A25A4737500AB4296 /* CalendarViewModel.swift in Sources */,
 				40A2D4C625B5B4FC0030A85E /* CreateMissionViewModel.swift in Sources */,

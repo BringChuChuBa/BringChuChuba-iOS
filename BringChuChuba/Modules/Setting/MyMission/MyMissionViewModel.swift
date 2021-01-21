@@ -16,7 +16,7 @@ final class MyMissionViewModel: ViewModelType {
     }
 
     struct Output {
-        let missions: Driver<[MyMissionItemViewModel]>
+        let missions: Driver<[MyMissionCellViewModel]>
     }
 
     // MARK: Properties
@@ -32,7 +32,7 @@ final class MyMissionViewModel: ViewModelType {
         let errorTracker = ErrorTracker()
 
         let missions = input.appear
-            .flatMapLatest { _ -> Driver<[MyMissionItemViewModel]> in
+            .flatMapLatest { _ -> Driver<[MyMissionCellViewModel]> in
                 return Network.shared.requests(with: .getMissions(familyId: GlobalData.shared.familyId),
                                                for: Mission.self)
                     .trackError(errorTracker)
@@ -45,8 +45,7 @@ final class MyMissionViewModel: ViewModelType {
                             return mission.status == input.status
                         }
                         .map { mission in
-                            MyMissionItemViewModel(with: mission,
-                                                   parent: self)
+                            MyMissionCellViewModel(with: mission)
                         }
                     }
             }
