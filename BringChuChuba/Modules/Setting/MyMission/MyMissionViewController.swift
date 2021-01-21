@@ -14,7 +14,7 @@ import Then
 class MyMissionViewController: UIViewController {
     // MARK: Properties
     var viewModel: MyMissionViewModel!
-    private let status: String
+    private var status: String?
     private let disposeBag = DisposeBag()
 
     private lazy var footerView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 50)).then { footer in
@@ -30,7 +30,7 @@ class MyMissionViewController: UIViewController {
     }
 
     // MARK: Initializers
-    init(viewModel: MyMissionViewModel, status: String) {
+    init(viewModel: MyMissionViewModel, status: String? = nil) {
         self.viewModel = viewModel
         self.status = status
         super.init(nibName: nil, bundle: nil)
@@ -69,8 +69,16 @@ extension MyMissionViewController {
                      cellType: MyMissionTableViewCell.self)
              ) { _, viewModel, cell in
                 cell.bind(with: viewModel)
-             }
+             },
+         output.error
+            .drive(errorBinding)
         ].forEach { $0.disposed(by: disposeBag) }
+    }
+
+    private var errorBinding: Binder<Error> {
+        return Binder(self, binding: { _, error in
+            print(error.localizedDescription)
+        })
     }
 }
 

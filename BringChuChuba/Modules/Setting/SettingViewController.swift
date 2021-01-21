@@ -15,6 +15,7 @@ final class SettingViewController: UIViewController {
     // MARK: - Properties
     var viewModel: SettingViewModel!
     private let disposeBag = DisposeBag()
+    private let tapGesture = UITapGestureRecognizer()
 
     // navigation Items
     private lazy var titleLabel: UILabel = UILabel().then { label in
@@ -45,6 +46,7 @@ final class SettingViewController: UIViewController {
 
     private lazy var photo: UIImageView = UIImageView().then { image in
         image.image = UIImage(named: "profile")
+        image.addGestureRecognizer(tapGesture)
     }
 
     private lazy var nicknameLabel: UILabel = UILabel().then { label in
@@ -93,8 +95,9 @@ final class SettingViewController: UIViewController {
 extension SettingViewController {
     func bindViewModel() {
         assert(viewModel.isSome)
-
-        let input = SettingViewModel.Input(myMissionTrigger: myMissionButton.rx.tap.asDriver(),
+        
+        let input = SettingViewModel.Input(photoTrigger: tapGesture.rx.event.asDriver(),
+                                           myMissionTrigger: myMissionButton.rx.tap.asDriver(),
                                            doingMissionTrigger: doingMissionButton.rx.tap.asDriver())
 
         let output = viewModel.transform(input: input)
@@ -102,6 +105,8 @@ extension SettingViewController {
         [output.myMission
             .drive(),
          output.doingMission
+            .drive(),
+         output.profile
             .drive()
         ].forEach { $0.disposed(by: disposeBag) }
     }

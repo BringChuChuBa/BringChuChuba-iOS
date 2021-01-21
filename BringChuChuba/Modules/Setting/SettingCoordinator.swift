@@ -21,6 +21,9 @@ final class SettingCoordinator: CoordinatorType {
         navigationController.pushViewController(usersViewController, animated: true)
     }
 
+    func toProfile() {
+    }
+
     func toMyMission() {
         let viewModel = MyMissionViewModel(coordinator: self)
         let myMissionVC: MyMissionPageViewController = MyMissionPageViewController(viewModel: viewModel)
@@ -29,8 +32,8 @@ final class SettingCoordinator: CoordinatorType {
     }
 
     func toDoingMission() {
-        let viewModel = DoingMissionViewModel(coordinator: self)
-        let doingMissionVC: DoingMissionViewController = DoingMissionViewController(viewModel: viewModel)
+        let viewModel = MyMissionViewModel(coordinator: self)
+        let doingMissionVC: MyMissionViewController = MyMissionViewController(viewModel: viewModel)
 
         navigationController.pushViewController(doingMissionVC, animated: true)
     }

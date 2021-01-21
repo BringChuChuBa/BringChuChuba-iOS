@@ -12,13 +12,6 @@ import SnapKit
 import Then
 
 final class MyMissionPageViewController: UIPageViewController {
-    // MARK: Enums
-    private enum MissionStatus: String {
-        case todo
-        case inProgress
-        case complete
-    }
-
     // MARK: Properties
     var viewModel: MyMissionViewModel!
     private let disposeBag = DisposeBag()

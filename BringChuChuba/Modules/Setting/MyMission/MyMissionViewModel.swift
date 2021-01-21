@@ -11,12 +11,13 @@ import RxCocoa
 final class MyMissionViewModel: ViewModelType {
     // MARK: Structs
     struct Input {
-        let status: String
+        let status: String?
         let appear: Driver<Void>
     }
 
     struct Output {
         let missions: Driver<[MyMissionCellViewModel]>
+        let error: Driver<Error>
     }
 
     // MARK: Properties
@@ -39,10 +40,18 @@ final class MyMissionViewModel: ViewModelType {
                     .asDriverOnErrorJustComplete()
                     .map { missions in
                         missions.filter { mission -> Bool in
-                            return mission.client.id == GlobalData.shared.id
+                            if input.status.isSome {
+                                return mission.client.id == GlobalData.shared.id
+                            } else {
+                                return mission.contractor?.id == GlobalData.shared.id
+                            }
                         }
                         .filter { mission -> Bool in
-                            return mission.status == input.status
+                            if input.status.isSome {
+                                return mission.status == input.status
+                            } else {
+                                return mission.status == MissionStatus.inProgress.rawValue
+                            }
                         }
                         .map { mission in
                             MyMissionCellViewModel(with: mission)
@@ -50,6 +59,9 @@ final class MyMissionViewModel: ViewModelType {
                     }
             }
 
-        return Output(missions: missions)
+        let error = errorTracker.asDriver()
+
+        return Output(missions: missions,
+                      error: error)
     }
 }
