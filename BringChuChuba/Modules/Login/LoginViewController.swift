@@ -85,7 +85,6 @@ class LoginViewController: UIViewController {
         stackView.addArrangedSubview(joinFamilyButton)
         stackView.addArrangedSubview(createFamilyButton)
 
-
         stackView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(20)
             make.trailing.equalToSuperview().offset(-20)

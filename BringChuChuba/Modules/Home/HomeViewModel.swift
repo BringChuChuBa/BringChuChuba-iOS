@@ -50,7 +50,6 @@ final class HomeViewModel: ViewModelType {
                         }
                     }
             }
-        // TODO: mission status 별로 그룹핑하는 groupBy 연산 수행
 
         let fetching = activityIndicator.asDriver()
         let errors = errorTracker.asDriver()

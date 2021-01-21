@@ -18,22 +18,20 @@ final class HomeCoordinator: CoordinatorType {
 
     func start() {
         let homeViewController = HomeViewController(viewModel: .init(coordinator: self))
-
         navigationController.pushViewController(homeViewController, animated: true)
     }
 
     func toCreateMission() {
         let viewModel = CreateMissionViewModel(coordinator: self)
-        let createMissionVc: CreateMissionViewController = CreateMissionViewController(viewModel: viewModel)
-
-        createViewModel = viewModel
-
-        navigationController.pushViewController(createMissionVc, animated: true)
+        let viewController = CreateMissionViewController(viewModel: viewModel)
+        viewController.hidesBottomBarWhenPushed = true
+        navigationController.pushViewController(viewController, animated: true)
     }
 
     func toDetailMission(_ mission: Mission) {
         let viewModel = DetailMissionViewModel(mission: mission, coordinator: self)
         let viewController = DetailMissionViewController(viewModel: viewModel)
+        viewController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(viewController, animated: true)
     }
 
