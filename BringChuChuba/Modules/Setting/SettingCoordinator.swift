@@ -23,7 +23,7 @@ final class SettingCoordinator: CoordinatorType {
 
     func toMyMission() {
         let viewModel = MyMissionViewModel(coordinator: self)
-        let myMissionVC: MyMissionViewController = MyMissionViewController(viewModel: viewModel)
+        let myMissionVC: MyMissionPageViewController = MyMissionPageViewController(viewModel: viewModel)
 
         navigationController.pushViewController(myMissionVC, animated: true)
     }

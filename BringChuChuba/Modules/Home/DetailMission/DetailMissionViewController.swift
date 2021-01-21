@@ -127,27 +127,3 @@ final class DetailMissionViewController: UIViewController {
         }
     }
 }
-
-// MARK: Previews
-#if canImport(SwiftUI) && DEBUG
-import SwiftUI
-@available(iOS 13.0, *)
-struct DetailMissionViewControllerRepresentable: UIViewControllerRepresentable {
-    func makeUIViewController(context: Context) -> DetailMissionViewController {
-        return DetailMissionViewController(viewModel: DetailMissionViewModel(mission: Mission(client: BringChuChuba.Member(id: Optional("16"), familyId: Optional("7"), nickname: nil, point: Optional("0")), contractor: Optional(BringChuChuba.Member(id: Optional("20"), familyId: Optional("7"), nickname: nil, point: Optional("0"))), createdAt: "2021-01-19 12:18", description: Optional("description 3"), expireAt: "2021-01-19 12:18", familyId: Optional("7"), id: "22", modifiedAt: "2021-01-19 16:59", reward: Optional("reward 3"), status: "inProgress", title: "title 3"), coordinator: HomeCoordinator(navigationController: UINavigationController())))
-    }
-
-    func updateUIViewController(_ uiViewController: DetailMissionViewController, context: Context) {
-    }
-}
-
-@available(iOS 13.0, *)
-struct DetailVCPreview: PreviewProvider {
-    static var previews: some View {
-        Group {
-            DetailMissionViewControllerRepresentable()
-            DetailMissionViewControllerRepresentable()
-        }
-    }
-}
-#endif

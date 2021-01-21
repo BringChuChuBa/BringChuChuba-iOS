@@ -9,8 +9,9 @@ import RxSwift
 import RxCocoa
 
 final class MyMissionViewModel: ViewModelType {
-    // MARK: - Structs
+    // MARK: Structs
     struct Input {
+        let status: String
         let appear: Driver<Void>
     }
 
@@ -18,15 +19,15 @@ final class MyMissionViewModel: ViewModelType {
         let missions: Driver<[MyMissionItemViewModel]>
     }
 
-    // MARK: - Properties
+    // MARK: Properties
     private let coordinator: SettingCoordinator
 
-    // MARK: - Initializers
+    // MARK: Initializers
     init(coordinator: SettingCoordinator) {
         self.coordinator = coordinator
     }
 
-    // MARK: - Transform Methods
+    // MARK: Transform Methods
     func transform(input: Input) -> Output {
         let errorTracker = ErrorTracker()
 
@@ -40,6 +41,9 @@ final class MyMissionViewModel: ViewModelType {
                         missions.filter { mission -> Bool in
                             return mission.client.id == GlobalData.shared.id
                         }
+                        .filter { mission -> Bool in
+                            return mission.status == input.status
+                        }
                         .map { mission in
                             MyMissionItemViewModel(with: mission,
                                                    parent: self)
@@ -48,8 +52,5 @@ final class MyMissionViewModel: ViewModelType {
             }
 
         return Output(missions: missions)
-    }
-
-    func cellTransform(input: MyMissionItemViewModel.Input) {
     }
 }

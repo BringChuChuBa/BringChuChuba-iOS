@@ -20,7 +20,7 @@
 		403BF61325A803BA00712B62 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CD5125A42F0B008B9D61 /* NetworkConstants.swift */; };
 		406FFDEA25A43EA4005C5566 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406FFDE925A43EA4005C5566 /* HomeViewModel.swift */; };
 		406FFE0A25A4488E005C5566 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 406FFE0925A4488E005C5566 /* Launch Screen.storyboard */; };
-		407036B525B6BEFC00DE4857 /* MyMissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407036B425B6BEFC00DE4857 /* MyMissionViewController.swift */; };
+		407036B525B6BEFC00DE4857 /* MyMissionTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407036B425B6BEFC00DE4857 /* MyMissionTodoViewController.swift */; };
 		407036BD25B6BF0500DE4857 /* DoingMissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407036BC25B6BF0500DE4857 /* DoingMissionViewController.swift */; };
 		407036C225B6BFA900DE4857 /* DoingMissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407036C125B6BFA900DE4857 /* DoingMissionViewModel.swift */; };
 		407036C725B6BFB800DE4857 /* MyMissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407036C625B6BFB800DE4857 /* MyMissionViewModel.swift */; };
@@ -44,9 +44,6 @@
 		40A9BAC225A1AC5700EC2988 /* BringChuChubaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9BAC125A1AC5700EC2988 /* BringChuChubaUITests.swift */; };
 		40BD9C3B25B803940072148E /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BD9C3A25B803940072148E /* Result.swift */; };
 		40BD9C4325B80AFC0072148E /* MyMissionPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BD9C4225B80AFC0072148E /* MyMissionPageViewController.swift */; };
-		40BD9C4B25B80B2C0072148E /* MyMissionTodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BD9C4A25B80B2C0072148E /* MyMissionTodoViewController.swift */; };
-		40BD9C5025B80B400072148E /* MyMissionInProgressViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BD9C4F25B80B400072148E /* MyMissionInProgressViewController.swift */; };
-		40BD9C5525B8101C0072148E /* MyMissionCompleteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BD9C5425B8101C0072148E /* MyMissionCompleteViewController.swift */; };
 		40BD9C7425B814100072148E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BD9C7325B814100072148E /* BaseViewController.swift */; };
 		40D646BF25AE8CC30004ECEC /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D646BE25AE8CC30004ECEC /* Network.swift */; };
 		40D6473F25AE976A0004ECEC /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D6473E25AE976A0004ECEC /* Router.swift */; };
@@ -108,7 +105,7 @@
 		402A132225A56E2E00B8F65D /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		406FFDE925A43EA4005C5566 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		406FFE0925A4488E005C5566 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		407036B425B6BEFC00DE4857 /* MyMissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMissionViewController.swift; sourceTree = "<group>"; };
+		407036B425B6BEFC00DE4857 /* MyMissionTodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMissionTodoViewController.swift; sourceTree = "<group>"; };
 		407036BC25B6BF0500DE4857 /* DoingMissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoingMissionViewController.swift; sourceTree = "<group>"; };
 		407036C125B6BFA900DE4857 /* DoingMissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoingMissionViewModel.swift; sourceTree = "<group>"; };
 		407036C625B6BFB800DE4857 /* MyMissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMissionViewModel.swift; sourceTree = "<group>"; };
@@ -137,9 +134,6 @@
 		40A9BAC325A1AC5700EC2988 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40BD9C3A25B803940072148E /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		40BD9C4225B80AFC0072148E /* MyMissionPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMissionPageViewController.swift; sourceTree = "<group>"; };
-		40BD9C4A25B80B2C0072148E /* MyMissionTodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMissionTodoViewController.swift; sourceTree = "<group>"; };
-		40BD9C4F25B80B400072148E /* MyMissionInProgressViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMissionInProgressViewController.swift; sourceTree = "<group>"; };
-		40BD9C5425B8101C0072148E /* MyMissionCompleteViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMissionCompleteViewController.swift; sourceTree = "<group>"; };
 		40BD9C7325B814100072148E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		40D646BE25AE8CC30004ECEC /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		40D6473E25AE976A0004ECEC /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
@@ -207,20 +201,20 @@
 				401D6C8525A6BA0900113273 /* ActivityIndicator.swift */,
 				40A2D4CF25B5B59E0030A85E /* Extensions */,
 				40235D6D25A55392004D7ABE /* Common */,
-				40235D6B25A5529A004D7ABE /* Protocols */,
+				40235D6B25A5529A004D7ABE /* Protocols & Enums */,
 				5D88CC6025A2F795008B9D61 /* Resources */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		40235D6B25A5529A004D7ABE /* Protocols */ = {
+		40235D6B25A5529A004D7ABE /* Protocols & Enums */ = {
 			isa = PBXGroup;
 			children = (
 				40E5136B25A3FF150032F712 /* SceneType.swift */,
 				5D88CC7E25A2FA1B008B9D61 /* CoordinatorType.swift */,
 				401D6CCA25A6D22600113273 /* ViewModelType.swift */,
 			);
-			path = Protocols;
+			path = "Protocols & Enums";
 			sourceTree = "<group>";
 		};
 		40235D6D25A55392004D7ABE /* Common */ = {
@@ -235,11 +229,11 @@
 		407036B225B6BEDA00DE4857 /* MyMission */ = {
 			isa = PBXGroup;
 			children = (
-				407036B425B6BEFC00DE4857 /* MyMissionViewController.swift */,
+				40BD9C4225B80AFC0072148E /* MyMissionPageViewController.swift */,
+				407036B425B6BEFC00DE4857 /* MyMissionTodoViewController.swift */,
 				407036C625B6BFB800DE4857 /* MyMissionViewModel.swift */,
 				4089AF1425B6CA2700DA51D7 /* MyMissionTableViewCell.swift */,
 				4089AF2325B6CCB800DA51D7 /* MyMissionItemViewModel.swift */,
-				40BD9C5925B810710072148E /* PageVC */,
 			);
 			path = MyMission;
 			sourceTree = "<group>";
@@ -338,17 +332,6 @@
 			path = BringChuChubaUITests;
 			sourceTree = "<group>";
 		};
-		40BD9C5925B810710072148E /* PageVC */ = {
-			isa = PBXGroup;
-			children = (
-				40BD9C4225B80AFC0072148E /* MyMissionPageViewController.swift */,
-				40BD9C4A25B80B2C0072148E /* MyMissionTodoViewController.swift */,
-				40BD9C4F25B80B400072148E /* MyMissionInProgressViewController.swift */,
-				40BD9C5425B8101C0072148E /* MyMissionCompleteViewController.swift */,
-			);
-			path = PageVC;
-			sourceTree = "<group>";
-		};
 		5844068726E2EE3273A010C3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -409,7 +392,7 @@
 				5D88CC6A25A2F8D1008B9D61 /* Home */,
 				5D88CC6B25A2F8DE008B9D61 /* Calendar */,
 				5D88CC6C25A2F8E8008B9D61 /* Ranking */,
-				5D88CC6D25A2F907008B9D61 /* Users */,
+				5D88CC6D25A2F907008B9D61 /* Setting */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -448,7 +431,7 @@
 			path = Ranking;
 			sourceTree = "<group>";
 		};
-		5D88CC6D25A2F907008B9D61 /* Users */ = {
+		5D88CC6D25A2F907008B9D61 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
 				40E5133025A330F30032F712 /* SettingCoordinator.swift */,
@@ -457,7 +440,7 @@
 				407036B225B6BEDA00DE4857 /* MyMission */,
 				407036B325B6BEE800DE4857 /* DoingMission */,
 			);
-			path = Users;
+			path = Setting;
 			sourceTree = "<group>";
 		};
 		5D88CCA825A2FCFE008B9D61 /* Models */ = {
@@ -760,7 +743,6 @@
 				407036C225B6BFA900DE4857 /* DoingMissionViewModel.swift in Sources */,
 				40D6473F25AE976A0004ECEC /* Router.swift in Sources */,
 				401D6C9125A6BA5B00113273 /* ErrorTracker.swift in Sources */,
-				40BD9C5525B8101C0072148E /* MyMissionCompleteViewController.swift in Sources */,
 				4089AF1F25B6CCA900DA51D7 /* DoingMissionItemViewModel.swift in Sources */,
 				40BD9C3B25B803940072148E /* Result.swift in Sources */,
 				4015765A25A4803600AB4296 /* Log.swift in Sources */,
@@ -782,7 +764,6 @@
 				40E5133125A330F30032F712 /* SettingCoordinator.swift in Sources */,
 				5D88CC9B25A2FB8E008B9D61 /* RankingViewController.swift in Sources */,
 				40A9BAA225A1AC5600EC2988 /* SceneDelegate.swift in Sources */,
-				40BD9C5025B80B400072148E /* MyMissionInProgressViewController.swift in Sources */,
 				5D88DDCE25AFE0BE00AB0B3F /* LoginCoordinator.swift in Sources */,
 				40235D6F25A553AE004D7ABE /* GlobalData.swift in Sources */,
 				5D39BECD25AD999200356E7E /* LoginViewController.swift in Sources */,
@@ -798,12 +779,11 @@
 				5D88CCF725A33407008B9D61 /* Mission.swift in Sources */,
 				5D39BFE925AF032B00356E7E /* LoginViewModel.swift in Sources */,
 				5D88CCB325A3013C008B9D61 /* Member.swift in Sources */,
-				407036B525B6BEFC00DE4857 /* MyMissionViewController.swift in Sources */,
+				407036B525B6BEFC00DE4857 /* MyMissionTodoViewController.swift in Sources */,
 				5D88CC9625A2FB85008B9D61 /* CalendarViewController.swift in Sources */,
 				4015763A25A4737500AB4296 /* CalendarViewModel.swift in Sources */,
 				40A2D4C625B5B4FC0030A85E /* CreateMissionViewModel.swift in Sources */,
 				5D88CC7F25A2FA1B008B9D61 /* CoordinatorType.swift in Sources */,
-				40BD9C4B25B80B2C0072148E /* MyMissionTodoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -11,22 +11,11 @@ import RxCocoa
 import SnapKit
 import Then
 
-final class MyMissionViewController: UIViewController {
-    // MARK: - Properties
+class MyMissionTodoViewController: UIViewController {
+    // MARK: Properties
     var viewModel: MyMissionViewModel!
+    private let status: String
     private let disposeBag = DisposeBag()
-
-    //    private lazy var pageVC: UIPageViewController = UIPageViewController(
-    //        transitionStyle: .scroll,
-    //        navigationOrientation: .horizontal,
-    //        options: nil).then { page in
-    //            let pageControl = UIPageControl.appearance()
-    //            pageControl.pageIndicatorTintColor = UIColor.lightGray
-    //            pageControl.currentPageIndicatorTintColor = UIColor.black
-    //            pageControl.backgroundColor = UIColor.white
-    //
-    //            page.dataSource = self
-    //    }
 
     private lazy var tableView: UITableView = UITableView().then { table in
         // 50 Constant로 빼기
@@ -35,9 +24,10 @@ final class MyMissionViewController: UIViewController {
                        forCellReuseIdentifier: MyMissionTableViewCell.reuseIdentifier())
     }
 
-    // MARK: - Initializers
-    init(viewModel: MyMissionViewModel) {
+    // MARK: Initializers
+    init(viewModel: MyMissionViewModel, status: String) {
         self.viewModel = viewModel
+        self.status = status
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -45,18 +35,17 @@ final class MyMissionViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: - LifeCycles
+    // MARK: LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
 
         bindViewModel()
         setupUI()
-        view.backgroundColor = #colorLiteral(red: 0.1294117719, green: 0.2156862766, blue: 0.06666667014, alpha: 1)
     }
 }
 
-// MARK: - Binds
-extension MyMissionViewController {
+// MARK: Binds
+extension MyMissionTodoViewController {
     func bindViewModel() {
         assert(viewModel.isSome)
 
@@ -64,7 +53,8 @@ extension MyMissionViewController {
             .mapToVoid()
             .asDriverOnErrorJustComplete()
 
-        let input = MyMissionViewModel.Input(appear: viewWillAppear)
+        let input = MyMissionViewModel.Input(status: status,
+                                             appear: viewWillAppear)
 
         let output = viewModel.transform(input: input)
 
@@ -79,8 +69,8 @@ extension MyMissionViewController {
     }
 }
 
-// MARK: - Set UIs
-extension MyMissionViewController {
+// MARK: Set UIs
+extension MyMissionTodoViewController {
     func setupUI() {
         view.addSubview(tableView)
 
