@@ -1,17 +1,16 @@
 //
-//  DetailMissionCell.swift
+//  RankingCell.swift
 //  BringChuChuba
 //
-//  Created by 홍다희 on 2021/01/21.
+//  Created by 홍다희 on 2021/01/22.
 //
 
 import UIKit
 import RxSwift
 import RxCocoa
 
-class DetailMissionCell: UITableViewCell {
+class RankingCell: UITableViewCell {
 
-    // MARK: Properties
     private let disposeBag = DisposeBag()
 
     // MARK: UI Components
@@ -20,13 +19,20 @@ class DetailMissionCell: UITableViewCell {
     }
 
     private lazy var stackView = UIStackView().then {
-        $0.axis = .vertical
-        $0.spacing = 5
+        $0.axis = .horizontal
+        $0.spacing = 10
+    }
+
+    private lazy var imgView = UIImageView().then {
+        $0.backgroundColor = .systemGreen
+    }
+
+    private lazy var rankLabel = UILabel().then {
+        $0.font = $0.font.withSize(17)
     }
 
     private lazy var titleLabel = UILabel().then {
-        $0.font = $0.font.withSize(12)
-        $0.textColor = .lightGray
+        $0.font = $0.font.withSize(17)
     }
 
     private lazy var detailLabel = UILabel().then {
@@ -61,12 +67,15 @@ class DetailMissionCell: UITableViewCell {
             make.edges.equalToSuperview().inset(10)
         }
 
+        stackView.addArrangedSubview(rankLabel)
         stackView.addArrangedSubview(titleLabel)
         stackView.addArrangedSubview(detailLabel)
     }
 
     // MARK: Binds
-    func bind(to viewModel: DetailMissionCellViewModel) {
+    func bind(to viewModel: RankingCellViewModel, rank: Int) {
+        rankLabel.text = String(rank)
+
         viewModel.title.asDriver()
             .drive(titleLabel.rx.text)
             .disposed(by: disposeBag)

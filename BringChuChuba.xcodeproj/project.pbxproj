@@ -62,6 +62,7 @@
 		5D55B77325B915230055A9D8 /* DetailMissionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D55B77225B915230055A9D8 /* DetailMissionCellViewModel.swift */; };
 		5D55B7B325B91F730055A9D8 /* DetailMissionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D55B7B225B91F730055A9D8 /* DetailMissionCell.swift */; };
 		5D55B7EF25B925270055A9D8 /* DetailMissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2D4BD25B5B4F10030A85E /* DetailMissionViewModel.swift */; };
+		5D7D2C3F25BA5DB800F3C25D /* RankingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7D2C3E25BA5DB800F3C25D /* RankingCell.swift */; };
 		5D88CC7F25A2FA1B008B9D61 /* CoordinatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC7E25A2FA1B008B9D61 /* CoordinatorType.swift */; };
 		5D88CC8925A2FB29008B9D61 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC8825A2FB29008B9D61 /* HomeViewController.swift */; };
 		5D88CC9625A2FB85008B9D61 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC9525A2FB85008B9D61 /* CalendarViewController.swift */; };
@@ -71,6 +72,7 @@
 		5D88CCF725A33407008B9D61 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CCF625A33407008B9D61 /* Mission.swift */; };
 		5D88CDA225A5D5B6008B9D61 /* Family.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CCAA25A30002008B9D61 /* Family.swift */; };
 		5D88DDCE25AFE0BE00AB0B3F /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88DDCD25AFE0BE00AB0B3F /* LoginCoordinator.swift */; };
+		5DA84C2225BDA1A20040EA0D /* RankingCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA84C2125BDA1A20040EA0D /* RankingCellViewModel.swift */; };
 		5DBBEDDB25B16ABD004ACC3A /* CreateFamilyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBBEDDA25B16ABD004ACC3A /* CreateFamilyViewController.swift */; };
 		5DBBEDE325B16B8C004ACC3A /* CreateFamilyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBBEDE225B16B8C004ACC3A /* CreateFamilyViewModel.swift */; };
 		7A2F8CB031A1FB9C2029562E /* Pods_BringChuChuba.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 083FA52E64731EAA74948B74 /* Pods_BringChuChuba.framework */; };
@@ -159,6 +161,7 @@
 		5D55B72525B90C730055A9D8 /* DetailMissionSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMissionSection.swift; sourceTree = "<group>"; };
 		5D55B77225B915230055A9D8 /* DetailMissionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMissionCellViewModel.swift; sourceTree = "<group>"; };
 		5D55B7B225B91F730055A9D8 /* DetailMissionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMissionCell.swift; sourceTree = "<group>"; };
+		5D7D2C3E25BA5DB800F3C25D /* RankingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingCell.swift; sourceTree = "<group>"; };
 		5D88CC7E25A2FA1B008B9D61 /* CoordinatorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorType.swift; sourceTree = "<group>"; };
 		5D88CC8825A2FB29008B9D61 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5D88CC9525A2FB85008B9D61 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
@@ -169,6 +172,7 @@
 		5D88CCF625A33407008B9D61 /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
 		5D88CD5125A42F0B008B9D61 /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
 		5D88DDCD25AFE0BE00AB0B3F /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		5DA84C2125BDA1A20040EA0D /* RankingCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingCellViewModel.swift; sourceTree = "<group>"; };
 		5DBBEDDA25B16ABD004ACC3A /* CreateFamilyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFamilyViewController.swift; sourceTree = "<group>"; };
 		5DBBEDE225B16B8C004ACC3A /* CreateFamilyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateFamilyViewModel.swift; sourceTree = "<group>"; };
 		9B0B46A669A2D8C361718525 /* Pods-BringChuChuba-BringChuChubaUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BringChuChuba-BringChuChubaUITests.debug.xcconfig"; path = "Target Support Files/Pods-BringChuChuba-BringChuChubaUITests/Pods-BringChuChuba-BringChuChubaUITests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -453,6 +457,8 @@
 				40E5132B25A330E80032F712 /* RankingCoordinator.swift */,
 				5D88CC9A25A2FB8E008B9D61 /* RankingViewController.swift */,
 				4015764125A47A9D00AB4296 /* RankingViewModel.swift */,
+				5D7D2C3E25BA5DB800F3C25D /* RankingCell.swift */,
+				5DA84C2125BDA1A20040EA0D /* RankingCellViewModel.swift */,
 			);
 			path = Ranking;
 			sourceTree = "<group>";
@@ -783,6 +789,7 @@
 				4089AF1525B6CA2700DA51D7 /* MyMissionTableViewCell.swift in Sources */,
 				5D88CC8925A2FB29008B9D61 /* HomeViewController.swift in Sources */,
 				40BD9C7425B814100072148E /* BaseViewController.swift in Sources */,
+				5DA84C2225BDA1A20040EA0D /* RankingCellViewModel.swift in Sources */,
 				4089AF2425B6CCB800DA51D7 /* MyMissionItemViewModel.swift in Sources */,
 				40BD9C4325B80AFC0072148E /* MyMissionPageViewController.swift in Sources */,
 				407036C725B6BFB800DE4857 /* MyMissionViewModel.swift in Sources */,
@@ -800,6 +807,7 @@
 				5D39BECD25AD999200356E7E /* LoginViewController.swift in Sources */,
 				4015764A25A47AAE00AB4296 /* SettingViewModel.swift in Sources */,
 				5DBBEDDB25B16ABD004ACC3A /* CreateFamilyViewController.swift in Sources */,
+				5D7D2C3F25BA5DB800F3C25D /* RankingCell.swift in Sources */,
 				40E5132C25A330E80032F712 /* RankingCoordinator.swift in Sources */,
 				40FDE37725A5CB1C00779ECB /* HomeItemViewModel.swift in Sources */,
 				407036BD25B6BF0500DE4857 /* DoingMissionViewController.swift in Sources */,

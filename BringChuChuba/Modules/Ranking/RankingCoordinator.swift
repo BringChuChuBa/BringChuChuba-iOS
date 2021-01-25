@@ -17,7 +17,7 @@ final class RankingCoordinator: CoordinatorType {
 
     func start() {
         let rankingViewController = RankingViewController(viewModel: .init(coordinator: self))
-
+        navigationController.navigationBar.prefersLargeTitles = true
         navigationController.pushViewController(rankingViewController, animated: true)
     }
 }

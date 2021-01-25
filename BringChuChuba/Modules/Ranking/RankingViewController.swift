@@ -12,8 +12,21 @@ import SnapKit
 import Then
 
 final class RankingViewController: UIViewController {
-    var viewModel: RankingViewModel!
+    // MARK: Properties
+    private let viewModel: RankingViewModel!
+    private let disposeBag: DisposeBag = DisposeBag()
 
+    // MARK: UI Components
+    private lazy var segmentedControl = UISegmentedControl(items: Period.allCases.map { $0.description.capitalized }).then {
+        $0.selectedSegmentIndex = 0
+    }
+
+    private lazy var tableView = UITableView(frame: CGRect(), style: .plain).then {
+        $0.register(RankingCell.self, forCellReuseIdentifier: RankingCell.reuseIdentifier())
+        $0.refreshControl = UIRefreshControl()
+    }
+
+    // MARK: - Initializers
     init(viewModel: RankingViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -23,9 +36,62 @@ final class RankingViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = #colorLiteral(red: 0.5568627715, green: 0.3529411852, blue: 0.9686274529, alpha: 1)
+        setupUI()
+        bindViewModel()
+    }
+
+    // MARK: Set UIs
+    private func setupUI() {
+        navigationItem.title = String("랭킹")
+        //        navigationItem.titleView = segmentedControl
+        view.backgroundColor = .systemBackground
+
+        view.addSubview(segmentedControl)
+        segmentedControl.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(50)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+        }
+
+        view.addSubview(tableView)
+        tableView.snp.makeConstraints { make in
+            make.leading.bottom.trailing.equalToSuperview()
+            make.top.equalTo(segmentedControl.snp.bottom)
+        }
+    }
+
+    // MARK: Binds
+    private func bindViewModel() {
+        assert(viewModel.isSome)
+
+        let input = RankingViewModel.Input(
+            selectedIndex: segmentedControl.rx.selectedSegmentIndex.asDriver()
+        )
+
+        let output = viewModel.transform(input: input)
+        //        output.items.drive(tableView.rx.items()
+        [output.items
+            .drive(tableView.rx.items(cellIdentifier: RankingCell.reuseIdentifier()
+                                      , cellType: RankingCell.self)) { indexPath, viewModel, cell in
+                cell.bind(to: viewModel, rank: indexPath + 1)
+            }
+        ].forEach { $0.disposed(by: disposeBag) }
+    }
+}
+
+enum Period: Int, CaseIterable {
+    case all = 0
+    case monthly
+    case weekly
+
+    var description: String {
+        switch self {
+        case .all: return "all"
+        case .monthly: return "monthly"
+        case .weekly: return "weekly"
+        }
     }
 }

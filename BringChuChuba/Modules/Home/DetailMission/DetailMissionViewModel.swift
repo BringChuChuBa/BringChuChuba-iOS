@@ -23,13 +23,14 @@ final class DetailMissionViewModel: ViewModelType {
     }
 
     struct Output {
-        let items: Observable<[DetailMissionSection]>
+        let items: Driver<[DetailMissionSection]>
         let contractEnable: Driver<Bool>
         let error: Driver<Error>
     }
 
     // MARK: Transform Methods
     func transform(input: Input) -> Output {
+        // TODO: Alert 추가
         let errorTracker = ErrorTracker()
 
         let mission = input.contractTrigger.flatMapLatest {
@@ -91,8 +92,6 @@ final class DetailMissionViewModel: ViewModelType {
             detailMissionSections.append(DetailMissionSection.detail(title: "", items: items))
             return detailMissionSections
         }
-        .debug()
-        .asObservable()
 
         return Output(items: items,
                       contractEnable: contractEnable,

@@ -13,7 +13,6 @@ import RxCocoa
 import RxDataSources
 
 final class DetailMissionViewController: UIViewController {
-
     // MARK: Properties
     private let viewModel: DetailMissionViewModel!
     private let disposeBag: DisposeBag = DisposeBag()
@@ -21,18 +20,30 @@ final class DetailMissionViewController: UIViewController {
     // MARK: UI Components
     private lazy var tableView = UITableView(frame: CGRect(), style: .insetGrouped).then {
         // TODO: refresh, alert 추가하기
-        $0.register(DetailMissionCell.self, forCellReuseIdentifier: "DetailMissionCell")
+        $0.register(DetailMissionCell.self,
+                    forCellReuseIdentifier: DetailMissionCell.reuseIdentifier())
     }
 
     private lazy var toolBar = UIToolbar().then {
         $0.barStyle = .default
         $0.isTranslucent = true
+        $0.setItems([leftSpace,
+                     contractButton,
+                     rightSpace],
+                    animated: true)
     }
+
+    private lazy var leftSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
+                                                 target: nil,
+                                                 action: nil)
+
+    private lazy var rightSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
+                                                  target: nil,
+                                                  action: nil)
 
     private lazy var contractButton = UIBarButtonItem().then {
         $0.title = "제가 할게요!"
-        // TODO: 밑에서 띄우는거...
-        // TODO: 백그라운드 컬러 변경 -> extension ??
+        // TODO: y 위치 수정
     }
 
     // MARK: Initializers
@@ -56,26 +67,19 @@ final class DetailMissionViewController: UIViewController {
     // MARK: Set UIs
     private func setupUI() {
         view.backgroundColor = .systemBackground
+        view.addSubview(toolBar)
+        toolBar.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalToSuperview()
+        }
+
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
-            make.top.leading.bottom.trailing.equalToSuperview()
+            make.top.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(toolBar.snp.top)
         }
 
-        view.addSubview(toolBar)
+        contractButton.setBackgroundVerticalPositionAdjustment(20.0, for: .default)
 
-        // TODO: 프로퍼티 밖으로 빼야할지..?
-        let leftFlexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let rightflexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-
-        toolBar.setItems([leftFlexibleSpace,
-                          contractButton,
-                          rightflexibleSpace],
-                         animated: true)
-
-        toolBar.snp.makeConstraints { make in
-            make.height.equalTo(100)
-            make.leading.trailing.bottom.equalToSuperview().inset(additionalSafeAreaInsets)
-        }
     }
 
     // MARK: Binds
@@ -95,7 +99,8 @@ final class DetailMissionViewController: UIViewController {
                  .clientItem(let viewModel),
                  .contractorItem(let viewModel),
                  .statusItem(let viewModel):
-                let cell = (tableView.dequeueReusableCell(withIdentifier: "DetailMissionCell", for: indexPath) as? DetailMissionCell)!
+                let cell = (tableView.dequeueReusableCell(withIdentifier: DetailMissionCell.reuseIdentifier(),
+                                                          for: indexPath) as? DetailMissionCell)!
                 cell.bind(to: viewModel)
                 return cell
             }
@@ -107,7 +112,7 @@ final class DetailMissionViewController: UIViewController {
         let output = viewModel.transform(input: input)
 
         [output.items
-            .bind(to: tableView.rx.items(dataSource: dataSource)),
+            .drive(tableView.rx.items(dataSource: dataSource)),
          output.contractEnable
             .drive(contractButton.rx.isEnabled),
          output.error

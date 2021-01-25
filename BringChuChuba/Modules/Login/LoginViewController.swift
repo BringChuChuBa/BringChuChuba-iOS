@@ -57,7 +57,6 @@ class LoginViewController: UIViewController {
     }
 
     // MARK: - Initializers
-
     init(viewModel: LoginViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)

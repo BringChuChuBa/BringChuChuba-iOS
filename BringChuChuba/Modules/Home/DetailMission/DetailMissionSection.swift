@@ -40,8 +40,8 @@ extension DetailMissionSection: SectionModelType {
         }
     }
 
-    init(original: DetailMissionSection
-         ,items: [Item]) {
+    init(original: DetailMissionSection,
+         items: [Item]) {
         switch original {
         case .detail(let title, let items):
             self = .detail(title: title, items: items)
