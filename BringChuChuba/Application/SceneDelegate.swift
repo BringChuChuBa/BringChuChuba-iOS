@@ -16,9 +16,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         FirebaseApp.configure()
-        loginAndCheckToken()
-        getMember()
 
+        anonymouslyLogin()
+        getMember()
+        
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         self.window = UIWindow(windowScene: windowScene)
@@ -27,7 +28,25 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         appCoordinator.start()
     }
 
-    private func loginAndCheckToken() {
+    func sceneDidDisconnect(_ scene: UIScene) {
+    }
+
+    func sceneDidBecomeActive(_ scene: UIScene) {
+    }
+
+    func sceneWillResignActive(_ scene: UIScene) {
+    }
+
+    func sceneWillEnterForeground(_ scene: UIScene) {
+    }
+
+    func sceneDidEnterBackground(_ scene: UIScene) {
+    }
+}
+
+// MARK: Firebase Login
+extension SceneDelegate {
+    private func anonymouslyLogin() {
         var finished = false
 
         Auth.auth().signInAnonymously { result, error in
@@ -35,25 +54,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 return
             }
 
-            guard let user = result?.user else {
+            guard (result?.user).isSome else {
                 // 여기도 재시도 해보고 에러 처리
                 print("\(#file) Firebase SignIn Fail")
                 fatalError()
             }
 
-            user.getIDTokenForcingRefresh(false) { token, error in
-                guard error.isNone else {
-                    return
-                }
-
-                guard let authToken = token else {
-                    return
-                }
-
-                GlobalData.shared.userToken = authToken
-
-                finished = true
-            }
+            finished = true
         }
 
         while !finished {
@@ -72,12 +79,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         _ = Network.shared.request(with: .getMember,
                                    for: Member.self)
             .subscribe { member in
-
                 GlobalData.shared.id = member.id
                 GlobalData.shared.do {
-                    if let familyId = member.familyId { $0.familyId = familyId}
+                    if let familyId = member.familyId { $0.familyId = familyId }
                     if let point = member.point { $0.point = point }
-                    if let nickname = member.nickname { $0.nickname = nickname}
+                    if let nickname = member.nickname { $0.nickname = nickname }
                 }
 
                 finished = true
@@ -93,20 +99,5 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
 
         return
-    }
-
-    func sceneDidDisconnect(_ scene: UIScene) {
-    }
-
-    func sceneDidBecomeActive(_ scene: UIScene) {
-    }
-
-    func sceneWillResignActive(_ scene: UIScene) {
-    }
-
-    func sceneWillEnterForeground(_ scene: UIScene) {
-    }
-
-    func sceneDidEnterBackground(_ scene: UIScene) {
     }
 }

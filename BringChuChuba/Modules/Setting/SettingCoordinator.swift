@@ -42,6 +42,10 @@ final class SettingCoordinator: CoordinatorType {
         navigationController.pushViewController(doingMissionVC, animated: true)
     }
 
+    func showActivity(_ vc: UIActivityViewController) {
+        navigationController.present(vc, animated: true)
+    }
+
     func popToHome() {
         navigationController.popViewController(animated: true)
     }

@@ -17,6 +17,8 @@ target 'BringChuChuba' do
   # Networking
   pod 'Moya/RxSwift'
   pod 'Firebase/Auth'
+  pod 'Firebase/Analytics'
+  pod 'Firebase/DynamicLinks'
 
   # Rx
   pod 'RxSwift', '5.1.1'
