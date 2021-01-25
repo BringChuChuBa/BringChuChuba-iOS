@@ -11,33 +11,28 @@ import RxCocoa
 import SnapKit
 import Then
 
-final class MyMissionViewController: UIViewController {
-    // MARK: - Properties
+class MyMissionViewController: UIViewController {
+    // MARK: Properties
     var viewModel: MyMissionViewModel!
+    private var status: String?
     private let disposeBag = DisposeBag()
 
-    //    private lazy var pageVC: UIPageViewController = UIPageViewController(
-    //        transitionStyle: .scroll,
-    //        navigationOrientation: .horizontal,
-    //        options: nil).then { page in
-    //            let pageControl = UIPageControl.appearance()
-    //            pageControl.pageIndicatorTintColor = UIColor.lightGray
-    //            pageControl.currentPageIndicatorTintColor = UIColor.black
-    //            pageControl.backgroundColor = UIColor.white
-    //
-    //            page.dataSource = self
-    //    }
+    private lazy var footerView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 50)).then { footer in
+        footer.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+    }
 
     private lazy var tableView: UITableView = UITableView().then { table in
         // 50 Constant로 빼기
         table.rowHeight = 100
         table.register(MyMissionTableViewCell.self,
                        forCellReuseIdentifier: MyMissionTableViewCell.reuseIdentifier())
+        table.allowsSelection = false
     }
 
-    // MARK: - Initializers
-    init(viewModel: MyMissionViewModel) {
+    // MARK: Initializers
+    init(viewModel: MyMissionViewModel, status: String? = nil) {
         self.viewModel = viewModel
+        self.status = status
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -45,17 +40,16 @@ final class MyMissionViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: - LifeCycles
+    // MARK: LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
 
         bindViewModel()
         setupUI()
-        view.backgroundColor = #colorLiteral(red: 0.1294117719, green: 0.2156862766, blue: 0.06666667014, alpha: 1)
     }
 }
 
-// MARK: - Binds
+// MARK: Binds
 extension MyMissionViewController {
     func bindViewModel() {
         assert(viewModel.isSome)
@@ -64,7 +58,8 @@ extension MyMissionViewController {
             .mapToVoid()
             .asDriverOnErrorJustComplete()
 
-        let input = MyMissionViewModel.Input(appear: viewWillAppear)
+        let input = MyMissionViewModel.Input(status: status,
+                                             appear: viewWillAppear)
 
         let output = viewModel.transform(input: input)
 
@@ -74,12 +69,20 @@ extension MyMissionViewController {
                      cellType: MyMissionTableViewCell.self)
              ) { _, viewModel, cell in
                 cell.bind(with: viewModel)
-             }
+             },
+         output.error
+            .drive(errorBinding)
         ].forEach { $0.disposed(by: disposeBag) }
+    }
+
+    private var errorBinding: Binder<Error> {
+        return Binder(self, binding: { _, error in
+            print(error.localizedDescription)
+        })
     }
 }
 
-// MARK: - Set UIs
+// MARK: Set UIs
 extension MyMissionViewController {
     func setupUI() {
         view.addSubview(tableView)

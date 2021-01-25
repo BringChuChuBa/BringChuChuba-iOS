@@ -21,17 +21,28 @@ final class SettingCoordinator: CoordinatorType {
         navigationController.pushViewController(usersViewController, animated: true)
     }
 
+    func toProfile() {
+        let viewModel = ProfileViewModel(coordinator: self)
+        let profileVC: ProfileViewController = ProfileViewController(viewModel: viewModel)
+
+        navigationController.pushViewController(profileVC, animated: true)
+    }
+
     func toMyMission() {
         let viewModel = MyMissionViewModel(coordinator: self)
-        let myMissionVC: MyMissionViewController = MyMissionViewController(viewModel: viewModel)
+        let myMissionVC: MyMissionPageViewController = MyMissionPageViewController(viewModel: viewModel)
 
         navigationController.pushViewController(myMissionVC, animated: true)
     }
 
     func toDoingMission() {
-        let viewModel = DoingMissionViewModel(coordinator: self)
-        let doingMissionVC: DoingMissionViewController = DoingMissionViewController(viewModel: viewModel)
+        let viewModel = MyMissionViewModel(coordinator: self)
+        let doingMissionVC: MyMissionViewController = MyMissionViewController(viewModel: viewModel)
 
         navigationController.pushViewController(doingMissionVC, animated: true)
+    }
+
+    func popToHome() {
+        navigationController.popViewController(animated: true)
     }
 }

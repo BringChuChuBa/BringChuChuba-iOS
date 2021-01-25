@@ -56,6 +56,19 @@ class LoginViewController: UIViewController {
         $0.spacing = 10
     }
 
+    private var errorBinding: Binder<Error> {
+        return Binder(self, binding: { (vc, _) in
+            let alert = UIAlertController(title: "Login Error",
+                                          message: "Something went wrong",
+                                          preferredStyle: .alert)
+            let action = UIAlertAction(title: "Dismiss",
+                                       style: .cancel,
+                                       handler: nil)
+            alert.addAction(action)
+            vc.present(alert, animated: true, completion: nil)
+        })
+    }
+
     // MARK: - Initializers
     init(viewModel: LoginViewModel) {
         self.viewModel = viewModel
@@ -117,19 +130,6 @@ class LoginViewController: UIViewController {
          output.error
             .drive(errorBinding)
         ].forEach { $0.disposed(by: disposeBag) }
-    }
-
-    var errorBinding: Binder<Error> {
-        return Binder(self, binding: { (vc, _) in
-            let alert = UIAlertController(title: "Login Error",
-                                          message: "Something went wrong",
-                                          preferredStyle: .alert)
-            let action = UIAlertAction(title: "Dismiss",
-                                       style: .cancel,
-                                       handler: nil)
-            alert.addAction(action)
-            vc.present(alert, animated: true, completion: nil)
-        })
     }
 }
 

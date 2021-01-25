@@ -47,6 +47,7 @@ final class CreateMissionViewModel: ViewModelType {
             return !$0.isEmpty && !$1.isEmpty && !$2.isEmpty && !$3
         }
 
+        // TODO: DatePicker tnwjd
         let datePicker = input.expireClicked
             .flatMap { _ -> Driver<Bool> in
                 return Driver.just(false)
@@ -89,7 +90,8 @@ final class CreateMissionViewModel: ViewModelType {
             .do(onNext: coordinator.popToHome)
 
         return Output(
-            point: Driver.just(GlobalData.shared.point),
+            // TODO: point 필요없을거 같음
+            point: Driver.of(GlobalData.shared.point),
             datePickerHidden: datePicker,
             selectedDate: selectedDate,
             saveEnabled: emptyCheck,
