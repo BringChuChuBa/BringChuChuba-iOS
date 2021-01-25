@@ -21,6 +21,7 @@ target 'BringChuChuba' do
   # Rx
   pod 'RxSwift', '5.1.1'
   pod 'RxCocoa', '5.1.1'
+  pod 'RxGesture'
   
   target 'BringChuChubaTests' do
     inherit! :search_paths

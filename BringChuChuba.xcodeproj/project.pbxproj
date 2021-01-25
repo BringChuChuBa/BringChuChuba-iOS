@@ -34,6 +34,8 @@
 		40A2D4D425B5B59E0030A85E /* Observable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2D4D125B5B59E0030A85E /* Observable+Extension.swift */; };
 		40A2D4D525B5B59E0030A85E /* Cell+ReuseIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2D4D225B5B59E0030A85E /* Cell+ReuseIdentifiable.swift */; };
 		40A4C56125B98411008481A6 /* MissionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A4C56025B98411008481A6 /* MissionStatus.swift */; };
+		40A4C58525B99048008481A6 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A4C58425B99048008481A6 /* ProfileViewController.swift */; };
+		40A4C5A225B99052008481A6 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A4C5A125B99052008481A6 /* ProfileViewModel.swift */; };
 		40A9BAA025A1AC5600EC2988 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9BA9F25A1AC5600EC2988 /* AppDelegate.swift */; };
 		40A9BAA225A1AC5600EC2988 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9BAA125A1AC5600EC2988 /* SceneDelegate.swift */; };
 		40A9BAA925A1AC5700EC2988 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40A9BAA825A1AC5700EC2988 /* Assets.xcassets */; };
@@ -42,6 +44,8 @@
 		40BD9C3B25B803940072148E /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BD9C3A25B803940072148E /* Result.swift */; };
 		40BD9C4325B80AFC0072148E /* MyMissionPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BD9C4225B80AFC0072148E /* MyMissionPageViewController.swift */; };
 		40BD9C7425B814100072148E /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40BD9C7325B814100072148E /* BaseViewController.swift */; };
+		40D3CE6625BD5E60000620A0 /* UIImagePickerController+RxCreate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D3CE6525BD5E60000620A0 /* UIImagePickerController+RxCreate.swift */; };
+		40D3CE8325BD699D000620A0 /* UIImagePickerController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D3CE8225BD699D000620A0 /* UIImagePickerController+Rx.swift */; };
 		40D646BF25AE8CC30004ECEC /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D646BE25AE8CC30004ECEC /* Network.swift */; };
 		40D6473F25AE976A0004ECEC /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40D6473E25AE976A0004ECEC /* Router.swift */; };
 		40E5132225A330D40032F712 /* HomeCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5132125A330D40032F712 /* HomeCoordinator.swift */; };
@@ -115,6 +119,8 @@
 		40A2D4D125B5B59E0030A85E /* Observable+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Observable+Extension.swift"; sourceTree = "<group>"; };
 		40A2D4D225B5B59E0030A85E /* Cell+ReuseIdentifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Cell+ReuseIdentifiable.swift"; sourceTree = "<group>"; };
 		40A4C56025B98411008481A6 /* MissionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionStatus.swift; sourceTree = "<group>"; };
+		40A4C58425B99048008481A6 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		40A4C5A125B99052008481A6 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		40A9BA9C25A1AC5600EC2988 /* BringChuChuba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BringChuChuba.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40A9BA9F25A1AC5600EC2988 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40A9BAA125A1AC5600EC2988 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -129,6 +135,8 @@
 		40BD9C3A25B803940072148E /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		40BD9C4225B80AFC0072148E /* MyMissionPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMissionPageViewController.swift; sourceTree = "<group>"; };
 		40BD9C7325B814100072148E /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		40D3CE6525BD5E60000620A0 /* UIImagePickerController+RxCreate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImagePickerController+RxCreate.swift"; sourceTree = "<group>"; };
+		40D3CE8225BD699D000620A0 /* UIImagePickerController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImagePickerController+Rx.swift"; sourceTree = "<group>"; };
 		40D646BE25AE8CC30004ECEC /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		40D6473E25AE976A0004ECEC /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		40E5132125A330D40032F712 /* HomeCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCoordinator.swift; sourceTree = "<group>"; };
@@ -258,8 +266,19 @@
 				40A2D4D025B5B59E0030A85E /* Optional+Extension.swift */,
 				40A2D4D125B5B59E0030A85E /* Observable+Extension.swift */,
 				40A2D4D225B5B59E0030A85E /* Cell+ReuseIdentifiable.swift */,
+				40D3CE6525BD5E60000620A0 /* UIImagePickerController+RxCreate.swift */,
+				40D3CE8225BD699D000620A0 /* UIImagePickerController+Rx.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		40A4C58325B99037008481A6 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				40A4C58425B99048008481A6 /* ProfileViewController.swift */,
+				40A4C5A125B99052008481A6 /* ProfileViewModel.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		40A9BA9325A1AC5600EC2988 = {
@@ -422,6 +441,7 @@
 				408FF29825A471000032C5D1 /* SettingViewController.swift */,
 				4015764925A47AAE00AB4296 /* SettingViewModel.swift */,
 				407036B225B6BEDA00DE4857 /* MyMission */,
+				40A4C58325B99037008481A6 /* Profile */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -723,9 +743,12 @@
 				406FFDEA25A43EA4005C5566 /* HomeViewModel.swift in Sources */,
 				40A9BAA025A1AC5600EC2988 /* AppDelegate.swift in Sources */,
 				40A2D4BE25B5B4F10030A85E /* DetailMissionViewController.swift in Sources */,
+				40A4C58525B99048008481A6 /* ProfileViewController.swift in Sources */,
 				40D6473F25AE976A0004ECEC /* Router.swift in Sources */,
 				401D6C9125A6BA5B00113273 /* ErrorTracker.swift in Sources */,
+				40A4C5A225B99052008481A6 /* ProfileViewModel.swift in Sources */,
 				40BD9C3B25B803940072148E /* Result.swift in Sources */,
+				40D3CE6625BD5E60000620A0 /* UIImagePickerController+RxCreate.swift in Sources */,
 				4015765A25A4803600AB4296 /* Log.swift in Sources */,
 				40A2D4D425B5B59E0030A85E /* Observable+Extension.swift in Sources */,
 				40A4C56125B98411008481A6 /* MissionStatus.swift in Sources */,
@@ -758,6 +781,7 @@
 				401D6C8625A6BA0900113273 /* ActivityIndicator.swift in Sources */,
 				5D88CCF725A33407008B9D61 /* Mission.swift in Sources */,
 				5D39BFE925AF032B00356E7E /* LoginViewModel.swift in Sources */,
+				40D3CE8325BD699D000620A0 /* UIImagePickerController+Rx.swift in Sources */,
 				5D88CCB325A3013C008B9D61 /* Member.swift in Sources */,
 				407036B525B6BEFC00DE4857 /* MyMissionViewController.swift in Sources */,
 				5D88CC9625A2FB85008B9D61 /* CalendarViewController.swift in Sources */,

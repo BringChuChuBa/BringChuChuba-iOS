@@ -32,6 +32,7 @@ final class Network {
             .filterSuccessfulStatusCodes() // validate 200 ~ 299
             .map(T.self) // decode
             .catchError { err in
+                print(err.localizedDescription)
                 throw err
             }
     }
@@ -43,6 +44,7 @@ final class Network {
             .filterSuccessfulStatusCodes()
             .map([T].self)
             .catchError { err in
+                print(err.localizedDescription)
                 throw err
             }
     }

@@ -22,6 +22,10 @@ final class SettingCoordinator: CoordinatorType {
     }
 
     func toProfile() {
+        let viewModel = ProfileViewModel(coordinator: self)
+        let profileVC: ProfileViewController = ProfileViewController(viewModel: viewModel)
+
+        navigationController.pushViewController(profileVC, animated: true)
     }
 
     func toMyMission() {
@@ -36,5 +40,9 @@ final class SettingCoordinator: CoordinatorType {
         let doingMissionVC: MyMissionViewController = MyMissionViewController(viewModel: viewModel)
 
         navigationController.pushViewController(doingMissionVC, animated: true)
+    }
+
+    func popToHome() {
+        navigationController.popViewController(animated: true)
     }
 }

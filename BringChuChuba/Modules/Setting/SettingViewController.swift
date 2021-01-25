@@ -15,7 +15,7 @@ final class SettingViewController: UIViewController {
     // MARK: - Properties
     var viewModel: SettingViewModel!
     private let disposeBag = DisposeBag()
-    private let tapGesture = UITapGestureRecognizer()
+//    private let tapGesture = UITapGestureRecognizer()
 
     // navigation Items
     private lazy var titleLabel: UILabel = UILabel().then { label in
@@ -44,9 +44,10 @@ final class SettingViewController: UIViewController {
         stack.distribution = .fillEqually
     }
 
-    private lazy var photo: UIImageView = UIImageView().then { image in
+    private lazy var profileImage: UIImageView = UIImageView().then { image in
+        // TODO: 서버에서 프로필 사진 받아와서 연결
         image.image = UIImage(named: "profile")
-        image.addGestureRecognizer(tapGesture)
+//        image.addGestureRecognizer(tapGesture)
     }
 
     private lazy var nicknameLabel: UILabel = UILabel().then { label in
@@ -95,8 +96,8 @@ final class SettingViewController: UIViewController {
 extension SettingViewController {
     func bindViewModel() {
         assert(viewModel.isSome)
-        
-        let input = SettingViewModel.Input(photoTrigger: tapGesture.rx.event.asDriver(),
+
+        let input = SettingViewModel.Input(photoTrigger: profileImage.rx.tap().asDriverOnErrorJustComplete(),
                                            myMissionTrigger: myMissionButton.rx.tap.asDriver(),
                                            doingMissionTrigger: doingMissionButton.rx.tap.asDriver())
 
@@ -122,7 +123,7 @@ extension SettingViewController {
         // add subviews
         view.addSubview(profileStackView)
 
-        profileStackView.addArrangedSubview(photo)
+        profileStackView.addArrangedSubview(profileImage)
         profileStackView.addArrangedSubview(nameStackView)
 
         nameStackView.addArrangedSubview(nicknameLabel)
@@ -140,8 +141,8 @@ extension SettingViewController {
             make.height.equalTo(100)
         }
 
-        photo.snp.makeConstraints { make in
-            make.height.equalTo(photo.snp.width)
+        profileImage.snp.makeConstraints { make in
+            make.height.equalTo(profileImage.snp.width)
         }
 
         nicknameLabel.snp.makeConstraints { make in
@@ -166,22 +167,22 @@ extension SettingViewController {
 
 // MARK: - Previews
 
-#if canImport(SwiftUI) && DEBUG
-import SwiftUI
-@available(iOS 13.0, *)
-struct SettingViewControllerRepresentable: UIViewControllerRepresentable {
-    func makeUIViewController(context: Context) -> SettingViewController {
-        SettingViewController(viewModel: SettingViewModel(coordinator: SettingCoordinator(navigationController: UINavigationController())))
-    }
-    func updateUIViewController(_ uiViewController: SettingViewController, context: Context) {
-
-    }
-}
-
-@available(iOS 13.0, *)
-struct SettingViewControllerPreview: PreviewProvider {
-    static var previews: some View {
-        SettingViewControllerRepresentable()
-    }
-}
-#endif
+// #if canImport(SwiftUI) && DEBUG
+// import SwiftUI
+// @available(iOS 13.0, *)
+// struct SettingViewControllerRepresentable: UIViewControllerRepresentable {
+//     func makeUIViewController(context: Context) -> SettingViewController {
+//         SettingViewController(viewModel: SettingViewModel(coordinator: SettingCoordinator(navigationController: // UINavigationController())))
+//     }
+//     func updateUIViewController(_ uiViewController: SettingViewController, context: Context) {
+// 
+//     }
+// }
+// 
+// @available(iOS 13.0, *)
+// struct SettingViewControllerPreview: PreviewProvider {
+//     static var previews: some View {
+//         SettingViewControllerRepresentable()
+//     }
+// }
+// #endif

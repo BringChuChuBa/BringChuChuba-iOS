@@ -49,7 +49,6 @@ extension Router: TargetType {
             return "/mission/client/\(missionUid)"
         case .deleteMission(let missionUid):
             return "/mission/\(missionUid)"
-
         }
     }
 
@@ -98,13 +97,12 @@ extension Router: TargetType {
             return .requestParameters(parameters: ["familyId": familyId],
                                       encoding: URLEncoding.queryString)
         case .createMission(let missionDetails):
-            return .requestParameters(
-                parameters: ["description": missionDetails.description,
-                             "expireAt": missionDetails.expireAt,
-                             "familyId": missionDetails.familyId,
-                             "reward": missionDetails.reward,
-                             "title": missionDetails.title],
-                encoding: JSONEncoding.default)
+            return .requestParameters(parameters: ["description": missionDetails.description,
+                                                   "expireAt": missionDetails.expireAt,
+                                                   "familyId": missionDetails.familyId,
+                                                   "reward": missionDetails.reward,
+                                                   "title": missionDetails.title],
+                                      encoding: JSONEncoding.default)
         case .changeNickName(let nickname):
             return .requestParameters(parameters: ["nickname": nickname],
                                       encoding: JSONEncoding.default)

@@ -11,7 +11,7 @@ import RxSwift
 final class SettingViewModel: ViewModelType {
     // MARK: - Structs
     struct Input {
-        let photoTrigger: Driver<UITapGestureRecognizer>
+        let photoTrigger: Driver<Void>
         let myMissionTrigger: Driver<Void>
         let doingMissionTrigger: Driver<Void>
     }
@@ -33,7 +33,6 @@ final class SettingViewModel: ViewModelType {
     // MARK: - Methods
     func transform(input: Input) -> Output {
         let profile = input.photoTrigger
-            .mapToVoid()
             .do(onNext: coordinator.toProfile)
 
         let myMission = input.myMissionTrigger
