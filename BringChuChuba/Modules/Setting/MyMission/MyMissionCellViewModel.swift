@@ -31,7 +31,7 @@ final class MyMissionCellViewModel: ViewModelType {
         self.mission = mission
         self.title = mission.title
         self.description = mission.description ?? "No description"
-        self.status = mission.status
+        self.status = mission.status.rawValue
     }
 
     func transform(input: Input) -> Output {

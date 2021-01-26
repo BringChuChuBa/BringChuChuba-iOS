@@ -48,7 +48,7 @@ final class DetailMissionViewModel: ViewModelType {
 
         let contractEnable = mission
             .filter { $0.client.id != GlobalData.shared.id }
-            .filter { $0.status == "todo" } // .todo
+            .filter { $0.status == .todo }
             .filter { dateFormatter.date(from: $0.expireAt)! > Date() }
             .map { $0.contractor.isNone }
             .startWith(false)
@@ -85,7 +85,7 @@ final class DetailMissionViewModel: ViewModelType {
             items.append(DetailMissionSectionItem.expireAtItem(viewModel: expireAtCellViewModel))
 
             // status
-            let statusCellViewModel = DetailMissionCellViewModel(with: "상태", detail: mission.status)
+            let statusCellViewModel = DetailMissionCellViewModel(with: "상태", detail: mission.status.rawValue)
             items.append(DetailMissionSectionItem.statusItem(viewModel: statusCellViewModel))
 
             var detailMissionSections: [DetailMissionSection] = []

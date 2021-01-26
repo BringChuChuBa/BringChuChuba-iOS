@@ -7,6 +7,12 @@
 
 import Foundation
 
+enum Status: String, Decodable {
+    case todo
+    case inProgress
+    case complete
+}
+
 struct Mission: Decodable {
     let client: Member
     var contractor: Member?
@@ -17,7 +23,7 @@ struct Mission: Decodable {
     let id: String
     var modifiedAt: String
     var reward: String
-    var status: String
+    var status: Status
     var title: String
 }
 

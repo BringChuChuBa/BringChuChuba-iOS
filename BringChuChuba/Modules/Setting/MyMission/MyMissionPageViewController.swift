@@ -15,9 +15,9 @@ final class MyMissionPageViewController: UIPageViewController {
     // MARK: Properties
     var viewModel: MyMissionViewModel!
     private let disposeBag = DisposeBag()
-    private let missionStatus: [String] = [MissionStatus.todo.rawValue,
-                                           MissionStatus.inProgress.rawValue,
-                                           MissionStatus.complete.rawValue]
+    private let missionStatus: [String] = [Status.todo.rawValue,
+                                           Status.inProgress.rawValue,
+                                           Status.complete.rawValue]
 
     private lazy var pages: [UIViewController] = [MyMissionViewController(viewModel: viewModel,
                                                                               status: missionStatus[0]),

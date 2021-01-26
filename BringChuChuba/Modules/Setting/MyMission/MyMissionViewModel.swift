@@ -48,9 +48,9 @@ final class MyMissionViewModel: ViewModelType {
                         }
                         .filter { mission -> Bool in
                             if input.status.isSome {
-                                return mission.status == input.status
+                                return mission.status.rawValue == input.status
                             } else {
-                                return mission.status == MissionStatus.inProgress.rawValue
+                                return mission.status == .inProgress
                             }
                         }
                         .map { mission in

@@ -32,7 +32,6 @@
 		40A2D4D325B5B59E0030A85E /* Optional+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2D4D025B5B59E0030A85E /* Optional+Extension.swift */; };
 		40A2D4D425B5B59E0030A85E /* Observable+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2D4D125B5B59E0030A85E /* Observable+Extension.swift */; };
 		40A2D4D525B5B59E0030A85E /* Cell+ReuseIdentifiable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2D4D225B5B59E0030A85E /* Cell+ReuseIdentifiable.swift */; };
-		40A4C56125B98411008481A6 /* MissionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A4C56025B98411008481A6 /* MissionStatus.swift */; };
 		40A4C58525B99048008481A6 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A4C58425B99048008481A6 /* ProfileViewController.swift */; };
 		40A4C5A225B99052008481A6 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A4C5A125B99052008481A6 /* ProfileViewModel.swift */; };
 		40A9BAA025A1AC5600EC2988 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9BA9F25A1AC5600EC2988 /* AppDelegate.swift */; };
@@ -123,7 +122,6 @@
 		40A2D4D025B5B59E0030A85E /* Optional+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Optional+Extension.swift"; sourceTree = "<group>"; };
 		40A2D4D125B5B59E0030A85E /* Observable+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Observable+Extension.swift"; sourceTree = "<group>"; };
 		40A2D4D225B5B59E0030A85E /* Cell+ReuseIdentifiable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Cell+ReuseIdentifiable.swift"; sourceTree = "<group>"; };
-		40A4C56025B98411008481A6 /* MissionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionStatus.swift; sourceTree = "<group>"; };
 		40A4C58425B99048008481A6 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		40A4C5A125B99052008481A6 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		40A9BA9C25A1AC5600EC2988 /* BringChuChuba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BringChuChuba.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -225,7 +223,6 @@
 				40E5136B25A3FF150032F712 /* SceneType.swift */,
 				5D88CC7E25A2FA1B008B9D61 /* CoordinatorType.swift */,
 				401D6CCA25A6D22600113273 /* ViewModelType.swift */,
-				40A4C56025B98411008481A6 /* MissionStatus.swift */,
 			);
 			path = "Protocols & Enums";
 			sourceTree = "<group>";
@@ -762,15 +759,12 @@
 				40A4C58525B99048008481A6 /* ProfileViewController.swift in Sources */,
 				40D6473F25AE976A0004ECEC /* Router.swift in Sources */,
 				401D6C9125A6BA5B00113273 /* ErrorTracker.swift in Sources */,
-				40BD9C5525B8101C0072148E /* MyMissionCompleteViewController.swift in Sources */,
 				5D55B77325B915230055A9D8 /* DetailMissionCellViewModel.swift in Sources */,
-				4089AF1F25B6CCA900DA51D7 /* DoingMissionItemViewModel.swift in Sources */,
 				40A4C5A225B99052008481A6 /* ProfileViewModel.swift in Sources */,
 				40BD9C3B25B803940072148E /* Result.swift in Sources */,
 				40D3CE6625BD5E60000620A0 /* UIImagePickerController+RxCreate.swift in Sources */,
 				4015765A25A4803600AB4296 /* Log.swift in Sources */,
 				40A2D4D425B5B59E0030A85E /* Observable+Extension.swift in Sources */,
-				40A4C56125B98411008481A6 /* MissionStatus.swift in Sources */,
 				40A2D4C525B5B4FC0030A85E /* CreateMissionViewController.swift in Sources */,
 				5D55B72625B90C730055A9D8 /* DetailMissionSection.swift in Sources */,
 				408FF29925A471000032C5D1 /* SettingViewController.swift in Sources */,
