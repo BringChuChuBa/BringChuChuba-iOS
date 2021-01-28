@@ -6,20 +6,36 @@
 //
 
 import UIKit
-import RxSwift
+
 import RxCocoa
+import RxSwift
 import SnapKit
 import Then
 
 final class RankingViewController: UIViewController {
+    private enum Period: Int, CaseIterable {
+        case all = 0
+        case monthly
+        case weekly
+
+        var description: String {
+            switch self {
+            case .all: return "all"
+            case .monthly: return "monthly"
+            case .weekly: return "weekly"
+            }
+        }
+    }
+
     // MARK: Properties
     private let viewModel: RankingViewModel!
     private let disposeBag: DisposeBag = DisposeBag()
 
     // MARK: UI Components
-    private lazy var segmentedControl = UISegmentedControl(items: Period.allCases.map { $0.description.capitalized }).then {
-        $0.selectedSegmentIndex = 0
-    }
+    private lazy var segmentedControl = UISegmentedControl(
+        items: Period.allCases.map { $0.description.capitalized }).then {
+            $0.selectedSegmentIndex = 0
+        }
 
     private lazy var tableView = UITableView(frame: CGRect(), style: .plain).then {
         $0.register(RankingCell.self, forCellReuseIdentifier: RankingCell.reuseIdentifier())
@@ -40,27 +56,8 @@ final class RankingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupUI()
         bindViewModel()
-    }
-
-    // MARK: Set UIs
-    private func setupUI() {
-        navigationItem.title = String("랭킹")
-        //        navigationItem.titleView = segmentedControl
-        view.backgroundColor = .systemBackground
-
-        view.addSubview(segmentedControl)
-        segmentedControl.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(50)
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-        }
-
-        view.addSubview(tableView)
-        tableView.snp.makeConstraints { make in
-            make.leading.bottom.trailing.equalToSuperview()
-            make.top.equalTo(segmentedControl.snp.bottom)
-        }
+        setupUI()
     }
 
     // MARK: Binds
@@ -72,26 +69,32 @@ final class RankingViewController: UIViewController {
         )
 
         let output = viewModel.transform(input: input)
-        //        output.items.drive(tableView.rx.items()
         [output.items
-            .drive(tableView.rx.items(cellIdentifier: RankingCell.reuseIdentifier()
-                                      , cellType: RankingCell.self)) { indexPath, viewModel, cell in
+            .drive(tableView.rx.items(
+                    cellIdentifier: RankingCell.reuseIdentifier(),
+                    cellType: RankingCell.self)) { indexPath, viewModel, cell in
                 cell.bind(to: viewModel, rank: indexPath + 1)
             }
         ].forEach { $0.disposed(by: disposeBag) }
     }
-}
 
-enum Period: Int, CaseIterable {
-    case all = 0
-    case monthly
-    case weekly
+    // MARK: Set UIs
+    private func setupUI() {
+        view.backgroundColor = .systemBackground
 
-    var description: String {
-        switch self {
-        case .all: return "all"
-        case .monthly: return "monthly"
-        case .weekly: return "weekly"
+        navigationItem.title = "Ranking.Navigation.Title".localized
+
+        view.addSubview(segmentedControl)
+        view.addSubview(tableView)
+
+        segmentedControl.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(50)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+        }
+
+        tableView.snp.makeConstraints { make in
+            make.leading.bottom.trailing.equalToSuperview()
+            make.top.equalTo(segmentedControl.snp.bottom)
         }
     }
 }

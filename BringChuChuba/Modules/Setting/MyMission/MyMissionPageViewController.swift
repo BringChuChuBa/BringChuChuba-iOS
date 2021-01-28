@@ -6,25 +6,26 @@
 //
 
 import UIKit
-import RxSwift
+
 import RxCocoa
+import RxSwift
 import SnapKit
 import Then
 
 final class MyMissionPageViewController: UIPageViewController {
     // MARK: Properties
-    var viewModel: MyMissionViewModel!
+    private var viewModel: MyMissionViewModel!
     private let disposeBag = DisposeBag()
-    private let missionStatus: [String] = [Status.todo.rawValue,
-                                           Status.inProgress.rawValue,
-                                           Status.complete.rawValue]
+    private let missionStatus: [String] = [
+        Mission.Status.todo.rawValue,
+        Mission.Status.inProgress.rawValue,
+        Mission.Status.complete.rawValue]
 
-    private lazy var pages: [UIViewController] = [MyMissionViewController(viewModel: viewModel,
-                                                                              status: missionStatus[0]),
-                                                  MyMissionViewController(viewModel: viewModel,
-                                                                              status: missionStatus[1]),
-                                                  MyMissionViewController(viewModel: viewModel,
-                                                                              status: missionStatus[2])]
+    // MARK: UI Components
+    private lazy var pages: [UIViewController] = [
+        MyMissionViewController(viewModel: viewModel, status: missionStatus[0]),
+        MyMissionViewController(viewModel: viewModel, status: missionStatus[1]),
+        MyMissionViewController(viewModel: viewModel, status: missionStatus[2])]
 
     private lazy var segmentedControl: UISegmentedControl = UISegmentedControl(items: missionStatus).then { seg in
         seg.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
@@ -44,7 +45,7 @@ final class MyMissionPageViewController: UIPageViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: LifeCycles
+    // MARK: Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -52,11 +53,9 @@ final class MyMissionPageViewController: UIPageViewController {
         assignDelegatesAndDataSources()
         assignDefaultPage()
     }
-}
 
-// MARK: Set UIs
-extension MyMissionPageViewController {
-    func setupUI() {
+    // MARK: Set UIs
+    private func setupUI() {
         navigationItem.titleView = segmentedControl
     }
 }

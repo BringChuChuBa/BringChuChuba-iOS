@@ -5,8 +5,8 @@
 //  Created by 한상진 on 2021/01/19.
 //
 
-import RxSwift
 import RxCocoa
+import RxSwift
 
 final class ProfileViewModel: ViewModelType {
     // MARK: Structs
@@ -32,7 +32,7 @@ final class ProfileViewModel: ViewModelType {
         self.coordinator = coordinator
     }
 
-    // MARK: Transform Methods
+    // MARK: Methods
     func transform(input: Input) -> Output {
         let errorTracker = ErrorTracker()
         let error = errorTracker.asDriver()

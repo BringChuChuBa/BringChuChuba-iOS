@@ -6,29 +6,19 @@
 //
 
 import UIKit
-import RxSwift
+
 import RxCocoa
+import RxSwift
 import SnapKit
 import Then
 
 final class SettingViewController: UIViewController {
-    // MARK: - Properties
+    // MARK: Properties
     var viewModel: SettingViewModel!
     private let disposeBag = DisposeBag()
-//    private let tapGesture = UITapGestureRecognizer()
+    //    private let tapGesture = UITapGestureRecognizer()
 
-    // navigation Items
-    private lazy var titleLabel: UILabel = UILabel().then { label in
-        let attributedString = NSAttributedString(string: NSLocalizedString("나의 쭈쭈바", comment: ""),
-                                                  attributes: [
-                                                    .font: UIFont.systemFont(ofSize: 16.0),
-                                                    .foregroundColor: UIColor.black
-                                                  ])
-        label.attributedText = attributedString
-    }
-
-    private lazy var titleBarButtonItem: UIBarButtonItem = UIBarButtonItem(customView: titleLabel)
-
+    // MARK: UI Components
     // profiles
     private lazy var profileStackView: UIStackView = UIStackView().then { stack in
         stack.axis = .horizontal
@@ -47,7 +37,7 @@ final class SettingViewController: UIViewController {
     private lazy var profileImage: UIImageView = UIImageView().then { image in
         // TODO: 서버에서 프로필 사진 받아와서 연결
         image.image = UIImage(named: "profile")
-//        image.addGestureRecognizer(tapGesture)
+        //        image.addGestureRecognizer(tapGesture)
     }
 
     private lazy var nicknameLabel: UILabel = UILabel().then { label in
@@ -62,18 +52,18 @@ final class SettingViewController: UIViewController {
     private lazy var myMissionButton: UIButton = UIButton(type: .system).then { button in
         button.setTitle("myMission", for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
-//        button.layer.borderWidth = 0.5
-//        button.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        //        button.layer.borderWidth = 0.5
+        //        button.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
     }
 
     private lazy var doingMissionButton: UIButton = UIButton(type: .system).then { button in
         button.setTitle("doingMission", for: .normal)
         button.setTitleColor(.systemBlue, for: .normal)
-//        button.layer.borderWidth = 0.5
-//        button.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+        //        button.layer.borderWidth = 0.5
+        //        button.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
     }
 
-    // MARK: - Initializers
+    // MARK: Initializers
     init(viewModel: SettingViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -83,23 +73,22 @@ final class SettingViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: - Life Cycles
+    // MARK: Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
 
         bindViewModel()
         setupUI()
     }
-}
 
-// MARK: - Binds
-extension SettingViewController {
-    func bindViewModel() {
+    // MARK: Binds
+    private func bindViewModel() {
         assert(viewModel.isSome)
 
-        let input = SettingViewModel.Input(photoTrigger: profileImage.rx.tap().asDriverOnErrorJustComplete(),
-                                           myMissionTrigger: myMissionButton.rx.tap.asDriver(),
-                                           doingMissionTrigger: doingMissionButton.rx.tap.asDriver())
+        let input = SettingViewModel.Input(
+            photoTrigger: profileImage.rx.tap().asDriverOnErrorJustComplete(),
+            myMissionTrigger: myMissionButton.rx.tap.asDriver(),
+            doingMissionTrigger: doingMissionButton.rx.tap.asDriver())
 
         let output = viewModel.transform(input: input)
 
@@ -111,14 +100,12 @@ extension SettingViewController {
             .drive()
         ].forEach { $0.disposed(by: disposeBag) }
     }
-}
 
-// MARK: - Set UIs
-extension SettingViewController {
-    func setupUI() {
-        view.backgroundColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
+    // MARK: Set UIs
+    private func setupUI() {
+        view.backgroundColor = .systemBackground
 
-        navigationItem.leftBarButtonItem = titleBarButtonItem
+        navigationItem.title = "Setting.Navigation.Title".localized
 
         // add subviews
         view.addSubview(profileStackView)
@@ -164,8 +151,7 @@ extension SettingViewController {
         }
     }
 }
-
-// MARK: - Previews
+// MARK: Previews
 
 // #if canImport(SwiftUI) && DEBUG
 // import SwiftUI

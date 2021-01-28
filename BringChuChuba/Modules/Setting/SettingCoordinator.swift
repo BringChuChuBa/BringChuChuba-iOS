@@ -6,6 +6,7 @@
 //
 
 import UIKit
+
 import RxSwift
 
 final class SettingCoordinator: CoordinatorType {
@@ -13,6 +14,7 @@ final class SettingCoordinator: CoordinatorType {
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+        self.navigationController.navigationBar.prefersLargeTitles = true
     }
 
     func start() {

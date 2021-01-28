@@ -17,6 +17,6 @@ final class HomeItemViewModel {
     init (with mission: Mission) {
         self.mission = mission
         self.title = mission.title
-        self.subtitle = mission.description ?? "미션 설명"
+        self.subtitle = mission.description ?? "Common.Description".localized
     }
 }

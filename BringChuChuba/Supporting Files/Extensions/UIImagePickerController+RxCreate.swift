@@ -6,8 +6,9 @@
 //
 
 import UIKit
-import RxSwift
+
 import RxCocoa
+import RxSwift
 
 func dismissViewController(_ viewController: UIViewController, animated: Bool) {
     if viewController.isBeingDismissed || viewController.isBeingPresented {

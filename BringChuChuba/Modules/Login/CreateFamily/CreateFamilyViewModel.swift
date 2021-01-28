@@ -6,16 +6,12 @@
 //
 
 import Foundation
-import RxSwift
+
 import RxCocoa
+import RxSwift
 
 final class CreateFamilyViewModel: ViewModelType {
-    private let coordinator: LoginCoordinator
-
-    init(coordinator: LoginCoordinator) {
-        self.coordinator = coordinator
-    }
-
+    // MARK: Structs
     struct Input {
         let familyName: Driver<String>
         let createTrigger: Driver<Void>
@@ -29,6 +25,15 @@ final class CreateFamilyViewModel: ViewModelType {
         let error: Driver<Error>
     }
 
+    // MARK: Properties
+    private let coordinator: LoginCoordinator
+
+    // MARK: Initializers
+    init(coordinator: LoginCoordinator) {
+        self.coordinator = coordinator
+    }
+
+    // MARK: Methods
     func transform(input: Input) -> Output {
         let errorTracker = ErrorTracker()
 
@@ -38,21 +43,24 @@ final class CreateFamilyViewModel: ViewModelType {
 
         let create = input.createTrigger.withLatestFrom(input.familyName)
             .flatMapLatest { familyName -> Driver<Family> in
-                Network.shared.request(with: .createFamily(familyName: familyName),
-                                       for: Family.self)
-                    .trackError(errorTracker)
-                    .asDriverOnErrorJustComplete()
+                Network.shared.request(
+                    with: .createFamily(familyName: familyName),
+                    for: Family.self
+                )
+                .trackError(errorTracker)
+                .asDriverOnErrorJustComplete()
             }.do { [unowned self] family in
                 GlobalData.shared.familyId = family.id
                 self.coordinator.toHome()
             }
 
-        let toJoin = input.joinTrigger
-            .do(onNext: coordinator.toJoin)
+        let toJoin = input.joinTrigger.do(onNext: coordinator.toJoin)
 
-        return Output(createEnable: createEnable,
+        return Output(
+            createEnable: createEnable,
                       create: create,
                       toJoin: toJoin,
-                      error: errorTracker.asDriver())
+                      error: errorTracker.asDriver()
+        )
     }
 }

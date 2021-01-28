@@ -5,11 +5,11 @@
 //  Created by 한상진 on 2021/01/19.
 //
 
-import RxSwift
 import RxCocoa
+import RxSwift
 
 final class MyMissionCellViewModel: ViewModelType {
-    // MARK: - Structs
+    // MARK: Structs
     struct Input {
         let deleteTrigger: Driver<Void>
         let completeTrigger: Driver<Void>
@@ -34,6 +34,7 @@ final class MyMissionCellViewModel: ViewModelType {
         self.status = mission.status.rawValue
     }
 
+    // MARK: Methods
     func transform(input: Input) -> Output {
         let errorTracker = ErrorTracker()
 
@@ -42,8 +43,7 @@ final class MyMissionCellViewModel: ViewModelType {
                 guard let self = self else { return Driver.empty() }
                 guard let missionUid = Int(self.mission.id) else { return Driver.empty() }
 
-                return Network.shared.request(with: .deleteMission(missionUid: missionUid),
-                                              for: Result.self)
+                return Network.shared.request(with: .deleteMission(missionUid: missionUid), for: Result.self)
                     .trackError(errorTracker)
                     .map { _ in }
                     .asDriverOnErrorJustComplete()
@@ -54,8 +54,7 @@ final class MyMissionCellViewModel: ViewModelType {
                 guard let self = self else { return Driver.empty() }
                 guard let missionUid = Int(self.mission.id) else { return Driver.empty() }
 
-                return Network.shared.request(with: .completeMission(missionUid: missionUid),
-                                              for: Mission.self)
+                return Network.shared.request(with: .completeMission(missionUid: missionUid), for: Mission.self)
                     .trackError(errorTracker)
                     .map { _ in }
                     .asDriverOnErrorJustComplete()

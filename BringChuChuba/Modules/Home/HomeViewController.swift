@@ -6,42 +6,38 @@
 //
 
 import UIKit
-import Then
-import SnapKit
-import RxSwift
+
 import RxCocoa
+import RxSwift
+import SnapKit
+import Then
 
 final class HomeViewController: UIViewController {
-    // MARK: - Properties
-    var viewModel: HomeViewModel!
+    // MARK: Properties
+    private let viewModel: HomeViewModel!
     private let disposeBag: DisposeBag = DisposeBag()
 
-    private lazy var activityIndicator: UIActivityIndicatorView = UIActivityIndicatorView().then { indicator in
+    // MARK: UI Components
+    private lazy var activityIndicator = UIActivityIndicatorView().then {
         // color constants로 뺴기
-        indicator.color = UIColor(red: 0.25, green: 0.72, blue: 0.85, alpha: 1.0)
+        $0.color = UIColor(red: 0.25, green: 0.72, blue: 0.85, alpha: 1.0)
     }
 
-    private lazy var tableView: UITableView = UITableView().then { table in
-        // 50 Constant로 빼기
-        table.rowHeight = 50
-        table.refreshControl = UIRefreshControl()
-        table.register(
+    private lazy var tableView = UITableView().then {
+        $0.rowHeight = 50
+        $0.refreshControl = UIRefreshControl()
+        $0.register(
             HomeTableViewCell.self,
             forCellReuseIdentifier: HomeTableViewCell.reuseIdentifier()
         )
     }
 
-    private lazy var createBarButtonItem: UIBarButtonItem = UIBarButtonItem().then { button in
-        button.title = "create" // 추후 이미지로 교체
-        button.style = .done
+    private lazy var createBarButtonItem = UIBarButtonItem().then {
+        $0.title = "Home.Navigation.CreateButton.Title".localized
+        $0.style = .done
     }
 
-    private lazy var detailMissionButton: UIButton = UIButton(type: .system).then { button in
-        button.setTitle("detail", for: .normal)
-        button.setTitleColor(.systemBlue, for: .normal)
-    }
-
-    // MARK: - Initializers
+    // MARK: Initializers
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -51,7 +47,7 @@ final class HomeViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: - LifeCycles
+    // MARK: Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -59,15 +55,12 @@ final class HomeViewController: UIViewController {
         setupUI()
     }
 
-    // MARK: - Methods
-}
-
-// MARK: - Binds
-extension HomeViewController {
+    // MARK: Binds
     private func bindViewModel() {
         assert(viewModel.isSome)
 
-        let viewWillAppear = rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
+        let viewWillAppear = rx
+            .sentMessage(#selector(UIViewController.viewWillAppear(_:)))
             .mapToVoid()
             .asDriverOnErrorJustComplete()
 
@@ -86,8 +79,8 @@ extension HomeViewController {
         [output.missions
             .drive(tableView.rx.items(
                     cellIdentifier: HomeTableViewCell.reuseIdentifier(),
-                    cellType: HomeTableViewCell.self)
-            ) { _, viewModel, cell in
+                    cellType: HomeTableViewCell.self
+            )) { _, viewModel, cell in
                 cell.bind(with: viewModel)
             },
          output.fetching
@@ -95,14 +88,14 @@ extension HomeViewController {
          output.createMission
             .drive(),
          output.selectedMission
-            .drive()
-        ].forEach { $0.disposed(by: disposeBag) }
+            .drive()].forEach { $0.disposed(by: disposeBag) }
     }
-}
 
-// MARK: - Set UIs
-extension HomeViewController {
+    // MARK: Set UIs
     private func setupUI() {
+        view.backgroundColor = .systemBackground
+
+        navigationItem.title = "Home.Navigation.Title".localized
         navigationItem.rightBarButtonItem = createBarButtonItem
 
         // add subviews
@@ -111,11 +104,7 @@ extension HomeViewController {
 
         // set constraints
         tableView.snp.makeConstraints { make in
-            make.top
-                .bottom
-                .leading
-                .trailing
-                .equalToSuperview()
+            make.top.bottom.leading.trailing.equalToSuperview()
         }
 
         activityIndicator.snp.makeConstraints { make in
@@ -123,8 +112,7 @@ extension HomeViewController {
         }
     }
 }
-
-// MARK: - Previews
+// MARK: Previews
 
 // #if canImport(SwiftUI) && DEBUG
 // import SwiftUI

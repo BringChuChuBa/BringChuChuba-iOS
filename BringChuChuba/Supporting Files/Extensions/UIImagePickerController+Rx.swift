@@ -5,9 +5,10 @@
 //  Created by 한상진 on 2021/01/24.
 //
 
-import RxSwift
-import RxCocoa
 import UIKit
+
+import RxCocoa
+import RxSwift
 
 extension Reactive where Base: UIImagePickerController {
 
@@ -17,9 +18,7 @@ extension Reactive where Base: UIImagePickerController {
     public var didFinishPickingMediaWithInfo: Observable<[UIImagePickerController.InfoKey: AnyObject]> {
         return delegate
             .methodInvoked(#selector(UIImagePickerControllerDelegate.imagePickerController(_:didFinishPickingMediaWithInfo:)))
-            .map({ (a) in
-                return try castOrThrow(Dictionary<UIImagePickerController.InfoKey, AnyObject>.self, a[1])
-            })
+            .map { return try castOrThrow(Dictionary<UIImagePickerController.InfoKey, AnyObject>.self, $0[1]) }
     }
 
     /**

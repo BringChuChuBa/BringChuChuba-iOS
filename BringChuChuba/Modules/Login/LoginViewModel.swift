@@ -5,16 +5,11 @@
 //  Created by 홍다희 on 2021/01/13.
 //
 
-import RxSwift
 import RxCocoa
+import RxSwift
 
 final class LoginViewModel: ViewModelType {
-    private let coordinator: LoginCoordinator
-
-    init(coordinator: LoginCoordinator) {
-        self.coordinator = coordinator
-    }
-
+    // MARK: Structs
     struct Input {
         let familyId: Driver<String>
         let joinTrigger: Driver<Void>
@@ -28,6 +23,15 @@ final class LoginViewModel: ViewModelType {
         let error: Driver<Error>
     }
 
+    // MARK: Properties
+    private let coordinator: LoginCoordinator
+
+    // MARK: Initializers
+    init(coordinator: LoginCoordinator) {
+        self.coordinator = coordinator
+    }
+
+    // MARK: Methods
     func transform(input: Input) -> Output {
         let errorTracker = ErrorTracker()
 
@@ -37,21 +41,22 @@ final class LoginViewModel: ViewModelType {
 
         let join = input.joinTrigger.withLatestFrom(input.familyId)
             .flatMapLatest { familyId -> Driver<Family> in
-                Network.shared.request(with: .joinFamily(familyId: familyId),
-                                       for: Family.self)
+                Network.shared.request(with: .joinFamily(familyId: familyId), for: Family.self)
                     .trackError(errorTracker)
                     .asDriverOnErrorJustComplete()
-            }.do { [unowned self] family in
+            }
+            .do { [unowned self] family in
                 GlobalData.shared.familyId = family.id
                 self.coordinator.toHome()
             }
 
-        let toCreate = input.createTrigger
-            .do(onNext: coordinator.toCraete)
+        let toCreate = input.createTrigger.do(onNext: coordinator.toCraete)
 
-        return Output(joinEnabled: joinEnabled,
-                      join: join,
-                      toCreate: toCreate,
-                      error: errorTracker.asDriver())
+        return Output(
+            joinEnabled: joinEnabled,
+            join: join,
+            toCreate: toCreate,
+            error: errorTracker.asDriver()
+        )
     }
 }

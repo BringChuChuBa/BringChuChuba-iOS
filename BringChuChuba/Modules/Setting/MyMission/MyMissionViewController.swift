@@ -6,18 +6,20 @@
 //
 
 import UIKit
-import RxSwift
+
 import RxCocoa
+import RxSwift
 import SnapKit
 import Then
 
-class MyMissionViewController: UIViewController {
+final class MyMissionViewController: UIViewController {
     // MARK: Properties
     var viewModel: MyMissionViewModel!
     private var status: String?
     private let disposeBag = DisposeBag()
 
-    private lazy var footerView: UIView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 50)).then { footer in
+    // MARK: UI Components
+    private lazy var footerView: UIView = UIView(frame: .zero).then { footer in
         footer.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
     }
 
@@ -47,11 +49,9 @@ class MyMissionViewController: UIViewController {
         bindViewModel()
         setupUI()
     }
-}
 
-// MARK: Binds
-extension MyMissionViewController {
-    func bindViewModel() {
+    // MARK: Binds
+    private func bindViewModel() {
         assert(viewModel.isSome)
 
         let viewWillAppear = rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
@@ -80,11 +80,9 @@ extension MyMissionViewController {
             print(error.localizedDescription)
         })
     }
-}
 
-// MARK: Set UIs
-extension MyMissionViewController {
-    func setupUI() {
+    // MARK: Set UIs
+    private func setupUI() {
         view.addSubview(tableView)
 
         tableView.snp.makeConstraints { make in

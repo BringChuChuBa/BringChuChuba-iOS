@@ -10,15 +10,15 @@ import RxSwift
 
 final class HomeCoordinator: CoordinatorType {
     private let navigationController: UINavigationController
-    private var createViewModel: CreateMissionViewModel?
 
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
+        self.navigationController.navigationBar.prefersLargeTitles = true
     }
 
     func start() {
-        let homeViewController = HomeViewController(viewModel: .init(coordinator: self))
-        navigationController.pushViewController(homeViewController, animated: true)
+        let viewController = HomeViewController(viewModel: .init(coordinator: self))
+        navigationController.pushViewController(viewController, animated: true)
     }
 
     func toCreateMission() {
@@ -33,16 +33,6 @@ final class HomeCoordinator: CoordinatorType {
         let viewController = DetailMissionViewController(viewModel: viewModel)
         viewController.hidesBottomBarWhenPushed = true
         navigationController.pushViewController(viewController, animated: true)
-    }
-
-    func toReward() {
-        guard let viewModel = createViewModel else {
-            return
-        }
-
-        let rewardVC: RewardViewController = RewardViewController(viewModel: viewModel)
-
-        navigationController.pushViewController(rewardVC, animated: true)
     }
 
     func popToHome() {

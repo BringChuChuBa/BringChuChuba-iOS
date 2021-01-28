@@ -9,7 +9,6 @@ import UIKit
 
 enum SceneType: String {
     case home
-    case calendar
     case ranking
     case setting
     case login

@@ -6,8 +6,9 @@
 //
 
 import UIKit
-import RxSwift
+
 import RxCocoa
+import RxSwift
 
 final class AppCoordinator: CoordinatorType {
     // Singleton 객체로 선언하는게 맞는가?
@@ -32,20 +33,17 @@ final class AppCoordinator: CoordinatorType {
 
     private func showMainTab() {
         let homeNavigationController = getNavigationController(from: .home)
-        let calendarNavigationController = getNavigationController(from: .calendar)
         let rankingNavigationController = getNavigationController(from: .ranking)
         let usersNavigationController = getNavigationController(from: .setting)
         // 가족 확인 VC
 
         coordinatorInit(from: .home, with: homeNavigationController)
-        coordinatorInit(from: .calendar, with: calendarNavigationController)
         coordinatorInit(from: .ranking, with: rankingNavigationController)
         coordinatorInit(from: .setting, with: usersNavigationController)
         // 가족 코디네이터
 
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [homeNavigationController,
-                                            calendarNavigationController,
                                             rankingNavigationController,
                                             usersNavigationController]
 
@@ -56,7 +54,7 @@ final class AppCoordinator: CoordinatorType {
         window.rootViewController = tabBarController
     }
 
-    // MARK: - Private methods
+    // MARK: Private methods
     private func getNavigationController(from type: SceneType) -> UINavigationController {
         let navigationController = UINavigationController()
         navigationController.tabBarItem = type.tabBarItem
@@ -69,8 +67,6 @@ final class AppCoordinator: CoordinatorType {
         switch type {
         case .home:
             coordinator = HomeCoordinator(navigationController: navigationController)
-        case .calendar:
-            coordinator = CalendarCoordinator(navigationController: navigationController)
         case .ranking:
             coordinator = RankingCoordinator(navigationController: navigationController)
         case .setting:

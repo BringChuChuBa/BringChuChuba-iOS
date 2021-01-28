@@ -4,35 +4,37 @@
 //  Created by 한상진 on 2021/01/19.
 //
 
-import UIKit
-import RxSwift
-import RxCocoa
-import SnapKit
 import Photos
+import UIKit
+
+import RxCocoa
+import RxSwift
+import SnapKit
 import Then
 
 class ProfileViewController: UIViewController {
     // MARK: Properties
     var viewModel: ProfileViewModel!
     private let disposeBag = DisposeBag()
-//    private let tapGesture = UITapGestureRecognizer()
+    //    private let tapGesture = UITapGestureRecognizer()
     private let picker = UIImagePickerController()
 
+    // MARK: UI Components
     private lazy var saveBarButtonItem: UIBarButtonItem = UIBarButtonItem().then { button in
-        button.title = "save" // 추후 이미지로 교체
+        button.title = "Common.Done".localized
         button.style = .done
     }
 
     private lazy var profileImageView: UIImageView = UIImageView().then { image in
         image.image = UIImage(named: "profile")
-//        image.addGestureRecognizer(tapGesture)
+        //        image.addGestureRecognizer(tapGesture)
     }
 
     private lazy var nickNameTextField: UITextField = UITextField().then { field in
         // custom
         // TODO: 수정!
         field.text = GlobalData.shared.nickname
-        field.placeholder = "닉네임을 입력해주세요."
+        field.placeholder = "Profile.NickNameTextField.Placeholder".localized
         field.font = .systemFont(ofSize: 13)
 
         // default
@@ -48,33 +50,33 @@ class ProfileViewController: UIViewController {
     }
 
     private lazy var warningLabel: UILabel = UILabel().then { label in
-        label.text = "프로필 사진과 닉네임을 입력해주세요 :)"
+        label.text = "Profile.WarningLabel.Text".localized
         label.font = label.font.withSize(10)
         label.textColor = #colorLiteral(red: 0.501960814, green: 0.501960814, blue: 0.501960814, alpha: 1)
     }
 
-//    private var profileBinding: Binder<Void> {
-//        return Binder(self, binding: { vc, _ in
-//            let alert =  UIAlertController(title: "Pick Profile Image",
-//                                           message: "choose photo",
-//                                           preferredStyle: .actionSheet)
-//            let library =  UIAlertAction(title: "사진앨범",
-//                                         style: .default) { _ in
-//                self.openLibrary()
-//            }
-//            let camera =  UIAlertAction(title: "카메라",
-//                                        style: .default) { _ in
-//                self.openCamera()
-//            }
-//            let cancel = UIAlertAction(title: "취소",
-//                                       style: .cancel)
-//
-//            alert.addAction(library)
-//            alert.addAction(camera)
-//            alert.addAction(cancel)
-//            vc.present(alert, animated: true, completion: nil)
-//        })
-//    }
+    //    private var profileBinding: Binder<Void> {
+    //        return Binder(self, binding: { vc, _ in
+    //            let alert =  UIAlertController(title: "Pick Profile Image",
+    //                                           message: "choose photo",
+    //                                           preferredStyle: .actionSheet)
+    //            let library =  UIAlertAction(title: "사진앨범",
+    //                                         style: .default) { _ in
+    //                self.openLibrary()
+    //            }
+    //            let camera =  UIAlertAction(title: "카메라",
+    //                                        style: .default) { _ in
+    //                self.openCamera()
+    //            }
+    //            let cancel = UIAlertAction(title: "취소",
+    //                                       style: .cancel)
+    //
+    //            alert.addAction(library)
+    //            alert.addAction(camera)
+    //            alert.addAction(cancel)
+    //            vc.present(alert, animated: true, completion: nil)
+    //        })
+    //    }
 
     private var errorBinding: Binder<Error> {
         return Binder(self, binding: { _, error in
@@ -108,10 +110,10 @@ class ProfileViewController: UIViewController {
                                           message: "\(appName)이 카메라 접근 x -> 설정화면",
                                           preferredStyle: .alert)
 
-            let cancel = UIAlertAction(title: "취소",
+            let cancel = UIAlertAction(title: "Common.Cancle".localized,
                                        style: .cancel)
 
-            let confirm = UIAlertAction(title: "ghkrdls",
+            let confirm = UIAlertAction(title: "Common.Default".localized,
                                         style: .default)
 
             alert.addAction(cancel)
@@ -139,8 +141,8 @@ extension ProfileViewController {
                                               handler: { _ -> Void in
                                                 switch PHPhotoLibrary.authorizationStatus() {
                                                 case .denied:
-//                                                    self.settingAlert()
-//                                                    observer.onNext(())
+                                                    //                                                    self.settingAlert()
+                                                    //                                                    observer.onNext(())
                                                     break
                                                 case .notDetermined:
                                                     PHPhotoLibrary.requestAuthorization { state in
@@ -179,23 +181,23 @@ extension ProfileViewController {
                 }
             }
             .flatMap { $0.rx.didFinishPickingMediaWithInfo }
-//            .take(1)
+            //            .take(1)
             .map { info in
                 return info[.editedImage] as? UIImage
             }
 
         let input = ProfileViewModel.Input( // profileTrigger: profileObservable.asDriverOnErrorJustComplete(),
-                                           nickName: nickNameTextField.rx.text.orEmpty.asDriver(),
-                                           saveTrigger: saveBarButtonItem.rx.tap.asDriver())
+            nickName: nickNameTextField.rx.text.orEmpty.asDriver(),
+            saveTrigger: saveBarButtonItem.rx.tap.asDriver())
 
         let output = viewModel.transform(input: input)
 
         [output.error
             .drive(errorBinding),
-//         output.profile
-//            .drive(profileImage.rx.image),
+         //         output.profile
+         //            .drive(profileImage.rx.image),
          output.saveEnabled
-             .drive(saveBarButtonItem.rx.isEnabled),
+            .drive(saveBarButtonItem.rx.isEnabled),
          profileDidSelected
             .bind(to: profileImageView.rx.image)
         ].forEach { $0.disposed(by: disposeBag) }
@@ -205,9 +207,10 @@ extension ProfileViewController {
 // MARK: Set UIs
 extension ProfileViewController {
     func setupUI() {
+        view.backgroundColor = .systemBackground
+
         navigationItem.rightBarButtonItem = saveBarButtonItem
 
-        view.backgroundColor = #colorLiteral(red: 0.5843137503, green: 0.8235294223, blue: 0.4196078479, alpha: 1)
         view.addSubview(profileImageView)
         view.addSubview(nickNameTextField)
         view.addSubview(warningLabel)

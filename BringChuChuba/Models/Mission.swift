@@ -7,24 +7,18 @@
 
 import Foundation
 
-enum Status: String, Decodable {
-    case todo
-    case inProgress
-    case complete
-}
-
 struct Mission: Decodable {
     let client: Member
-    var contractor: Member?
+    let contractor: Member?
     let createdAt: String
-    var description: String?
-    var expireAt: String
+    let description: String?
+    let expireAt: String
     let familyId: String
     let id: String
-    var modifiedAt: String
-    var reward: String
-    var status: Status
-    var title: String
+    let modifiedAt: String
+    let reward: String
+    let status: Status
+    let title: String
 }
 
 struct MissionDetails {
@@ -33,4 +27,12 @@ struct MissionDetails {
     let familyId: String
     let reward: String
     let title: String
+}
+
+extension Mission {
+    enum Status: String, Decodable {
+        case todo
+        case inProgress
+        case complete
+    }
 }

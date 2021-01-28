@@ -6,20 +6,21 @@
 //
 
 import UIKit
-import Then
-import SnapKit
-import RxSwift
+
 import RxCocoa
+import RxSwift
+import SnapKit
+import Then
 
 final class CreateMissionViewController: UIViewController {
-    // MARK: - Properties
+    // MARK: Properties
     private let viewModel: CreateMissionViewModel!
     private let disposeBag: DisposeBag = DisposeBag()
 
+    // MARK: UI Components
     // 폰트 사이즈, cornerRadius 추가
-
     private lazy var saveBarButtonItem: UIBarButtonItem = UIBarButtonItem().then { button in
-        button.title = "save" // 추후 이미지로 교체
+        button.title = "Common.Done".localized
         button.style = .done
     }
 
@@ -31,7 +32,7 @@ final class CreateMissionViewController: UIViewController {
 
     private lazy var titleTextField: UITextField = UITextField().then { field in
         // custom
-        field.placeholder = "title"
+        field.placeholder = "Common.Title".localized
         field.font = .systemFont(ofSize: 13)
 
         // default
@@ -47,7 +48,7 @@ final class CreateMissionViewController: UIViewController {
 
     private lazy var rewardTextField: UITextField = UITextField().then { field in
         // custom
-        field.placeholder = "reward"
+        field.placeholder = "Common.Reward".localized
         field.font = .systemFont(ofSize: 13)
 
         // default
@@ -101,7 +102,7 @@ final class CreateMissionViewController: UIViewController {
     // textView로 바꿔야하나
     private lazy var descriptionTextField: UITextField = UITextField().then { field in
         // custom
-        field.placeholder = "description"
+        field.placeholder = "Common.Description".localized
         field.font = .systemFont(ofSize: 13)
 
         // default
@@ -125,12 +126,10 @@ final class CreateMissionViewController: UIViewController {
          expireDateView,
          datePicker,
          descriptionTextField
-        ].forEach {
-            stack.addArrangedSubview($0)
-        }
+        ].forEach { stack.addArrangedSubview($0) }
     }
 
-    // MARK: - Initializers
+    // MARK: Initializers
     init(viewModel: CreateMissionViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -140,22 +139,19 @@ final class CreateMissionViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: - LifeCycles
+    // MARK: Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupUI()
         bindViewModel()
+        setupUI()
     }
-}
 
-// MARK: - Binds
-extension CreateMissionViewController {
+    // MARK: Binds
     private func bindViewModel() {
         assert(viewModel.isSome)
 
-        let input = CreateMissionViewModel.Input(
-            title: titleTextField.rx.text.orEmpty.asDriver(),
+        let input = CreateMissionViewModel.Input(title: titleTextField.rx.text.orEmpty.asDriver(),
             reward: rewardTextField.rx.text.orEmpty.asDriver(),
             expireClicked: expireDateButton.rx.tap.asDriver(),
             dateSelected: datePicker.rx.date.asDriver(),
@@ -173,21 +169,17 @@ extension CreateMissionViewController {
          output.saveEnabled
              .drive(saveBarButtonItem.rx.isEnabled),
          output.dismiss
-            .drive()
-        ].forEach {
-            $0.disposed(by: disposeBag)
-        }
+            .drive()].forEach { $0.disposed(by: disposeBag) }
     }
-}
 
-// MARK: - Set UIs
-extension CreateMissionViewController {
+    // MARK: Set UIs
     private func setupUI() {
-        view.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
+        view.backgroundColor = .systemBackground
 
+        navigationItem.title = "CreateMssion.Navigation.Title".localized
         navigationItem.rightBarButtonItem = saveBarButtonItem
 
-        // MARK: - Add views
+        // MARK: Add views
         view.addSubview(stackView)
 //        view.addSubview(pointLabel)
         expireDateView.addSubview(expireDateButton)
@@ -198,7 +190,7 @@ extension CreateMissionViewController {
 //            make.top.bottom.trailing.equalToSuperview()
 //        }
 
-        // MARK: - Make Constraints
+        // MARK: Make Constraints
 //        pointLabel.snp.makeConstraints { make in
 //            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(20)
 //            make.trailing.equalToSuperview().offset(-20)
@@ -257,7 +249,7 @@ extension CreateMissionViewController {
     }
 }
 
-// MARK: - Previews
+// MARK: Previews
 
 #if canImport(SwiftUI) && DEBUG
 import SwiftUI

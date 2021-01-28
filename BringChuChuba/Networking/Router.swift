@@ -24,13 +24,13 @@ enum Router {
 }
 
 extension Router: TargetType {
-    // MARK: - URL
+    // MARK: URL
     var baseURL: URL {
         guard let baseURL = try? Server.baseURL.asURL() else { fatalError() }
         return baseURL
     }
 
-    // MARK: - Path
+    // MARK: Path
     var path: String {
         switch self {
         case .getMember:
@@ -52,7 +52,7 @@ extension Router: TargetType {
         }
     }
 
-    // MARK: - HTTPMethod
+    // MARK: HTTPMethod
     var method: Method {
         switch self {
         case .getMember, .getFamily, .getMissions:
@@ -77,7 +77,7 @@ extension Router: TargetType {
         }
     }
 
-    // MARK: - Parameters
+    // MARK: Parameters
     // URLEncoding.queryString : query
     // JSONEncoding.default : body
     var task: Task {
@@ -121,7 +121,7 @@ extension Router: TargetType {
     }
 }
 
-// MARK: - Helpers
+// MARK: Helpers
 private extension String {
     var urlEscaped: String {
         return addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!

@@ -6,11 +6,12 @@
 //
 
 import UIKit
-import RxSwift
+
 import RxCocoa
+import RxSwift
 
 class RankingCell: UITableViewCell {
-
+    // MARK: Properties
     private let disposeBag = DisposeBag()
 
     // MARK: UI Components
@@ -40,16 +41,27 @@ class RankingCell: UITableViewCell {
     }
 
     // MARK: Initializers
-    override init(style: UITableViewCell.CellStyle,
-                  reuseIdentifier: String?) {
-        super.init(style: style,
-                   reuseIdentifier: reuseIdentifier)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
 
         setupUI()
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    // MARK: Binds
+    func bind(to viewModel: RankingCellViewModel, rank: Int) {
+        rankLabel.text = String(rank)
+
+        viewModel.title.asDriver()
+            .drive(titleLabel.rx.text)
+            .disposed(by: disposeBag)
+
+        viewModel.detail.asDriver()
+            .drive(detailLabel.rx.text)
+            .disposed(by: disposeBag)
     }
 
     // MARK: Set UIs
@@ -70,18 +82,5 @@ class RankingCell: UITableViewCell {
         stackView.addArrangedSubview(rankLabel)
         stackView.addArrangedSubview(titleLabel)
         stackView.addArrangedSubview(detailLabel)
-    }
-
-    // MARK: Binds
-    func bind(to viewModel: RankingCellViewModel, rank: Int) {
-        rankLabel.text = String(rank)
-
-        viewModel.title.asDriver()
-            .drive(titleLabel.rx.text)
-            .disposed(by: disposeBag)
-
-        viewModel.detail.asDriver()
-            .drive(detailLabel.rx.text)
-            .disposed(by: disposeBag)
     }
 }

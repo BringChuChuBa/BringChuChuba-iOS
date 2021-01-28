@@ -6,11 +6,12 @@
 //
 
 import UIKit
-import Then
-import SnapKit
-import RxSwift
+
 import RxCocoa
 import RxDataSources
+import RxSwift
+import SnapKit
+import Then
 
 final class DetailMissionViewController: UIViewController {
     // MARK: Properties
@@ -27,10 +28,7 @@ final class DetailMissionViewController: UIViewController {
     private lazy var toolBar = UIToolbar().then {
         $0.barStyle = .default
         $0.isTranslucent = true
-        $0.setItems([leftSpace,
-                     contractButton,
-                     rightSpace],
-                    animated: true)
+        $0.setItems([leftSpace, contractButton, rightSpace], animated: true)
     }
 
     private lazy var leftSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace,
@@ -42,8 +40,7 @@ final class DetailMissionViewController: UIViewController {
                                                   action: nil)
 
     private lazy var contractButton = UIBarButtonItem().then {
-        $0.title = "제가 할게요!"
-        // TODO: y 위치 수정
+        $0.title = "DetailMission.ContractButton.Title".localized
     }
 
     // MARK: Initializers
@@ -60,54 +57,37 @@ final class DetailMissionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupUI()
         bindViewModel()
-    }
-
-    // MARK: Set UIs
-    private func setupUI() {
-        view.backgroundColor = .systemBackground
-        view.addSubview(toolBar)
-        toolBar.snp.makeConstraints { make in
-            make.leading.trailing.bottom.equalToSuperview()
-        }
-
-        view.addSubview(tableView)
-        tableView.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(toolBar.snp.top)
-        }
-
-        contractButton.setBackgroundVerticalPositionAdjustment(20.0, for: .default)
-
+        setupUI()
     }
 
     // MARK: Binds
     private func bindViewModel() {
         assert(viewModel.isSome)
 
-        let input = DetailMissionViewModel.Input(
-            contractTrigger: contractButton.rx.tap.asDriver()
-        )
+        let input = DetailMissionViewModel.Input(contractTrigger: contractButton.rx.tap.asDriver())
 
-        let dataSource = RxTableViewSectionedReloadDataSource<DetailMissionSection>(configureCell: { _, tableView, indexPath, item in
-            switch item {
-            case .titleItem(let viewModel),
-                 .descriptionItem(let viewModel),
-                 .rewardItem(let viewModel),
-                 .expireAtItem(let viewModel),
-                 .clientItem(let viewModel),
-                 .contractorItem(let viewModel),
-                 .statusItem(let viewModel):
-                let cell = (tableView.dequeueReusableCell(withIdentifier: DetailMissionCell.reuseIdentifier(),
-                                                          for: indexPath) as? DetailMissionCell)!
-                cell.bind(to: viewModel)
-                return cell
+        let dataSource = RxTableViewSectionedReloadDataSource<DetailMissionSection>(
+            configureCell: { _, tableView, indexPath, item in
+                switch item {
+                case .titleItem(let viewModel),
+                     .descriptionItem(let viewModel),
+                     .rewardItem(let viewModel),
+                     .expireAtItem(let viewModel),
+                     .clientItem(let viewModel),
+                     .contractorItem(let viewModel),
+                     .statusItem(let viewModel):
+                    guard let cell = tableView.dequeueReusableCell(
+                            withIdentifier: DetailMissionCell.reuseIdentifier(),
+                            for: indexPath) as? DetailMissionCell else { fatalError() }
+                    cell.bind(to: viewModel)
+                    return cell
+                }},
+            titleForHeaderInSection: { dataSource, index in
+                let section = dataSource[index]
+                return section.title
             }
-        }, titleForHeaderInSection: { dataSource, index in
-            let section = dataSource[index]
-            return section.title
-        })
+        )
 
         let output = viewModel.transform(input: input)
 
@@ -116,7 +96,27 @@ final class DetailMissionViewController: UIViewController {
          output.contractEnable
             .drive(contractButton.rx.isEnabled),
          output.error
-            .drive()
-        ].forEach { $0.disposed(by: disposeBag) }
+            .drive()].forEach { $0.disposed(by: disposeBag) }
+    }
+
+    // MARK: Set UIs
+    private func setupUI() {
+        view.backgroundColor = .systemBackground
+
+        navigationItem.title = "DetailMission.Navigation.Title".localized
+
+        view.addSubview(toolBar)
+        view.addSubview(tableView)
+
+        toolBar.snp.makeConstraints { make in
+            make.leading.trailing.bottom.equalToSuperview()
+        }
+
+        tableView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(toolBar.snp.top)
+        }
+
+        contractButton.setBackgroundVerticalPositionAdjustment(20.0, for: .default)
     }
 }

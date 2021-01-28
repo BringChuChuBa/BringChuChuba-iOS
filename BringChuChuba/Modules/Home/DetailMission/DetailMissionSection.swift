@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 import RxDataSources
 
 enum DetailMissionSection {
@@ -20,7 +21,6 @@ enum DetailMissionSectionItem {
     case clientItem(viewModel: DetailMissionCellViewModel)
     case contractorItem(viewModel: DetailMissionCellViewModel)
     case statusItem(viewModel: DetailMissionCellViewModel)
-//    case contractItem(viewModel: MissionContractCellViewModel)
 }
 
 extension DetailMissionSection: SectionModelType {
@@ -40,8 +40,7 @@ extension DetailMissionSection: SectionModelType {
         }
     }
 
-    init(original: DetailMissionSection,
-         items: [Item]) {
+    init(original: DetailMissionSection, items: [Item]) {
         switch original {
         case .detail(let title, let items):
             self = .detail(title: title, items: items)

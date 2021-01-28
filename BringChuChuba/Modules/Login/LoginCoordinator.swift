@@ -6,6 +6,7 @@
 //
 
 import Foundation
+
 import RxSwift
 
 protocol LoginCoordinatorDelegate: class {
@@ -22,8 +23,8 @@ final class LoginCoordinator: CoordinatorType {
     }
 
     func start() {
-        let loginViewController = LoginViewController(viewModel: .init(coordinator: self))
-        navigationController.pushViewController(loginViewController, animated: true)
+        let viewController = LoginViewController(viewModel: .init(coordinator: self))
+        navigationController.pushViewController(viewController, animated: true)
     }
 
     func toHome() {

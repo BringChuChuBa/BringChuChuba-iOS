@@ -6,15 +6,18 @@
 //
 
 import UIKit
-import Then
-import RxSwift
+
 import Firebase
+import RxSwift
+import Then
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     var window: UIWindow?
     private var appCoordinator: AppCoordinator!
 
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+    func scene(_ scene: UIScene,
+               willConnectTo session: UISceneSession,
+               options connectionOptions: UIScene.ConnectionOptions) {
         FirebaseApp.configure()
         loginAndCheckToken()
         getMember()

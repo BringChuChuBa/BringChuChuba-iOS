@@ -5,11 +5,11 @@
 //  Created by 한상진 on 2021/01/05.
 //
 
-import RxSwift
 import RxCocoa
+import RxSwift
 
 final class HomeViewModel: ViewModelType {
-    // MARK: - Structs
+    // MARK: Structs
     struct Input {
         let trigger: Driver<Void>
         let createMissionTrigger: Driver<Void>
@@ -24,38 +24,40 @@ final class HomeViewModel: ViewModelType {
         let error: Driver<Error>
     }
 
-    // MARK: - Properties
+    // MARK: Properties
     private let coordinator: HomeCoordinator
 
-    // MARK: - Initializers
+    // MARK: Initializers
     init(coordinator: HomeCoordinator) {
         self.coordinator = coordinator
     }
 
-    // MARK: - Methods
+    // MARK: Methods
     func transform(input: Input) -> Output {
         let activityIndicator = ActivityIndicator()
         let errorTracker = ErrorTracker()
 
         let missions = input.trigger
             .flatMapLatest { _ -> Driver<[HomeItemViewModel]> in
-                return Network.shared.requests(with: .getMissions(familyId: GlobalData.shared.familyId),
-                                               for: Mission.self)
-                    .trackActivity(activityIndicator)
-                    .trackError(errorTracker)
-                    .asDriverOnErrorJustComplete()
-                    .map { missions in
-                        missions.map { mission in
-                            HomeItemViewModel(with: mission)
-                        }
+                return Network.shared.requests(
+                    with: .getMissions(familyId: GlobalData.shared.familyId),
+                    for: Mission.self
+                )
+                .trackActivity(activityIndicator)
+                .trackError(errorTracker)
+                .asDriverOnErrorJustComplete()
+                .map { missions in
+                    missions.map { mission in
+                        HomeItemViewModel(with: mission)
                     }
+                }
             }
 
         let fetching = activityIndicator.asDriver()
         let errors = errorTracker.asDriver()
 
         let selectedMission = input.selection
-            .withLatestFrom(missions) { (indexPath, missions) -> Mission in
+            .withLatestFrom(missions) { indexPath, missions -> Mission in
                 return missions[indexPath.row].mission
             }
             .do(onNext: coordinator.toDetailMission)

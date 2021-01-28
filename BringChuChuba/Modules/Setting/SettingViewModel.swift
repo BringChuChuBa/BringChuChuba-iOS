@@ -9,7 +9,7 @@ import RxCocoa
 import RxSwift
 
 final class SettingViewModel: ViewModelType {
-    // MARK: - Structs
+    // MARK: Structs
     struct Input {
         let photoTrigger: Driver<Void>
         let myMissionTrigger: Driver<Void>
@@ -22,15 +22,15 @@ final class SettingViewModel: ViewModelType {
         let profile: Driver<Void>
     }
 
-    // MARK: - Properties
+    // MARK: Properties
     private let coordinator: SettingCoordinator
 
-    // MARK: - Initializers
+    // MARK: Initializers
     init(coordinator: SettingCoordinator) {
         self.coordinator = coordinator
     }
 
-    // MARK: - Methods
+    // MARK: Methods
     func transform(input: Input) -> Output {
         let profile = input.photoTrigger
             .do(onNext: coordinator.toProfile)

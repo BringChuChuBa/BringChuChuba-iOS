@@ -6,9 +6,10 @@
 //
 
 import Foundation
-import RxSwift
+
 import RxCocoa
 import RxGesture
+import RxSwift
 
 extension Reactive where Base: UIView {
     func tap() -> Observable<Void> {

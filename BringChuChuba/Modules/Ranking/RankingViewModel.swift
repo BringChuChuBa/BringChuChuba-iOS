@@ -9,7 +9,7 @@ import RxCocoa
 import RxSwift
 
 final class RankingViewModel: ViewModelType {
-    // MARK: - Structs
+    // MARK: Structs
     struct Input {
         let selectedIndex: Driver<Int>
     }
@@ -18,21 +18,20 @@ final class RankingViewModel: ViewModelType {
         let items: Driver<[RankingCellViewModel]>
     }
 
-    // MARK: - Properties
+    // MARK: Properties
     private let coordinator: RankingCoordinator
 
-    // MARK: - Initializers
+    // MARK: Initializers
     init(coordinator: RankingCoordinator) {
         self.coordinator = coordinator
     }
 
-    // MARK: - Methods
+    // MARK: Transform Methods
     func transform(input: Input) -> Output {
         let activityIndicator = ActivityIndicator()
         let errorTracker = ErrorTracker()
 
-        let members = Network.shared.request(with: .getFamily(familyUid: Int(GlobalData.shared.familyId)!),
-                                             for: Family.self)
+        let members = Network.shared.request(with: .getFamily(familyUid: Int(GlobalData.shared.familyId)!), for: Family.self)
             .trackActivity(activityIndicator)
             .trackError(errorTracker)
             .map { $0.members }

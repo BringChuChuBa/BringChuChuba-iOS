@@ -6,8 +6,9 @@
 //
 
 import UIKit
-import RxSwift
+
 import RxCocoa
+import RxSwift
 import SnapKit
 import Then
 
@@ -15,6 +16,7 @@ final class MyMissionTableViewCell: UITableViewCell {
     // MARK: Properties
     private let disposeBag = DisposeBag()
 
+    // MARK: UI Components
     private lazy var titleLabel: UILabel = UILabel().then { label in
         // 속성 변경
         label.textAlignment = .left
@@ -50,10 +52,8 @@ final class MyMissionTableViewCell: UITableViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-}
 
-// MARK: Binding
-extension MyMissionTableViewCell {
+    // MARK: Binds
     func bind(with viewModel: MyMissionCellViewModel) {
         self.titleLabel.text = viewModel.title
         self.descriptionLabel.text = viewModel.description
@@ -70,10 +70,8 @@ extension MyMissionTableViewCell {
             .drive()
         ].forEach { $0.disposed(by: disposeBag) }
     }
-}
 
-// MARK: Setup UI
-extension MyMissionTableViewCell {
+    // MARK: Set UIs
     private func setupUI() {
         contentView.addSubview(titleLabel)
         contentView.addSubview(descriptionLabel)

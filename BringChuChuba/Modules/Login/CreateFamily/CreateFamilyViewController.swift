@@ -6,19 +6,20 @@
 //
 
 import UIKit
+
+import RxCocoa
+import RxSwift
 import SnapKit
 import Then
-import RxSwift
-import RxCocoa
 
 final class CreateFamilyViewController: UIViewController {
-    // MARK: - Properties
-    private var viewModel: CreateFamilyViewModel
+    // MARK: Properties
+    private let viewModel: CreateFamilyViewModel
     private let disposeBag = DisposeBag()
 
-    // MARK: - UI Components
+    // MARK: UI Components
     private lazy var familyNameTextField = UITextField().then {
-        $0.placeholder = "Enter your family name"
+        $0.placeholder = "CreateFamily.FamilyNameTextField.Placeholder".localized
         $0.autocapitalizationType = .none
         $0.backgroundColor = .systemGray6
         $0.layer.cornerRadius = 5
@@ -28,19 +29,20 @@ final class CreateFamilyViewController: UIViewController {
     }
 
     private lazy var createFamilyButton = UIButton().then {
-        $0.setTitle("Create new family", for: .normal)
+        $0.setTitle("CreateFamily.CreateFamilyButton.Title".localized, for: .normal)
         $0.backgroundColor = UIColor.systemBlue
         $0.layer.cornerRadius = 5
     }
 
     private lazy var joinFamilyButton = UIButton().then {
         let attributedString = NSAttributedString(
-            string: NSLocalizedString("or Find and join a family", comment: ""),
+            string: "CreateFamily.JoinFamilyButton.Title".localized,
             attributes: [
                 NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16.0),
                 NSAttributedString.Key.foregroundColor: UIColor.systemBlue,
                 NSAttributedString.Key.underlineStyle: 1.0
-            ])
+            ]
+        )
         $0.setAttributedTitle(attributedString, for: .normal)
         $0.layer.cornerRadius = 5
     }
@@ -50,8 +52,7 @@ final class CreateFamilyViewController: UIViewController {
         $0.spacing = 10
     }
 
-    // MARK: - Initializers
-
+    // MARK: Initializers
     init(viewModel: CreateFamilyViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -61,36 +62,16 @@ final class CreateFamilyViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: - Life Cycle
+    // MARK: Life Cycles
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        bind()
+        bindViewModel()
         setupUI()
     }
 
-    // MARK: - Private Method
-    private func setupUI() {
-        title = "Create new Family"
-        navigationItem.hidesBackButton = true
-        view.addSubview(stackView)
-        stackView.addArrangedSubview(familyNameTextField)
-        stackView.addArrangedSubview(createFamilyButton)
-        stackView.addArrangedSubview(joinFamilyButton)
-
-        view.backgroundColor = .systemBackground
-
-        stackView.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(20)
-            make.centerY.equalTo(view)
-        }
-
-        familyNameTextField.snp.makeConstraints { make in
-            make.height.equalTo(joinFamilyButton)
-        }
-    }
-
-    private func bind() {
+    // MARK: Binds
+    private func bindViewModel() {
         let input = CreateFamilyViewModel.Input(
             familyName: familyNameTextField.rx.text.orEmpty.asDriver(),
             createTrigger: createFamilyButton.rx.tap.asDriver(),
@@ -110,16 +91,42 @@ final class CreateFamilyViewController: UIViewController {
         ].forEach { $0.disposed(by: disposeBag) }
     }
 
-    var errorBinding: Binder<Error> {
-        return Binder(self, binding: { (vc, _) in
-            let alert = UIAlertController(title: "Create Error",
-                                          message: "Something went wrong",
-                                          preferredStyle: .alert)
-            let action = UIAlertAction(title: "Dismiss",
-                                       style: .cancel,
-                                       handler: nil)
+    private var errorBinding: Binder<Error> {
+        return Binder(self) { vc, _ in
+            let alert = UIAlertController(
+                title: "CreateFamily.Alert.Title".localized,
+                message: "CreateFamily.Alert.Message".localized,
+                preferredStyle: .alert
+            )
+            let action = UIAlertAction(
+                title: "CreateFamily.Alert.DismissButton.Title".localized,
+                style: .cancel,
+                handler: nil
+            )
             alert.addAction(action)
             vc.present(alert, animated: true, completion: nil)
-        })
+        }
+    }
+
+    // MARK: Set UIs
+    private func setupUI() {
+        view.backgroundColor = .systemBackground
+
+        navigationItem.title = "CreateFamily.Navigation.Title".localized
+        navigationItem.hidesBackButton = true
+
+        view.addSubview(stackView)
+        stackView.addArrangedSubview(familyNameTextField)
+        stackView.addArrangedSubview(createFamilyButton)
+        stackView.addArrangedSubview(joinFamilyButton)
+
+        stackView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview().inset(20)
+            make.centerY.equalTo(view)
+        }
+
+        familyNameTextField.snp.makeConstraints { make in
+            make.height.equalTo(joinFamilyButton)
+        }
     }
 }

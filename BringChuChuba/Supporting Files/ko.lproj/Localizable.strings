@@ -1,0 +1,60 @@
+/* 
+  Localizable.strings
+  BringChuChuba
+
+  Created by 홍다희 on 2021/01/27.
+  
+*/
+/* Common */
+"Common.Title" = "제목";
+"Common.Description" = "설명";
+"Common.Reward" = "보상";
+"Common.Client" = "요청자";
+"Common.Contractor" = "수행자";
+"Common.ExpireAt" = "마감기한";
+"Common.Status" = "상태";
+"Common.Done" = "완료";
+"Common.Cancle" = "취소";
+"Common.Default" = "확인";
+
+/* Login */
+"Login.Navigation.Title" = "가족방 찾기";
+"Login.FamilyIdTextField.Placeholder" = "가족방 아이디를 입력하세요.";
+"Login.MemberNameTextField.Placeholder" = "이름을 입력하세요.";
+"Login.JoinFamilyButton.Title" = "Find and join a family";
+"Login.CreateFamilyButton.Title" = "또는 새로운 가족방 만들기";
+"Login.Alert.Title" = "Login Error";
+"Login.Alert.Message" = "Something went wrong";
+"Login.Alert.DismissButton.Title" = "Dismiss";
+
+/* Create Family */
+"CreateFamily.Navigation.Title" = "새로운 가족 만들기";
+"CreateFamily.FamilyNameTextField.Placeholder" = "Enter your family name";
+"CreateFamily.CreateFamilyButton.Title" = "새로운 가족 만들기";
+"CreateFamily.JoinFamilyButton.Title" = "or Find and join a family";
+"CreateFamily.Alert.Title" = "Create Error";
+"CreateFamily.Alert.Message" = "Something went wrong";
+"CreateFamily.Alert.DismissButton.Title" = "Dismiss";
+
+/* Home */
+"Home.Navigation.Title" = "홈";
+"Home.Navigation.CreateButton.Title" = "새로운 미션";
+
+/* Detail Mission */
+"DetailMission.Navigation.Title" = "미션 상세";
+"DetailMission.ContractButton.Title" = "제가 할게요!";
+
+/* Create Mission */
+"CreateMission.Navigation.Title" = "새로운 미션";
+
+/* Ranking */
+"Ranking.Navigation.Title" = "랭킹";
+
+/* Setting */
+"Setting.Navigation.Title" = "마이페이지";
+
+/* My Mission */
+
+/* Profile */
+"Profile.NickNameTextField.Placeholder" = "닉네임을 입력하세요.";
+"Profile.WarningLabel.Text" = "프로필 사진과 닉네임을 입력하세요 :)";

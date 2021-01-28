@@ -11,5 +11,5 @@ struct Member: Decodable {
     let id: String
     let familyId: String?
     let nickname: String?
-    var point: String
+    let point: String
 }
