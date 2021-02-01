@@ -57,8 +57,11 @@ final class SettingViewController: UIViewController {
     private lazy var doingMissionButton = UIButton(type: .system).then {
         $0.setTitle("doingMission", for: .normal)
         $0.setTitleColor(.systemBlue, for: .normal)
-        //        $0.layer.borderWidth = 0.5
-        //        $0.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+    }
+
+    private lazy var inviteMissionButton = UIButton(type: .system).then {
+        $0.setTitle("inviteMission", for: .normal)
+        $0.setTitleColor(.systemBlue, for: .normal)
     }
 
     // MARK: Initializers
@@ -87,7 +90,7 @@ final class SettingViewController: UIViewController {
             photoTrigger: profileImage.rx.tap().asDriverOnErrorJustComplete(),
             myMissionTrigger: myMissionButton.rx.tap.asDriver(),
             doingMissionTrigger: doingMissionButton.rx.tap.asDriver(),
-            inviteFamilyTrigger: doingMissionButton.rx.tap.asDriver()
+            inviteFamilyTrigger: inviteMissionButton.rx.tap.asDriver()
         )
 
         let output = viewModel.transform(input: input)
@@ -96,6 +99,8 @@ final class SettingViewController: UIViewController {
          output.doingMission
             .drive(),
          output.profile
+            .drive(),
+         output.invite
             .drive()
         ].forEach { $0.disposed(by: disposeBag) }
     }
@@ -117,6 +122,7 @@ final class SettingViewController: UIViewController {
 
         view.addSubview(myMissionButton)
         view.addSubview(doingMissionButton)
+        view.addSubview(inviteMissionButton)
 
         // set constraints
 
@@ -147,6 +153,12 @@ final class SettingViewController: UIViewController {
             make.top.height.equalTo(myMissionButton)
             make.trailing.equalTo(profileStackView)
             make.leading.equalTo(view.snp.centerX)
+        }
+
+        inviteMissionButton.snp.makeConstraints { make in
+            make.top.equalTo(doingMissionButton.snp.bottom).offset(20)
+            make.leading.equalTo(myMissionButton.snp.leading)
+            make.trailing.equalTo(doingMissionButton.snp.trailing)
         }
     }
 }

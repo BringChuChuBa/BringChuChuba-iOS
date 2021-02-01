@@ -129,6 +129,6 @@ extension SettingViewModel {
         let promoText = "가족 초대 제목인듯 ? \(GlobalData.shared.familyId)"
         let activityVC = UIActivityViewController(activityItems: [promoText, url], applicationActivities: nil)
 
-//        coordinator.showActivity(activityVC)
+        coordinator.showActivity(activityVC)
     }
 }
