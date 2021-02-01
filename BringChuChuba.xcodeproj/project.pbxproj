@@ -31,7 +31,6 @@
 		40A4C58525B99048008481A6 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A4C58425B99048008481A6 /* ProfileViewController.swift */; };
 		40A4C5A225B99052008481A6 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A4C5A125B99052008481A6 /* ProfileViewModel.swift */; };
 		40A9BAA025A1AC5600EC2988 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9BA9F25A1AC5600EC2988 /* AppDelegate.swift */; };
-		40A9BAA225A1AC5600EC2988 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9BAA125A1AC5600EC2988 /* SceneDelegate.swift */; };
 		40A9BAA925A1AC5700EC2988 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40A9BAA825A1AC5700EC2988 /* Assets.xcassets */; };
 		40A9BAB725A1AC5700EC2988 /* BringChuChubaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9BAB625A1AC5700EC2988 /* BringChuChubaTests.swift */; };
 		40A9BAC225A1AC5700EC2988 /* BringChuChubaUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A9BAC125A1AC5700EC2988 /* BringChuChubaUITests.swift */; };
@@ -122,7 +121,6 @@
 		40A4C5A125B99052008481A6 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		40A9BA9C25A1AC5600EC2988 /* BringChuChuba.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BringChuChuba.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40A9BA9F25A1AC5600EC2988 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		40A9BAA125A1AC5600EC2988 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		40A9BAA825A1AC5700EC2988 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		40A9BAAD25A1AC5700EC2988 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		40A9BAB225A1AC5700EC2988 /* BringChuChubaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BringChuChubaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -354,7 +352,6 @@
 			isa = PBXGroup;
 			children = (
 				40A9BA9F25A1AC5600EC2988 /* AppDelegate.swift */,
-				40A9BAA125A1AC5600EC2988 /* SceneDelegate.swift */,
 				40E5138E25A409460032F712 /* AppCoordinator.swift */,
 			);
 			path = Application;
@@ -798,7 +795,6 @@
 				5D4ADB6D25C6DEE800E16E7B /* MyMissionCellViewModel.swift in Sources */,
 				40E5133125A330F30032F712 /* SettingCoordinator.swift in Sources */,
 				5D88CC9B25A2FB8E008B9D61 /* RankingViewController.swift in Sources */,
-				40A9BAA225A1AC5600EC2988 /* SceneDelegate.swift in Sources */,
 				5D88DDCE25AFE0BE00AB0B3F /* LoginCoordinator.swift in Sources */,
 				5DF0238A25C2A13200D51A35 /* Constants.swift in Sources */,
 				40235D6F25A553AE004D7ABE /* GlobalData.swift in Sources */,
@@ -1001,7 +997,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1023,7 +1019,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -19,6 +19,7 @@ final class AppCoordinator: CoordinatorType {
         window.makeKeyAndVisible()
         GlobalData.shared.familyId == "" ? showLogin() : showMainTab()
     }
+
     private func showLogin() {
         let navigationController = UINavigationController()
         let coordinator = LoginCoordinator(navigationController: navigationController)
