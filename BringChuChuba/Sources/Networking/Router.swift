@@ -6,6 +6,7 @@
 //
 
 import Moya
+import FirebaseAuth
 
 var Provider: MoyaProvider<Router> = MoyaProvider<Router>()
 
@@ -26,6 +27,7 @@ enum Router {
 extension Router: TargetType {
     // MARK: URL
     var baseURL: URL {
+        checkToken()
         guard let baseURL = try? Server.baseURL.asURL() else { fatalError() }
         return baseURL
     }
@@ -142,7 +144,37 @@ extension Router: TargetType {
     }
 }
 
-// MARK: Helpers
+// MARK: Token Check - 토큰이 30분이면 만료되기 때문에 API Call을 하기 전에 파이어베이스에서 토큰을 cache해와야함
+extension Router {
+    private func checkToken() {
+        var finished = false
+
+        Auth.auth().currentUser?.getIDTokenForcingRefresh(false) { token, error in
+            guard error.isNone else {
+                return
+            }
+
+            guard let authToken = token else {
+                return
+            }
+
+            GlobalData.shared.userToken = authToken
+
+            finished = true
+        }
+
+        while !finished {
+            RunLoop.current.run(
+                mode: RunLoop.Mode(rawValue: "NSDefaultRunLoopMode"),
+                before: NSDate.distantFuture
+            )
+        }
+
+        return
+    }
+}
+
+// MARK: - Helpers
 private extension String {
     var urlEscaped: String {
         return addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!

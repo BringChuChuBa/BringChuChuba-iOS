@@ -23,7 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     ) -> Bool {
 
         FirebaseApp.configure()
-        loginAndCheckToken()
+
+        anonymouslyLogin()
         getMember()
 
         RxImagePickerDelegateProxy.register { RxImagePickerDelegateProxy(imagePicker: $0) }
@@ -36,31 +37,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
 
-    private func loginAndCheckToken() {
+    func sceneDidDisconnect(_ scene: UIScene) {
+    }
+
+    func sceneDidBecomeActive(_ scene: UIScene) {
+    }
+
+    func sceneWillResignActive(_ scene: UIScene) {
+    }
+
+    func sceneWillEnterForeground(_ scene: UIScene) {
+    }
+
+    func sceneDidEnterBackground(_ scene: UIScene) {
+    }
+}
+
+// MARK: Firebase Login
+extension SceneDelegate {
+    private func anonymouslyLogin() {
         var finished = false
 
         Auth.auth().signInAnonymously { result, error in
             guard error.isNone else { return }
 
-            guard let user = result?.user else {
+            guard (result?.user).isSome else {
                 // 여기도 재시도 해보고 에러 처리
                 print("\(#file) Firebase SignIn Fail")
                 fatalError()
             }
 
-            user.getIDTokenForcingRefresh(false) { token, error in
-                guard error.isNone else {
-                    return
-                }
-
-                guard let authToken = token else {
-                    return
-                }
-
-                GlobalData.shared.userToken = authToken
-
-                finished = true
-            }
+            finished = true
         }
 
         while !finished {
@@ -98,5 +105,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         return
     }
-
 }
