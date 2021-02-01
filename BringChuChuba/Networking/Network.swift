@@ -21,8 +21,8 @@ final class Network {
     private init() {}
 
     // MARK: - Properties
-//    private let provider = MoyaProvider<Router>(plugins: [NetworkLoggerPlugin()]) // for logging
-    private let provider = MoyaProvider<Router>()
+    private let provider = MoyaProvider<Router>(plugins: [NetworkLoggerPlugin()]) // for logging
+//    private let provider = MoyaProvider<Router>()
 
     // MARK: - API Calls
     func request<T>(with httpRequest: Router, for returnType: T.Type) -> Single<T> where T: Decodable {

@@ -9,7 +9,5 @@ import Firebase
 import FirebaseDynamicLinks
 
 final class DeepLink {
-    
-
 
 }
