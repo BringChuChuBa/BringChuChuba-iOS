@@ -86,7 +86,8 @@ final class SettingViewController: UIViewController {
         let input = SettingViewModel.Input(
             photoTrigger: profileImage.rx.tap().asDriverOnErrorJustComplete(),
             myMissionTrigger: myMissionButton.rx.tap.asDriver(),
-            doingMissionTrigger: doingMissionButton.rx.tap.asDriver()
+            doingMissionTrigger: doingMissionButton.rx.tap.asDriver(),
+            inviteFamilyTrigger: doingMissionButton.rx.tap.asDriver()
         )
 
         let output = viewModel.transform(input: input)

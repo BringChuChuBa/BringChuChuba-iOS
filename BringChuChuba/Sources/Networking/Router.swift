@@ -55,7 +55,7 @@ extension Router: TargetType {
     }
 
     // MARK: HTTPMethod
-    var method: Method {
+    var method: Moya.Method {
         switch self {
         case .getMember, .getFamily, .getMissions:
             return .get

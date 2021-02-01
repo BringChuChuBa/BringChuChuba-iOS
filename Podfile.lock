@@ -1,11 +1,8 @@
 PODS:
   - Alamofire (5.4.1)
-<<<<<<< HEAD
   - Differentiator (4.0.1)
-=======
   - Firebase/Analytics (7.4.0):
     - Firebase/Core
->>>>>>> deeplink
   - Firebase/Auth (7.4.0):
     - Firebase/CoreOnly
     - FirebaseAuth (~> 7.4.0)
@@ -109,10 +106,7 @@ DEPENDENCIES:
   - Firebase/DynamicLinks
   - Moya/RxSwift
   - RxCocoa (= 5.1.1)
-<<<<<<< HEAD
   - RxDataSources
-=======
->>>>>>> deeplink
   - RxGesture
   - RxSwift (= 5.1.1)
   - SnapKit
@@ -172,10 +166,6 @@ SPEC CHECKSUMS:
   SwiftLint: 4fa9579c63416865179bc416f0a92d55f009600d
   Then: acfe0be7e98221c6204e12f8161459606d5d822d
 
-<<<<<<< HEAD
-PODFILE CHECKSUM: cde96ba397f3a987c981dd363d0555d141b28c43
-=======
-PODFILE CHECKSUM: a804b6930b30c250818baffb5c815a3b57b44cfa
->>>>>>> deeplink
+PODFILE CHECKSUM: 63fba782d030f345bf305c23f9c1baa2841bfc31
 
 COCOAPODS: 1.10.0

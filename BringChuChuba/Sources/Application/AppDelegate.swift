@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         anonymouslyLogin()
         getMember()
 
+        // 이미지 권한
         RxImagePickerDelegateProxy.register { RxImagePickerDelegateProxy(imagePicker: $0) }
 
         // window
@@ -54,7 +55,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 }
 
 // MARK: Firebase Login
-extension SceneDelegate {
+extension AppDelegate {
     private func anonymouslyLogin() {
         var finished = false
 
