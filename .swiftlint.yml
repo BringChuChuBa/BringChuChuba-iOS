@@ -1,11 +1,16 @@
 disabled_rules:
 - file_length
+- trailing_whitespace
 - identifier_name
 
 included:
+- BringChuChuba
 
 excluded:
 - Pods
+- BringChuChuba/*/AppDelegate.swift
+- BringChuChubaTests
+- BringChuChubaUITests
 
 line_length: 110
 function_body_length: 100

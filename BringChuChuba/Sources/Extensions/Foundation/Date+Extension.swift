@@ -14,11 +14,11 @@ enum DateRoundingType {
 }
 
 extension Date {
-    var currentTime: String {
+    public var currentTime: String {
         return self.description(with: .current)
     }
 
-    var toString: String {
+    public var toString: String {
         let dateFormatter = DateFormatter().then {
             $0.dateFormat = Constants.dateFormat
             $0.locale = Locale.current
@@ -27,7 +27,7 @@ extension Date {
         return dateFormatter.string(from: self)
     }
 
-    var isFuture: Bool {
+    public var isFuture: Bool {
         let time = self.timeIntervalSince1970
         let now = Date().timeIntervalSince1970
         return now - time < 0

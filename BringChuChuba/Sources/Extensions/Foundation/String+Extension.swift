@@ -8,7 +8,7 @@
 import Foundation
 
 extension String {
-    var localized: String {
+    public var localized: String {
         return NSLocalizedString(
             self,
             tableName: nil,
@@ -18,7 +18,7 @@ extension String {
         )
     }
 
-    var toDate: Date {
+    public var toDate: Date {
         let dateFormatter = DateFormatter().then {
             $0.dateFormat = Constants.dateFormat
             $0.locale = Locale.current
