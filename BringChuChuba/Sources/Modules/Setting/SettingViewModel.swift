@@ -88,7 +88,8 @@ extension SettingViewModel {
             shareLink.iOSParameters = DynamicLinkIOSParameters(bundleID: myBundleId)
         }
 
-//        shareLink.iOSParameters?.appStoreID = "" // 없음 ㅠ
+//        1:414653842652:ios:5a9daf4b46b19dd655e019 // app id
+//        shareLink.iOSParameters?.appStoreID = ""
 //        shareLink.iOSParameters?.fallbackURL = "" 앱 스토어 아이디 없을 때
         shareLink.iOSParameters?.minimumAppVersion = "1.0.0"
 
