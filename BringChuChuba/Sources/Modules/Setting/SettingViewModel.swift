@@ -56,16 +56,21 @@ final class SettingViewModel: ViewModelType {
 extension SettingViewModel {
     func makeDeepLink() {
         // TODO: Constant로 빼기
+
+        // URL 구성
         var components = URLComponents()
         components.scheme = "https"
         components.host = "bringchuchuba.page.link"
-        components.path = "/family"
+        components.path = "/invite"
 
+        // prefix
         let domainURIPrefix = "https://bringchuchuba.page.link"
 
+        // query : familyId
         let familyQueryItem = URLQueryItem(name: "familyId", value: GlobalData.shared.familyId)
         components.queryItems = [familyQueryItem]
 
+        // url : I am sharing https://bringchuchuba.page.link/invite?familyId=2
         guard let linkParameter = components.url else { return }
 
         print("I am sharing \(linkParameter.absoluteString)")
@@ -87,8 +92,8 @@ extension SettingViewModel {
 //        shareLink.iOSParameters?.fallbackURL = "" 앱 스토어 아이디 없을 때
         shareLink.iOSParameters?.minimumAppVersion = "1.0.0"
 
-        shareLink.androidParameters = DynamicLinkAndroidParameters(packageName: "com.bring.chuchuba")
-        shareLink.androidParameters?.minimumVersion = 100
+//        shareLink.androidParameters = DynamicLinkAndroidParameters(packageName: "com.BringChuChuba")
+//        shareLink.androidParameters?.minimumVersion = 100
 
         // TODO: analytics 추가
         /*
