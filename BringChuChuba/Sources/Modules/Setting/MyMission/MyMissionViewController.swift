@@ -15,7 +15,7 @@ import Then
 final class MyMissionViewController: UIViewController {
     // MARK: Properties
     var viewModel: MyMissionViewModel!
-    private var status: String?
+    private var status: String
     private let disposeBag = DisposeBag()
     
     // MARK: UI Components
@@ -35,7 +35,7 @@ final class MyMissionViewController: UIViewController {
     }
     
     // MARK: Initializers
-    init(viewModel: MyMissionViewModel, status: String? = nil) {
+    init(viewModel: MyMissionViewModel, status: String) {
         self.viewModel = viewModel
         self.status = status
         super.init(nibName: nil, bundle: nil)

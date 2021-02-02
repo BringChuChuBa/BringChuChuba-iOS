@@ -33,7 +33,7 @@ final class SettingCoordinator: CoordinatorType {
     
     func toDoingMission() {
         let viewModel = MyMissionViewModel(coordinator: self)
-        let viewController = MyMissionViewController(viewModel: viewModel)
+        let viewController = MyMissionViewController(viewModel: viewModel, status: "doing")
         navigationController.pushViewController(viewController, animated: true)
     }
 

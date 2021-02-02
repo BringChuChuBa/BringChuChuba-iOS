@@ -11,7 +11,7 @@ import RxSwift
 final class MyMissionViewModel: ViewModelType {
     // MARK: Structs
     struct Input {
-        let status: String?
+        let status: String
         let appear: Driver<Void>
     }
     
@@ -41,13 +41,13 @@ final class MyMissionViewModel: ViewModelType {
             .asDriverOnErrorJustComplete()
             .map { missions in
                 missions.filter { mission -> Bool in
-                    if input.status.isSome {
+                    if input.status != "doing" {
                         return mission.client.id == GlobalData.shared.id
                     }
                     return mission.contractor?.id == GlobalData.shared.id
                 }
                 .filter { mission -> Bool in
-                    if input.status.isSome {
+                    if input.status != "doing" {
                         return mission.status.rawValue == input.status
                     }
                     return mission.status == .inProgress
@@ -55,6 +55,8 @@ final class MyMissionViewModel: ViewModelType {
                 .map { MyMissionCellViewModel(with: $0) }
             }
         }
+
+//        let hideButton = input.status
         
         let error = errorTracker.asDriver()
         
