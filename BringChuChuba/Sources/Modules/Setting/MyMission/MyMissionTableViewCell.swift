@@ -58,6 +58,8 @@ final class MyMissionTableViewCell: UITableViewCell {
         titleLabel.text = viewModel.title
         descriptionLabel.text = viewModel.description
         statusLabel.text = viewModel.status
+
+        hideButton(with: viewModel)
         
         let input = MyMissionCellViewModel.Input(
             deleteTrigger: deleteButton.rx.tap.asDriver(),
@@ -104,6 +106,20 @@ final class MyMissionTableViewCell: UITableViewCell {
         completeButton.snp.makeConstraints { make in
             make.top.equalTo(statusLabel)
             make.height.trailing.equalTo(deleteButton)
+        }
+    }
+
+    private func hideButton(with viewModel: MyMissionCellViewModel) {
+        switch viewModel.status {
+        case MissionStatus.todo.rawValue:
+            completeButton.isHidden = true
+        case MissionStatus.inProgress.rawValue:
+            break
+        case MissionStatus.complete.rawValue:
+            completeButton.isHidden = true
+            deleteButton.isHidden = true
+        default:
+            break
         }
     }
 }

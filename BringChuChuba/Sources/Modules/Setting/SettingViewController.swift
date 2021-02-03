@@ -59,8 +59,8 @@ final class SettingViewController: UIViewController {
         $0.setTitleColor(.systemBlue, for: .normal)
     }
 
-    private lazy var inviteMissionButton = UIButton(type: .system).then {
-        $0.setTitle("inviteMission", for: .normal)
+    private lazy var inviteFamilyButton = UIButton(type: .system).then {
+        $0.setTitle("inviteFamily", for: .normal)
         $0.setTitleColor(.systemBlue, for: .normal)
     }
 
@@ -90,7 +90,7 @@ final class SettingViewController: UIViewController {
             photoTrigger: profileImage.rx.tap().asDriverOnErrorJustComplete(),
             myMissionTrigger: myMissionButton.rx.tap.asDriver(),
             doingMissionTrigger: doingMissionButton.rx.tap.asDriver(),
-            inviteFamilyTrigger: inviteMissionButton.rx.tap.asDriver()
+            inviteFamilyTrigger: inviteFamilyButton.rx.tap.asDriver()
         )
 
         let output = viewModel.transform(input: input)
@@ -122,7 +122,7 @@ final class SettingViewController: UIViewController {
 
         view.addSubview(myMissionButton)
         view.addSubview(doingMissionButton)
-        view.addSubview(inviteMissionButton)
+        view.addSubview(inviteFamilyButton)
 
         // set constraints
 
@@ -155,7 +155,7 @@ final class SettingViewController: UIViewController {
             make.leading.equalTo(view.snp.centerX)
         }
 
-        inviteMissionButton.snp.makeConstraints { make in
+        inviteFamilyButton.snp.makeConstraints { make in
             make.top.equalTo(doingMissionButton.snp.bottom).offset(20)
             make.leading.equalTo(myMissionButton.snp.leading)
             make.trailing.equalTo(doingMissionButton.snp.trailing)

@@ -54,10 +54,15 @@ final class MyMissionViewModel: ViewModelType {
                 }
                 .map { MyMissionCellViewModel(with: $0) }
             }
+
+            // todo -> 완료 버튼 hidden
+            // status -> complete면 완료버튼 hidden, 진행중으로 변경버튼은 나중에 생각
+            // doing -> 삭제, 완료 버튼 hidden
+            //
         }
 
 //        let hideButton = input.status
-        
+
         let error = errorTracker.asDriver()
         
         return Output(
