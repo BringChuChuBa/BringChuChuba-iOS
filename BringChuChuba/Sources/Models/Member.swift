@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Member: Decodable {
+struct Member: Decodable, Hashable {
     let id: String
     let familyId: String?
     let nickname: String?

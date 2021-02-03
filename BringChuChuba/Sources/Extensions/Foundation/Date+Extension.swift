@@ -33,6 +33,10 @@ extension Date {
         return now - time < 0
     }
 
+    public var isDateInThisMonth: Bool {
+        return Calendar.current.isDate(Date(), equalTo: self, toGranularity: .month)
+    }
+
     func rounded(minutes: TimeInterval, rounding: DateRoundingType = .round) -> Date {
         return rounded(seconds: minutes * 60, rounding: rounding)
     }
@@ -49,4 +53,5 @@ extension Date {
         }
         return Date(timeIntervalSinceReferenceDate: roundedInterval)
     }
+
 }

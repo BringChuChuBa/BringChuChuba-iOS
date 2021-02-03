@@ -20,7 +20,7 @@ class RankingCellViewModel {
     // MARK: Initializers
     init() { }
 
-    init(with title: String, point detail: String) {
+    init(with title: String?, point detail: String) {
         self.title.accept(title)
         self.detail.accept(detail)
     }

@@ -55,6 +55,8 @@
 		5D55B7EF25B925270055A9D8 /* DetailMissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2D4BD25B5B4F10030A85E /* DetailMissionViewModel.swift */; };
 		5D76B06625C637D500C1D1A8 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D76B06525C637D500C1D1A8 /* Date+Extension.swift */; };
 		5D7D2C3F25BA5DB800F3C25D /* RankingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7D2C3E25BA5DB800F3C25D /* RankingCell.swift */; };
+		5D86E4F225CA830B00D96ADE /* DateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D86E4F125CA830B00D96ADE /* DateTests.swift */; };
+		5D86E50A25CA8A9100D96ADE /* Int+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D86E50925CA8A9100D96ADE /* Int+Extension.swift */; };
 		5D88CC7F25A2FA1B008B9D61 /* CoordinatorType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC7E25A2FA1B008B9D61 /* CoordinatorType.swift */; };
 		5D88CC8925A2FB29008B9D61 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC8825A2FB29008B9D61 /* HomeViewController.swift */; };
 		5D88CC9B25A2FB8E008B9D61 /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC9A25A2FB8E008B9D61 /* RankingViewController.swift */; };
@@ -63,6 +65,7 @@
 		5D88CCF725A33407008B9D61 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CCF625A33407008B9D61 /* Mission.swift */; };
 		5D88CDA225A5D5B6008B9D61 /* Family.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CCAA25A30002008B9D61 /* Family.swift */; };
 		5D88DDCE25AFE0BE00AB0B3F /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88DDCD25AFE0BE00AB0B3F /* LoginCoordinator.swift */; };
+		5D8CF65E25C9032D007557E4 /* AuthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8CF65D25C9032D007557E4 /* AuthTests.swift */; };
 		5D9ED18A25C715C7001F34CB /* RxImagePickerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9ED18925C715C7001F34CB /* RxImagePickerDelegateProxy.swift */; };
 		5D9ED20325C729F2001F34CB /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D9ED20225C729F2001F34CB /* UIView+Extension.swift */; };
 		5DA84C2225BDA1A20040EA0D /* RankingCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA84C2125BDA1A20040EA0D /* RankingCellViewModel.swift */; };
@@ -150,6 +153,8 @@
 		5D55B7B225B91F730055A9D8 /* DetailMissionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailMissionCell.swift; sourceTree = "<group>"; };
 		5D76B06525C637D500C1D1A8 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		5D7D2C3E25BA5DB800F3C25D /* RankingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingCell.swift; sourceTree = "<group>"; };
+		5D86E4F125CA830B00D96ADE /* DateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTests.swift; sourceTree = "<group>"; };
+		5D86E50925CA8A9100D96ADE /* Int+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Extension.swift"; sourceTree = "<group>"; };
 		5D88CC7E25A2FA1B008B9D61 /* CoordinatorType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinatorType.swift; sourceTree = "<group>"; };
 		5D88CC8825A2FB29008B9D61 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		5D88CC9A25A2FB8E008B9D61 /* RankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
@@ -159,6 +164,7 @@
 		5D88CCF625A33407008B9D61 /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
 		5D88CD5125A42F0B008B9D61 /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
 		5D88DDCD25AFE0BE00AB0B3F /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
+		5D8CF65D25C9032D007557E4 /* AuthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTests.swift; sourceTree = "<group>"; };
 		5D9ED18925C715C7001F34CB /* RxImagePickerDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxImagePickerDelegateProxy.swift; sourceTree = "<group>"; };
 		5D9ED20225C729F2001F34CB /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
 		5DA84C2125BDA1A20040EA0D /* RankingCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingCellViewModel.swift; sourceTree = "<group>"; };
@@ -311,6 +317,8 @@
 			children = (
 				40A9BAB625A1AC5700EC2988 /* BringChuChubaTests.swift */,
 				40A9BAB825A1AC5700EC2988 /* Info.plist */,
+				5D8CF65D25C9032D007557E4 /* AuthTests.swift */,
+				5D86E4F125CA830B00D96ADE /* DateTests.swift */,
 			);
 			path = BringChuChubaTests;
 			sourceTree = "<group>";
@@ -478,6 +486,7 @@
 				40A2D4D025B5B59E0030A85E /* Optional+Extension.swift */,
 				5DF0234E25C2697800D51A35 /* String+Extension.swift */,
 				5D76B06525C637D500C1D1A8 /* Date+Extension.swift */,
+				5D86E50925CA8A9100D96ADE /* Int+Extension.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -809,6 +818,7 @@
 				40E5132225A330D40032F712 /* HomeCoordinator.swift in Sources */,
 				5DBBEDE325B16B8C004ACC3A /* CreateFamilyViewModel.swift in Sources */,
 				4015764225A47A9D00AB4296 /* RankingViewModel.swift in Sources */,
+				5D86E50A25CA8A9100D96ADE /* Int+Extension.swift in Sources */,
 				401D6C8625A6BA0900113273 /* ActivityIndicator.swift in Sources */,
 				5D88CCF725A33407008B9D61 /* Mission.swift in Sources */,
 				5D39BFE925AF032B00356E7E /* JoinFamilyViewModel.swift in Sources */,
@@ -825,6 +835,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				40A9BAB725A1AC5700EC2988 /* BringChuChubaTests.swift in Sources */,
+				5D86E4F225CA830B00D96ADE /* DateTests.swift in Sources */,
+				5D8CF65E25C9032D007557E4 /* AuthTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1009,7 +1021,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 325UV7FT5F;
 				INFOPLIST_FILE = "BringChuChuba/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1031,7 +1043,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = BringChuChubaTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1053,7 +1065,7 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = BringChuChubaTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

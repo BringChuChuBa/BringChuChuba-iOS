@@ -12,7 +12,7 @@ final class RankingViewModel: ViewModelType {
     // MARK: Structs
     struct Input {
         let trigger: Driver<Void>
-        let selectedIndex: Driver<Int>
+        let segmentedSelected: Driver<RankingSegments>
     }
 
     struct Output {
@@ -33,34 +33,47 @@ final class RankingViewModel: ViewModelType {
         let activityIndicator = ActivityIndicator()
         let errorTracker = ErrorTracker()
 
-        let familyUid = Int(GlobalData.shared.familyId)! // guard error
-        let members = input.trigger
-            .flatMapLatest { _ -> Driver<[Member]> in
+        let familyUid = Int(GlobalData.shared.familyId)! // guard
+        let family = input.trigger
+            .flatMapLatest { _ -> Driver<Family> in
                 Network.shared.request(
                     with: .getFamily(familyUid: familyUid),
                     for: Family.self
                 )
                 .trackActivity(activityIndicator)
                 .trackError(errorTracker)
-                .map { $0.members }
                 .asDriverOnErrorJustComplete()
             }
 
-        let selectedIndex = input.selectedIndex
-            .startWith(0)
-
         let items = Driver
-            .combineLatest(members, selectedIndex) { members, _ -> [RankingCellViewModel] in
-                // switch(selectedIndex)
-                // case 전체기간
-                return members.sorted { $0.point < $1.point }
-                    .compactMap { RankingCellViewModel(with: $0.id, point: $0.point) }
-
-                // case 이번달
-                // - point를 얻은 날짜에 대한 정보 필요
-                // - mission의 modifiedAt?
-                // -- 맞다면 1. mission modifiedAt이 이번달인 미션만 필터링
-                // -- 2. 해당 미션의 contractor 멤버에게 점수 + 1 // thisMonthPoint 프로퍼티 필요
+            .combineLatest(
+                family,
+                input.segmentedSelected
+            ) { family, segmentedSelected -> [RankingCellViewModel] in
+                switch segmentedSelected {
+                case .all:
+                    return family.members
+                        .sorted { $0.point > $1.point }
+                        .compactMap { RankingCellViewModel(
+                            with: $0.id,
+                            point: $0.point
+                        ) }
+                case .monthly:
+                    let count = family.missions
+                        .filter { $0.status == .complete }
+                        .filter { $0.contractor.isSome }
+                        .filter { $0.modifiedAt.toDate.isDateInThisMonth }
+                        .filter { $0.contractor.isSome }
+                        .map { $0.contractor! }
+                        .reduce(into: [:]) { counts, member in
+                            counts[member, default: 0] += 1
+                        }
+                    return count.sorted { $0.value > $1.value }
+                        .compactMap { RankingCellViewModel(
+                            with: $0.key.id,
+                            point: $0.value.toString
+                        ) }
+                }
             }
         
         let fetching = activityIndicator.asDriver()

@@ -12,28 +12,29 @@ import RxSwift
 import SnapKit
 import Then
 
-final class RankingViewController: UIViewController {
-    enum Periods: Int, CaseIterable {
-        case all = 0
-        case monthly
+enum RankingSegments: Int, CaseIterable {
+    case all
+    case monthly
 
-        var description: String {
-            switch self {
-            case .all: return "all"
-            case .monthly: return "monthly"
-            }
+    var title: String {
+        switch self {
+        case .all: return "전체"
+        default: return "이번달"
         }
     }
+}
 
+final class RankingViewController: UIViewController {
     // MARK: Properties
     private let viewModel: RankingViewModel!
     private let disposeBag: DisposeBag = DisposeBag()
 
     // MARK: UI Components
     private lazy var segmentedControl = UISegmentedControl(
-        items: Periods.allCases.map { $0.description.capitalized }).then {
-            $0.selectedSegmentIndex = 0
-        }
+        items: RankingSegments.allCases.map { $0.title }
+    ).then {
+        $0.selectedSegmentIndex = 0
+    }
 
     private lazy var tableView = UITableView(frame: .zero, style: .insetGrouped).then {
         $0.contentInsetAdjustmentBehavior = .never
@@ -75,7 +76,9 @@ final class RankingViewController: UIViewController {
 
         let input = RankingViewModel.Input(
             trigger: Driver.merge(viewWillAppear, pull),
-            selectedIndex: segmentedControl.rx.selectedSegmentIndex.asDriver()
+            segmentedSelected: segmentedControl.rx.selectedSegmentIndex
+                .map { RankingSegments(rawValue: $0)! }
+                    .asDriverOnErrorJustComplete()
         )
 
         let output = viewModel.transform(input: input)
@@ -103,7 +106,7 @@ final class RankingViewController: UIViewController {
         segmentedControl.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(50)
             make.top.equalTo(view.safeArea.top)
-//            make.top.equalToSuperview().inset(safeAreaLayoutGuide)
+            //            make.top.equalToSuperview().inset(safeAreaLayoutGuide)
         }
 
         tableView.snp.makeConstraints { make in
