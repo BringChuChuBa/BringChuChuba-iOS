@@ -15,6 +15,7 @@ import Then
 final class MyMissionTableViewCell: UITableViewCell {
     // MARK: Properties
     private let disposeBag = DisposeBag()
+    private var parent: MyMissionViewController?
     
     // MARK: UI Components
     private lazy var titleLabel = UILabel().then {
@@ -55,44 +56,70 @@ final class MyMissionTableViewCell: UITableViewCell {
     
     // MARK: Binds
     func bind(with viewModel: MyMissionCellViewModel, parent: MyMissionViewController) {
+        self.parent = parent
         titleLabel.text = viewModel.title
         descriptionLabel.text = viewModel.description
         statusLabel.text = viewModel.status
 
         hideButton(with: viewModel)
 
-        let deleteTrigger = deleteButton.rx.tap.flatMap {
-            return Observable<Void>.create { observer in
-                let alert = UIAlertController(title: "Delete Mission",
-                                              message: "delete?",
-                                              preferredStyle: .alert)
+//        let deleteObservable = PublishSubject<Void>()
+//        _ = deleteButton.rx.tap
+//            .subscribe(onNext: {
+//                let alert = UIAlertController(title: "Delete Mission",
+//                                              message: "delete?",
+//                                              preferredStyle: .alert)
+//
+//                let deleteAction = UIAlertAction(title: "Delete",
+//                                                 style: .destructive,
+//                                                 handler: { _ -> Void in
+//                                                    deleteObservable.onNext(())
+//                                                 })
+//                let cancelAction = UIAlertAction(title: "Cancel",
+//                                                 style: .cancel)
+//
+//                alert.addAction(deleteAction)
+//                alert.addAction(cancelAction)
+//
+//                self.parent!.present(alert,
+//                                     animated: true)
+//            })
 
-                let deleteAction = UIAlertAction(title: "Delete",
-                                                 style: .destructive,
-                                                 handler: { _ -> Void in
-                                                    observer.onNext(())
-                                                 })
-                let cancelAction = UIAlertAction(title: "Cancel",
-                                                 style: .cancel)
-
-                alert.addAction(deleteAction)
-                alert.addAction(cancelAction)
-
-                parent.present(alert,
-                               animated: true)
-
-                return Disposables.create()
-            }
-        }
+//        let deleteTrigger = deleteButton.rx.tap.flatMap {
+//            return Observable<Void>.create { observer in
+//                let alert = UIAlertController(title: "Delete Mission",
+//                                              message: "delete?",
+//                                              preferredStyle: .alert)
+//
+//                let deleteAction = UIAlertAction(title: "Delete",
+//                                                 style: .destructive,
+//                                                 handler: { _ -> Void in
+//                                                    observer.onNext(())
+//                                                 })
+//                let cancelAction = UIAlertAction(title: "Cancel",
+//                                                 style: .cancel)
+//
+//                alert.addAction(deleteAction)
+//                alert.addAction(cancelAction)
+//
+//                self.parent!.present(alert,
+//                                     animated: true)
+//
+//                return Disposables.create()
+//            }
+//        }
         
         let input = MyMissionCellViewModel.Input(
-            deleteTrigger: deleteTrigger.asDriverOnErrorJustComplete(),
+//            deleteTrigger: deleteTrigger.asDriverOnErrorJustComplete(),
+//            deleteTrigger: deleteObservable.asDriverOnErrorJustComplete(),
+            deleteTrigger: deleteButton.rx.tap.asDriver(),
             completeTrigger: completeButton.rx.tap.asDriver()
         )
         
         let output = viewModel.transform(input: input)
+
         [output.deleted
-            .drive(),
+            .drive(parent.reloadBinding),
          output.completed
             .drive()
         ].forEach { $0.disposed(by: disposeBag) }

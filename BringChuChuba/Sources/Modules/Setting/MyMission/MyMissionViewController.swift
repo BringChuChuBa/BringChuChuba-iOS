@@ -17,9 +17,11 @@ final class MyMissionViewController: UIViewController {
     var viewModel: MyMissionViewModel!
     private var status: String
     private let disposeBag = DisposeBag()
+
+    let reloadSubject = PublishSubject<Void>()
     var reloadBinding: Binder<Void> {
-        return Binder(self) { _, _ in
-            self.tableView.reloadData()
+        return Binder(self) { base, _ in
+            base.reloadSubject.onNext(())
         }
     }
     
@@ -71,10 +73,14 @@ final class MyMissionViewController: UIViewController {
             .controlEvent(.valueChanged)
             .asDriver()
 
+        let relaod = reloadSubject.asDriverOnErrorJustComplete()
+
+        let pullAndReload = Driver.merge(relaod, pull)
+
         let input = MyMissionViewModel.Input(
             status: status,
             parent: self,
-            appear: Driver.merge(viewWillAppear, pull)
+            appear: Driver.merge(viewWillAppear, pullAndReload)
 //            appear: viewWillAppear
         )
         

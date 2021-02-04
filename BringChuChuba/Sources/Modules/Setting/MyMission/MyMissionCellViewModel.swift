@@ -52,6 +52,7 @@ final class MyMissionCellViewModel: ViewModelType {
 //                    .map { _ -> Bool in
 //                        return true
 //                    }
+                    .share()
                     .asDriverOnErrorJustComplete()
             }
 
