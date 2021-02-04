@@ -17,15 +17,21 @@ final class MyMissionViewController: UIViewController {
     var viewModel: MyMissionViewModel!
     private var status: String
     private let disposeBag = DisposeBag()
+    var reloadBinding: Binder<Void> {
+        return Binder(self) { _, _ in
+            self.tableView.reloadData()
+        }
+    }
     
     // MARK: UI Components
     private lazy var footerView = UIView(frame: .zero).then {
         $0.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
     }
     
-    private lazy var tableView = UITableView(frame: .zero, style: .insetGrouped).then {
+    lazy var tableView = UITableView(frame: .zero, style: .insetGrouped).then {
         // 50 Constant로 빼기
         $0.contentInsetAdjustmentBehavior = .never
+        $0.refreshControl = UIRefreshControl()
         $0.rowHeight = 100
         $0.register(
             MyMissionTableViewCell.self,
@@ -60,20 +66,28 @@ final class MyMissionViewController: UIViewController {
         let viewWillAppear = rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
             .mapToVoid()
             .asDriverOnErrorJustComplete()
-        
+
+        let pull = tableView.refreshControl!.rx
+            .controlEvent(.valueChanged)
+            .asDriver()
+
         let input = MyMissionViewModel.Input(
             status: status,
-            appear: viewWillAppear
+            parent: self,
+            appear: Driver.merge(viewWillAppear, pull)
+//            appear: viewWillAppear
         )
         
         let output = viewModel.transform(input: input)
         
-        [output.missions
+        [output.fetching
+            .drive(tableView.refreshControl!.rx.isRefreshing),
+         output.missions
             .drive(tableView.rx.items(
                 cellIdentifier: MyMissionTableViewCell.reuseIdentifier(),
                 cellType: MyMissionTableViewCell.self
             )) { _, viewModel, cell in
-                cell.bind(with: viewModel)
+                cell.bind(with: viewModel, parent: self)
             },
          output.error
             .drive(errorBinding)

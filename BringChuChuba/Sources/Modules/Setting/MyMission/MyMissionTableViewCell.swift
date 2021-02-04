@@ -41,7 +41,7 @@ final class MyMissionTableViewCell: UITableViewCell {
         $0.setTitle("Common.Complete".localized, for: .normal)
         $0.setTitleColor(.systemBlue, for: .normal)
     }
-    
+
     // MARK: Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -54,15 +54,39 @@ final class MyMissionTableViewCell: UITableViewCell {
     }
     
     // MARK: Binds
-    func bind(with viewModel: MyMissionCellViewModel) {
+    func bind(with viewModel: MyMissionCellViewModel, parent: MyMissionViewController) {
         titleLabel.text = viewModel.title
         descriptionLabel.text = viewModel.description
         statusLabel.text = viewModel.status
 
         hideButton(with: viewModel)
+
+        let deleteTrigger = deleteButton.rx.tap.flatMap {
+            return Observable<Void>.create { observer in
+                let alert = UIAlertController(title: "Delete Mission",
+                                              message: "delete?",
+                                              preferredStyle: .alert)
+
+                let deleteAction = UIAlertAction(title: "Delete",
+                                                 style: .destructive,
+                                                 handler: { _ -> Void in
+                                                    observer.onNext(())
+                                                 })
+                let cancelAction = UIAlertAction(title: "Cancel",
+                                                 style: .cancel)
+
+                alert.addAction(deleteAction)
+                alert.addAction(cancelAction)
+
+                parent.present(alert,
+                               animated: true)
+
+                return Disposables.create()
+            }
+        }
         
         let input = MyMissionCellViewModel.Input(
-            deleteTrigger: deleteButton.rx.tap.asDriver(),
+            deleteTrigger: deleteTrigger.asDriverOnErrorJustComplete(),
             completeTrigger: completeButton.rx.tap.asDriver()
         )
         
@@ -114,7 +138,10 @@ final class MyMissionTableViewCell: UITableViewCell {
         case MissionStatus.todo.rawValue:
             completeButton.isHidden = true
         case MissionStatus.inProgress.rawValue:
-            break
+            if viewModel.mission.contractor?.id == GlobalData.shared.id {
+                completeButton.isHidden = true
+                deleteButton.isHidden = true
+            }
         case MissionStatus.complete.rawValue:
             completeButton.isHidden = true
             deleteButton.isHidden = true

@@ -62,11 +62,50 @@ extension AppDelegate {
         Auth.auth().signInAnonymously { result, error in
             guard error.isNone else { return }
 
-            guard (result?.user).isSome else {
+            guard let user = result?.user else {
                 // 여기도 재시도 해보고 에러 처리
                 print("\(#file) Firebase SignIn Fail")
                 fatalError()
             }
+
+            user.getIDTokenForcingRefresh(false) {  token, error in
+                guard error.isNone else {
+                    return
+                }
+
+                guard let authToken = token else {
+                    return
+                }
+
+                GlobalData.shared.userToken = authToken
+
+                finished = true
+            }
+        }
+
+        while !finished {
+            RunLoop.current.run(
+                mode: RunLoop.Mode(rawValue: "NSDefaultRunLoopMode"),
+                before: NSDate.distantFuture
+            )
+        }
+
+        return
+    }
+
+    private func checkToken() { // completion: (String) -> ()
+        var finished = false
+
+        Auth.auth().currentUser?.getIDTokenForcingRefresh(false) { token, error in
+            guard error.isNone else {
+                return
+            }
+
+            guard let authToken = token else {
+                return
+            }
+
+            GlobalData.shared.userToken = authToken
 
             finished = true
         }
