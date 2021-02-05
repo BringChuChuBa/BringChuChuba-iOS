@@ -54,6 +54,9 @@
 
 /* Setting */
 "Setting.Navigation.Title" = "마이페이지";
+"Setting.MyMissionButton.Title" = "내 미션";
+"Setting.DoingMissionButton.Title" = "수행 중 미션";
+"Setting.InviteFamilyButton.Title" = "가족초대";
 
 /* My Mission */
 

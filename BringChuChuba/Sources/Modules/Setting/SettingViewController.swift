@@ -18,6 +18,12 @@ final class SettingViewController: UIViewController {
     private let disposeBag = DisposeBag()
 
     // MARK: UI Components
+    // indicator
+    private lazy var activityIndicator = UIActivityIndicatorView().then {
+        // color constants로 뺴기
+        $0.color = UIColor(red: 0.25, green: 0.72, blue: 0.85, alpha: 1.0)
+    }
+
     // profiles
     private lazy var profileStackView = UIStackView().then {
         $0.axis = .horizontal
@@ -35,33 +41,79 @@ final class SettingViewController: UIViewController {
 
     private lazy var profileImage = UIImageView().then {
         // TODO: 서버에서 프로필 사진 받아와서 연결
-        $0.image = UIImage(named: "profile")
+        $0.image = UIImage(systemName: "person.fill")
     }
 
     private lazy var nicknameLabel = UILabel().then {
-        $0.text = GlobalData.shared.nickname
+        $0.text = GlobalData.shared.nickname + GlobalData.shared.id
     }
 
     private lazy var idLabel = UILabel().then {
-        $0.text = GlobalData.shared.id
+        $0.text = "가족방 ID: " + GlobalData.shared.familyId
+        $0.textColor = .gray
+    }
+
+    // button stacks
+    private lazy var buttonStackView = UIStackView().then {
+        $0.axis = .horizontal
+        //        $0.spacing = 5
+        $0.alignment = .center
+        $0.distribution = .fillEqually
+    }
+
+    private lazy var myMissionStackView = UIStackView().then {
+        $0.axis = .vertical
+        //        $0.spacing = 5
+        $0.alignment = .center
+        $0.distribution = .fillEqually
+    }
+
+    private lazy var doingMissionStackView = UIStackView().then {
+        $0.axis = .vertical
+        //        $0.spacing = 5
+        $0.alignment = .center
+        $0.distribution = .fillEqually
+    }
+
+    private lazy var inviteFamilyStackView = UIStackView().then {
+        $0.axis = .vertical
+        //        $0.spacing = 5
+        $0.alignment = .center
+        $0.distribution = .fillEqually
     }
 
     // buttons
     private lazy var myMissionButton = UIButton(type: .system).then {
-        $0.setTitle("myMission", for: .normal)
-        $0.setTitleColor(.systemBlue, for: .normal)
-        //        $0.layer.borderWidth = 0.5
+        $0.setTitle("Setting.MyMissionButton.Title".localized, for: .normal)
+        $0.setTitleColor(.black, for: .normal)
+
+        //        $0.clipsToBounds = true
+        //        $0.layer.cornerRadius = 10
+        //        $0.layer.borderWidth = 1
         //        $0.layer.borderColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
     }
 
     private lazy var doingMissionButton = UIButton(type: .system).then {
-        $0.setTitle("doingMission", for: .normal)
-        $0.setTitleColor(.systemBlue, for: .normal)
+        $0.setTitle("Setting.DoingMissionButton.Title".localized, for: .normal)
+        $0.setTitleColor(.black, for: .normal)
     }
 
     private lazy var inviteFamilyButton = UIButton(type: .system).then {
-        $0.setTitle("inviteFamily", for: .normal)
-        $0.setTitleColor(.systemBlue, for: .normal)
+        $0.setTitle("Setting.InviteFamilyButton.Title".localized, for: .normal)
+        $0.setTitleColor(.black, for: .normal)
+    }
+
+    // image stacks
+    private lazy var myMissionImage = UIImageView().then {
+        $0.image = UIImage(systemName: "book.closed")
+    }
+
+    private lazy var doingMissionImage = UIImageView().then {
+        $0.image = UIImage(systemName: "square.and.pencil")
+    }
+
+    private lazy var inviteFamilyImage = UIImageView().then {
+        $0.image = UIImage(systemName: "link")
     }
 
     // MARK: Initializers
@@ -86,14 +138,30 @@ final class SettingViewController: UIViewController {
     private func bindViewModel() {
         assert(viewModel.isSome)
 
+        let myMissionTrigger = Driver.merge(
+            myMissionImage.rx.tap().asDriverOnErrorJustComplete(),
+            myMissionButton.rx.tap.asDriver()
+        )
+
+        let doingMissionTrigger = Driver.merge(
+            doingMissionImage.rx.tap().asDriverOnErrorJustComplete(),
+            doingMissionButton.rx.tap.asDriver()
+        )
+
+        let inviteFamilyTrigger = Driver.merge(
+            inviteFamilyImage.rx.tap().asDriverOnErrorJustComplete(),
+            inviteFamilyButton.rx.tap.asDriver()
+        )
+
         let input = SettingViewModel.Input(
             photoTrigger: profileImage.rx.tap().asDriverOnErrorJustComplete(),
-            myMissionTrigger: myMissionButton.rx.tap.asDriver(),
-            doingMissionTrigger: doingMissionButton.rx.tap.asDriver(),
-            inviteFamilyTrigger: inviteFamilyButton.rx.tap.asDriver()
+            myMissionTrigger: myMissionTrigger,
+            doingMissionTrigger: doingMissionTrigger,
+            inviteFamilyTrigger: inviteFamilyTrigger
         )
 
         let output = viewModel.transform(input: input)
+        
         [output.myMission
             .drive(),
          output.doingMission
@@ -101,7 +169,9 @@ final class SettingViewController: UIViewController {
          output.profile
             .drive(),
          output.invite
-            .drive()
+            .drive(activityIndicator.rx.isAnimating),
+         output.complete
+            .drive(activityIndicator.rx.isAnimating)
         ].forEach { $0.disposed(by: disposeBag) }
     }
 
@@ -113,6 +183,8 @@ final class SettingViewController: UIViewController {
 
         // add subviews
         view.addSubview(profileStackView)
+        view.addSubview(buttonStackView)
+        view.addSubview(activityIndicator)
 
         profileStackView.addArrangedSubview(profileImage)
         profileStackView.addArrangedSubview(nameStackView)
@@ -120,11 +192,25 @@ final class SettingViewController: UIViewController {
         nameStackView.addArrangedSubview(nicknameLabel)
         nameStackView.addArrangedSubview(idLabel)
 
-        view.addSubview(myMissionButton)
-        view.addSubview(doingMissionButton)
-        view.addSubview(inviteFamilyButton)
+        buttonStackView.addArrangedSubview(myMissionStackView)
+        buttonStackView.addArrangedSubview(doingMissionStackView)
+        buttonStackView.addArrangedSubview(inviteFamilyStackView)
+
+        myMissionStackView.addArrangedSubview(myMissionImage)
+        myMissionStackView.addArrangedSubview(myMissionButton)
+
+        doingMissionStackView.addArrangedSubview(doingMissionImage)
+        doingMissionStackView.addArrangedSubview(doingMissionButton)
+
+        inviteFamilyStackView.addArrangedSubview(inviteFamilyImage)
+        inviteFamilyStackView.addArrangedSubview(inviteFamilyButton)
 
         // set constraints
+
+        // indicator
+        activityIndicator.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
 
         // profiles
         profileStackView.snp.makeConstraints { make in
@@ -141,27 +227,14 @@ final class SettingViewController: UIViewController {
             make.width.equalTo(idLabel.snp.width)
         }
 
-        // buttons
-        myMissionButton.snp.makeConstraints { make in
-            make.top.equalTo(profileStackView.snp.bottom).offset(50)
-            make.leading.equalTo(profileStackView)
-            make.trailing.equalTo(view.snp.centerX)
-            make.height.equalTo(50)
-        }
-
-        doingMissionButton.snp.makeConstraints { make in
-            make.top.height.equalTo(myMissionButton)
-            make.trailing.equalTo(profileStackView)
-            make.leading.equalTo(view.snp.centerX)
-        }
-
-        inviteFamilyButton.snp.makeConstraints { make in
-            make.top.equalTo(doingMissionButton.snp.bottom).offset(20)
-            make.leading.equalTo(myMissionButton.snp.leading)
-            make.trailing.equalTo(doingMissionButton.snp.trailing)
+        buttonStackView.snp.makeConstraints { make in
+            make.top.equalTo(profileStackView.snp.bottom)
+            make.leading.trailing.equalTo(profileStackView)
+            make.height.equalTo(150)
         }
     }
 }
+
 // MARK: Previews
 /*
  #if canImport(SwiftUI) && DEBUG
