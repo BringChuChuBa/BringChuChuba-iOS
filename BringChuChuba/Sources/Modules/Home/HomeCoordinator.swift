@@ -25,12 +25,6 @@ final class HomeCoordinator: CoordinatorType {
         navigationController.pushViewController(viewController, animated: true)
     }
 
-    func toDetailMission(_ mission: Mission) {
-        let viewModel = DetailMissionViewModel(mission: mission, coordinator: self)
-        let viewController = DetailMissionViewController(viewModel: viewModel)
-        navigationController.pushViewController(viewController, animated: true)
-    }
-
     func popToHome() {
         navigationController.popViewController(animated: true)
     }
