@@ -18,14 +18,24 @@ final class HomeViewController: UIViewController {
     private let disposeBag: DisposeBag = DisposeBag()
 
     // MARK: UI Components
+    private lazy var segmentControl = UISegmentedControl(
+        items: Mission.Status.allCases.map { $0.title }
+    ).then {
+        $0.selectedSegmentIndex = 0
+        $0.autoresizingMask = .flexibleWidth
+        navigationItem.titleView = $0
+    }
+
     private lazy var activityIndicator = UIActivityIndicatorView().then {
         // color constants로 뺴기
         $0.color = UIColor(red: 0.25, green: 0.72, blue: 0.85, alpha: 1.0)
     }
 
-    private lazy var tableView = UITableView(frame: .zero, style: .insetGrouped).then {
+    private lazy var tableView = UITableView(frame: .zero).then {
         $0.contentInsetAdjustmentBehavior = .never
-        $0.rowHeight = 50
+        $0.separatorStyle = .none
+        $0.allowsSelection = false
+        $0.rowHeight = 335
         $0.refreshControl = UIRefreshControl()
         $0.register(
             HomeTableViewCell.self,
@@ -56,11 +66,6 @@ final class HomeViewController: UIViewController {
         setupUI()
     }
 
-//    override func viewWillLayoutSubviews() {
-//        super.viewWillLayoutSubviews()
-//        tableView.scrollIndicatorInsets = tableView.contentInset
-//    }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
@@ -80,13 +85,16 @@ final class HomeViewController: UIViewController {
 
         let input = HomeViewModel.Input(
             trigger: Driver.merge(viewWillAppear, pull),
-            createMissionTrigger: createBarButtonItem.rx.tap.asDriver(),
-            selection: tableView.rx.itemSelected.asDriver()
+            segmentSelected: segmentControl.rx.selectedSegmentIndex
+                .debug("selectedSegment -->")
+                .map { Mission.Status.allCases[$0] }
+                .asDriverOnErrorJustComplete(),
+            createMissionTrigger: createBarButtonItem.rx.tap.asDriver()
         )
 
         let output = viewModel.transform(input: input)
 
-        [output.missions
+        [output.items
             .drive(tableView.rx.items(
                 cellIdentifier: HomeTableViewCell.reuseIdentifier(),
                 cellType: HomeTableViewCell.self
@@ -96,26 +104,23 @@ final class HomeViewController: UIViewController {
          output.fetching
             .drive(tableView.refreshControl!.rx.isRefreshing),
          output.createMission
-            .drive(),
-         output.selectedMission
-            .drive()]
-            .forEach { $0.disposed(by: disposeBag) }
+            .drive()
+         ]
+        .forEach { $0.disposed(by: disposeBag) }
     }
 
     // MARK: Set UIs
     private func setupUI() {
-        view.backgroundColor = .systemGroupedBackground
-
         navigationItem.title = "Home.Navigation.Title".localized
-        navigationItem.rightBarButtonItem = createBarButtonItem
+        navigationItem.rightBarButtonItem = createBarButtonItem // TODO: floating button
 
-        // add subviews
         view.addSubview(tableView)
         view.addSubview(activityIndicator)
 
-        // set constraints
         tableView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeArea.edges)
+            make.leading.trailing.equalToSuperview()
+            make.top.equalTo(view.safeArea.top)
+            make.bottom.equalTo(view.safeArea.bottom)
         }
 
         activityIndicator.snp.makeConstraints { make in

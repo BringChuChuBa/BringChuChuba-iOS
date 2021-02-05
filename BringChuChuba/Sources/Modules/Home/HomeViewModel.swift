@@ -12,15 +12,15 @@ final class HomeViewModel: ViewModelType {
     // MARK: Structs
     struct Input {
         let trigger: Driver<Void>
+        let segmentSelected: Driver<Mission.Status>
         let createMissionTrigger: Driver<Void>
-        let selection: Driver<IndexPath>
+//        let contractTrigger: Driver<Void>
     }
     
     struct Output {
         let fetching: Driver<Bool>
-        let missions: Driver<[HomeItemViewModel]>
+        let items: Driver<[HomeItemViewModel]>
         let createMission: Driver<Void>
-        let selectedMission: Driver<Mission>
         let error: Driver<Error>
     }
     
@@ -38,38 +38,32 @@ final class HomeViewModel: ViewModelType {
         let errorTracker = ErrorTracker()
         
         let missions = input.trigger
-            .flatMapLatest { _ -> Driver<[HomeItemViewModel]> in
-                return Network.shared.requests(
+            .flatMapLatest { _ -> Driver<[Mission]> in
+                Network.shared.requests(
                     with: .getMissions(familyId: GlobalData.shared.familyId),
                     for: Mission.self
                 )
                 .trackActivity(activityIndicator)
                 .trackError(errorTracker)
                 .asDriverOnErrorJustComplete()
-                .map { missions in
-                    missions.map { mission in
-                        HomeItemViewModel(with: mission)
-                    }
-                }
+            }
+
+        let items = Driver.combineLatest(missions, input.segmentSelected)
+            .compactMap { missions, segmentSelected -> [HomeItemViewModel] in
+                missions.filter { $0.status == segmentSelected }
+                    .compactMap { HomeItemViewModel(with: $0) }
             }
         
         let fetching = activityIndicator.asDriver()
         let errors = errorTracker.asDriver()
-        
-        let selectedMission = input.selection
-            .withLatestFrom(missions) { indexPath, missions -> Mission in
-                return missions[indexPath.row].mission
-            }
-            .do(onNext: coordinator.toDetailMission)
         
         let createMission = input.createMissionTrigger
             .do(onNext: coordinator.toCreateMission)
         
         return Output(
             fetching: fetching,
-            missions: missions,
+            items: items,
             createMission: createMission,
-            selectedMission: selectedMission,
             error: errors
         )
     }

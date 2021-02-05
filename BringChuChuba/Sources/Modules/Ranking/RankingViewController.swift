@@ -12,11 +12,11 @@ import RxSwift
 import SnapKit
 import Then
 
-enum RankingSegments: Int, CaseIterable {
+enum Periods: Int, CaseIterable {
     case all
     case monthly
 
-    var title: String {
+    var description: String {
         switch self {
         case .all: return "전체"
         default: return "이번달"
@@ -31,12 +31,15 @@ final class RankingViewController: UIViewController {
 
     // MARK: UI Components
     private lazy var segmentedControl = UISegmentedControl(
-        items: RankingSegments.allCases.map { $0.title }
+        items: Periods.allCases.map { $0.description }
     ).then {
         $0.selectedSegmentIndex = 0
+        $0.autoresizingMask = .flexibleWidth
+        navigationItem.titleView = $0
     }
 
     private lazy var tableView = UITableView(frame: .zero, style: .insetGrouped).then {
+        $0.automaticallyAdjustsScrollIndicatorInsets = false
         $0.contentInsetAdjustmentBehavior = .never
         $0.register(RankingCell.self, forCellReuseIdentifier: RankingCell.reuseIdentifier())
         $0.rowHeight = 80
@@ -76,9 +79,9 @@ final class RankingViewController: UIViewController {
 
         let input = RankingViewModel.Input(
             trigger: Driver.merge(viewWillAppear, pull),
-            segmentedSelected: segmentedControl.rx.selectedSegmentIndex
-                .map { RankingSegments(rawValue: $0)! }
-                    .asDriverOnErrorJustComplete()
+            segmentSelected: segmentedControl.rx.selectedSegmentIndex
+                .map { Periods(rawValue: $0)! }
+                .asDriverOnErrorJustComplete()
         )
 
         let output = viewModel.transform(input: input)
@@ -100,18 +103,11 @@ final class RankingViewController: UIViewController {
 
         navigationItem.title = "Ranking.Navigation.Title".localized
 
-        view.addSubview(segmentedControl)
         view.addSubview(tableView)
-
-        segmentedControl.snp.makeConstraints { make in
-            make.leading.trailing.equalToSuperview().inset(50)
-            make.top.equalTo(view.safeArea.top)
-            //            make.top.equalToSuperview().inset(safeAreaLayoutGuide)
-        }
 
         tableView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            make.top.equalTo(segmentedControl.snp.bottom)
+            make.top.equalTo(view.safeArea.top)
             make.bottom.equalTo(view.safeArea.bottom)
         }
     }

@@ -12,7 +12,7 @@ final class RankingViewModel: ViewModelType {
     // MARK: Structs
     struct Input {
         let trigger: Driver<Void>
-        let segmentedSelected: Driver<RankingSegments>
+        let segmentSelected: Driver<Periods>
     }
 
     struct Output {
@@ -48,9 +48,9 @@ final class RankingViewModel: ViewModelType {
         let items = Driver
             .combineLatest(
                 family,
-                input.segmentedSelected
-            ) { family, segmentedSelected -> [RankingCellViewModel] in
-                switch segmentedSelected {
+                input.segmentSelected
+            ) { family, segmentSelected -> [RankingCellViewModel] in
+                switch segmentSelected {
                 case .all:
                     return family.members
                         .sorted { $0.point > $1.point }

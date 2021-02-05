@@ -34,5 +34,13 @@ extension Mission {
         case todo
         case inProgress
         case complete
+
+        var title: String {
+            switch self {
+            case .todo: return "모집중"
+            case .inProgress: return "진행중"
+            case .complete: return "완료됨"
+            }
+        }
     }
 }

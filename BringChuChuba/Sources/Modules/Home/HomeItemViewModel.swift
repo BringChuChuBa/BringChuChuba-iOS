@@ -8,15 +8,9 @@
 import Foundation
 
 final class HomeItemViewModel {
-    // MARK: Properties
-    let title: String
-    let subtitle: String
     let mission: Mission
 
-    // MARK: Initializers
     init (with mission: Mission) {
         self.mission = mission
-        self.title = mission.title
-        self.subtitle = mission.description ?? "Common.Description".localized
     }
 }
