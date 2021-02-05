@@ -6,41 +6,46 @@
 //
 
 import UIKit
+import RxSwift
 
 final class SettingCoordinator: CoordinatorType {
-    unowned private let navigationController: UINavigationController
-    
+    private let navigationController: UINavigationController
+
     init(navigationController: UINavigationController) {
         self.navigationController = navigationController
     }
-    
+
     func start() {
-        let viewController = SettingViewController(viewModel: .init(coordinator: self))
-        navigationController.pushViewController(viewController, animated: true)
+        let usersViewController = SettingViewController(viewModel: .init(coordinator: self))
+
+        navigationController.pushViewController(usersViewController, animated: true)
     }
-    
+
     func toProfile() {
         let viewModel = ProfileViewModel(coordinator: self)
-        let viewController = ProfileViewController(viewModel: viewModel)
-        navigationController.pushViewController(viewController, animated: true)
+        let profileVC: ProfileViewController = ProfileViewController(viewModel: viewModel)
+
+        navigationController.pushViewController(profileVC, animated: true)
     }
-    
+
     func toMyMission() {
         let viewModel = MyMissionViewModel(coordinator: self)
-        let viewController = MyMissionPageViewController(viewModel: viewModel)
-        navigationController.pushViewController(viewController, animated: true)
+        let myMissionVC: MyMissionPageViewController = MyMissionPageViewController(viewModel: viewModel)
+
+        navigationController.pushViewController(myMissionVC, animated: true)
     }
-    
+
     func toDoingMission() {
         let viewModel = MyMissionViewModel(coordinator: self)
-        let viewController = MyMissionViewController(viewModel: viewModel, status: "doing")
-        navigationController.pushViewController(viewController, animated: true)
+        let doingMissionVC: MyMissionViewController = MyMissionViewController(viewModel: viewModel)
+
+        navigationController.pushViewController(doingMissionVC, animated: true)
     }
 
     func showActivity(_ vc: UIActivityViewController) {
         navigationController.present(vc, animated: true)
     }
-    
+
     func popToHome() {
         navigationController.popViewController(animated: true)
     }

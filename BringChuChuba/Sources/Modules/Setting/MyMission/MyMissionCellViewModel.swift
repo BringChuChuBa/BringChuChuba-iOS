@@ -39,21 +39,23 @@ final class MyMissionCellViewModel: ViewModelType {
     // MARK: Methods
     func transform(input: Input) -> Output {
         let errorTracker = ErrorTracker()
-        
+
         let deleted = input.deleteTrigger
             .flatMapLatest { [weak self] _ -> Driver<Void> in
                 guard let self = self,
-                      let missionUid = Int(self.mission.id) else { return Driver.empty() }
-                
-                return Network.shared.request(
-                    with: .deleteMission(missionUid: missionUid),
-                    for: Result.self
-                )
-                .trackError(errorTracker)
-                .map { _ in }
-                .asDriverOnErrorJustComplete()
+                      let missionUid = Int(self.mission.id) else { return .empty() }
+
+                return Network.shared.request(with: .deleteMission(missionUid: missionUid),
+                                              for: Result.self)
+                    .trackError(errorTracker)
+                    .mapToVoid()
+//                    .map { _ -> Bool in
+//                        return true
+//                    }
+                    .share()
+                    .asDriverOnErrorJustComplete()
             }
-        
+
         let completed = input.completeTrigger
             .flatMapLatest { [weak self] _ -> Driver<Void> in
                 guard let self = self,
@@ -64,7 +66,8 @@ final class MyMissionCellViewModel: ViewModelType {
                     for: Mission.self
                 )
                 .trackError(errorTracker)
-                .map { _ in }
+                .mapToVoid()
+                .share()
                 .asDriverOnErrorJustComplete()
             }
         

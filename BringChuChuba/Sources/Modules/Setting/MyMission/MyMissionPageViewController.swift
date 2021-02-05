@@ -16,22 +16,23 @@ final class MyMissionPageViewController: UIPageViewController {
     // MARK: Properties
     private var viewModel: MyMissionViewModel!
     private let disposeBag = DisposeBag()
-    private let missionStatus: [String] = [
-        Mission.Status.todo.rawValue,
-        Mission.Status.inProgress.rawValue,
-        Mission.Status.complete.rawValue
-    ]
+    private let missionStatus: [String] = MissionStatus.allCases.map { $0.rawValue }
     
     // MARK: UI Components
     private lazy var pages: [UIViewController] = [
-        MyMissionViewController(viewModel: viewModel, status: missionStatus[0]),
-        MyMissionViewController(viewModel: viewModel, status: missionStatus[1]),
-        MyMissionViewController(viewModel: viewModel, status: missionStatus[2])
+        MyMissionViewController(viewModel: viewModel,
+                                status: MissionStatus.todo.rawValue),
+        MyMissionViewController(viewModel: viewModel,
+                                status: MissionStatus.inProgress.rawValue),
+        MyMissionViewController(viewModel: viewModel,
+                                status: MissionStatus.complete.rawValue)
     ]
     
     private lazy var segmentedControl = UISegmentedControl(items: missionStatus).then {
         $0.selectedSegmentIndex = 0
-        $0.addTarget(self, action: #selector(segmentedControlValueDidChange), for: .valueChanged)
+        $0.addTarget(self,
+                     action: #selector(segmentedControlValueDidChange),
+                     for: .valueChanged)
     }
     
     // MARK: Initializers
@@ -55,6 +56,7 @@ final class MyMissionPageViewController: UIPageViewController {
         setupUI()
         assignDelegatesAndDataSources()
         assignDefaultPage()
+//        removeSwipeGesture()
     }
     
     // MARK: Set UIs
@@ -67,23 +69,36 @@ final class MyMissionPageViewController: UIPageViewController {
 
 // MARK: Supporting Methods
 extension MyMissionPageViewController {
-    /// This method assigns a default ViewController to display when PageViewController is loaded.
-    private func assignDefaultPage() {
-        if let defaultVC = pages.first {
-            setViewControllers([defaultVC], direction: .forward, animated: true, completion: nil)
-        }
-    }
-    
     /// This method assigns all required delegates and data sources.
     private func assignDelegatesAndDataSources() {
         delegate = self
         dataSource = self
     }
+
+    /// This method assigns a default ViewController to display when PageViewController is loaded.
+    private func assignDefaultPage() {
+        if let defaultVC = pages.first {
+            setViewControllers([defaultVC],
+                               direction: .forward,
+                               animated: true,
+                               completion: nil)
+        }
+    }
+
+    private func removeSwipeGesture() {
+        for view in self.view.subviews {
+            if let subView = view as? UIScrollView {
+                subView.isScrollEnabled = false
+            }
+        }
+    }
     
     @objc
     private func segmentedControlValueDidChange(_ sender: UISegmentedControl) {
         let selectedIndex = sender.selectedSegmentIndex
-        if (0..<pages.count).contains(selectedIndex),
+        let range = Range(0...2)
+
+        if range ~= selectedIndex,
            let currentVC = viewControllers?.first,
            let currentIndex = pages.firstIndex(of: currentVC) {
             setViewControllers(
@@ -98,12 +113,10 @@ extension MyMissionPageViewController {
 
 // MARK: UIPageViewController Delegate
 extension MyMissionPageViewController: UIPageViewControllerDelegate {
-    func pageViewController(
-        _ pageViewController: UIPageViewController,
-        didFinishAnimating finished: Bool,
-        previousViewControllers: [UIViewController],
-        transitionCompleted completed: Bool
-    ) {
+    func pageViewController(_ pageViewController: UIPageViewController,
+                            didFinishAnimating finished: Bool,
+                            previousViewControllers: [UIViewController],
+                            transitionCompleted completed: Bool) {
         if finished,
            completed,
            let currentVC = viewControllers?.first,
@@ -112,22 +125,20 @@ extension MyMissionPageViewController: UIPageViewControllerDelegate {
         }
     }
 }
-
+ 
 // MARK: UIPageViewController DataSource
 extension MyMissionPageViewController: UIPageViewControllerDataSource {
-    func pageViewController(
-        _ pageViewController: UIPageViewController,
-        viewControllerAfter viewController: UIViewController
-    ) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController,
+                            viewControllerAfter viewController: UIViewController)
+    -> UIViewController? {
         guard let currentIndex = pages.firstIndex(of: viewController),
               currentIndex < pages.count - 1 else { return nil }
         return pages[currentIndex + 1]
     }
     
-    func pageViewController(
-        _ pageViewController: UIPageViewController,
-        viewControllerBefore viewController: UIViewController
-    ) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController,
+                            viewControllerBefore viewController: UIViewController)
+    -> UIViewController? {
         guard let currentIndex = pages.firstIndex(of: viewController),
               currentIndex > 0 else { return nil }
         return pages[currentIndex - 1]

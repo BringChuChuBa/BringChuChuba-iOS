@@ -15,6 +15,7 @@ import Then
 final class MyMissionTableViewCell: UITableViewCell {
     // MARK: Properties
     private let disposeBag = DisposeBag()
+    private var parent: MyMissionViewController?
     
     // MARK: UI Components
     private lazy var titleLabel = UILabel().then {
@@ -41,7 +42,7 @@ final class MyMissionTableViewCell: UITableViewCell {
         $0.setTitle("Common.Complete".localized, for: .normal)
         $0.setTitleColor(.systemBlue, for: .normal)
     }
-    
+
     // MARK: Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -54,21 +55,73 @@ final class MyMissionTableViewCell: UITableViewCell {
     }
     
     // MARK: Binds
-    func bind(with viewModel: MyMissionCellViewModel) {
+    func bind(with viewModel: MyMissionCellViewModel, parent: MyMissionViewController) {
+        self.parent = parent
         titleLabel.text = viewModel.title
         descriptionLabel.text = viewModel.description
         statusLabel.text = viewModel.status
+
+        hideButton(with: viewModel)
+
+//        let deleteObservable = PublishSubject<Void>()
+//        _ = deleteButton.rx.tap
+//            .subscribe(onNext: {
+//                let alert = UIAlertController(title: "Delete Mission",
+//                                              message: "delete?",
+//                                              preferredStyle: .alert)
+//
+//                let deleteAction = UIAlertAction(title: "Delete",
+//                                                 style: .destructive,
+//                                                 handler: { _ -> Void in
+//                                                    deleteObservable.onNext(())
+//                                                 })
+//                let cancelAction = UIAlertAction(title: "Cancel",
+//                                                 style: .cancel)
+//
+//                alert.addAction(deleteAction)
+//                alert.addAction(cancelAction)
+//
+//                self.parent!.present(alert,
+//                                     animated: true)
+//            })
+
+//        let deleteTrigger = deleteButton.rx.tap.flatMap {
+//            return Observable<Void>.create { observer in
+//                let alert = UIAlertController(title: "Delete Mission",
+//                                              message: "delete?",
+//                                              preferredStyle: .alert)
+//
+//                let deleteAction = UIAlertAction(title: "Delete",
+//                                                 style: .destructive,
+//                                                 handler: { _ -> Void in
+//                                                    observer.onNext(())
+//                                                 })
+//                let cancelAction = UIAlertAction(title: "Cancel",
+//                                                 style: .cancel)
+//
+//                alert.addAction(deleteAction)
+//                alert.addAction(cancelAction)
+//
+//                self.parent!.present(alert,
+//                                     animated: true)
+//
+//                return Disposables.create()
+//            }
+//        }
         
         let input = MyMissionCellViewModel.Input(
+//            deleteTrigger: deleteTrigger.asDriverOnErrorJustComplete(),
+//            deleteTrigger: deleteObservable.asDriverOnErrorJustComplete(),
             deleteTrigger: deleteButton.rx.tap.asDriver(),
             completeTrigger: completeButton.rx.tap.asDriver()
         )
         
         let output = viewModel.transform(input: input)
+
         [output.deleted
-            .drive(),
+            .drive(parent.reloadBinding),
          output.completed
-            .drive()
+            .drive(parent.reloadBinding)
         ].forEach { $0.disposed(by: disposeBag) }
     }
     
@@ -104,6 +157,23 @@ final class MyMissionTableViewCell: UITableViewCell {
         completeButton.snp.makeConstraints { make in
             make.top.equalTo(statusLabel)
             make.height.trailing.equalTo(deleteButton)
+        }
+    }
+
+    private func hideButton(with viewModel: MyMissionCellViewModel) {
+        switch viewModel.status {
+        case MissionStatus.todo.rawValue:
+            completeButton.isHidden = true
+        case MissionStatus.inProgress.rawValue:
+            if viewModel.mission.contractor?.id == GlobalData.shared.id {
+                completeButton.isHidden = true
+                deleteButton.isHidden = true
+            }
+        case MissionStatus.complete.rawValue:
+            completeButton.isHidden = true
+            deleteButton.isHidden = true
+        default:
+            break
         }
     }
 }
