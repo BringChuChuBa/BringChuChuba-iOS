@@ -54,7 +54,7 @@ final class AppCoordinator: CoordinatorType {
     // MARK: Private methods
     private func getNavigationController(from type: SceneType) -> UINavigationController {
         let navigationController = UINavigationController()
-//        navigationController.navigationBar.prefersLargeTitles = true
+        navigationController.navigationBar.prefersLargeTitles = true
         navigationController.tabBarItem = type.tabBarItem
         return navigationController
     }

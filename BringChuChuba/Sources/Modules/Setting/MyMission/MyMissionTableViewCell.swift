@@ -121,7 +121,7 @@ final class MyMissionTableViewCell: UITableViewCell {
         [output.deleted
             .drive(parent.reloadBinding),
          output.completed
-            .drive()
+            .drive(parent.reloadBinding)
         ].forEach { $0.disposed(by: disposeBag) }
     }
     

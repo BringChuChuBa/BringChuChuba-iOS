@@ -66,7 +66,8 @@ final class MyMissionCellViewModel: ViewModelType {
                     for: Mission.self
                 )
                 .trackError(errorTracker)
-                .map { _ in }
+                .mapToVoid()
+                .share()
                 .asDriverOnErrorJustComplete()
             }
         
