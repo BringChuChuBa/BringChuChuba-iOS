@@ -21,133 +21,78 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-
-        FirebaseApp.configure()
-
-        anonymouslyLogin()
-        getMember()
-
-        // 이미지 권한
-        RxImagePickerDelegateProxy.register { RxImagePickerDelegateProxy(imagePicker: $0) }
-
         // window
         window = UIWindow()
         window?.backgroundColor = .white
-        appCoordinator = AppCoordinator(window: window!)
-        appCoordinator.start()
 
+        // image picker
+        RxImagePickerDelegateProxy.register { RxImagePickerDelegateProxy(imagePicker: $0) }
+
+        // signin
+        FirebaseApp.configure()
+        fetchToken { [weak self] token in
+            guard let self = self else { return }
+            self.fetchCurrentMember(with: token) {
+                self.appCoordinator = AppCoordinator(window: self.window!)
+                self.appCoordinator.start()
+            }
+        }
         return true
-    }
-
-    func sceneDidDisconnect(_ scene: UIScene) {
-    }
-
-    func sceneDidBecomeActive(_ scene: UIScene) {
-    }
-
-    func sceneWillResignActive(_ scene: UIScene) {
-    }
-
-    func sceneWillEnterForeground(_ scene: UIScene) {
-    }
-
-    func sceneDidEnterBackground(_ scene: UIScene) {
     }
 }
 
-// MARK: Firebase Login
-extension AppDelegate {
-    private func anonymouslyLogin() {
-        var finished = false
-
-        Auth.auth().signInAnonymously { result, error in
-            guard error.isNone else { return }
-
-            guard let user = result?.user else {
-                // 여기도 재시도 해보고 에러 처리
-                print("\(#file) Firebase SignIn Fail")
-                fatalError()
-            }
-
-            user.getIDTokenForcingRefresh(false) {  token, error in
-                guard error.isNone else {
-                    return
-                }
-
-                guard let authToken = token else {
-                    return
-                }
-
-                GlobalData.shared.userToken = authToken
-
-                finished = true
-            }
-        }
-
-        while !finished {
-            RunLoop.current.run(
-                mode: RunLoop.Mode(rawValue: "NSDefaultRunLoopMode"),
-                before: NSDate.distantFuture
-            )
-        }
-
-        return
-    }
-
-    private func checkToken() { // completion: (String) -> ()
-        var finished = false
-
-        Auth.auth().currentUser?.getIDTokenForcingRefresh(false) { token, error in
-            guard error.isNone else {
+// MARK: FirebaseAuth
+// AuthManager
+ extension AppDelegate {
+    func fetchToken(
+        completion: @escaping (String) -> Void
+    ) {
+        // signIn
+        Auth.auth().signInAnonymously { authResult, error in
+            if let error = error {
+                print(error.localizedDescription)
                 return
             }
 
-            guard let authToken = token else {
-                return
+            // token
+            guard let user = authResult?.user else { return }
+            user.getIDTokenForcingRefresh(false) { token, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                }
+
+                if let token = token {
+                    completion(token)
+                }
             }
-
-            GlobalData.shared.userToken = authToken
-
-            finished = true
         }
-
-        while !finished {
-            RunLoop.current.run(
-                mode: RunLoop.Mode(rawValue: "NSDefaultRunLoopMode"),
-                before: NSDate.distantFuture
-            )
-        }
-
-        return
     }
 
-    private func getMember() {
-        var finished = false
+    func fetchCurrentMember(
+        with token: String,
+        completion: @escaping () -> Void
+    ) {
+        GlobalData.shared.userToken = token
 
+        // member
         _ = Network.shared.request(with: .getMember, for: Member.self)
-            .subscribe { member in
+            .subscribe(onSuccess: { member in
                 GlobalData.shared.do {
                     $0.id = member.id
                     $0.point = member.point
                     if let familyId = member.familyId { $0.familyId = familyId }
                     if let nickname = member.nickname { $0.nickname = nickname }
                 }
-                finished = true
-            } onError: { _ in
-                finished = true
-            }
-
-        while !finished {
-            RunLoop.current.run(
-                mode: RunLoop.Mode(rawValue: "NSDefaultRunLoopMode"),
-                before: NSDate.distantFuture
-            )
-        }
-
-        return
+                completion()
+            }, onError: { error in
+                print(error.localizedDescription)
+                return
+            })
     }
 }
 
+/*
 extension AppDelegate {
     // MARK: DeepLink Parser
     // iOS 9 이상 버전에 앱을 이미 설치
@@ -212,3 +157,4 @@ extension AppDelegate {
         }
     }
 }
+*/
