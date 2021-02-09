@@ -215,7 +215,7 @@ final class SettingViewController: UIViewController {
         // profiles
         profileStackView.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview().inset(20)
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(30)
             make.height.equalTo(100)
         }
 
