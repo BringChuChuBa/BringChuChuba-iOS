@@ -109,11 +109,19 @@ final class MyMissionViewController: UIViewController {
     // MARK: Set UIs
     private func setupUI() {
         view.backgroundColor = .systemGroupedBackground
+
+//        extendedLayoutIncludesOpaqueBars = true
+
+//        navigationItem.title = "DoingMission.Navigation.Title".localized
+        navigationItem.largeTitleDisplayMode = .always
         
         view.addSubview(tableView)
         
         tableView.snp.makeConstraints { make in
             make.edges.equalTo(view.safeArea.edges)
+//            make.top.equalToSuperview()
+//            make.leading.trailing.equalToSuperview()
+//            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
     }
 }

@@ -162,14 +162,14 @@ final class MyMissionTableViewCell: UITableViewCell {
 
     private func hideButton(with viewModel: MyMissionCellViewModel) {
         switch viewModel.status {
-        case MissionStatus.todo.rawValue:
+        case Mission.Status.todo.rawValue:
             completeButton.isHidden = true
-        case MissionStatus.inProgress.rawValue:
+        case Mission.Status.inProgress.rawValue:
             if viewModel.mission.contractor?.id == GlobalData.shared.id {
                 completeButton.isHidden = true
                 deleteButton.isHidden = true
             }
-        case MissionStatus.complete.rawValue:
+        case Mission.Status.complete.rawValue:
             completeButton.isHidden = true
             deleteButton.isHidden = true
         default:
