@@ -22,10 +22,13 @@ final class SettingViewModel: ViewModelType {
         let myMission: Driver<Void>
         let doingMission: Driver<Void>
         let profile: Driver<Void>
-        let invite: Driver<Void>
+        let invite: Driver<Bool>
+        let complete: Driver<Bool>
     }
+
     // MARK: Properties
     private let coordinator: SettingCoordinator
+    private let completeTrigger = PublishSubject<Void>()
 
     // MARK: Initializers
     init(coordinator: SettingCoordinator) {
@@ -34,6 +37,8 @@ final class SettingViewModel: ViewModelType {
 
     // MARK: Methods
     func transform(input: Input) -> Output {
+        let activityIndicator = ActivityIndicator()
+
         let profile = input.photoTrigger
             .do(onNext: coordinator.toProfile)
         
@@ -44,19 +49,28 @@ final class SettingViewModel: ViewModelType {
             .do(onNext: coordinator.toDoingMission)
 
         let invite = input.inviteFamilyTrigger
+            .trackActivity(activityIndicator)
             .do(onNext: makeDeepLink)
+            .map { _ -> Bool in
+                return true
+            }
+            .asDriverOnErrorJustComplete()
+
+        let complete = completeTrigger.asDriverOnErrorJustComplete()
+            .map { _ -> Bool in
+                return false
+            }
 
         return Output(myMission: myMission,
                       doingMission: doingMission,
                       profile: profile,
-                      invite: invite)
+                      invite: invite,
+                      complete: complete)
     }
 }
 
 extension SettingViewModel {
-    func makeDeepLink() {
-        // TODO: Constant로 빼기
-
+    private func makeDeepLink() {
         // URL 구성
         var components = URLComponents()
         components.scheme = "https"
@@ -130,11 +144,12 @@ extension SettingViewModel {
     }
 
     // 메시지 등등으로 공유 가능
-    func showShareSheet(url: URL) {
+    private func showShareSheet(url: URL) {
         print(url)
         let promoText = "가족 초대 제목인듯 ? \(GlobalData.shared.familyId)"
         let activityVC = UIActivityViewController(activityItems: [promoText, url], applicationActivities: nil)
 
         coordinator.showActivity(activityVC)
+        completeTrigger.onNext(())
     }
 }
