@@ -55,10 +55,14 @@
 /* Setting */
 "Setting.Navigation.Title" = "마이페이지";
 "Setting.MyMissionButton.Title" = "내 미션";
-"Setting.DoingMissionButton.Title" = "수행 중 미션";
+"Setting.DoingMissionButton.Title" = "진행 중 미션";
 "Setting.InviteFamilyButton.Title" = "가족초대";
 
 /* My Mission */
+"MyMission.Navigation.Title" = "내 미션";
+
+/* DoingMission*/
+"DoingMission.Navigation.Title" = "진행 중 미션";
 
 /* Profile */
 "Profile.Navigation.Title" = "프로필 수정";

@@ -15,7 +15,6 @@
 		40235D6F25A553AE004D7ABE /* GlobalData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40235D6E25A553AE004D7ABE /* GlobalData.swift */; };
 		402A132325A56E2E00B8F65D /* HomeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402A132225A56E2E00B8F65D /* HomeTableViewCell.swift */; };
 		4034DA2725B556420077FBAF /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 401D6CCA25A6D22600113273 /* ViewModelType.swift */; };
-		4034EA4825CA879100D269A5 /* MissionStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4034EA4725CA879100D269A5 /* MissionStatus.swift */; };
 		4034EA6E25CB93F200D269A5 /* UIAlertViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4034EA6D25CB93F200D269A5 /* UIAlertViewController+Rx.swift */; };
 		4034EA7625CBA80B00D269A5 /* UIView+ParentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4034EA7525CBA80B00D269A5 /* UIView+ParentVC.swift */; };
 		403BF61325A803BA00712B62 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CD5125A42F0B008B9D61 /* NetworkConstants.swift */; };
@@ -107,7 +106,6 @@
 		401D6CCA25A6D22600113273 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		40235D6E25A553AE004D7ABE /* GlobalData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalData.swift; sourceTree = "<group>"; };
 		402A132225A56E2E00B8F65D /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
-		4034EA4725CA879100D269A5 /* MissionStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MissionStatus.swift; sourceTree = "<group>"; };
 		4034EA6D25CB93F200D269A5 /* UIAlertViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertViewController+Rx.swift"; sourceTree = "<group>"; };
 		4034EA7525CBA80B00D269A5 /* UIView+ParentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ParentVC.swift"; sourceTree = "<group>"; };
 		406FFDE925A43EA4005C5566 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
@@ -224,7 +222,6 @@
 				40E5136B25A3FF150032F712 /* SceneType.swift */,
 				5D88CC7E25A2FA1B008B9D61 /* CoordinatorType.swift */,
 				401D6CCA25A6D22600113273 /* ViewModelType.swift */,
-				4034EA4725CA879100D269A5 /* MissionStatus.swift */,
 				5D98A1C325CD3BEE0032928E /* PaddingLabel.swift */,
 			);
 			path = Common;
@@ -571,7 +568,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1230;
-				LastUpgradeCheck = 1230;
+				LastUpgradeCheck = 1240;
 				TargetAttributes = {
 					40A9BA9B25A1AC5600EC2988 = {
 						CreatedOnToolsVersion = 12.3;
@@ -801,7 +798,6 @@
 				4015764A25A47AAE00AB4296 /* SettingViewModel.swift in Sources */,
 				5D76B06625C637D500C1D1A8 /* Date+Extension.swift in Sources */,
 				5DBBEDDB25B16ABD004ACC3A /* CreateFamilyViewController.swift in Sources */,
-				4034EA4825CA879100D269A5 /* MissionStatus.swift in Sources */,
 				5D7D2C3F25BA5DB800F3C25D /* RankingCell.swift in Sources */,
 				40E5132C25A330E80032F712 /* RankingCoordinator.swift in Sources */,
 				40FDE37725A5CB1C00779ECB /* HomeItemViewModel.swift in Sources */,
@@ -871,6 +867,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -932,6 +929,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

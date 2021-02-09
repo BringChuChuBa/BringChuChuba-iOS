@@ -34,7 +34,7 @@ final class SettingViewController: UIViewController {
 
     private lazy var nameStackView = UIStackView().then {
         $0.axis = .vertical
-        $0.spacing = 5
+//        $0.spacing = 5
         $0.alignment = .firstBaseline
         $0.distribution = .fillEqually
     }
@@ -59,6 +59,7 @@ final class SettingViewController: UIViewController {
         //        $0.spacing = 5
         $0.alignment = .center
         $0.distribution = .fillEqually
+//        $0.backgroundColor = .systemPink
     }
 
     private lazy var myMissionStackView = UIStackView().then {
@@ -66,6 +67,7 @@ final class SettingViewController: UIViewController {
         //        $0.spacing = 5
         $0.alignment = .center
         $0.distribution = .fillEqually
+//        $0.backgroundColor = .purple
     }
 
     private lazy var doingMissionStackView = UIStackView().then {
@@ -106,14 +108,20 @@ final class SettingViewController: UIViewController {
     // image stacks
     private lazy var myMissionImage = UIImageView().then {
         $0.image = UIImage(systemName: "book.closed")
+        $0.contentMode = .scaleAspectFit
+//        $0.backgroundColor = .brown
     }
 
     private lazy var doingMissionImage = UIImageView().then {
         $0.image = UIImage(systemName: "square.and.pencil")
+        $0.contentMode = .scaleAspectFit
+//        $0.backgroundColor = .yellow
     }
 
     private lazy var inviteFamilyImage = UIImageView().then {
         $0.image = UIImage(systemName: "link")
+        $0.contentMode = .scaleAspectFit
+//        $0.backgroundColor = .red
     }
 
     // MARK: Initializers
@@ -180,6 +188,7 @@ final class SettingViewController: UIViewController {
         view.backgroundColor = .systemGroupedBackground
 
         navigationItem.title = "Setting.Navigation.Title".localized
+        navigationItem.largeTitleDisplayMode = .always
 
         // add subviews
         view.addSubview(profileStackView)
@@ -225,6 +234,18 @@ final class SettingViewController: UIViewController {
 
         nicknameLabel.snp.makeConstraints { make in
             make.width.equalTo(idLabel.snp.width)
+        }
+
+        myMissionImage.snp.makeConstraints { make in
+            make.width.height.equalTo(40)
+        }
+
+        doingMissionImage.snp.makeConstraints { make in
+            make.width.height.equalTo(40)
+        }
+
+        inviteFamilyImage.snp.makeConstraints { make in
+            make.width.height.equalTo(40)
         }
 
         buttonStackView.snp.makeConstraints { make in

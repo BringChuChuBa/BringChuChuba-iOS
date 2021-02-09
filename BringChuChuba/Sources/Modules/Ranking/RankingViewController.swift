@@ -60,6 +60,10 @@ final class RankingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // 얘네 의미 없음
+        extendedLayoutIncludesOpaqueBars = true
+        navigationController?.navigationBar.isTranslucent = false
+
         bindViewModel()
         setupUI()
     }

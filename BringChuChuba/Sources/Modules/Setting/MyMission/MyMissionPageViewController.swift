@@ -16,20 +16,24 @@ final class MyMissionPageViewController: UIPageViewController {
     // MARK: Properties
     private var viewModel: MyMissionViewModel!
     private let disposeBag = DisposeBag()
-    private let missionStatus: [String] = MissionStatus.allCases.map { $0.rawValue }
-    
+
     // MARK: UI Components
     private lazy var pages: [UIViewController] = [
         MyMissionViewController(viewModel: viewModel,
-                                status: MissionStatus.todo.rawValue),
+                                status: Mission.Status.todo.rawValue),
         MyMissionViewController(viewModel: viewModel,
-                                status: MissionStatus.inProgress.rawValue),
+                                status: Mission.Status.inProgress.rawValue),
         MyMissionViewController(viewModel: viewModel,
-                                status: MissionStatus.complete.rawValue)
+                                status: Mission.Status.complete.rawValue)
     ]
-    
-    private lazy var segmentedControl = UISegmentedControl(items: missionStatus).then {
+
+    private lazy var segmentedControl = UISegmentedControl(
+        items: Mission.Status.allCases.map { $0.title }
+    ).then {
+        navigationItem.titleView = $0
+
         $0.selectedSegmentIndex = 0
+        $0.autoresizingMask = .flexibleWidth
         $0.addTarget(self,
                      action: #selector(segmentedControlValueDidChange),
                      for: .valueChanged)
@@ -63,6 +67,7 @@ final class MyMissionPageViewController: UIPageViewController {
     private func setupUI() {
         view.backgroundColor = .systemGroupedBackground
 
+//        navigationItem.title = "MyMission.Navigation.Title".localized
         navigationItem.titleView = segmentedControl
     }
 }
