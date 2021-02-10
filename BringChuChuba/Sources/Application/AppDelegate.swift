@@ -30,61 +30,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         // signin
         FirebaseApp.configure()
-        fetchToken { [weak self] token in
+
+        Network.shared.fetchToken { [weak self] token in
             guard let self = self else { return }
-            self.fetchCurrentMember(with: token) {
-                self.appCoordinator = AppCoordinator(window: self.window!)
-                self.appCoordinator.start()
-            }
+            self.fetchCurrentMember(with: token)
         }
+
         return true
     }
 }
 
 // MARK: FirebaseAuth
 // AuthManager
- extension AppDelegate {
-    func fetchToken(
-        completion: @escaping (String) -> Void
-    ) {
-        // signIn
-        Auth.auth().signInAnonymously { authResult, error in
-            if let error = error {
-                print(error.localizedDescription)
-                return
-            }
-
-            // token
-            guard let user = authResult?.user else { return }
-            user.getIDTokenForcingRefresh(false) { token, error in
-                if let error = error {
-                    print(error.localizedDescription)
-                    return
-                }
-
-                if let token = token {
-                    completion(token)
-                }
-            }
-        }
-    }
-
-    func fetchCurrentMember(
-        with token: String,
-        completion: @escaping () -> Void
-    ) {
-        GlobalData.shared.userToken = token
-
+extension AppDelegate {
+    private func fetchCurrentMember(with token: String) {
         // member
-        _ = Network.shared.request(with: .getMember, for: Member.self)
-            .subscribe(onSuccess: { member in
+        _ = Network.shared.request(with: .getMember,
+                                   for: Member.self)
+            .subscribe(onSuccess: { [weak self] member in
+                guard let self = self else { return }
+
                 GlobalData.shared.do {
                     $0.id = member.id
                     $0.point = member.point
                     if let familyId = member.familyId { $0.familyId = familyId }
                     if let nickname = member.nickname { $0.nickname = nickname }
                 }
-                completion()
+
+                self.appCoordinator = AppCoordinator(window: self.window!)
+                self.appCoordinator.start()
             }, onError: { error in
                 print(error.localizedDescription)
                 return

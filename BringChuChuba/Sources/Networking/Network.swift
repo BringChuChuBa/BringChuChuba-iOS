@@ -7,45 +7,77 @@
 
 import Moya
 import RxSwift
+import Firebase
 
 final class Network {
-    // MARK: Errors
-    private enum RequestError: Error {
-        case FamilyExist
-        case Unknown
-        case with(message: String)
-    }
-
     // MARK: Properties
     static let shared = Network()
-    //    private let provider = MoyaProvider<Router>(plugins: [NetworkLoggerPlugin()]) // for logging
+//    private let provider = MoyaProvider<Router>(plugins: [NetworkLoggerPlugin()]) // for logging
     private let provider = MoyaProvider<Router>()
+    private let maximumRetry: Int = 50
 
     // MARK: Initializers
     private init() {}
 
     // MARK: API Calls
-    func request<T>(with httpRequest: Router, for returnType: T.Type) -> Single<T> where T: Decodable {
+    func request<T>(with httpRequest: Router,
+                    for returnType: T.Type)
+    -> Single<T> where T: Decodable {
         return provider.rx.request(httpRequest)
-            .retry(2) // err 발생 시 최대 2번 retry
-            //            .debug()
+//            .debug()
             .filterSuccessfulStatusCodes() // validate 200 ~ 299
             .map(T.self) // decode
-            .catchError { err in
+            .catchError { [weak self] err in
                 print(err.localizedDescription)
+
+                self?.fetchToken { _ in }
                 throw err
             }
+            .retry(maximumRetry)
     }
 
-    func requests<T>(with httpRequest: Router, for returnType: T.Type) -> Single<[T]> where T: Decodable {
+    func requests<T>(with httpRequest: Router,
+                     for returnType: T.Type)
+    -> Single<[T]> where T: Decodable {
         return provider.rx.request(httpRequest)
-            .retry(2)
-            //            .debug()
             .filterSuccessfulStatusCodes()
             .map([T].self)
-            .catchError { err in
+            .catchError { [weak self] err in
                 print(err.localizedDescription)
+
+                self?.fetchToken { _ in }
                 throw err
             }
+            .retry(maximumRetry)
+    }
+}
+
+// MARK: Firebase
+extension Network {
+    typealias completionToken = (String) -> Void
+
+    func fetchToken(completion: @escaping completionToken) {
+        // signIn
+        Auth.auth().signInAnonymously { authResult, error in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+
+            // token
+            guard let user = authResult?.user else { return }
+            user.getIDTokenForcingRefresh(false) { token, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                }
+
+                if let token = token {
+                    GlobalData.shared.userToken = token
+
+                    completion(token)
+                }
+            }
+        }
     }
 }

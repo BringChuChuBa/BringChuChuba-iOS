@@ -24,6 +24,7 @@
 		407036C725B6BFB800DE4857 /* MyMissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407036C625B6BFB800DE4857 /* MyMissionViewModel.swift */; };
 		4089AF1525B6CA2700DA51D7 /* MyMissionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4089AF1425B6CA2700DA51D7 /* MyMissionTableViewCell.swift */; };
 		408FF29925A471000032C5D1 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408FF29825A471000032C5D1 /* SettingViewController.swift */; };
+		409C969425D2A6BC00C28596 /* ErrorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409C969325D2A6BC00C28596 /* ErrorUtil.swift */; };
 		40A2D4C525B5B4FC0030A85E /* CreateMissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2D4C325B5B4FC0030A85E /* CreateMissionViewController.swift */; };
 		40A2D4C625B5B4FC0030A85E /* CreateMissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2D4C425B5B4FC0030A85E /* CreateMissionViewModel.swift */; };
 		40A2D4D325B5B59E0030A85E /* Optional+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2D4D025B5B59E0030A85E /* Optional+Extension.swift */; };
@@ -114,6 +115,7 @@
 		407036C625B6BFB800DE4857 /* MyMissionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMissionViewModel.swift; sourceTree = "<group>"; };
 		4089AF1425B6CA2700DA51D7 /* MyMissionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMissionTableViewCell.swift; sourceTree = "<group>"; };
 		408FF29825A471000032C5D1 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		409C969325D2A6BC00C28596 /* ErrorUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorUtil.swift; sourceTree = "<group>"; };
 		40A2D4C325B5B4FC0030A85E /* CreateMissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMissionViewController.swift; sourceTree = "<group>"; };
 		40A2D4C425B5B4FC0030A85E /* CreateMissionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMissionViewModel.swift; sourceTree = "<group>"; };
 		40A2D4D025B5B59E0030A85E /* Optional+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Optional+Extension.swift"; sourceTree = "<group>"; };
@@ -223,6 +225,7 @@
 				5D88CC7E25A2FA1B008B9D61 /* CoordinatorType.swift */,
 				401D6CCA25A6D22600113273 /* ViewModelType.swift */,
 				5D98A1C325CD3BEE0032928E /* PaddingLabel.swift */,
+				409C969325D2A6BC00C28596 /* ErrorUtil.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -794,6 +797,7 @@
 				5D88DDCE25AFE0BE00AB0B3F /* LoginCoordinator.swift in Sources */,
 				5DF0238A25C2A13200D51A35 /* Constants.swift in Sources */,
 				40235D6F25A553AE004D7ABE /* GlobalData.swift in Sources */,
+				409C969425D2A6BC00C28596 /* ErrorUtil.swift in Sources */,
 				5D39BECD25AD999200356E7E /* JoinFamilyViewController.swift in Sources */,
 				4015764A25A47AAE00AB4296 /* SettingViewModel.swift in Sources */,
 				5D76B06625C637D500C1D1A8 /* Date+Extension.swift in Sources */,
