@@ -55,8 +55,8 @@ final class AppCoordinator: CoordinatorType {
     private func getNavigationController(from type: SceneType) -> UINavigationController {
         let navigationController = UINavigationController()
         navigationController.navigationBar.prefersLargeTitles = true
-        navigationController.navigationBar.sizeToFit()
-        navigationController.navigationItem.largeTitleDisplayMode = .automatic
+//        navigationController.navigationBar.sizeToFit()
+//        navigationController.navigationItem.largeTitleDisplayMode = .automatic
 
         navigationController.tabBarItem = type.tabBarItem
 

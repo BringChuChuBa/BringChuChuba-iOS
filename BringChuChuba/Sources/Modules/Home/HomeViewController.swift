@@ -16,6 +16,7 @@ final class HomeViewController: UIViewController {
     // MARK: Properties
     private let viewModel: HomeViewModel!
     private let disposeBag: DisposeBag = DisposeBag()
+    private let refreshControl: UIRefreshControl = UIRefreshControl()
 
     // MARK: UI Components
     private lazy var segmentControl = UISegmentedControl(
@@ -31,12 +32,12 @@ final class HomeViewController: UIViewController {
         $0.color = UIColor(red: 0.25, green: 0.72, blue: 0.85, alpha: 1.0)
     }
 
-    private lazy var tableView = UITableView(frame: .zero).then {
-        $0.contentInsetAdjustmentBehavior = .never
-        $0.separatorStyle = .none
-        $0.allowsSelection = false
+    private lazy var tableView = UITableView(frame: .zero, style: .insetGrouped).then {
+//        $0.contentInsetAdjustmentBehavior = .never
+//        $0.separatorStyle = .none
+//        $0.allowsSelection = false
         $0.rowHeight = 335
-        $0.refreshControl = UIRefreshControl()
+//        $0.refreshControl = UIRefreshControl()
         $0.register(
             HomeTableViewCell.self,
             forCellReuseIdentifier: HomeTableViewCell.reuseIdentifier()
@@ -46,6 +47,18 @@ final class HomeViewController: UIViewController {
     private lazy var createBarButtonItem = UIBarButtonItem().then {
         $0.title = "Home.Navigation.CreateButton.Title".localized
         $0.style = .done
+    }
+
+    private var refreshControlFecting: Binder<Bool> {
+        return Binder(refreshControl) { (refreshControl, value) in
+            value ? refreshControl.beginRefreshing() : refreshControl.endRefreshing()
+        }
+    }
+
+    private var tableViewDeselect: Binder<IndexPath> {
+        return Binder(tableView) { (tableView, value) in
+            tableView.deselectRow(at: value, animated: true)
+        }
     }
 
     // MARK: Initializers
@@ -63,25 +76,38 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
 
         bindViewModel()
+        setProperties()
         setupUI()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//
+//        navigationController?.forceUpdateNavBar()
+//    }
+    
     // MARK: Binds
     private func bindViewModel() {
         assert(viewModel.isSome)
 
+//        tableView.refreshControl = refreshControl
+
         let viewWillAppear = rx
-            .sentMessage(#selector(UIViewController.viewWillAppear(_:)))
+            .sentMessage(#selector(UIViewController.viewDidAppear(_:)))
             .mapToVoid()
             .asDriverOnErrorJustComplete()
 
-        let pull = tableView.refreshControl!.rx
+//        let pull = tableView.refreshControl!.rx
+//            .controlEvent(.valueChanged)
+//            .asDriver()
+
+        let pull = refreshControl.rx
             .controlEvent(.valueChanged)
-            .asDriver()
+//            .throttle(.seconds(1), latest: false, scheduler: MainScheduler.instance)
+//            .delay(.seconds(1), scheduler: MainScheduler.instance)
+//            .debounce(.seconds(1), scheduler: MainScheduler.instance)
+//            .asDriver()
+            .asDriverOnErrorJustComplete()
 
         let input = HomeViewModel.Input(
             trigger: Driver.merge(viewWillAppear, pull),
@@ -102,11 +128,21 @@ final class HomeViewController: UIViewController {
                 cell.bind(with: viewModel)
             },
          output.fetching
-            .drive(tableView.refreshControl!.rx.isRefreshing),
+            .debug()
+            .drive(refreshControlFecting),
          output.createMission
-            .drive()
+            .drive(),
+         tableView.rx.itemSelected
+             .bind(to: tableViewDeselect)
          ]
         .forEach { $0.disposed(by: disposeBag) }
+    }
+
+    // MARK: SetProperties
+    private func setProperties() {
+        view.backgroundColor = .systemGroupedBackground
+        tableView.separatorStyle = .none
+        tableView.refreshControl = refreshControl
     }
 
     // MARK: Set UIs

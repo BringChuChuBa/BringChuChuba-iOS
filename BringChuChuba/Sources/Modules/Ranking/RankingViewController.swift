@@ -28,6 +28,7 @@ final class RankingViewController: UIViewController {
     // MARK: Properties
     private let viewModel: RankingViewModel!
     private let disposeBag: DisposeBag = DisposeBag()
+    private let refreshControl: UIRefreshControl = UIRefreshControl()
 
     // MARK: UI Components
     private lazy var segmentedControl = UISegmentedControl(
@@ -39,11 +40,18 @@ final class RankingViewController: UIViewController {
     }
 
     private lazy var tableView = UITableView(frame: .zero, style: .insetGrouped).then {
-        $0.automaticallyAdjustsScrollIndicatorInsets = false
-        $0.contentInsetAdjustmentBehavior = .never
+//        $0.automaticallyAdjustsScrollIndicatorInsets = false
+//        $0.contentInsetAdjustmentBehavior = .never
         $0.register(RankingCell.self, forCellReuseIdentifier: RankingCell.reuseIdentifier())
         $0.rowHeight = 80
-        $0.refreshControl = UIRefreshControl()
+//        $0.refreshControl = UIRefreshControl()
+    }
+
+    private var refreshControlFecting: Binder<Bool> {
+        return Binder(refreshControl) { [weak self] refreshControl, value in
+            value ? refreshControl.beginRefreshing() : refreshControl.endRefreshing()
+//            self?.tableView.reloadData()
+        }
     }
 
     // MARK: Initializers
@@ -60,26 +68,45 @@ final class RankingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // 얘네 의미 없음
-        extendedLayoutIncludesOpaqueBars = true
-        navigationController?.navigationBar.isTranslucent = false
+//        extendedLayoutIncludesOpaqueBars = true
+//        navigationController?.navigationBar.isTranslucent = false
 
         bindViewModel()
         setupUI()
     }
 
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//
+//        navigationController?.forceUpdateNavBar()
+//    }
+
     // MARK: Binds
     private func bindViewModel() {
         assert(viewModel.isSome)
 
+        tableView.refreshControl = refreshControl
+
         let viewWillAppear = rx
-            .sentMessage(#selector(UIViewController.viewWillAppear(_:)))
+            .sentMessage(#selector(UIViewController.viewDidAppear(_:)))
             .mapToVoid()
             .asDriverOnErrorJustComplete()
 
-        let pull = tableView.refreshControl!.rx
+        let pull = refreshControl.rx
             .controlEvent(.valueChanged)
-            .asDriver()
+//            .controlEvent(.primaryActionTriggered)
+            .debug()
+            .map { [refreshControl] in
+                return refreshControl.isRefreshing
+            }
+//            .distinctUntilChanged()
+            .filter { $0 == true }
+//            .throttle(.seconds(1), latest: false, scheduler: MainScheduler.instance)
+//            .delay(.seconds(1), scheduler: MainScheduler.instance)
+            .debounce(.seconds(1), scheduler: MainScheduler.instance)
+            .mapToVoid()
+            .asDriverOnErrorJustComplete()
+//            .asDriver()
 
         let input = RankingViewModel.Input(
             trigger: Driver.merge(viewWillAppear, pull),
@@ -97,7 +124,8 @@ final class RankingViewController: UIViewController {
                 cell.bind(to: viewModel, rank: indexPath + 1)
             },
          output.fetching
-            .drive(tableView.refreshControl!.rx.isRefreshing)
+            .debug()
+            .drive(refreshControlFecting)
         ].forEach { $0.disposed(by: disposeBag) }
     }
 
@@ -107,6 +135,11 @@ final class RankingViewController: UIViewController {
 
         navigationItem.title = "Ranking.Navigation.Title".localized
 
+//        let tableView = UITableView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: 200))
+//        let testView = UIView(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+//        testView.backgroundColor = .yellow
+//        view.addSubview(testView)
+        
         view.addSubview(tableView)
 
         tableView.snp.makeConstraints { make in

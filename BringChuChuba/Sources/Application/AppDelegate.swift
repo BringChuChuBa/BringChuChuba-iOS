@@ -36,6 +36,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.fetchCurrentMember(with: token)
         }
 
+        // to test
+//        fetchCurrentMember(with: "")
+
         return true
     }
 }

@@ -18,6 +18,7 @@
 		4034EA6E25CB93F200D269A5 /* UIAlertViewController+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4034EA6D25CB93F200D269A5 /* UIAlertViewController+Rx.swift */; };
 		4034EA7625CBA80B00D269A5 /* UIView+ParentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4034EA7525CBA80B00D269A5 /* UIView+ParentVC.swift */; };
 		403BF61325A803BA00712B62 /* NetworkConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CD5125A42F0B008B9D61 /* NetworkConstants.swift */; };
+		403CD27425D6344C0005555E /* UINavigationController+forceUpdateNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 403CD27325D6344C0005555E /* UINavigationController+forceUpdateNavBar.swift */; };
 		406FFDEA25A43EA4005C5566 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 406FFDE925A43EA4005C5566 /* HomeViewModel.swift */; };
 		406FFE0A25A4488E005C5566 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 406FFE0925A4488E005C5566 /* Launch Screen.storyboard */; };
 		407036B525B6BEFC00DE4857 /* MyMissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407036B425B6BEFC00DE4857 /* MyMissionViewController.swift */; };
@@ -109,6 +110,7 @@
 		402A132225A56E2E00B8F65D /* HomeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewCell.swift; sourceTree = "<group>"; };
 		4034EA6D25CB93F200D269A5 /* UIAlertViewController+Rx.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertViewController+Rx.swift"; sourceTree = "<group>"; };
 		4034EA7525CBA80B00D269A5 /* UIView+ParentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+ParentVC.swift"; sourceTree = "<group>"; };
+		403CD27325D6344C0005555E /* UINavigationController+forceUpdateNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+forceUpdateNavBar.swift"; sourceTree = "<group>"; };
 		406FFDE925A43EA4005C5566 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		406FFE0925A4488E005C5566 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		407036B425B6BEFC00DE4857 /* MyMissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMissionViewController.swift; sourceTree = "<group>"; };
@@ -322,6 +324,13 @@
 			path = BringChuChubaUITests;
 			sourceTree = "<group>";
 		};
+		40F32F8025D771F0004F4ECD /* Base */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		5844068726E2EE3273A010C3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -378,6 +387,7 @@
 		5D88CC6925A2F8C1008B9D61 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				40F32F8025D771F0004F4ECD /* Base */,
 				5D39BEC825AD997F00356E7E /* Login */,
 				5D88CC6A25A2F8D1008B9D61 /* Home */,
 				5D88CC6C25A2F8E8008B9D61 /* Ranking */,
@@ -468,6 +478,7 @@
 				5D9ED20225C729F2001F34CB /* UIView+Safe.swift */,
 				4034EA7525CBA80B00D269A5 /* UIView+ParentVC.swift */,
 				5D98A1BD25CCFEBC0032928E /* UIStackView+BackgroundColor.swift */,
+				403CD27325D6344C0005555E /* UINavigationController+forceUpdateNavBar.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -809,6 +820,7 @@
 				40E5132225A330D40032F712 /* HomeCoordinator.swift in Sources */,
 				5DBBEDE325B16B8C004ACC3A /* CreateFamilyViewModel.swift in Sources */,
 				4015764225A47A9D00AB4296 /* RankingViewModel.swift in Sources */,
+				403CD27425D6344C0005555E /* UINavigationController+forceUpdateNavBar.swift in Sources */,
 				5D86E50A25CA8A9100D96ADE /* Int+Extension.swift in Sources */,
 				401D6C8625A6BA0900113273 /* ActivityIndicator.swift in Sources */,
 				5D88CCF725A33407008B9D61 /* Mission.swift in Sources */,
