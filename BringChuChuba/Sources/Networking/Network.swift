@@ -14,12 +14,18 @@ final class Network {
     static let shared = Network()
 //    private let provider = MoyaProvider<Router>(plugins: [NetworkLoggerPlugin()]) // for logging
     private let provider = MoyaProvider<Router>()
-    private let maximumRetry: Int = 50
 
     // MARK: Initializers
     private init() {}
 
     // MARK: API Calls
+    /// API Calls
+    /// - Parameters:
+    ///   - httpRequest: Request Router Type (getMember, getMission...)
+    ///   - returnType: Decode Type (Mission.self, Member.self ...)
+    /// - Returns: Single Stream
+    /// - Errors : 에러 발생 시 (토큰 만료 or 네트워크 오류) fetchToken 후 1초 후 재시도
+    ///         4번 재시도 (첫 1회 시도 포함) 후 return
     func request<T>(with httpRequest: Router,
                     for returnType: T.Type)
     -> Single<T> where T: Decodable {
@@ -33,7 +39,16 @@ final class Network {
                 self?.fetchToken { _ in }
                 throw err
             }
-            .retry(maximumRetry)
+            .retryWhen { error in
+                error.enumerated().flatMap { tryCount, error -> Observable<Int> in
+                    let maximumRetry: Int = 5
+                    if tryCount > maximumRetry {
+                        return Observable.error(error)
+                    }
+                    return Observable<Int>.timer(.seconds(1), scheduler: MainScheduler.instance)
+                    // .take(1)
+                }
+            }
     }
 
     func requests<T>(with httpRequest: Router,
@@ -48,7 +63,17 @@ final class Network {
                 self?.fetchToken { _ in }
                 throw err
             }
-            .retry(maximumRetry)
+            .retryWhen { error in
+                error.enumerated().flatMap { tryCount, error -> Observable<Int> in
+                    let maximumRetry: Int = 5
+                    if tryCount > maximumRetry {
+                        return Observable.error(error)
+                    }
+                    return Observable<Int>.timer(.seconds(1), scheduler: MainScheduler.instance)
+                    // .take(1)
+                }
+            }
+//            .retry(maximumRetry)
     }
 }
 
