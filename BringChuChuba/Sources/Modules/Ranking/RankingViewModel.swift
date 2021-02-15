@@ -53,10 +53,10 @@ final class RankingViewModel: ViewModelType {
                 switch segmentSelected {
                 case .all:
                     return family.members
-                        .sorted { $0.point > $1.point }
+                        .sorted { $0.point! > $1.point! }
                         .compactMap { RankingCellViewModel(
                             with: $0.id,
-                            point: $0.point
+                            point: $0.point!
                         ) }
                 case .monthly:
                     let count = family.missions

@@ -31,41 +31,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // signin
         FirebaseApp.configure()
 
-        Network.shared.fetchToken { [weak self] token in
-            guard let self = self else { return }
-            self.fetchCurrentMember(with: token)
-        }
-
-        // to test
-//        fetchCurrentMember(with: "")
+        // go Main to init
+        appCoordinator = AppCoordinator(window: self.window!)
+        appCoordinator.start()
 
         return true
-    }
-}
-
-// MARK: FirebaseAuth
-// AuthManager
-extension AppDelegate {
-    private func fetchCurrentMember(with token: String) {
-        // member
-        _ = Network.shared.request(with: .getMember,
-                                   for: Member.self)
-            .subscribe(onSuccess: { [weak self] member in
-                guard let self = self else { return }
-
-                GlobalData.shared.do {
-                    $0.id = member.id
-                    $0.point = member.point
-                    if let familyId = member.familyId { $0.familyId = familyId }
-                    if let nickname = member.nickname { $0.nickname = nickname }
-                }
-
-                self.appCoordinator = AppCoordinator(window: self.window!)
-                self.appCoordinator.start()
-            }, onError: { error in
-                print(error.localizedDescription)
-                return
-            })
     }
 }
 

@@ -50,13 +50,13 @@ final class HomeViewController: UIViewController {
     }
 
     private var refreshControlFecting: Binder<Bool> {
-        return Binder(refreshControl) { (refreshControl, value) in
+        return Binder(refreshControl) { refreshControl, value in
             value ? refreshControl.beginRefreshing() : refreshControl.endRefreshing()
         }
     }
 
     private var tableViewDeselect: Binder<IndexPath> {
-        return Binder(tableView) { (tableView, value) in
+        return Binder(tableView) { tableView, value in
             tableView.deselectRow(at: value, animated: true)
         }
     }

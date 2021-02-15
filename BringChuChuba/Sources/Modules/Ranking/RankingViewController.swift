@@ -48,9 +48,8 @@ final class RankingViewController: UIViewController {
     }
 
     private var refreshControlFecting: Binder<Bool> {
-        return Binder(refreshControl) { [weak self] refreshControl, value in
+        return Binder(refreshControl) { refreshControl, value in
             value ? refreshControl.beginRefreshing() : refreshControl.endRefreshing()
-//            self?.tableView.reloadData()
         }
     }
 
@@ -95,15 +94,15 @@ final class RankingViewController: UIViewController {
         let pull = refreshControl.rx
             .controlEvent(.valueChanged)
 //            .controlEvent(.primaryActionTriggered)
-            .debug()
-            .map { [refreshControl] in
-                return refreshControl.isRefreshing
-            }
+//            .debug()
+//            .map { [refreshControl] in
+//                return refreshControl.isRefreshing
+//            }
 //            .distinctUntilChanged()
-            .filter { $0 == true }
+//            .filter { $0 == true }
 //            .throttle(.seconds(1), latest: false, scheduler: MainScheduler.instance)
 //            .delay(.seconds(1), scheduler: MainScheduler.instance)
-            .debounce(.seconds(1), scheduler: MainScheduler.instance)
+//            .debounce(.seconds(1), scheduler: MainScheduler.instance)
             .mapToVoid()
             .asDriverOnErrorJustComplete()
 //            .asDriver()

@@ -36,7 +36,7 @@ final class Network {
             .catchError { [weak self] err in
                 print(err.localizedDescription)
 
-                self?.fetchToken { _ in }
+                self?.signInAnonymously { _ in }
                 throw err
             }
             .retryWhen { error in
@@ -60,7 +60,7 @@ final class Network {
             .catchError { [weak self] err in
                 print(err.localizedDescription)
 
-                self?.fetchToken { _ in }
+                self?.signInAnonymously { _ in }
                 throw err
             }
             .retryWhen { error in
@@ -73,35 +73,53 @@ final class Network {
                     // .take(1)
                 }
             }
-//            .retry(maximumRetry)
     }
 }
 
 // MARK: Firebase
 extension Network {
-    typealias completionToken = (String) -> Void
+    typealias Completion = (String) -> Void
 
-    func fetchToken(completion: @escaping completionToken) {
+    func signInAnonymously(completion: @escaping Completion) {
         // signIn
-        Auth.auth().signInAnonymously { authResult, error in
+        Auth.auth().signInAnonymously { [weak self] _, error in
             if let error = error {
                 print(error.localizedDescription)
                 return
             }
 
-            // token
-            guard let user = authResult?.user else { return }
-            user.getIDTokenForcingRefresh(false) { token, error in
-                if let error = error {
-                    print(error.localizedDescription)
-                    return
-                }
+            self?.fetchToken { token in
+                completion(token)
+            }
 
-                if let token = token {
-                    GlobalData.shared.userToken = token
+//            // token
+//            guard let user = authResult?.user else { return }
+//            user.getIDTokenForcingRefresh(false) { token, error in
+//                if let error = error {
+//                    print(error.localizedDescription)
+//                    return
+//                }
+//
+//                if let token = token {
+//                    GlobalData.shared.userToken = token
+//
+//                    completion(token)
+//                }
+//            }
+        }
+    }
 
-                    completion(token)
-                }
+    private func fetchToken(completion: @escaping Completion) {
+        Auth.auth().currentUser?.getIDTokenForcingRefresh(false) { token, error in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+
+            if let token = token {
+                GlobalData.shared.userToken = token
+
+                completion(token)
             }
         }
     }

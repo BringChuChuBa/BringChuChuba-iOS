@@ -48,6 +48,8 @@
 		40E5133125A330F30032F712 /* SettingCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5133025A330F30032F712 /* SettingCoordinator.swift */; };
 		40E5136C25A3FF150032F712 /* SceneType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5136B25A3FF150032F712 /* SceneType.swift */; };
 		40E5138F25A409460032F712 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40E5138E25A409460032F712 /* AppCoordinator.swift */; };
+		40F32F8225D7730D004F4ECD /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F32F8125D7730D004F4ECD /* MainCoordinator.swift */; };
+		40F32F8A25D77317004F4ECD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40F32F8925D77317004F4ECD /* MainViewController.swift */; };
 		40FDE37725A5CB1C00779ECB /* HomeItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40FDE37625A5CB1C00779ECB /* HomeItemViewModel.swift */; };
 		5D39BECD25AD999200356E7E /* JoinFamilyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D39BECC25AD999200356E7E /* JoinFamilyViewController.swift */; };
 		5D39BFE925AF032B00356E7E /* JoinFamilyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D39BFE825AF032B00356E7E /* JoinFamilyViewModel.swift */; };
@@ -146,6 +148,8 @@
 		40E5133025A330F30032F712 /* SettingCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingCoordinator.swift; sourceTree = "<group>"; };
 		40E5136B25A3FF150032F712 /* SceneType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneType.swift; sourceTree = "<group>"; };
 		40E5138E25A409460032F712 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		40F32F8125D7730D004F4ECD /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		40F32F8925D77317004F4ECD /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		40FDE37625A5CB1C00779ECB /* HomeItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeItemViewModel.swift; sourceTree = "<group>"; };
 		4F142C957784D4B6B1CDA296 /* Pods-BringChuChuba.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BringChuChuba.release.xcconfig"; path = "Target Support Files/Pods-BringChuChuba/Pods-BringChuChuba.release.xcconfig"; sourceTree = "<group>"; };
 		5D39BECC25AD999200356E7E /* JoinFamilyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JoinFamilyViewController.swift; sourceTree = "<group>"; };
@@ -327,6 +331,8 @@
 		40F32F8025D771F0004F4ECD /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				40F32F8125D7730D004F4ECD /* MainCoordinator.swift */,
+				40F32F8925D77317004F4ECD /* MainViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -811,6 +817,7 @@
 				409C969425D2A6BC00C28596 /* ErrorUtil.swift in Sources */,
 				5D39BECD25AD999200356E7E /* JoinFamilyViewController.swift in Sources */,
 				4015764A25A47AAE00AB4296 /* SettingViewModel.swift in Sources */,
+				40F32F8A25D77317004F4ECD /* MainViewController.swift in Sources */,
 				5D76B06625C637D500C1D1A8 /* Date+Extension.swift in Sources */,
 				5DBBEDDB25B16ABD004ACC3A /* CreateFamilyViewController.swift in Sources */,
 				5D7D2C3F25BA5DB800F3C25D /* RankingCell.swift in Sources */,
@@ -827,6 +834,7 @@
 				5D39BFE925AF032B00356E7E /* JoinFamilyViewModel.swift in Sources */,
 				40D3CE8325BD699D000620A0 /* UIImagePickerController+Rx.swift in Sources */,
 				5D98A1BE25CCFEBC0032928E /* UIStackView+BackgroundColor.swift in Sources */,
+				40F32F8225D7730D004F4ECD /* MainCoordinator.swift in Sources */,
 				5D88CCB325A3013C008B9D61 /* Member.swift in Sources */,
 				407036B525B6BEFC00DE4857 /* MyMissionViewController.swift in Sources */,
 				40A2D4C625B5B4FC0030A85E /* CreateMissionViewModel.swift in Sources */,
