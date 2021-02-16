@@ -14,9 +14,20 @@ class RankingCell: UITableViewCell {
     // MARK: Properties
     private let disposeBag = DisposeBag()
 
+    // MARK: Constants
+    fileprivate struct Color {
+        static let contentViewBackground = UIColor.clear
+    }
+
+    fileprivate struct Font {
+        static let rankLabel = UIFont.boldSystemFont(ofSize: 25)
+        static let titleLabel = UIFont.systemFont(ofSize: 17)
+        static let detailLabel = UIFont.systemFont(ofSize: 17)
+    }
+
     // MARK: UI Components
     private lazy var containerView = UIView().then {
-        $0.backgroundColor = .clear
+        $0.backgroundColor = Color.contentViewBackground
     }
 
     private lazy var stackView = UIStackView().then {
@@ -33,15 +44,15 @@ class RankingCell: UITableViewCell {
     }
 
     private lazy var rankLabel = UILabel().then {
-        $0.font = .boldSystemFont(ofSize: 25)
+        $0.font = Font.rankLabel
     }
 
     private lazy var titleLabel = UILabel().then {
-        $0.font = $0.font.withSize(17)
+        $0.font = Font.titleLabel
     }
 
     private lazy var detailLabel = UILabel().then {
-        $0.font = $0.font.withSize(17)
+        $0.font = Font.detailLabel
     }
 
     // MARK: Initializers
