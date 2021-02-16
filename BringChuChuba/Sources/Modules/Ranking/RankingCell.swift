@@ -21,6 +21,8 @@ class RankingCell: UITableViewCell {
 
     private lazy var stackView = UIStackView().then {
         $0.axis = .horizontal
+        $0.alignment = .center
+        $0.distribution = .fillProportionally
         $0.spacing = 10
     }
 
