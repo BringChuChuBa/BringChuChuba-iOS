@@ -65,7 +65,8 @@ final class MyMissionViewController: UIViewController {
     private func bindViewModel() {
         assert(viewModel.isSome)
         
-        let viewWillAppear = rx.sentMessage(#selector(UIViewController.viewWillAppear(_:)))
+        let viewWillAppear = rx
+            .sentMessage(#selector(UIViewController.viewWillAppear(_:)))
             .mapToVoid()
             .asDriverOnErrorJustComplete()
 
@@ -79,7 +80,6 @@ final class MyMissionViewController: UIViewController {
 
         let input = MyMissionViewModel.Input(
             status: status,
-            parent: self,
             appear: Driver.merge(viewWillAppear, pullAndReload)
 //            appear: viewWillAppear
         )

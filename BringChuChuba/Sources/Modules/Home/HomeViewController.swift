@@ -61,6 +61,13 @@ final class HomeViewController: UIViewController {
         }
     }
 
+    let reloadSubject = PublishSubject<Void>()
+    var reloadBinding: Binder<Void> {
+        return Binder(self) { base, _ in
+            base.reloadSubject.onNext(())
+        }
+    }
+
     // MARK: Initializers
     init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
@@ -92,14 +99,10 @@ final class HomeViewController: UIViewController {
 
 //        tableView.refreshControl = refreshControl
 
-        let viewWillAppear = rx
+        let viewDidAppear = rx
             .sentMessage(#selector(UIViewController.viewDidAppear(_:)))
             .mapToVoid()
             .asDriverOnErrorJustComplete()
-
-//        let pull = tableView.refreshControl!.rx
-//            .controlEvent(.valueChanged)
-//            .asDriver()
 
         let pull = refreshControl.rx
             .controlEvent(.valueChanged)
@@ -109,8 +112,12 @@ final class HomeViewController: UIViewController {
 //            .asDriver()
             .asDriverOnErrorJustComplete()
 
+        let relaod = reloadSubject.asDriverOnErrorJustComplete()
+
+        let pullAndReload = Driver.merge(relaod, pull)
+
         let input = HomeViewModel.Input(
-            trigger: Driver.merge(viewWillAppear, pull),
+            trigger: Driver.merge(viewDidAppear, pullAndReload),
             segmentSelected: segmentControl.rx.selectedSegmentIndex
                 .debug("selectedSegment -->")
                 .map { Mission.Status.allCases[$0] }
@@ -125,16 +132,18 @@ final class HomeViewController: UIViewController {
                 cellIdentifier: HomeTableViewCell.reuseIdentifier(),
                 cellType: HomeTableViewCell.self
             )) { _, viewModel, cell in
-                cell.bind(with: viewModel)
+                cell.bind(with: viewModel,
+                          parent: self)
             },
          output.fetching
             .debug()
             .drive(refreshControlFecting),
          output.createMission
             .drive(),
+         // TODO: 그냥 셀렉트를 막아버려야함
          tableView.rx.itemSelected
              .bind(to: tableViewDeselect)
-         ]
+        ]
         .forEach { $0.disposed(by: disposeBag) }
     }
 

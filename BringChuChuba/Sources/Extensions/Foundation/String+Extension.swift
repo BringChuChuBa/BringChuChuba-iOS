@@ -24,6 +24,6 @@ extension String {
             $0.locale = Locale.current
             $0.timeZone = TimeZone.autoupdatingCurrent
         }
-        return dateFormatter.date(from: self)!
+        return dateFormatter.date(from: self) ?? Date()
     }
 }

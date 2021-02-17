@@ -12,7 +12,6 @@ final class MyMissionViewModel: ViewModelType {
     // MARK: Structs
     struct Input {
         let status: String
-        let parent: MyMissionViewController
         let appear: Driver<Void>
     }
     
