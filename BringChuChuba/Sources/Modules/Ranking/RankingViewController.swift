@@ -60,8 +60,8 @@ final class RankingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupUI()
         bindViewModel()
+        setupUI()
     }
 
     // MARK: Binds
