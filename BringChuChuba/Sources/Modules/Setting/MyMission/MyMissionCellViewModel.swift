@@ -25,7 +25,7 @@ final class MyMissionCellViewModel: ViewModelType {
     // MARK: Properties
     let title: String
     let description: String
-    let status: String
+    let status: Mission.Status
     let mission: Mission
     
     // MARK: Initializers
@@ -33,7 +33,7 @@ final class MyMissionCellViewModel: ViewModelType {
         self.mission = mission
         self.title = mission.title
         self.description = mission.description ?? "No description"
-        self.status = mission.status.rawValue
+        self.status = mission.status
     }
     
     // MARK: Methods
@@ -49,9 +49,6 @@ final class MyMissionCellViewModel: ViewModelType {
                                               for: Result.self)
                     .trackError(errorTracker)
                     .mapToVoid()
-//                    .map { _ -> Bool in
-//                        return true
-//                    }
                     .share()
                     .asDriverOnErrorJustComplete()
             }

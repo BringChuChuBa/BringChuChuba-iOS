@@ -18,22 +18,16 @@ final class MyMissionPageViewController: UIPageViewController {
     private let disposeBag = DisposeBag()
 
     // MARK: UI Components
-    private lazy var pages: [UIViewController] = [
-        MyMissionViewController(viewModel: viewModel,
-                                status: Mission.Status.todo.rawValue),
-        MyMissionViewController(viewModel: viewModel,
-                                status: Mission.Status.inProgress.rawValue),
-        MyMissionViewController(viewModel: viewModel,
-                                status: Mission.Status.complete.rawValue)
-    ]
+    private lazy var pages: [UIViewController] = Mission.Status.allCases
+        .map { MyMissionViewController(viewModel: viewModel, status: $0) }
 
     private lazy var segmentedControl = UISegmentedControl(
         items: Mission.Status.allCases.map { $0.title }
     ).then {
-        navigationItem.titleView = $0
-
         $0.selectedSegmentIndex = 0
         $0.autoresizingMask = .flexibleWidth
+        navigationItem.titleView = $0
+
         $0.addTarget(self,
                      action: #selector(segmentedControlValueDidChange),
                      for: .valueChanged)
@@ -60,15 +54,15 @@ final class MyMissionPageViewController: UIPageViewController {
         setupUI()
         assignDelegatesAndDataSources()
         assignDefaultPage()
-//        removeSwipeGesture()
     }
     
     // MARK: Set UIs
     private func setupUI() {
         view.backgroundColor = .systemGroupedBackground
 
-//        navigationItem.title = "MyMission.Navigation.Title".localized
+        navigationItem.title = "MyMission.Navigation.Title".localized
         navigationItem.titleView = segmentedControl
+        navigationItem.largeTitleDisplayMode = .never
     }
 }
 
@@ -130,7 +124,7 @@ extension MyMissionPageViewController: UIPageViewControllerDelegate {
         }
     }
 }
- 
+
 // MARK: UIPageViewController DataSource
 extension MyMissionPageViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController,

@@ -11,7 +11,8 @@ import RxSwift
 final class MyMissionViewModel: ViewModelType {
     // MARK: Structs
     struct Input {
-        let status: String
+        let status: Mission.Status
+        let parent: Any
         let appear: Driver<Void>
     }
     
@@ -37,37 +38,28 @@ final class MyMissionViewModel: ViewModelType {
         let fetching = activityIndicator.asDriver()
         
         let missions = input.appear
-            .flatMapLatest { _ -> Driver<[MyMissionCellViewModel]> in
+            .flatMapLatest {
                 return Network.shared.requests(
                     with: .getMissions(familyId: GlobalData.shared.familyId),
                     for: Mission.self
                 )
-                .trackActivity(activityIndicator)
+                //                .trackActivity(activityIndicator)
                 .trackError(errorTracker)
                 .asDriverOnErrorJustComplete()
-                .map { missions in
-                    missions.filter { mission -> Bool in
-                        if input.status == "doing" {
+            }
+            .map { missions in
+                missions.filter { $0.status == input.status }
+                    .filter { mission -> Bool in
+                        if input.parent is DoingMissionViewController {
                             return mission.contractor?.id == GlobalData.shared.id
                         }
                         return mission.client.id == GlobalData.shared.id
                     }
-                    .filter { mission -> Bool in
-                        if input.status == "doing" {
-                            return mission.status == .inProgress
-                        }
-                        return mission.status.rawValue == input.status
-                    }
                     .map { MyMissionCellViewModel(with: $0) }
-                }
-
-                // todo -> 완료 버튼 hidden
-                // status -> complete면 완료버튼 hidden, 진행중으로 변경버튼은 나중에 생각
-                // doing -> 삭제, 완료 버튼 hidden
             }
 
         let error = errorTracker.asDriver()
-        
+
         return Output(
             fetching: fetching,
             missions: missions,

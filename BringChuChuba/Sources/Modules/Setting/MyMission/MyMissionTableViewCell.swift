@@ -14,44 +14,57 @@ import Then
 
 final class MyMissionTableViewCell: UITableViewCell {
     // MARK: Properties
-    private let disposeBag = DisposeBag()
-    private var parent: MyMissionViewController?
-    
+    private var disposeBag = DisposeBag()
+    private var parent: Any?
+
+    // MARK: Constants
+    fileprivate struct Color {
+        static let deleteButtonTitle = UIColor.white
+        static let deleteButtonBackground = UIColor.systemRed
+        static let completeButtonTitle = UIColor.white
+        static let completeButtonBackground = UIColor.systemGreen
+    }
+
+    fileprivate struct Font {
+        static let titleLabel = UIFont.boldSystemFont(ofSize: 20)
+        static let descriptionLabel = UIFont.systemFont(ofSize: 12)
+    }
+
     // MARK: UI Components
     private lazy var titleLabel = UILabel().then {
-        // 속성 변경
-        $0.textAlignment = .left
+        $0.font = Font.titleLabel
     }
     
     private lazy var descriptionLabel = UILabel().then {
-        // 속성 변경
-        $0.textAlignment = .left
-    }
-    
-    private lazy var statusLabel = UILabel().then {
-        // 속성 변경
-        $0.textAlignment = .left
+        $0.font = Font.descriptionLabel
     }
     
     private lazy var deleteButton = UIButton(type: .system).then {
         $0.setTitle("Common.Delete".localized, for: .normal)
-        $0.setTitleColor(.systemBlue, for: .normal)
+        $0.setTitleColor(Color.deleteButtonTitle, for: .normal)
+        $0.backgroundColor = Color.deleteButtonBackground
     }
     
     private lazy var completeButton = UIButton(type: .system).then {
         $0.setTitle("Common.Complete".localized, for: .normal)
-        $0.setTitleColor(.systemBlue, for: .normal)
+        $0.setTitleColor(Color.completeButtonTitle, for: .normal)
+        $0.backgroundColor = Color.completeButtonBackground
     }
 
     // MARK: Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
         setupUI()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    override func prepareForReuse() {
+        super.prepareForReuse()
+
+        disposeBag = DisposeBag()
     }
     
     // MARK: Binds
@@ -59,59 +72,10 @@ final class MyMissionTableViewCell: UITableViewCell {
         self.parent = parent
         titleLabel.text = viewModel.title
         descriptionLabel.text = viewModel.description
-        statusLabel.text = viewModel.status
 
         hideButton(with: viewModel)
 
-//        let deleteObservable = PublishSubject<Void>()
-//        _ = deleteButton.rx.tap
-//            .subscribe(onNext: {
-//                let alert = UIAlertController(title: "Delete Mission",
-//                                              message: "delete?",
-//                                              preferredStyle: .alert)
-//
-//                let deleteAction = UIAlertAction(title: "Delete",
-//                                                 style: .destructive,
-//                                                 handler: { _ -> Void in
-//                                                    deleteObservable.onNext(())
-//                                                 })
-//                let cancelAction = UIAlertAction(title: "Cancel",
-//                                                 style: .cancel)
-//
-//                alert.addAction(deleteAction)
-//                alert.addAction(cancelAction)
-//
-//                self.parent!.present(alert,
-//                                     animated: true)
-//            })
-
-//        let deleteTrigger = deleteButton.rx.tap.flatMap {
-//            return Observable<Void>.create { observer in
-//                let alert = UIAlertController(title: "Delete Mission",
-//                                              message: "delete?",
-//                                              preferredStyle: .alert)
-//
-//                let deleteAction = UIAlertAction(title: "Delete",
-//                                                 style: .destructive,
-//                                                 handler: { _ -> Void in
-//                                                    observer.onNext(())
-//                                                 })
-//                let cancelAction = UIAlertAction(title: "Cancel",
-//                                                 style: .cancel)
-//
-//                alert.addAction(deleteAction)
-//                alert.addAction(cancelAction)
-//
-//                self.parent!.present(alert,
-//                                     animated: true)
-//
-//                return Disposables.create()
-//            }
-//        }
-        
         let input = MyMissionCellViewModel.Input(
-//            deleteTrigger: deleteTrigger.asDriverOnErrorJustComplete(),
-//            deleteTrigger: deleteObservable.asDriverOnErrorJustComplete(),
             deleteTrigger: deleteButton.rx.tap.asDriver(),
             completeTrigger: completeButton.rx.tap.asDriver()
         )
@@ -129,51 +93,48 @@ final class MyMissionTableViewCell: UITableViewCell {
     private func setupUI() {
         contentView.addSubview(titleLabel)
         contentView.addSubview(descriptionLabel)
-        contentView.addSubview(statusLabel)
         contentView.addSubview(deleteButton)
         contentView.addSubview(completeButton)
-        
+
+        contentView.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(20)
+        }
+
         titleLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(10)
-            make.leading.equalToSuperview().offset(10)
-            make.height.equalTo(20)
+            make.top.leading.equalToSuperview()
         }
-        
+
         descriptionLabel.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom).offset(10)
-            make.height.leading.trailing.equalTo(titleLabel)
+            make.bottom.leading.equalToSuperview()
         }
-        
-        statusLabel.snp.makeConstraints { make in
-            make.top.equalTo(descriptionLabel.snp.bottom).offset(10)
-            make.height.leading.trailing.equalTo(titleLabel)
-        }
-        
+
         deleteButton.snp.makeConstraints { make in
-            make.top.height.equalTo(titleLabel)
-            make.trailing.equalToSuperview().offset(-10)
+            make.top.bottom.trailing.equalToSuperview()
+            make.width.equalTo(deleteButton.snp.height)
         }
-        
+
         completeButton.snp.makeConstraints { make in
-            make.top.equalTo(statusLabel)
-            make.height.trailing.equalTo(deleteButton)
+            make.top.bottom.trailing.equalToSuperview()
+            make.width.equalTo(completeButton.snp.height)
         }
     }
 
     private func hideButton(with viewModel: MyMissionCellViewModel) {
         switch viewModel.status {
-        case Mission.Status.todo.rawValue:
+        case .todo:
             completeButton.isHidden = true
-        case Mission.Status.inProgress.rawValue:
-            if viewModel.mission.contractor?.id == GlobalData.shared.id {
+            deleteButton.isHidden = false
+        case .inProgress:
+            if parent is DoingMissionViewController {
                 completeButton.isHidden = true
                 deleteButton.isHidden = true
+            } else {
+                completeButton.isHidden = false
+                deleteButton.isHidden = true
             }
-        case Mission.Status.complete.rawValue:
+        case .complete:
             completeButton.isHidden = true
             deleteButton.isHidden = true
-        default:
-            break
         }
     }
 }

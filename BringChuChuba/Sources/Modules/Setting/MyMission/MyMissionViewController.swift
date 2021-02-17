@@ -12,10 +12,10 @@ import RxSwift
 import SnapKit
 import Then
 
-final class MyMissionViewController: UIViewController {
+class MyMissionViewController: UIViewController {
     // MARK: Properties
     var viewModel: MyMissionViewModel!
-    private var status: String
+    private var status: Mission.Status
     private let disposeBag = DisposeBag()
 
     let reloadSubject = PublishSubject<Void>()
@@ -26,24 +26,19 @@ final class MyMissionViewController: UIViewController {
     }
     
     // MARK: UI Components
-    private lazy var footerView = UIView(frame: .zero).then {
-        $0.backgroundColor = #colorLiteral(red: 0.4745098054, green: 0.8392156959, blue: 0.9764705896, alpha: 1)
-    }
-    
     lazy var tableView = UITableView(frame: .zero, style: .insetGrouped).then {
-        // 50 Constant로 빼기
-        $0.contentInsetAdjustmentBehavior = .never
-        $0.refreshControl = UIRefreshControl()
-        $0.rowHeight = 100
         $0.register(
             MyMissionTableViewCell.self,
             forCellReuseIdentifier: MyMissionTableViewCell.reuseIdentifier()
         )
+        $0.rowHeight = 100
+        $0.estimatedRowHeight = 100
+        $0.refreshControl = UIRefreshControl()
         $0.allowsSelection = false
     }
     
     // MARK: Initializers
-    init(viewModel: MyMissionViewModel, status: String) {
+    init(viewModel: MyMissionViewModel, status: Mission.Status) {
         self.viewModel = viewModel
         self.status = status
         super.init(nibName: nil, bundle: nil)
@@ -56,7 +51,7 @@ final class MyMissionViewController: UIViewController {
     // MARK: LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         bindViewModel()
         setupUI()
     }
@@ -80,8 +75,8 @@ final class MyMissionViewController: UIViewController {
 
         let input = MyMissionViewModel.Input(
             status: status,
+            parent: self,
             appear: Driver.merge(viewWillAppear, pullAndReload)
-//            appear: viewWillAppear
         )
         
         let output = viewModel.transform(input: input)
@@ -110,18 +105,15 @@ final class MyMissionViewController: UIViewController {
     private func setupUI() {
         view.backgroundColor = .systemGroupedBackground
 
-//        extendedLayoutIncludesOpaqueBars = true
+        navigationItem.title = "DoingMission.Navigation.Title".localized
+        navigationItem.largeTitleDisplayMode = .never
 
-//        navigationItem.title = "DoingMission.Navigation.Title".localized
-        navigationItem.largeTitleDisplayMode = .always
-        
         view.addSubview(tableView)
-        
         tableView.snp.makeConstraints { make in
-            make.edges.equalTo(view.safeArea.edges)
-//            make.top.equalToSuperview()
-//            make.leading.trailing.equalToSuperview()
-//            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            make.edges.equalToSuperview()
         }
     }
 }
+
+// MARK: DoingMissionViewController
+class DoingMissionViewController: MyMissionViewController { }

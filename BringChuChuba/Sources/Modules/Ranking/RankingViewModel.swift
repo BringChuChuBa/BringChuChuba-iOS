@@ -39,7 +39,7 @@ final class RankingViewModel: ViewModelType {
                 with: .getFamily(familyUid: familyUid),
                 for: Family.self
             )
-            .trackActivity(activityIndicator)
+//            .trackActivity(activityIndicator)
             .trackError(errorTracker)
             .asDriverOnErrorJustComplete()
         }
