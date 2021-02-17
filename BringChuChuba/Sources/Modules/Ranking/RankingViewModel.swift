@@ -34,16 +34,15 @@ final class RankingViewModel: ViewModelType {
         let errorTracker = ErrorTracker()
 
         let familyUid = Int(GlobalData.shared.familyId)! // guard
-        let family = input.trigger
-            .flatMapLatest { _ -> Driver<Family> in
-                Network.shared.request(
-                    with: .getFamily(familyUid: familyUid),
-                    for: Family.self
-                )
-                .trackActivity(activityIndicator)
-                .trackError(errorTracker)
-                .asDriverOnErrorJustComplete()
-            }
+        let family = input.trigger.flatMapLatest {
+            return Network.shared.request(
+                with: .getFamily(familyUid: familyUid),
+                for: Family.self
+            )
+            .trackActivity(activityIndicator)
+            .trackError(errorTracker)
+            .asDriverOnErrorJustComplete()
+        }
 
         let items = Driver
             .combineLatest(
