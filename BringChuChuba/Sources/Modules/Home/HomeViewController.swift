@@ -119,7 +119,6 @@ final class HomeViewController: UIViewController {
         let input = HomeViewModel.Input(
             trigger: Driver.merge(viewDidAppear, pullAndReload),
             segmentSelected: segmentControl.rx.selectedSegmentIndex
-                .debug("selectedSegment -->")
                 .map { Mission.Status.allCases[$0] }
                 .asDriverOnErrorJustComplete(),
             createMissionTrigger: createBarButtonItem.rx.tap.asDriver()
@@ -132,8 +131,7 @@ final class HomeViewController: UIViewController {
                 cellIdentifier: HomeTableViewCell.reuseIdentifier(),
                 cellType: HomeTableViewCell.self
             )) { _, viewModel, cell in
-                cell.bind(with: viewModel,
-                          parent: self)
+                cell.bind(with: viewModel, parent: self)
             },
          output.fetching
             .debug()

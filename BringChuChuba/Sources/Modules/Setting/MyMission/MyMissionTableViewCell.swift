@@ -35,7 +35,7 @@ final class MyMissionTableViewCell: UITableViewCell {
         $0.font = Font.titleLabel
     }
     
-    private lazy var descriptionLabel = UILabel().then {
+    private lazy var contractLabel = UILabel().then {
         $0.font = Font.descriptionLabel
     }
     
@@ -54,6 +54,7 @@ final class MyMissionTableViewCell: UITableViewCell {
     // MARK: Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+
         setupUI()
     }
     
@@ -70,9 +71,9 @@ final class MyMissionTableViewCell: UITableViewCell {
     // MARK: Binds
     func bind(with viewModel: MyMissionCellViewModel, parent: MyMissionViewController) {
         self.parent = parent
-        titleLabel.text = viewModel.title
-        descriptionLabel.text = viewModel.description
 
+        titleLabel.text = viewModel.title
+        contractLabel.text = viewModel.mission.contractor?.id
         hideButton(with: viewModel)
 
         let input = MyMissionCellViewModel.Input(
@@ -92,7 +93,7 @@ final class MyMissionTableViewCell: UITableViewCell {
     // MARK: Set UIs
     private func setupUI() {
         contentView.addSubview(titleLabel)
-        contentView.addSubview(descriptionLabel)
+        contentView.addSubview(contractLabel)
         contentView.addSubview(deleteButton)
         contentView.addSubview(completeButton)
 
@@ -104,7 +105,7 @@ final class MyMissionTableViewCell: UITableViewCell {
             make.top.leading.equalToSuperview()
         }
 
-        descriptionLabel.snp.makeConstraints { make in
+        contractLabel.snp.makeConstraints { make in
             make.bottom.leading.equalToSuperview()
         }
 

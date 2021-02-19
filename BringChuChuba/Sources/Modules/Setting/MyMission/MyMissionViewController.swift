@@ -14,16 +14,15 @@ import Then
 
 class MyMissionViewController: UIViewController {
     // MARK: Properties
-    var viewModel: MyMissionViewModel!
-    private var status: Mission.Status
-    private let disposeBag = DisposeBag()
-
     let reloadSubject = PublishSubject<Void>()
     var reloadBinding: Binder<Void> {
         return Binder(self) { base, _ in
             base.reloadSubject.onNext(())
         }
     }
+    private let viewModel: MyMissionViewModel!
+    private let disposeBag = DisposeBag()
+    private let status: Mission.Status
     
     // MARK: UI Components
     lazy var tableView = UITableView(frame: .zero, style: .insetGrouped).then {
@@ -51,7 +50,7 @@ class MyMissionViewController: UIViewController {
     // MARK: LifeCycles
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         bindViewModel()
         setupUI()
     }
@@ -64,15 +63,15 @@ class MyMissionViewController: UIViewController {
             .sentMessage(#selector(UIViewController.viewWillAppear(_:)))
             .mapToVoid()
             .asDriverOnErrorJustComplete()
-
+        
         let pull = tableView.refreshControl!.rx
             .controlEvent(.valueChanged)
             .asDriver()
-
+        
         let relaod = reloadSubject.asDriverOnErrorJustComplete()
-
+        
         let pullAndReload = Driver.merge(relaod, pull)
-
+        
         let input = MyMissionViewModel.Input(
             status: status,
             parent: self,
@@ -104,10 +103,10 @@ class MyMissionViewController: UIViewController {
     // MARK: Set UIs
     private func setupUI() {
         view.backgroundColor = .systemGroupedBackground
-
+        
         navigationItem.title = "DoingMission.Navigation.Title".localized
         navigationItem.largeTitleDisplayMode = .never
-
+        
         view.addSubview(tableView)
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -116,4 +115,4 @@ class MyMissionViewController: UIViewController {
 }
 
 // MARK: DoingMissionViewController
-class DoingMissionViewController: MyMissionViewController { }
+final class DoingMissionViewController: MyMissionViewController { }

@@ -36,27 +36,26 @@ final class MyMissionViewModel: ViewModelType {
         let errorTracker = ErrorTracker()
 
         let fetching = activityIndicator.asDriver()
-        
-        let missions = input.appear
-            .flatMapLatest {
-                return Network.shared.requests(
-                    with: .getMissions(familyId: GlobalData.shared.familyId),
-                    for: Mission.self
-                )
-                //                .trackActivity(activityIndicator)
-                .trackError(errorTracker)
-                .asDriverOnErrorJustComplete()
-            }
-            .map { missions in
-                missions.filter { $0.status == input.status }
-                    .filter { mission -> Bool in
-                        if input.parent is DoingMissionViewController {
-                            return mission.contractor?.id == GlobalData.shared.id
-                        }
-                        return mission.client.id == GlobalData.shared.id
+
+        let missions = input.appear.flatMapLatest {
+            return Network.shared.requests(
+                with: .getMissions(familyId: GlobalData.shared.familyId),
+                for: Mission.self
+            )
+            //                .trackActivity(activityIndicator)
+            .trackError(errorTracker)
+            .asDriverOnErrorJustComplete()
+        }
+        .map { missions in
+            missions.filter { $0.status == input.status }
+                .filter { mission -> Bool in
+                    if input.parent is DoingMissionViewController {
+                        return mission.contractor?.id == GlobalData.shared.id
                     }
-                    .map { MyMissionCellViewModel(with: $0) }
-            }
+                    return mission.client.id == GlobalData.shared.id
+                }
+                .map { MyMissionCellViewModel(with: $0) }
+        }
 
         let error = errorTracker.asDriver()
 

@@ -14,7 +14,7 @@ import Then
 
 final class MyMissionPageViewController: UIPageViewController {
     // MARK: Properties
-    private var viewModel: MyMissionViewModel!
+    private let viewModel: MyMissionViewModel!
     private let disposeBag = DisposeBag()
 
     // MARK: UI Components
@@ -28,9 +28,11 @@ final class MyMissionPageViewController: UIPageViewController {
         $0.autoresizingMask = .flexibleWidth
         navigationItem.titleView = $0
 
-        $0.addTarget(self,
-                     action: #selector(segmentedControlValueDidChange),
-                     for: .valueChanged)
+        $0.addTarget(
+            self,
+            action: #selector(segmentedControlValueDidChange),
+            for: .valueChanged
+        )
     }
     
     // MARK: Initializers
@@ -68,19 +70,19 @@ final class MyMissionPageViewController: UIPageViewController {
 
 // MARK: Supporting Methods
 extension MyMissionPageViewController {
-    /// This method assigns all required delegates and data sources.
     private func assignDelegatesAndDataSources() {
         delegate = self
         dataSource = self
     }
 
-    /// This method assigns a default ViewController to display when PageViewController is loaded.
     private func assignDefaultPage() {
         if let defaultVC = pages.first {
-            setViewControllers([defaultVC],
-                               direction: .forward,
-                               animated: true,
-                               completion: nil)
+            setViewControllers(
+                [defaultVC],
+                direction: .forward,
+                animated: true,
+                completion: nil
+            )
         }
     }
 
@@ -112,10 +114,12 @@ extension MyMissionPageViewController {
 
 // MARK: UIPageViewController Delegate
 extension MyMissionPageViewController: UIPageViewControllerDelegate {
-    func pageViewController(_ pageViewController: UIPageViewController,
-                            didFinishAnimating finished: Bool,
-                            previousViewControllers: [UIViewController],
-                            transitionCompleted completed: Bool) {
+    func pageViewController(
+        _ pageViewController: UIPageViewController,
+        didFinishAnimating finished: Bool,
+        previousViewControllers: [UIViewController],
+        transitionCompleted completed: Bool
+    ) {
         if finished,
            completed,
            let currentVC = viewControllers?.first,
@@ -127,17 +131,19 @@ extension MyMissionPageViewController: UIPageViewControllerDelegate {
 
 // MARK: UIPageViewController DataSource
 extension MyMissionPageViewController: UIPageViewControllerDataSource {
-    func pageViewController(_ pageViewController: UIPageViewController,
-                            viewControllerAfter viewController: UIViewController)
-    -> UIViewController? {
+    func pageViewController(
+        _ pageViewController: UIPageViewController,
+        viewControllerAfter viewController: UIViewController
+    ) -> UIViewController? {
         guard let currentIndex = pages.firstIndex(of: viewController),
               currentIndex < pages.count - 1 else { return nil }
         return pages[currentIndex + 1]
     }
     
-    func pageViewController(_ pageViewController: UIPageViewController,
-                            viewControllerBefore viewController: UIViewController)
-    -> UIViewController? {
+    func pageViewController(
+        _ pageViewController: UIPageViewController,
+        viewControllerBefore viewController: UIViewController
+    ) -> UIViewController? {
         guard let currentIndex = pages.firstIndex(of: viewController),
               currentIndex > 0 else { return nil }
         return pages[currentIndex - 1]

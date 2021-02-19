@@ -61,11 +61,13 @@ final class SettingViewModel: ViewModelType {
                 return false
             }
 
-        return Output(myMission: myMission,
-                      doingMission: doingMission,
-                      profile: profile,
-                      invite: invite,
-                      complete: complete)
+        return Output(
+            myMission: myMission,
+            doingMission: doingMission,
+            profile: profile,
+            invite: invite,
+            complete: complete
+        )
     }
 }
 
@@ -88,8 +90,8 @@ extension SettingViewModel {
         guard let linkParameter = components.url else { return }
 
         print("I am sharing \(linkParameter.absoluteString)")
-//        link = Uri.parse("https://bring.chuchuba.com/family?fKey=${myInfo.value?.familyId}")
-//                    domainUriPrefix = "https://bringchuchuba.page.link"
+        //        link = Uri.parse("https://bring.chuchuba.com/family?fKey=${myInfo.value?.familyId}")
+        //                    domainUriPrefix = "https://bringchuchuba.page.link"
 
         guard let shareLink = DynamicLinkComponents.init(link: linkParameter,
                                                          domainURIPrefix: domainURIPrefix)
@@ -102,26 +104,26 @@ extension SettingViewModel {
             shareLink.iOSParameters = DynamicLinkIOSParameters(bundleID: myBundleId)
         }
 
-//        1:414653842652:ios:5a9daf4b46b19dd655e019 // app id
-//        shareLink.iOSParameters?.appStoreID = ""
-//        shareLink.iOSParameters?.fallbackURL = "" 앱 스토어 아이디 없을 때
+        //        1:414653842652:ios:5a9daf4b46b19dd655e019 // app id
+        //        shareLink.iOSParameters?.appStoreID = ""
+        //        shareLink.iOSParameters?.fallbackURL = "" 앱 스토어 아이디 없을 때
         shareLink.iOSParameters?.minimumAppVersion = "1.0.0"
 
-//        shareLink.androidParameters = DynamicLinkAndroidParameters(packageName: "com.BringChuChuba")
-//        shareLink.androidParameters?.minimumVersion = 100
+        //        shareLink.androidParameters = DynamicLinkAndroidParameters(packageName: "com.BringChuChuba")
+        //        shareLink.androidParameters?.minimumVersion = 100
 
         // TODO: analytics 추가
         /*
-        linkBuilder.analyticsParameters = DynamicLinkGoogleAnalyticsParameters(source: "orkut",
-                                                                               medium: "social",
-                                                                               campaign: "example-promo")
+         linkBuilder.analyticsParameters = DynamicLinkGoogleAnalyticsParameters(source: "orkut",
+         medium: "social",
+         campaign: "example-promo")
          */
 
         // optional, display & populate, recommanded
         shareLink.socialMetaTagParameters = DynamicLinkSocialMetaTagParameters()
         shareLink.socialMetaTagParameters?.title = "socialMetaTagParameters title"
         shareLink.socialMetaTagParameters?.descriptionText = "socialMetaTagParameters desc"
-//        shareLink.socialMetaTagParameters?.imageURL = "socialMetaTagParameters title"
+        //        shareLink.socialMetaTagParameters?.imageURL = "socialMetaTagParameters title"
 
         guard let longURL = shareLink.url else { return }
         print("longURL == \(longURL.absoluteString)")
@@ -147,7 +149,10 @@ extension SettingViewModel {
     private func showShareSheet(url: URL) {
         print(url)
         let promoText = "가족 초대 제목인듯 ? \(GlobalData.shared.familyId)"
-        let activityVC = UIActivityViewController(activityItems: [promoText, url], applicationActivities: nil)
+        let activityVC = UIActivityViewController(
+            activityItems: [promoText, url],
+            applicationActivities: nil
+        )
 
         coordinator.showActivity(activityVC)
         completeTrigger.onNext(())

@@ -24,7 +24,8 @@ final class MyMissionCellViewModel: ViewModelType {
     
     // MARK: Properties
     let title: String
-    let description: String
+    let expireAt: String
+    let contractorName: String
     let status: Mission.Status
     let mission: Mission
     
@@ -32,7 +33,8 @@ final class MyMissionCellViewModel: ViewModelType {
     init (with mission: Mission) {
         self.mission = mission
         self.title = mission.title
-        self.description = mission.description ?? "No description"
+        self.expireAt = mission.expireAt
+        self.contractorName = mission.contractor?.id ?? "" // nickname
         self.status = mission.status
     }
     
@@ -45,18 +47,20 @@ final class MyMissionCellViewModel: ViewModelType {
                 guard let self = self,
                       let missionUid = Int(self.mission.id) else { return .empty() }
 
-                return Network.shared.request(with: .deleteMission(missionUid: missionUid),
-                                              for: Result.self)
-                    .trackError(errorTracker)
-                    .mapToVoid()
-                    .share()
-                    .asDriverOnErrorJustComplete()
+                return Network.shared.request(
+                    with: .deleteMission(missionUid: missionUid),
+                    for: Result.self
+                )
+                .trackError(errorTracker)
+                .mapToVoid()
+                .share()
+                .asDriverOnErrorJustComplete()
             }
 
         let completed = input.completeTrigger
             .flatMapLatest { [weak self] _ -> Driver<Void> in
                 guard let self = self,
-                      let missionUid = Int(self.mission.id) else { return Driver.empty() }
+                      let missionUid = Int(self.mission.id) else { return .empty() }
                 
                 return Network.shared.request(
                     with: .completeMission(missionUid: missionUid),
