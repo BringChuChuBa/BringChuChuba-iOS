@@ -106,9 +106,9 @@ class ProfileViewController: UIViewController {
     private func bindViewModel() {
         assert(viewModel.isSome)
 
-        let profileDidSelected = profileImageView.rx
-            .tapGesture()
-            .when(.recognized)
+//        let profileDidSelected = profileImageView.rx
+//            .tapGesture()
+//            .when(.recognized)
             //            .flatMapLatest { return Observable<Void>.create { observer in
             //                    let alert =  UIAlertController(
             //                        title: AlertTiTle.title.rawValue,
@@ -158,31 +158,36 @@ class ProfileViewController: UIViewController {
             //                }
             //
             //            }
-            .flatMapLatest { [weak self] _ in
-                return UIImagePickerController.rx.createWithParent(self) { picker in
-                    picker.sourceType = .photoLibrary
-                    picker.allowsEditing = true
-                }
-                .flatMap { $0.rx.didFinishPickingMediaWithInfo }
-                .take(1)
-            }
-            .map { $0[.originalImage] as? UIImage }
+//            .flatMapLatest { [weak self] _ in
+//                return UIImagePickerController.rx.createWithParent(self) { picker in
+//                    picker.sourceType = .photoLibrary
+//                    picker.allowsEditing = true
+//                }
+//                .flatMap { $0.rx.didFinishPickingMediaWithInfo }
+//                .take(1)
+//            }
+//            .map { $0[.originalImage] as? UIImage }
+
+        let profileDidSelected = profileImageView.rx
+            .tapGesture()
+            .when(.recognized)
+
+        let nickName = nickNameTextField.rx.text.orEmpty.asDriver()
 
         let input = ProfileViewModel.Input(
-            //             profileTrigger: profileObservable.asDriverOnErrorJustComplete(),
+            profileTrigger: profileDidSelected,
             nickName: nickNameTextField.rx.text.orEmpty.asDriver(),
-            saveTrigger: saveBarButtonItem.rx.tap.asDriver()
+            saveTrigger: saveBarButtonItem.rx.tap.asDriver(),
+            profileVC: self
         )
 
         let output = viewModel.transform(input: input)
         [output.error
             .drive(errorBinding),
-         //                  output.profile
-         //                     .drive(profileImage.rx.image),
          output.saveEnabled
             .drive(saveBarButtonItem.rx.isEnabled),
-         profileDidSelected
-            .bind(to: profileImageView.rx.image)
+         output.profile
+            .drive(profileImageView.rx.image)
         ].forEach { $0.disposed(by: disposeBag) }
     }
 
