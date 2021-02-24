@@ -4,6 +4,7 @@
 //
 //  Created by 한상진 on 2021/01/19.
 //
+import Photos
 
 import RxCocoa
 import RxSwift
@@ -11,14 +12,15 @@ import RxSwift
 final class ProfileViewModel: ViewModelType {
     // MARK: Structs
     struct Input {
-        //        let profileTrigger: Observable<UIImagePickerController>
+        let profileTrigger: Observable<ControlEvent<UITapGestureRecognizer>.Element>
         let nickName: Driver<String>
         let saveTrigger: Driver<Void>
+        let profileVC: ProfileViewController
     }
 
     struct Output {
         let error: Driver<Error>
-        //        let profile: Driver<UIImage?>
+        let profile: Driver<UIImage?>
         let saveEnabled: Driver<Bool>
         let dismiss: Driver<Void>
     }
@@ -44,12 +46,21 @@ final class ProfileViewModel: ViewModelType {
                 return !nickname.isEmpty && nickname != GlobalData.shared.nickname
             }
 
-        //        let profile = input.profileTrigger
-        //            .flatMap { $0.rx.didFinishPickingMediaWithInfo }
-        //            .take(1)
-        //            .map { info in
-        //                return info[.editedImage] as? UIImage
-        //            }.asDriverOnErrorJustComplete()
+        let profile = input.profileTrigger
+            .debug("profile tapped")
+            .flatMapLatest { _ in
+                return UIImagePickerController.rx.createWithParent(input.profileVC) { picker in
+                    picker.sourceType = .photoLibrary
+                    picker.allowsEditing = true
+                }
+                .debug("create parent")
+                .flatMap { $0.rx.didFinishPickingMediaWithInfo.debug("media with info") }
+                .debug("out of flatmap")
+                .take(1)
+            }
+            .map { $0[.originalImage] as? UIImage }
+            .debug("to image")
+            .asDriverOnErrorJustComplete()
 
         // 프로필 사진이랑 닉네임 중에 바뀐거 저장 -> saveTrigger가 오면 request
 
@@ -67,7 +78,7 @@ final class ProfileViewModel: ViewModelType {
         
         return Output(
             error: error,
-            //            profile: profile,
+            profile: profile,
             saveEnabled: saveEnabled,
             dismiss: dismiss
         )
