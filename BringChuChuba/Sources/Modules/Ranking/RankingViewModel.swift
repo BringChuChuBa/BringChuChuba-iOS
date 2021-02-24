@@ -62,11 +62,11 @@ final class RankingViewModel: ViewModelType {
                         .filter { $0.status == .complete }
                         .filter { $0.contractor.isSome }
                         .filter { $0.modifiedAt.toDate.isDateInThisMonth }
-                        .filter { $0.contractor.isSome }
                         .map { $0.contractor! }
                         .reduce(into: [:]) { counts, member in
                             counts[member, default: 0] += 1
                         }
+                    print(count)
                     return count.sorted { $0.value > $1.value }
                         .compactMap { RankingCellViewModel(
                             with: $0.key.id,
@@ -74,6 +74,7 @@ final class RankingViewModel: ViewModelType {
                         ) }
                 }
             }
+            .debug()
         
         let fetching = activityIndicator.asDriver()
 
