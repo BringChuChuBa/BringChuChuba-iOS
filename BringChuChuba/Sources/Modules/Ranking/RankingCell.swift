@@ -34,7 +34,7 @@ class RankingCell: UITableViewCell {
     private lazy var imgView = CircularImageView().then {
         // default
         $0.image = UIImage(systemName: "person.fill")
-        $0.backgroundColor = .darkGray
+//        $0.backgroundColor = .darkGray
         $0.tintColor = .systemGray
     }
 

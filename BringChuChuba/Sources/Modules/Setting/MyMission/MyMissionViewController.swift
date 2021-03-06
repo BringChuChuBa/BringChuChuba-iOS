@@ -32,7 +32,7 @@ class MyMissionViewController: UIViewController {
         )
         $0.rowHeight = 100
         $0.estimatedRowHeight = 100
-        $0.refreshControl = UIRefreshControl()
+//        $0.refreshControl = UIRefreshControl()
         $0.allowsSelection = false
         $0.delaysContentTouches = false
     }
@@ -65,13 +65,14 @@ class MyMissionViewController: UIViewController {
             .mapToVoid()
             .asDriverOnErrorJustComplete()
         
-        let pull = tableView.refreshControl!.rx
-            .controlEvent(.valueChanged)
-            .asDriver()
+//        let pull = tableView.refreshControl?.rx
+//            .controlEvent(.valueChanged)
+//            .asDriver()
         
         let relaod = reloadSubject.asDriverOnErrorJustComplete()
         
-        let pullAndReload = Driver.merge(relaod, pull)
+//        let pullAndReload = Driver.merge(relaod, pull)
+        let pullAndReload = relaod
         
         let input = MyMissionViewModel.Input(
             status: status,
@@ -81,8 +82,9 @@ class MyMissionViewController: UIViewController {
         
         let output = viewModel.transform(input: input)
         
-        [output.fetching
-            .drive(tableView.refreshControl!.rx.isRefreshing),
+        [
+//            output.fetching
+//            .drive(tableView.refreshControl!.rx.isRefreshing),
          output.missions
             .drive(tableView.rx.items(
                 cellIdentifier: MyMissionTableViewCell.reuseIdentifier(),

@@ -38,6 +38,7 @@ final class HomeViewController: UIViewController {
 //        $0.allowsSelection = false
         $0.rowHeight = 335
 //        $0.refreshControl = UIRefreshControl()
+        $0.separatorStyle = .none
         $0.delaysContentTouches = false
         $0.allowsSelection = false
         $0.register(
@@ -46,7 +47,7 @@ final class HomeViewController: UIViewController {
         )
     }
 
-    private lazy var createBarButtonItem = UIBarButtonItem().then {
+    private let createBarButtonItem = UIBarButtonItem().then {
         $0.title = "Home.Navigation.CreateButton.Title".localized
         $0.style = .done
     }
@@ -150,8 +151,7 @@ final class HomeViewController: UIViewController {
     // MARK: SetProperties
     private func setProperties() {
         view.backgroundColor = .systemGroupedBackground
-        tableView.separatorStyle = .none
-        tableView.refreshControl = refreshControl
+//        tableView.refreshControl = refreshControl
     }
 
     // MARK: Set UIs

@@ -42,7 +42,7 @@ final class RankingViewController: UIViewController {
     private lazy var tableView = UITableView(frame: .zero, style: .insetGrouped).then {
         $0.register(RankingCell.self, forCellReuseIdentifier: RankingCell.reuseIdentifier())
         $0.rowHeight = 80
-        $0.refreshControl = refreshControl
+//        $0.refreshControl = refreshControl
     }
 
     private var refreshControlFecting: Binder<Bool> {
