@@ -26,6 +26,7 @@
 		4089AF1525B6CA2700DA51D7 /* MyMissionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4089AF1425B6CA2700DA51D7 /* MyMissionTableViewCell.swift */; };
 		408FF29925A471000032C5D1 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 408FF29825A471000032C5D1 /* SettingViewController.swift */; };
 		409C969425D2A6BC00C28596 /* ErrorUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 409C969325D2A6BC00C28596 /* ErrorUtil.swift */; };
+		40A2114325F3449300E8A662 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 40A2114225F3448D00E8A662 /* GoogleService-Info.plist */; };
 		40A2D4C525B5B4FC0030A85E /* CreateMissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2D4C325B5B4FC0030A85E /* CreateMissionViewController.swift */; };
 		40A2D4C625B5B4FC0030A85E /* CreateMissionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2D4C425B5B4FC0030A85E /* CreateMissionViewModel.swift */; };
 		40A2D4D325B5B59E0030A85E /* Optional+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A2D4D025B5B59E0030A85E /* Optional+Extension.swift */; };
@@ -64,7 +65,6 @@
 		5D88CC8925A2FB29008B9D61 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC8825A2FB29008B9D61 /* HomeViewController.swift */; };
 		5D88CC9B25A2FB8E008B9D61 /* RankingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CC9A25A2FB8E008B9D61 /* RankingViewController.swift */; };
 		5D88CCB325A3013C008B9D61 /* Member.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CCB225A3013B008B9D61 /* Member.swift */; };
-		5D88CCF225A32F3D008B9D61 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5D88CCF125A32F3D008B9D61 /* GoogleService-Info.plist */; };
 		5D88CCF725A33407008B9D61 /* Mission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CCF625A33407008B9D61 /* Mission.swift */; };
 		5D88CDA225A5D5B6008B9D61 /* Family.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88CCAA25A30002008B9D61 /* Family.swift */; };
 		5D88DDCE25AFE0BE00AB0B3F /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D88DDCD25AFE0BE00AB0B3F /* LoginCoordinator.swift */; };
@@ -122,6 +122,7 @@
 		4089AF1425B6CA2700DA51D7 /* MyMissionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyMissionTableViewCell.swift; sourceTree = "<group>"; };
 		408FF29825A471000032C5D1 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		409C969325D2A6BC00C28596 /* ErrorUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorUtil.swift; sourceTree = "<group>"; };
+		40A2114225F3448D00E8A662 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		40A2D4C325B5B4FC0030A85E /* CreateMissionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMissionViewController.swift; sourceTree = "<group>"; };
 		40A2D4C425B5B4FC0030A85E /* CreateMissionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateMissionViewModel.swift; sourceTree = "<group>"; };
 		40A2D4D025B5B59E0030A85E /* Optional+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Optional+Extension.swift"; sourceTree = "<group>"; };
@@ -168,7 +169,6 @@
 		5D88CC9A25A2FB8E008B9D61 /* RankingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RankingViewController.swift; sourceTree = "<group>"; };
 		5D88CCAA25A30002008B9D61 /* Family.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Family.swift; sourceTree = "<group>"; };
 		5D88CCB225A3013B008B9D61 /* Member.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Member.swift; sourceTree = "<group>"; };
-		5D88CCF125A32F3D008B9D61 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5D88CCF625A33407008B9D61 /* Mission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mission.swift; sourceTree = "<group>"; };
 		5D88CD5125A42F0B008B9D61 /* NetworkConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConstants.swift; sourceTree = "<group>"; };
 		5D88DDCD25AFE0BE00AB0B3F /* LoginCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
@@ -220,7 +220,7 @@
 		40235D6A25A551ED004D7ABE /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				5D88CCF125A32F3D008B9D61 /* GoogleService-Info.plist */,
+				40A2114225F3448D00E8A662 /* GoogleService-Info.plist */,
 				40A9BAAD25A1AC5700EC2988 /* Info.plist */,
 			);
 			path = "Supporting Files";
@@ -636,9 +636,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				406FFE0A25A4488E005C5566 /* Launch Screen.storyboard in Resources */,
+				40A2114325F3449300E8A662 /* GoogleService-Info.plist in Resources */,
 				5DF0236325C26A6000D51A35 /* Localizable.strings in Resources */,
 				40A9BAA925A1AC5700EC2988 /* Assets.xcassets in Resources */,
-				5D88CCF225A32F3D008B9D61 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1021,13 +1021,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 85329TR25G;
 				INFOPLIST_FILE = "BringChuChuba/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.BringChuChuba;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.co.bringChuChuba;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -1043,13 +1043,13 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 325UV7FT5F;
+				DEVELOPMENT_TEAM = 85329TR25G;
 				INFOPLIST_FILE = "BringChuChuba/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.BringChuChuba;
+				PRODUCT_BUNDLE_IDENTIFIER = kr.co.bringChuChuba;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;

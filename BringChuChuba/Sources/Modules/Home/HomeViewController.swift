@@ -38,6 +38,8 @@ final class HomeViewController: UIViewController {
 //        $0.allowsSelection = false
         $0.rowHeight = 335
 //        $0.refreshControl = UIRefreshControl()
+        $0.delaysContentTouches = false
+        $0.allowsSelection = false
         $0.register(
             HomeTableViewCell.self,
             forCellReuseIdentifier: HomeTableViewCell.reuseIdentifier()

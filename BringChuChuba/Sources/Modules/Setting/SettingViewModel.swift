@@ -40,7 +40,7 @@ final class SettingViewModel: ViewModelType {
         let activityIndicator = ActivityIndicator()
 
         let profile = input.photoTrigger
-            .do(onNext: coordinator.toProfile)
+//            .do(onNext: coordinator.toProfile)
         
         let myMission = input.myMissionTrigger
             .do(onNext: coordinator.toMyMission)
