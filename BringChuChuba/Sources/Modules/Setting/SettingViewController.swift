@@ -107,7 +107,7 @@ final class SettingViewController: UIViewController {
 
     // image stacks
     private lazy var myMissionImage = UIImageView().then {
-        $0.image = UIImage(systemName: "book.closed")
+        $0.image = UIImage(systemName: "tray")
         $0.contentMode = .scaleAspectFit
 //        $0.backgroundColor = .brown
     }
