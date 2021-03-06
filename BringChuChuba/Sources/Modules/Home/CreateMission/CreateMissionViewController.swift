@@ -122,7 +122,7 @@ final class CreateMissionViewController: UIViewController {
             title: titleTextField.rx.text.orEmpty.asDriver(),
             reward: rewardTextField.rx.text.orEmpty.asDriver(),
             dateSelected: datePicker.rx.date.asDriver(),
-            description: descriptionTextField.rx.text.orEmpty.asDriver(),
+//            description: descriptionTextField.rx.text.orEmpty.asDriver(),
             saveTrigger: saveBarButtonItem.rx.tap.asDriver()
         )
 
@@ -146,8 +146,8 @@ final class CreateMissionViewController: UIViewController {
         view.addSubview(stackView)
         [titleTextField,
          rewardTextField,
-         datePicker,
-         descriptionTextField
+         datePicker
+//         descriptionTextField
         ].forEach { stackView.addArrangedSubview($0) }
 
         stackView.snp.makeConstraints { make in

@@ -14,7 +14,7 @@ final class CreateMissionViewModel: ViewModelType {
         let title: Driver<String>
         let reward: Driver<String>
         let dateSelected: Driver<Date>
-        let description: Driver<String>
+//        let description: Driver<String>
         let saveTrigger: Driver<Void>
     }
 
@@ -39,10 +39,10 @@ final class CreateMissionViewModel: ViewModelType {
         let emptyCheck = Driver.combineLatest(
             input.title,
             input.reward,
-            input.description,
+//            input.description,
             activityIndicator
         ) {
-            return !$0.isEmpty && !$1.isEmpty && !$2.isEmpty && !$3
+            return !$0.isEmpty && !$1.isEmpty && !$2
         }
 
         // TODO: DatePicker tnwjd
@@ -58,14 +58,14 @@ final class CreateMissionViewModel: ViewModelType {
         let missionDetail = Driver.combineLatest(
             input.title,
             input.reward,
-            selectedDate.map { $0.toString },
-            input.description
+            selectedDate.map { $0.toString }
+//            input.description
         )
 
         let dismiss = input.saveTrigger.withLatestFrom(missionDetail)
-            .map { title, reward, date, desc in
+            .map { title, reward, date in
                 return MissionDetails(
-                    description: desc,
+                    description: "",
                     expireAt: date,
                     familyId: GlobalData.shared.familyId,
                     reward: reward,

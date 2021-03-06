@@ -117,7 +117,7 @@ final class JoinFamilyViewController: UIViewController {
 
         view.addSubview(stackView)
         stackView.addArrangedSubview(familyIdTextField)
-        //        stackView.addArrangedSubview(memberNameTextField)
+//        stackView.addArrangedSubview(memberNameTextField)
         stackView.addArrangedSubview(joinFamilyButton)
         stackView.addArrangedSubview(createFamilyButton)
 

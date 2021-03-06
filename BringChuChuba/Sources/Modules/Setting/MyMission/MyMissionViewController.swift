@@ -34,6 +34,7 @@ class MyMissionViewController: UIViewController {
         $0.estimatedRowHeight = 100
         $0.refreshControl = UIRefreshControl()
         $0.allowsSelection = false
+        $0.delaysContentTouches = false
     }
     
     // MARK: Initializers

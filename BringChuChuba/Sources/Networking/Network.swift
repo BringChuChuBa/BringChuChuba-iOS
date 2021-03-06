@@ -12,8 +12,8 @@ import Firebase
 final class Network {
     // MARK: Properties
     static let shared = Network()
-//    private let provider = MoyaProvider<Router>(plugins: [NetworkLoggerPlugin()]) // for logging
-    private let provider = MoyaProvider<Router>()
+    private let provider = MoyaProvider<Router>(plugins: [NetworkLoggerPlugin()]) // for logging
+//    private let provider = MoyaProvider<Router>()
 
     // MARK: Initializers
     private init() {}
