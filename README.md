@@ -26,20 +26,20 @@
 7. 코드 리뷰
 8. `Localizable` 을 통한 현지화
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ada96525-aec6-4340-9902-73896e5c3a70/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ada96525-aec6-4340-9902-73896e5c3a70/Untitled.png)
+![image](https://user-images.githubusercontent.com/57659933/111854779-748c0380-8964-11eb-9c8e-09d97b8dc767.png)
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ca132aad-7bf8-40b7-8391-af23a8bf2382/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ca132aad-7bf8-40b7-8391-af23a8bf2382/Untitled.png)
+![image](https://user-images.githubusercontent.com/57659933/111854794-88376a00-8964-11eb-9c58-6021fe78b70f.png)
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ff80f985-6a1c-437c-84be-16d9ebeea4eb/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/ff80f985-6a1c-437c-84be-16d9ebeea4eb/Untitled.png)
+![image](https://user-images.githubusercontent.com/57659933/111854797-8f5e7800-8964-11eb-9173-548890880213.png)
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b5280d88-4794-437c-bb02-67da8d144677/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/b5280d88-4794-437c-bb02-67da8d144677/Untitled.png)
+![image](https://user-images.githubusercontent.com/57659933/111854800-95545900-8964-11eb-87de-9117c5e209d5.png)
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/122c3cdb-cd0e-42bd-bbcf-ff583d93078c/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/122c3cdb-cd0e-42bd-bbcf-ff583d93078c/Untitled.png)
+![image](https://user-images.githubusercontent.com/57659933/111854810-9b4a3a00-8964-11eb-8aee-19bf08dc842b.png)
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/487bc9b8-7ea4-4e61-83ab-09005c0a291a/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/487bc9b8-7ea4-4e61-83ab-09005c0a291a/Untitled.png)
+![image](https://user-images.githubusercontent.com/57659933/111854815-a00eee00-8964-11eb-95d2-dfdf7125fe3f.png)
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a27c9b59-6f71-4161-93dd-4265ec6a8e2d/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/a27c9b59-6f71-4161-93dd-4265ec6a8e2d/Untitled.png)
+![image](https://user-images.githubusercontent.com/57659933/111854816-a4d3a200-8964-11eb-98f8-e11f02f82b81.png)
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/65de9bb6-2a7b-400c-9f3c-231d69ddb665/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/65de9bb6-2a7b-400c-9f3c-231d69ddb665/Untitled.png)
+![image](https://user-images.githubusercontent.com/57659933/111854822-a9985600-8964-11eb-83dc-0e4ee3803413.png)
 
-![https://s3-us-west-2.amazonaws.com/secure.notion-static.com/25348520-c724-478a-9609-8b8a01abc709/Untitled.png](https://s3-us-west-2.amazonaws.com/secure.notion-static.com/25348520-c724-478a-9609-8b8a01abc709/Untitled.png)
+![image](https://user-images.githubusercontent.com/57659933/111854826-b026cd80-8964-11eb-83d4-5aac5114e285.png)
