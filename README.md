@@ -1,12 +1,12 @@
-# BringChuChuba
+# BringChuChuba (올 때 쭈쭈바)
 
-**기간** : 2021. 01. 04 ~ 2021. 02 (진행 중)
+**기간** : 2021. 01. 04 ~ 2021. 02. 22
 
 사용 언어 : Swift, RxSwift
 
-오픈 소스 : SwiftLint, Moya, SnapKit, Firebase
+오픈 소스 : SwiftLint, Moya, SnapKit, Then, Firebase
 
-협업 스택 : Git, Git Organization, Notion, Swagger UI, Figma, Slack
+협업 스택 : Git, Git Organization, Notion, Swagger UI, Figma, Slack, Google Meet
 
 **GitHub** : [https://github.com/BringChuChuBa/BringChuChuba-iOS](https://github.com/BringChuChuBa/BringChuChuba-iOS)
 
@@ -20,11 +20,10 @@
     - 인터페이스 빌더 없이 `코드`로 개발
     - `figma`를 활용해 디자이너와 개발
 6. Firebase
+    - `Anonymous Login` 을 통한 회원 가입
     - `딥링크`로 가족 초대
-    - 크래쉬 분석
-    - 이벤트 로깅
 7. 코드 리뷰
-8. `Localizable` 을 통한 현지화
+8. `Localizable` 을 통한 현지화 대응
 
 ![image](https://user-images.githubusercontent.com/57659933/111854779-748c0380-8964-11eb-9c8e-09d97b8dc767.png)
 
