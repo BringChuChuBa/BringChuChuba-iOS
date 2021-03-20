@@ -27,7 +27,7 @@ final class MyMissionTableViewCell: UITableViewCell {
 
     fileprivate struct Font {
         static let titleLabel = UIFont.boldSystemFont(ofSize: 20)
-        static let descriptionLabel = UIFont.systemFont(ofSize: 12)
+        static let descriptionLabel = UIFont.systemFont(ofSize: 15)
     }
 
     // MARK: UI Components
@@ -43,12 +43,16 @@ final class MyMissionTableViewCell: UITableViewCell {
         $0.setTitle("Common.Delete".localized, for: .normal)
         $0.setTitleColor(Color.deleteButtonTitle, for: .normal)
         $0.backgroundColor = Color.deleteButtonBackground
+        $0.layer.cornerRadius = 15
+        $0.clipsToBounds = true
     }
     
     private lazy var completeButton = UIButton(type: .system).then {
         $0.setTitle("Common.Complete".localized, for: .normal)
         $0.setTitleColor(Color.completeButtonTitle, for: .normal)
         $0.backgroundColor = Color.completeButtonBackground
+        $0.layer.cornerRadius = 15
+        $0.clipsToBounds = true
     }
 
     // MARK: Initializers
@@ -73,7 +77,7 @@ final class MyMissionTableViewCell: UITableViewCell {
         self.parent = parent
 
         titleLabel.text = viewModel.title
-        contractLabel.text = viewModel.mission.contractor?.id
+        contractLabel.text = viewModel.mission.reward
         hideButton(with: viewModel)
 
         let input = MyMissionCellViewModel.Input(
@@ -106,16 +110,17 @@ final class MyMissionTableViewCell: UITableViewCell {
         }
 
         contractLabel.snp.makeConstraints { make in
-            make.bottom.leading.equalToSuperview().inset(20)
+            make.leading.equalTo(titleLabel)
+            make.top.equalTo(titleLabel.snp.bottom).offset(15)
         }
 
         deleteButton.snp.makeConstraints { make in
-            make.top.bottom.trailing.equalToSuperview()
+            make.top.bottom.trailing.equalToSuperview().inset(20)
             make.width.equalTo(deleteButton.snp.height)
         }
 
         completeButton.snp.makeConstraints { make in
-            make.top.bottom.trailing.equalToSuperview()
+            make.top.bottom.trailing.equalToSuperview().inset(20)
             make.width.equalTo(completeButton.snp.height)
         }
     }

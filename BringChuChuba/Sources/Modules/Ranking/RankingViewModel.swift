@@ -54,8 +54,8 @@ final class RankingViewModel: ViewModelType {
                     return family.members
                         .sorted { $0.point! > $1.point! }
                         .compactMap { RankingCellViewModel(
-                            with: $0.id,
-                            point: $0.point!
+                            with: $0.nickname ?? "Anonymous",
+                            point: $0.point ?? ""
                         ) }
                 case .monthly:
                     let count = family.missions
@@ -69,7 +69,7 @@ final class RankingViewModel: ViewModelType {
                     print(count)
                     return count.sorted { $0.value > $1.value }
                         .compactMap { RankingCellViewModel(
-                            with: $0.key.id,
+                            with: $0.key.nickname ?? "Anonymous",
                             point: $0.value.toString
                         ) }
                 }

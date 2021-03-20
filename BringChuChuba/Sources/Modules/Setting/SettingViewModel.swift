@@ -148,7 +148,7 @@ extension SettingViewModel {
     // 메시지 등등으로 공유 가능
     private func showShareSheet(url: URL) {
         print(url)
-        let promoText = "가족 초대 제목인듯 ? \(GlobalData.shared.familyId)"
+        let promoText = "우리 가족에 초대합니다 :) \(GlobalData.shared.familyId)"
         let activityVC = UIActivityViewController(
             activityItems: [promoText, url],
             applicationActivities: nil

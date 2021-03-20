@@ -48,7 +48,8 @@ final class HomeViewController: UIViewController {
     }
 
     private let createBarButtonItem = UIBarButtonItem().then {
-        $0.title = "Home.Navigation.CreateButton.Title".localized
+//        $0.title = "Home.Navigation.CreateButton.Title".localized
+        $0.image = UIImage(systemName: "plus")
         $0.style = .done
     }
 
