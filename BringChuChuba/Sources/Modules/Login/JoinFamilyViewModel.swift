@@ -39,15 +39,27 @@ final class JoinFamilyViewModel: ViewModelType {
             .map { !$0.isEmpty }
             .asDriver(onErrorJustReturn: false)
 
-        let join = input.joinTrigger.withLatestFrom(input.familyId)
-            .flatMapLatest { familyId -> Driver<Family> in
-                Network.shared.request(with: .joinFamily(familyId: familyId), for: Family.self)
-                    .trackError(errorTracker)
-                    .asDriverOnErrorJustComplete()
+        let join = input.joinTrigger
+            .withLatestFrom(input.familyId)
+            .flatMap { familyID in
+                Network.shared.request(with: .joinFamily(familyId: familyID),
+                                       for: Family.self)
+                    .asDriver(onErrorJustReturn: Family(id: "",
+                                                        members: [],
+                                                        missions: [],
+                                                        name: "이름 없음"))
+//                    .asDriverOnErrorJustComplete()
+
             }
-            .do { [unowned self] family in
+//            .flatMapLatest { familyId in
+//                Network.shared.request(with: .joinFamily(familyId: familyId),
+//                                       for: Family.self)
+//                    .trackError(errorTracker)
+//                    .asDriverOnErrorJustComplete()
+//            }
+            .do { [weak self] family in
                 GlobalData.shared.familyId = family.id
-                self.coordinator.toHome()
+                self?.coordinator.toHome()
             }
 
         let toCreate = input.createTrigger.do(onNext: coordinator.toCraeteFamily)

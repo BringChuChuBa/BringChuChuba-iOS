@@ -7,9 +7,12 @@
 
 import UIKit
 
+import RxSwift
+
 final class MainViewController: UIViewController {
     // MARK: Properties
     private let coordinator: MainCoordinator
+    var disposeBag: DisposeBag = DisposeBag()
 
     // MARK: Initializers
     init(with coordinator: MainCoordinator) {
@@ -41,9 +44,6 @@ final class MainViewController: UIViewController {
             guard let self = self else { return }
             self.fetchCurrentMember(with: token)
         }
-
-//        to test
-//        fetchCurrentMember(with: "")
     }
 }
 
@@ -52,8 +52,8 @@ final class MainViewController: UIViewController {
 extension MainViewController {
     private func fetchCurrentMember(with token: String) {
         // member
-        _ = Network.shared.request(with: .getMember,
-                                   for: Member.self)
+        Network.shared.request(with: .getMember,
+                               for: Member.self)
             .subscribe(onSuccess: { [weak self] member in
                 guard let self = self else { return }
 
@@ -71,5 +71,6 @@ extension MainViewController {
                 print(error.localizedDescription)
                 return
             })
+            .disposed(by: disposeBag)
     }
 }

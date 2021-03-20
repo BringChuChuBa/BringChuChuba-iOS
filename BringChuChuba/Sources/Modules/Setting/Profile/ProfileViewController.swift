@@ -172,7 +172,7 @@ class ProfileViewController: UIViewController {
             .tapGesture()
             .when(.recognized)
 
-        let nickName = nickNameTextField.rx.text.orEmpty.asDriver()
+        _ = nickNameTextField.rx.text.orEmpty.asDriver()
 
         let input = ProfileViewModel.Input(
             profileTrigger: profileDidSelected,

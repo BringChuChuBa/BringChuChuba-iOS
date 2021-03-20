@@ -15,9 +15,14 @@ final class LoginCoordinator: CoordinatorType {
     unowned private let navigationController: UINavigationController
 
     weak var delegate: LoginCoordinatorDelegate?
+    let mainCoordinator: MainCoordinator
 
-    init(navigationController: UINavigationController) {
+    init(
+        navigationController: UINavigationController,
+        mainCoordinator: MainCoordinator
+    ) {
         self.navigationController = navigationController
+        self.mainCoordinator = mainCoordinator
     }
     
     func start() {
@@ -26,7 +31,10 @@ final class LoginCoordinator: CoordinatorType {
     }
 
     func toHome() {
-        self.delegate?.didLoggedIn(self)
+//        self.delegate?.didLoggedIn(self)
+        mainCoordinator.loginSubject
+            .onNext(())
+            
     }
 
     func toCraeteFamily() {

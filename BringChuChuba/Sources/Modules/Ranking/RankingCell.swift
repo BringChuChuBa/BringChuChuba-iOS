@@ -91,9 +91,9 @@ class RankingCell: UITableViewCell {
         contentView.addSubview(titleLabel)
         contentView.addSubview(detailLabel)
 
-        contentView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(20)
-        }
+//        contentView.snp.makeConstraints { make in
+//            make.edges.equalToSuperview().inset(20)
+//        }
 
         rankLabel.snp.makeConstraints { make in
             make.leading.centerY.equalToSuperview()

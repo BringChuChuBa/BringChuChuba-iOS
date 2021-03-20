@@ -97,16 +97,16 @@ final class MyMissionTableViewCell: UITableViewCell {
         contentView.addSubview(deleteButton)
         contentView.addSubview(completeButton)
 
-        contentView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(20)
-        }
+//        contentView.snp.makeConstraints { make in
+//            make.edges.equalToSuperview().inset(20)
+//        }
 
         titleLabel.snp.makeConstraints { make in
-            make.top.leading.equalToSuperview()
+            make.top.leading.equalToSuperview().inset(20)
         }
 
         contractLabel.snp.makeConstraints { make in
-            make.bottom.leading.equalToSuperview()
+            make.bottom.leading.equalToSuperview().inset(20)
         }
 
         deleteButton.snp.makeConstraints { make in

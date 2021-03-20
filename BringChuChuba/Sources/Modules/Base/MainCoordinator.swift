@@ -6,24 +6,33 @@
 //
 
 import UIKit
+
 import Then
+import RxSwift
 
 // TODO: 1줄을 짧게 쓰기 위해 2줄을 추가하는게 맞는가?
 final class MainCoordinator: CoordinatorType, Then {
     private let window: UIWindow
 
+    let loginSubject: PublishSubject<Void> = .init()
+    var disposeBag: DisposeBag = .init()
+
     init(window: UIWindow) {
         self.window = window
+
+        _ = loginSubject
+            .subscribe(onNext: { [weak self] in
+                self?.showMainTab()
+            })
     }
 
     func start() {
-//        window.makeKeyAndVisible()
-//        GlobalData.shared.familyId == "" ? showLogin() : showMainTab()
     }
 
     func showLogin() {
         let navigationController = UINavigationController()
-        let coordinator = LoginCoordinator(navigationController: navigationController)
+        let coordinator = LoginCoordinator(navigationController: navigationController,
+                                           mainCoordinator: self)
         coordinator.delegate = self
         coordinator.start()
 //        coordinatorInit(from: .login, with: navigationController)
@@ -49,6 +58,9 @@ final class MainCoordinator: CoordinatorType, Then {
         // if 가족 o -> root = tabBar
         // 없으면 가족 coordinator 이동시켜서 로직처리
 
+        loginSubject
+            .disposed(by: disposeBag)
+
         window.rootViewController = tabBarController
     }
 
@@ -56,8 +68,6 @@ final class MainCoordinator: CoordinatorType, Then {
     private func getNavigationController(from type: SceneType) -> UINavigationController {
         let navigationController = UINavigationController()
         navigationController.navigationBar.prefersLargeTitles = true
-//        navigationController.navigationBar.sizeToFit()
-//        navigationController.navigationItem.largeTitleDisplayMode = .automatic
 
         navigationController.tabBarItem = type.tabBarItem
 
@@ -75,7 +85,8 @@ final class MainCoordinator: CoordinatorType, Then {
         case .setting:
             coordinator = SettingCoordinator(navigationController: navigationController)
         case .login:
-            coordinator = LoginCoordinator(navigationController: navigationController)
+            coordinator = LoginCoordinator(navigationController: navigationController,
+                                           mainCoordinator: self)
         }
 
         coordinator.start()

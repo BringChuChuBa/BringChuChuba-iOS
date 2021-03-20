@@ -89,12 +89,6 @@ final class HomeViewController: UIViewController {
         setProperties()
         setupUI()
     }
-
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//
-//        navigationController?.forceUpdateNavBar()
-//    }
     
     // MARK: Binds
     private func bindViewModel() {
@@ -109,10 +103,6 @@ final class HomeViewController: UIViewController {
 
         let pull = refreshControl.rx
             .controlEvent(.valueChanged)
-//            .throttle(.seconds(1), latest: false, scheduler: MainScheduler.instance)
-//            .delay(.seconds(1), scheduler: MainScheduler.instance)
-//            .debounce(.seconds(1), scheduler: MainScheduler.instance)
-//            .asDriver()
             .asDriverOnErrorJustComplete()
 
         let relaod = reloadSubject.asDriverOnErrorJustComplete()
