@@ -8,8 +8,6 @@
 
 협업 스택 : Git, Git Organization, Notion, Swagger UI, Figma, Slack, Google Meet
 
-Contributor: @betterhee, @hansangjin96
-
 # 고려사항
 
 1. `RxSwift`를 이용한 `MVVM-C` 패턴
@@ -33,6 +31,8 @@ Contributor: @betterhee, @hansangjin96
 # License
 
 MIT
+
+# ScreenShots
 
 ![image](https://user-images.githubusercontent.com/57659933/111854779-748c0380-8964-11eb-9c8e-09d97b8dc767.png) ![image](https://user-images.githubusercontent.com/57659933/111854794-88376a00-8964-11eb-9c58-6021fe78b70f.png)
 
